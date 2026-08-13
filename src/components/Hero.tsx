@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight, ShieldCheck, QrCode, Award, CheckCircle2, Sparkles, ExternalLink } from 'lucide-react';
 
 export const Hero: React.FC = () => {
@@ -195,7 +196,13 @@ export const Hero: React.FC = () => {
               </div>
             </div>
 
-            <p className="text-sm font-semibold text-teal-300 mb-4">getpathport.com/p/alex-chen</p>
+            <Link 
+              to="/p/alex-chen" 
+              className="text-sm font-semibold text-teal-300 hover:text-teal-200 hover:underline mb-4 inline-flex items-center justify-center gap-1.5"
+            >
+              <span>getpathport.com/p/alex-chen</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </Link>
 
             <button 
               onClick={() => setQrModalOpen(false)}

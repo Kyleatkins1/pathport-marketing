@@ -22,6 +22,7 @@ import { BoardCertificationsFunnel } from './pages/BoardCertificationsFunnel';
 import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { TermsOfService } from './pages/TermsOfService';
 import { SecurityWhitepaper } from './pages/SecurityWhitepaper';
+import { PublicPassportDemo } from './pages/PublicPassportDemo';
 
 const HomePage: React.FC = () => (
   <>
@@ -51,6 +52,10 @@ export const App: React.FC = () => {
           <Route path="/for/students" element={<StudentsFunnel />} />
           <Route path="/for/enterprise" element={<EnterpriseFunnel />} />
           <Route path="/for/board-certifications" element={<BoardCertificationsFunnel />} />
+          
+          {/* Public Verified Passport Route */}
+          <Route path="/p/:slug" element={<PublicPassportDemo />} />
+          <Route path="/p" element={<PublicPassportDemo />} />
           
           {/* Legal & Security Routes */}
           <Route path="/privacy" element={<PrivacyPolicy />} />

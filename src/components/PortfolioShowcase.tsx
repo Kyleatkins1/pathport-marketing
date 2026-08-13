@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ShieldCheck, Award, CheckCircle, ExternalLink } from 'lucide-react';
 
 interface DemoProfile {
@@ -118,9 +119,13 @@ export const PortfolioShowcase: React.FC = () => {
             </div>
 
             <div className="text-left sm:text-right">
-              <span className="font-semibold text-xs text-teal-300 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800 inline-block">
-                {activeProfile.handle}
-              </span>
+              <Link 
+                to={`/p/${activeProfile.id}`}
+                className="font-semibold text-xs text-teal-300 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800 hover:border-teal-500/40 hover:text-white transition-all inline-flex items-center gap-1.5"
+              >
+                <span>{activeProfile.handle}</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </Link>
               {activeProfile.ceusCompleted && (
                 <p className="text-xs text-amber-400 font-semibold mt-2">
                   CEU Compliance: {activeProfile.ceusCompleted}
