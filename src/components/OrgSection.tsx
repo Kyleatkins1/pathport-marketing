@@ -3,7 +3,7 @@ import { Building2, ShieldAlert, Users, BarChart3, CheckCircle2, ArrowRight } fr
 
 export const OrgSection: React.FC = () => {
   return (
-    <section id="organizations" className="py-24 relative bg-ambient-grid overflow-hidden">
+    <section id="organizations" className="py-24 relative bg-ambient-grid overflow-hidden scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="glass-card rounded-3xl p-8 sm:p-12 border border-teal-500/30 relative overflow-hidden shadow-glowTeal">

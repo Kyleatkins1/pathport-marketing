@@ -2,7 +2,7 @@ import { Database, Share2, Cpu, CheckCircle, Presentation } from 'lucide-react';
 
 export const FeaturePillars: React.FC = () => {
   return (
-    <section id="features" className="py-24 relative bg-ambient-grid">
+    <section id="features" className="py-24 relative bg-ambient-grid scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -20,12 +20,12 @@ export const FeaturePillars: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           
           {/* Pillar 1: Vault & CEU Engine */}
-          <div id="vault" className="glass-card rounded-2xl p-8 border border-white/10 glass-card-hover relative flex flex-col justify-between">
+          <div id="vault" className="glass-card rounded-2xl p-8 border border-white/10 glass-card-hover relative flex flex-col justify-between scroll-mt-28">
             <div className="space-y-6">
               <div className="w-14 h-14 rounded-xl bg-teal-500/10 border border-teal-500/30 flex items-center justify-center text-teal-400">
                 <Database className="w-7 h-7" />
               </div>
-              <h3 className="text-xl font-bold text-white">1. Universal Vault & CEU Engine</h3>
+              <h3 className="text-xl font-bold text-white">Universal Vault & CEU Engine</h3>
               <p className="text-slate-300 text-sm leading-relaxed">
                 Consolidate PMP, AWS, Nursing, EMT, Board Certs, and Trades credentials into one encrypted vault. Track state CEU hours automatically so you never panic before a renewal.
               </p>
@@ -58,7 +58,7 @@ export const FeaturePillars: React.FC = () => {
               <div className="w-14 h-14 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
                 <Cpu className="w-7 h-7" />
               </div>
-              <h3 className="text-xl font-bold text-white">2. AI Resume & Certificate Parser</h3>
+              <h3 className="text-xl font-bold text-white">AI Resume & Certificate Parser</h3>
               <p className="text-slate-300 text-sm leading-relaxed">
                 Stop typing data manually. Drop any PDF resume, state license, or certificate image — our parser extracts issuer names, issue/expiration dates, and skills into structured milestones.
               </p>
@@ -91,7 +91,7 @@ export const FeaturePillars: React.FC = () => {
               <div className="w-14 h-14 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400">
                 <Presentation className="w-7 h-7" />
               </div>
-              <h3 className="text-xl font-bold text-white">3. Project Proof & Research Posters</h3>
+              <h3 className="text-xl font-bold text-white">Project Proof & Research Posters</h3>
               <p className="text-slate-300 text-sm leading-relaxed">
                 Certifications alone look generic on paper. Link real-world projects, clinical case studies, code repos, and conference posters directly to your certs to prove your real-world impact.
               </p>
@@ -124,7 +124,7 @@ export const FeaturePillars: React.FC = () => {
               <div className="w-14 h-14 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
                 <Share2 className="w-7 h-7" />
               </div>
-              <h3 className="text-xl font-bold text-white">4. Tailored Digital Portfolios</h3>
+              <h3 className="text-xl font-bold text-white">Tailored Digital Portfolios</h3>
               <p className="text-slate-300 text-sm leading-relaxed">
                 Create custom profile links (`getpathport.com/p/yourname`) tailored for specific job applications, speaking pitches, or admissions. Employers verify credentials instantly without logins.
               </p>

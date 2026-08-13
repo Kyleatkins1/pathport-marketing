@@ -5,7 +5,7 @@ export const Pricing: React.FC = () => {
   const [isAnnual, setIsAnnual] = useState(true);
 
   return (
-    <section id="pricing" className="py-24 relative bg-slate-950/90 border-t border-slate-800">
+    <section id="pricing" className="py-24 relative bg-slate-950/90 border-t border-slate-800 scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Launch Banner */}
