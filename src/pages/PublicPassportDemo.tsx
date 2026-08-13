@@ -278,12 +278,21 @@ const profilesData: Record<string, PassportProfile> = {
   }
 };
 
+// Alias map for demo profile IDs & alternate handles
+const slugAliases: Record<string, string> = {
+  'nurse-multi': 'sarah-jenkins',
+  'sarah-jenkins-rn': 'sarah-jenkins',
+  'pmp-single': 'marcus-vance',
+  'tech-cloud': 'david-kim'
+};
+
 export const PublicPassportDemo: React.FC = () => {
   const { slug } = useParams<{ slug?: string }>();
   const [qrModalOpen, setQrModalOpen] = useState(false);
 
-  // Fallback to Alex Chen if slug not found
-  const profileKey = (slug && profilesData[slug]) ? slug : 'alex-chen';
+  // Normalize slug using alias mapping or direct lookup, fallback to alex-chen
+  const normalizedSlug = slug ? (slugAliases[slug] || slug) : 'alex-chen';
+  const profileKey = profilesData[normalizedSlug] ? normalizedSlug : 'alex-chen';
   const profile = profilesData[profileKey];
 
   return (

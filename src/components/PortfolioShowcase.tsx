@@ -120,7 +120,7 @@ export const PortfolioShowcase: React.FC = () => {
 
             <div className="text-left sm:text-right">
               <Link 
-                to={`/p/${activeProfile.id}`}
+                to={`/p/${activeProfile.id === 'nurse-multi' ? 'sarah-jenkins' : activeProfile.id === 'pmp-single' ? 'marcus-vance' : activeProfile.id === 'tech-cloud' ? 'david-kim' : activeProfile.id}`}
                 className="font-semibold text-xs text-teal-300 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800 hover:border-teal-500/40 hover:text-white transition-all inline-flex items-center gap-1.5"
               >
                 <span>{activeProfile.handle}</span>
