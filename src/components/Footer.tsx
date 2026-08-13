@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Logo } from './Logo';
 
 export const Footer: React.FC = () => {
@@ -14,32 +15,33 @@ export const Footer: React.FC = () => {
             <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
               PathPort is the universal credential passport. Consolidate certifications, track CEU state renewals, and showcase verified digital portfolios across any industry.
             </p>
-            <p className="text-xs text-slate-500 font-mono">
-              © {new Date().getFullYear()} PathPort by Veritas Technologies. All rights reserved.
+            <p className="text-xs text-slate-500 font-sans">
+              PathPort is a product of <a href="https://veritastech.io" target="_blank" rel="noreferrer" className="text-teal-400 hover:underline">Veritas Technology Solutions, LLC</a>. © {new Date().getFullYear()} All rights reserved.
             </p>
           </div>
 
-          {/* Col 3: Product */}
+          {/* Col 3: Solutions by Profession */}
           <div className="space-y-3">
-            <h4 className="font-display font-bold text-white text-xs tracking-wider uppercase">Product</h4>
+            <h4 className="font-display font-bold text-white text-xs tracking-wider uppercase">Funnels by Profession</h4>
             <ul className="space-y-2 text-xs">
-              <li><a href="#vault" className="hover:text-primary-glow transition-colors">Credential Vault</a></li>
-              <li><a href="#ceu-engine" className="hover:text-primary-glow transition-colors">CEU Renewal Engine</a></li>
-              <li><a href="#features" className="hover:text-primary-glow transition-colors">AI Resume Parser</a></li>
-              <li><a href="#portfolio-demo" className="hover:text-primary-glow transition-colors">Digital Portfolio</a></li>
-              <li><a href="#pricing" className="hover:text-primary-glow transition-colors">Pricing</a></li>
+              <li><Link to="/for/nurses" className="hover:text-teal-300 transition-colors">Nurses & Healthcare</Link></li>
+              <li><Link to="/for/paramedics" className="hover:text-teal-300 transition-colors">Paramedics & EMS</Link></li>
+              <li><Link to="/for/project-managers" className="hover:text-teal-300 transition-colors">Project Managers & Tech</Link></li>
+              <li><Link to="/for/board-certifications" className="hover:text-teal-300 transition-colors">Board Certifications</Link></li>
+              <li><Link to="/for/students" className="hover:text-teal-300 transition-colors">Students (.edu Free)</Link></li>
+              <li><Link to="/for/enterprise" className="hover:text-teal-300 transition-colors">For Organizations</Link></li>
             </ul>
           </div>
 
-          {/* Col 4: Integrations */}
+          {/* Col 4: Platform Features */}
           <div className="space-y-3">
-            <h4 className="font-display font-bold text-white text-xs tracking-wider uppercase">Integrations</h4>
+            <h4 className="font-display font-bold text-white text-xs tracking-wider uppercase">Platform</h4>
             <ul className="space-y-2 text-xs">
-              <li><span className="text-slate-400">Credly & Open Badges</span></li>
-              <li><span className="text-slate-400">PMI® Project Management</span></li>
-              <li><span className="text-slate-400">NYS & State Nursing Boards</span></li>
-              <li><span className="text-slate-400">NREMT & Paramedics</span></li>
-              <li><span className="text-slate-400">AWS & Cloud Certs</span></li>
+              <li><a href="/#vault" className="hover:text-teal-300 transition-colors">Credential Vault</a></li>
+              <li><a href="/#ceu-engine" className="hover:text-teal-300 transition-colors">CEU Renewal Engine</a></li>
+              <li><a href="/#features" className="hover:text-teal-300 transition-colors">AI Resume & Cert Parser</a></li>
+              <li><a href="/#features" className="hover:text-teal-300 transition-colors">Posters & Project Proof</a></li>
+              <li><a href="/#pricing" className="hover:text-teal-300 transition-colors">Pricing & Founding Offer</a></li>
             </ul>
           </div>
 
@@ -47,10 +49,10 @@ export const Footer: React.FC = () => {
           <div className="space-y-3">
             <h4 className="font-display font-bold text-white text-xs tracking-wider uppercase">Company & Legal</h4>
             <ul className="space-y-2 text-xs">
-              <li><a href="https://veritastech.io" target="_blank" rel="noreferrer" className="hover:text-primary-glow transition-colors">Veritas Technologies</a></li>
-              <li><a href="mailto:support@getpathport.com" className="hover:text-primary-glow transition-colors">Support & Security</a></li>
-              <li><a href="https://app.getpathport.com/privacy" className="hover:text-primary-glow transition-colors">Privacy Policy</a></li>
-              <li><a href="https://app.getpathport.com/terms" className="hover:text-primary-glow transition-colors">Terms of Service</a></li>
+              <li><a href="https://veritastech.io" target="_blank" rel="noreferrer" className="hover:text-teal-300 transition-colors">Veritas Tech Solutions</a></li>
+              <li><Link to="/privacy" className="hover:text-teal-300 transition-colors">Privacy Policy</Link></li>
+              <li><Link to="/terms" className="hover:text-teal-300 transition-colors">Terms of Service & Mobile TOS</Link></li>
+              <li><Link to="/security" className="hover:text-teal-300 transition-colors">Security Overview</Link></li>
             </ul>
           </div>
 
@@ -60,7 +62,7 @@ export const Footer: React.FC = () => {
         <div className="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
           <p>Designed for security, compliance, and career growth.</p>
           <div className="flex items-center gap-6">
-            <span className="flex items-center gap-1.5 text-emerald-400 font-mono">
+            <span className="flex items-center gap-1.5 text-emerald-400 font-sans font-medium">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               All Systems Operational
             </span>

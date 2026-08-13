@@ -6,6 +6,7 @@ import { InteroperabilityRibbon } from './components/InteroperabilityRibbon';
 import { FeaturePillars } from './components/FeaturePillars';
 import { PortfolioShowcase } from './components/PortfolioShowcase';
 import { OrgSection } from './components/OrgSection';
+import { FAQ } from './components/FAQ';
 import { Pricing } from './components/Pricing';
 import { Footer } from './components/Footer';
 
@@ -17,6 +18,11 @@ import { StudentsFunnel } from './pages/StudentsFunnel';
 import { EnterpriseFunnel } from './pages/EnterpriseFunnel';
 import { BoardCertificationsFunnel } from './pages/BoardCertificationsFunnel';
 
+// Legal & Security Pages
+import { PrivacyPolicy } from './pages/PrivacyPolicy';
+import { TermsOfService } from './pages/TermsOfService';
+import { SecurityWhitepaper } from './pages/SecurityWhitepaper';
+
 const HomePage: React.FC = () => (
   <>
     <Navbar />
@@ -26,6 +32,7 @@ const HomePage: React.FC = () => (
       <FeaturePillars />
       <PortfolioShowcase />
       <OrgSection />
+      <FAQ />
       <Pricing />
     </main>
     <Footer />
@@ -44,6 +51,11 @@ export const App: React.FC = () => {
           <Route path="/for/students" element={<StudentsFunnel />} />
           <Route path="/for/enterprise" element={<EnterpriseFunnel />} />
           <Route path="/for/board-certifications" element={<BoardCertificationsFunnel />} />
+          
+          {/* Legal & Security Routes */}
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsOfService />} />
+          <Route path="/security" element={<SecurityWhitepaper />} />
         </Routes>
       </div>
     </BrowserRouter>
