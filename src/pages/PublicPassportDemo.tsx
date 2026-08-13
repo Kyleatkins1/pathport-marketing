@@ -499,7 +499,7 @@ export const PublicPassportDemo: React.FC = () => {
             
             <div className="my-4 flex justify-center">
               <BrandedQRCode 
-                value={`https://pathport-marketing.pages.dev/p/${profile.handle}`}
+                value={`https://getpathport.com/p/${profile.handle}`}
                 size={190}
               />
             </div>

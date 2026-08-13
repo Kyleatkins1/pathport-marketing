@@ -184,7 +184,7 @@ export const Hero: React.FC = () => {
             
             <div className="my-4 flex justify-center">
               <BrandedQRCode 
-                value="https://pathport-marketing.pages.dev/p/alex-chen"
+                value="https://getpathport.com/p/alex-chen"
                 size={190}
               />
             </div>
