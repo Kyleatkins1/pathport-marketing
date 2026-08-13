@@ -118,7 +118,7 @@ export const PortfolioShowcase: React.FC = () => {
             </div>
 
             <div className="text-left sm:text-right">
-              <span className="font-mono text-xs text-teal-300 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800 inline-block">
+              <span className="font-semibold text-xs text-teal-300 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800 inline-block">
                 {activeProfile.handle}
               </span>
               {activeProfile.ceusCompleted && (

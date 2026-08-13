@@ -120,7 +120,7 @@ export const Hero: React.FC = () => {
                     title="View QR Code"
                   >
                     <QrCode className="w-4 h-4" />
-                    <span className="hidden sm:inline font-mono">QR</span>
+                    <span className="hidden sm:inline font-semibold text-xs">QR</span>
                   </button>
                 </div>
 
@@ -162,7 +162,7 @@ export const Hero: React.FC = () => {
                 {/* Passport Card Footer */}
                 <div className="pt-4 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
                   <span>CEU Status: <strong className="text-teal-300 font-semibold">30 / 30 Hours Complete</strong></span>
-                  <span className="text-amber-400 font-mono text-[11px]">VALIDATED</span>
+                  <span className="text-amber-400 font-bold text-xs uppercase tracking-wider">VALIDATED</span>
                 </div>
 
               </div>
@@ -182,7 +182,7 @@ export const Hero: React.FC = () => {
             
             <div className="bg-white p-4 rounded-xl inline-block shadow-inner mb-4">
               {/* QR Code placeholder graphics */}
-              <div className="w-44 h-44 bg-slate-950 p-2 rounded flex flex-col justify-between items-center text-teal-400 font-mono text-xs">
+              <div className="w-44 h-44 bg-slate-950 p-2 rounded flex flex-col justify-between items-center text-teal-400 text-xs">
                 <div className="w-full flex justify-between">
                   <div className="w-10 h-10 border-4 border-slate-950 bg-teal-400" />
                   <div className="w-10 h-10 border-4 border-slate-950 bg-teal-400" />
@@ -195,7 +195,7 @@ export const Hero: React.FC = () => {
               </div>
             </div>
 
-            <p className="text-xs text-teal-300 font-mono mb-4">getpathport.com/p/alex-chen</p>
+            <p className="text-sm font-semibold text-teal-300 mb-4">getpathport.com/p/alex-chen</p>
 
             <button 
               onClick={() => setQrModalOpen(false)}

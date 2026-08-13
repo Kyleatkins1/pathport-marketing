@@ -27,7 +27,7 @@ export const InteroperabilityRibbon: React.FC = () => {
               <div className="w-2 h-2 rounded-full bg-teal-400 group-hover:bg-amber-400 transition-colors" />
               <div>
                 <span className="font-semibold text-slate-200 text-sm group-hover:text-white transition-colors">{vendor.name}</span>
-                <span className="block text-[10px] text-slate-400 font-mono">{vendor.type}</span>
+                <span className="block text-xs text-slate-400 font-medium">{vendor.type}</span>
               </div>
             </div>
           ))}

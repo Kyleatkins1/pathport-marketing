@@ -46,7 +46,7 @@ export const FeaturePillars: React.FC = () => {
               </ul>
             </div>
             
-            <div className="mt-8 pt-4 border-t border-slate-800 text-xs font-mono text-teal-400 flex items-center justify-between">
+            <div className="mt-8 pt-4 border-t border-slate-800 text-xs font-sans font-semibold tracking-wider text-teal-400 flex items-center justify-between">
               <span>SECURITY & COMPLIANCE</span>
               <span>AES-256 ENCRYPTED</span>
             </div>
@@ -79,7 +79,7 @@ export const FeaturePillars: React.FC = () => {
               </ul>
             </div>
 
-            <div className="mt-8 pt-4 border-t border-slate-800 text-xs font-mono text-amber-400 flex items-center justify-between">
+            <div className="mt-8 pt-4 border-t border-slate-800 text-xs font-sans font-semibold tracking-wider text-amber-400 flex items-center justify-between">
               <span>PARSING ENGINE</span>
               <span>INSTANT EXTRACT</span>
             </div>
@@ -112,7 +112,7 @@ export const FeaturePillars: React.FC = () => {
               </ul>
             </div>
 
-            <div className="mt-8 pt-4 border-t border-slate-800 text-xs font-mono text-cyan-400 flex items-center justify-between">
+            <div className="mt-8 pt-4 border-t border-slate-800 text-xs font-sans font-semibold tracking-wider text-cyan-400 flex items-center justify-between">
               <span>EMPLOYER SHARING</span>
               <span>VERIFIED LINK</span>
             </div>

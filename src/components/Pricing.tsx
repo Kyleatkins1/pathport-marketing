@@ -177,7 +177,7 @@ export const Pricing: React.FC = () => {
               <div className="mb-6">
                 <span className="text-4xl font-extrabold text-white">$5</span>
                 <span className="text-slate-400 text-sm font-medium"> / user / mo</span>
-                <p className="text-[11px] text-slate-400 mt-1 font-mono">Billed annually • 5-seat min ($300/yr floor)</p>
+                <p className="text-[11px] text-slate-400 mt-1 font-medium">Billed annually • 5-seat min ($300/yr floor)</p>
               </div>
 
               <ul className="space-y-3 text-sm text-slate-300 mb-8">

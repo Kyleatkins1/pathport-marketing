@@ -105,7 +105,7 @@ export const OrgSection: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="pt-2 text-center text-slate-400 text-[11px] font-mono">
+                <div className="pt-2 text-center text-slate-400 text-[11px] font-semibold tracking-wider uppercase">
                   UPDATED REAL-TIME VIA PATHPORT CORE
                 </div>
               </div>
