@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { BrandedQRCode } from './BrandedQRCode';
 import { ArrowRight, ShieldCheck, QrCode, Award, CheckCircle2, Sparkles, ExternalLink } from 'lucide-react';
 
 export const Hero: React.FC = () => {
@@ -181,19 +182,11 @@ export const Hero: React.FC = () => {
             <h4 className="font-display font-bold text-white text-lg mb-1">Alex Chen's PathPort</h4>
             <p className="text-xs text-slate-400 mb-4">Scan to view instant verified credentials</p>
             
-            <div className="bg-white p-4 rounded-xl inline-block shadow-inner mb-4">
-              {/* QR Code placeholder graphics */}
-              <div className="w-44 h-44 bg-slate-950 p-2 rounded flex flex-col justify-between items-center text-teal-400 text-xs">
-                <div className="w-full flex justify-between">
-                  <div className="w-10 h-10 border-4 border-slate-950 bg-teal-400" />
-                  <div className="w-10 h-10 border-4 border-slate-950 bg-teal-400" />
-                </div>
-                <div className="my-auto font-display font-bold text-base text-white">PATHPORT</div>
-                <div className="w-full flex justify-between">
-                  <div className="w-10 h-10 border-4 border-slate-950 bg-teal-400" />
-                  <div className="w-6 h-6 bg-amber-400" />
-                </div>
-              </div>
+            <div className="my-4 flex justify-center">
+              <BrandedQRCode 
+                value="https://pathport-marketing.pages.dev/p/alex-chen"
+                size={190}
+              />
             </div>
 
             <Link 
