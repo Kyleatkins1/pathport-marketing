@@ -23,7 +23,7 @@ Billing is **annual-forward** on purpose: credential renewal is an annual behavi
 
 | | **Free** | **Pro** | **Teams / Org** |
 |---|---|---|---|
-| **Price** | $0 | **$59/yr** or $7/mo | **$5/user/mo**, billed annually · 5-seat minimum (~$300/yr floor) |
+| **Price** | $0 | **$8/mo** or **$79/yr** (2 months free) | **$5/user/mo**, billed annually · 5-seat minimum (~$300/yr floor) |
 | **Who it's for** | High-schoolers, casual users, trials | The nurse, the 50-cert power user, any individual professional | Clinics, schools, fire/EMS depts, training programs |
 | **Credentials stored** | Up to 10 | Unlimited | Unlimited per member |
 | **CEU / renewal engine** | — | **Full compliance tracking** ("what do I still need") | Full, per member |
@@ -42,7 +42,7 @@ Billing is **annual-forward** on purpose: credential renewal is an annual behavi
 
 **Free at 10 credentials** is deliberately generous enough to be genuinely useful (a high-schooler's college portfolio fits easily) but hits a wall for the working professional the moment they get serious — which is exactly when you want the upgrade prompt. The cap is your `max_documents` lever.
 
-**Pro at $59/yr** sits just above CE Broker's $39.99 Professional tier, and the justification is on the label: PathPort Pro covers *every* credential and profession, imports badges, builds a real portfolio, and parses your resume — CE Broker does none of that. The wedge to hammer in copy: **CE Broker puts "am I actually compliant?" behind its paywall and users resent it; PathPort makes compliance clarity the headline of Pro.** $7/mo monthly ($84/yr effective) nudges people to annual.
+**Pro at $8/mo or $79/yr** is priced above CE Broker's $39.99 Professional tier on purpose — you're selling value, not undercutting. The justification is on the label: PathPort Pro covers *every* credential and profession, imports badges, builds a real portfolio, and parses your resume — CE Broker does none of that. The wedge to hammer in copy: **CE Broker puts "am I actually compliant?" behind its paywall and users resent it; PathPort makes compliance clarity the headline of Pro.** The annual plan at $79 works out to ~$6.58/mo — real savings that pull people onto a yearly commitment, which matters because credential renewal is inherently an annual behavior and annual plans cut churn hard. $8/mo stays in "affordable, slight stretch" territory rather than a grudging purchase.
 
 **Teams at $5/user/mo** undercuts enterprise credentialing by an order of magnitude and targets orgs who find Certemy/Cobalt absurd for a 30-person clinic. The 5-seat minimum sets a ~$300/yr floor so small deals still clear. This is your highest-margin, most-defensible revenue — a 40-person nursing school at $5/seat is $2,400/yr with near-zero marginal cost.
 
@@ -61,9 +61,9 @@ Six axes separate the tiers. Keep them clean — don't let tiers differ on twent
 
 ---
 
-## Two launch levers worth considering (optional, not core tiers)
+## Launch levers (locked)
 
-- **Lifetime Pro** — a one-time ~$149–199 offer, time-boxed to your first ~100–500 users. Power users (your 50-cert persona) love lifetime deals, it generates early cash before you have recurring revenue, and those buyers become evangelists. Cap it and sunset it.
+- **Founding Member offer** *(replaces a lifetime deal — deliberately).* A lifetime price is a bad promise when you can't guarantee a lifetime of operation, and it caps your revenue on your most committed users. Instead: **$49/yr locked for 2 years** (or $4.99/mo), for roughly the first 500 signups, then the plan reverts to standard $79/$8. It rewards early adopters, pulls cash forward, and creates a 2-year commitment window — with zero perpetual liability. Enforce the price-lock window in app logic + the Stripe subscription, not as a permanent plan.
 - **Free for students / EDU** — verify a `.edu` or high-school email → free Pro-lite. It costs you little (students are low-usage), seeds the top of your funnel, and converts as they graduate into nurses/professionals who then need the real thing.
 
 ---
@@ -74,10 +74,10 @@ Your `subscription_plans` table already has the exact columns this needs: `price
 
 ---
 
-## What I need from you to finalize
+## Locked decisions (2026-08-13)
 
-1. **Is B2B in v1, or does org come later?** (I'd build the org tier's billing plumbing in v1 even if you soft-launch it, since it's the business — but that's your call.)
-2. **Are the price points in range,** or do you want to go cheaper (undercut CE Broker at ~$39/yr) or more premium (~$99/yr with heavier positioning)?
-3. **Lifetime deal — yes/no** for launch?
+1. **Org/Teams ships in v1** — billing plumbing built from the start, since B2B is the actual business.
+2. **Price points:** Free $0 · Pro $8/mo or $79/yr · Teams $5/user/mo (5-seat min). Value-sold above CE Broker, not undercutting.
+3. **No lifetime deal.** Replaced by the Founding Member offer ($49/yr locked for 2 years, first ~500 users).
 
-Give me those three and I'll lock the numbers, write the `subscription_plans` seed, and build the pricing page.
+**Next build steps:** (a) `subscription_plans` seed rows — done, see `seed_subscription_plans.sql`; (b) Stripe products/prices to get real `stripe_price_id` values (needs your Stripe account + the server route to hold the secret key); (c) the pricing page in the marketing repo (needs brand/design direction).
