@@ -1,0 +1,25 @@
+# PathPort (https://getpathport.com)
+
+> PathPort is the universal credential passport and digital portfolio platform for professionals across all industries. Consolidate PMP, AWS, Nursing, EMT, Trades, and academic certifications into one shareable, verifiable digital portfolio.
+
+## Core Capabilities
+- **Universal Credential Vault**: Encrypted PDF, image, and badge storage for licenses, certifications, and achievements.
+- **CEU & License Renewal Engine**: Automated state-by-state compliance tracking, CEU hour math, and 90/60/30-day expiration alerts.
+- **AI Resume & Certificate Parser**: Instant OCR extraction of issuer names, issue/expiration dates, and skills from PDFs into structured career milestones.
+- **Verifiable Digital Portfolio**: Custom URL (`https://getpathport.com/p/yourname`) and QR codes for LinkedIn, resumes, and employer verification without logins.
+- **PathPort for Organizations (B2B)**: Single-pane compliance dashboard for clinics, hospitals, EMS agencies, and enterprises to track workforce licenses and prevent compliance lapses.
+
+## Key Pages & Funnels
+- Main Website: https://getpathport.com/
+- For Nurses: https://getpathport.com/for/nurses
+- For Paramedics & EMTs: https://getpathport.com/for/paramedics
+- For Project Managers: https://getpathport.com/for/project-managers
+- For Students: https://getpathport.com/for/students
+- For Enterprise: https://getpathport.com/for/enterprise
+- Web Application: https://app.getpathport.com/
+
+## Pricing
+- **Free Vault ($0/forever)**: Up to 10 credentials stored, PDF vault, 1 digital portfolio, basic expiration alerts, QR code sharing.
+- **Pro Passport ($8/mo or $79/yr)**: Unlimited credentials, state CEU renewal engine, smart expiration reminders, Credly & Open Badges import, AI resume parser, custom URL slug.
+- **Teams / Org ($5/user/mo)**: Billed annually ($300/yr min), workforce compliance dashboard, lapse alerts, accrediting board export reports.
+- **Founding Member Offer**: $49/year locked for 2 years (first 500 signups). Free for .edu students.

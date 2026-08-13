@@ -7,16 +7,77 @@
     <title>PathPort — Every Certification, License & Achievement. One Passport.</title>
     <meta name="description" content="PathPort is the universal credential passport. Consolidate PMP, AWS, Nursing, EMT, Trades, and academic credentials into one shareable, verifiable digital portfolio." />
     
-    <!-- OpenGraph / Facebook -->
+    <!-- OpenGraph / Twitter Meta Tags -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://getpathport.com/" />
     <meta property="og:title" content="PathPort — Every Certification, License & Achievement. One Passport." />
     <meta property="og:description" content="Consolidate certifications, track CEU renewals across states, and share verified digital portfolios with employers." />
+    <meta property="og:image" content="https://getpathport.com/logo.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PathPort — Universal Credential Passport" />
+    <meta name="twitter:description" content="Track CEUs, store certifications, and share verified digital portfolios." />
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Schema.org JSON-LD for AI & Search Engines -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "SoftwareApplication",
+          "name": "PathPort",
+          "operatingSystem": "Web, iOS, Android",
+          "applicationCategory": "BusinessApplication",
+          "url": "https://getpathport.com",
+          "description": "Universal credential passport & CEU tracking platform for nurses, paramedics, project managers, students, and enterprise teams.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          }
+        },
+        {
+          "@type": "Organization",
+          "name": "PathPort by Veritas Technologies",
+          "url": "https://getpathport.com",
+          "logo": "https://getpathport.com/logo.png"
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is PathPort?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "PathPort is the universal credential passport that consolidates certifications, state licenses, CEU renewal hours, and achievements into a single, shareable, verifiable digital portfolio."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is PathPort free?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, PathPort offers a 100% Free Vault storing up to 10 credentials with encrypted PDF storage, a digital portfolio link, and instant QR code sharing. Students with .edu emails receive free Pro access."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How does CEU state tracking work?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "PathPort's renewal engine automatically tracks state-by-state licensing board rules and continuing education requirements for nursing, EMT/paramedic, PMP, and trade certifications, sending automated 90/60/30-day alerts."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
   </head>
   <body class="bg-background text-slate-100 font-sans antialiased selection:bg-primary/30 selection:text-primary-glow min-h-screen">
     <div id="root"></div>

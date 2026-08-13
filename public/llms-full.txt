@@ -1,0 +1,42 @@
+# PathPort — Technical Specifications & AI Engine Knowledge Base
+
+Domain: https://getpathport.com
+App: https://app.getpathport.com
+Publisher: Veritas Technologies (https://veritastech.io)
+
+## Product Overview
+PathPort is a modern, web-first credential management platform and digital portfolio passport designed for individual professionals and enterprise organizations. It solves the fragmentation of professional certifications, state licensing requirements, continuing education units (CEUs/PDUs), and career milestone verification.
+
+### Core Problems Solved
+1. **Multi-License & Multi-State Compliance**: Healthcare workers (RNs, LPNs, Nurse Practitioners), Emergency Responders (EMTs, Paramedics), and Engineers holding active licenses across multiple states face varying renewal cycles and CEU rules. PathPort automates CEU calculations and state compliance rules.
+2. **Scattered PDF & Badge Records**: Professional credentials live across Credly, state licensing portals, PDF certificates, email attachments, and paper documents. PathPort unifies them via Open Badges 2.0/3.0 adapters, Credly API integrations, and an AI-powered OCR resume parser.
+3. **Sharing & Employer Verification**: Traditional resumes fail to showcase verified active licenses and hands-on skills. PathPort provides a shareable URL (`getpathport.com/p/username`) and QR code that allows employers, admissions boards, and clients to verify active credential status instantly without creating accounts.
+4. **Workforce Compliance Lapses for Organizations**: Employers, clinics, and EMS agencies risk compliance fines and license lapses when employee credentials expire. PathPort Org Mode provides a centralized compliance roster with automated lapse alerts and exportable audit logs.
+
+## Target Professions & Tailored Features
+
+### Healthcare & Nursing (RN, LPN, NP, CNA)
+- State-by-state CEU hour calculation and category rules (e.g. Florida Board of Nursing 24hr biannual requirements vs. NYS Infection Control).
+- License verification integration with state board portals.
+- Expiration countdowns and reminders at 90, 60, and 30 days.
+
+### Emergency Medical Services (Paramedic, EMT-B, AEMT, Firefighter)
+- NREMT national recertification tracking (NCCP 60-hour recertification model).
+- ACLS, BLS, PALS, PHTLS, and OSHA 30 certification vault.
+- Shareable QR code passport for medical directors and agency chiefs.
+
+### Project Management & Technology (PMP, AWS, DevOps, Security+)
+- PMI Professional Development Unit (PDU) tracking (60 PDUs per 3-year cycle across Technical, Leadership, and Business strategy).
+- Credly and Open Badges automatic badge syncing for AWS, Google Cloud, Cisco, CompTIA, and Microsoft certifications.
+- Clean digital portfolio link for LinkedIn headers and resume PDFs.
+
+### Students & Early Career Professionals
+- Free access for students with valid `.edu` email addresses.
+- Showcase academic honors, hands-on certificates, trade credentials, and volunteer projects.
+- Downloadable PDF portfolio for college admissions and internship applications.
+
+## System Architecture & Interoperability
+- **Frontend Stack**: Built with React 18, Vite, TypeScript, and Tailwind CSS.
+- **Hosting & CDN**: Deployed globally on Cloudflare Pages edge network for sub-second page loads.
+- **Backend & Database**: Powered by Supabase PostgreSQL with Row Level Security (RLS) and AES-256 encrypted file storage.
+- **Import Formats**: 1EdTech Open Badges 2.0/3.0 JSON assertions, Credly API, CSV import, and PDF/Image OCR parsing.

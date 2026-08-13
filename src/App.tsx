@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { InteroperabilityRibbon } from './components/InteroperabilityRibbon';
@@ -8,20 +9,42 @@ import { OrgSection } from './components/OrgSection';
 import { Pricing } from './components/Pricing';
 import { Footer } from './components/Footer';
 
+// Funnel Pages
+import { NursesFunnel } from './pages/NursesFunnel';
+import { ParamedicsFunnel } from './pages/ParamedicsFunnel';
+import { ProjectManagersFunnel } from './pages/ProjectManagersFunnel';
+import { StudentsFunnel } from './pages/StudentsFunnel';
+import { EnterpriseFunnel } from './pages/EnterpriseFunnel';
+
+const HomePage: React.FC = () => (
+  <>
+    <Navbar />
+    <main>
+      <Hero />
+      <InteroperabilityRibbon />
+      <FeaturePillars />
+      <PortfolioShowcase />
+      <OrgSection />
+      <Pricing />
+    </main>
+    <Footer />
+  </>
+);
+
 export const App: React.FC = () => {
   return (
-    <div className="min-h-screen bg-background text-slate-100 selection:bg-teal-500/30 selection:text-teal-300">
-      <Navbar />
-      <main>
-        <Hero />
-        <InteroperabilityRibbon />
-        <FeaturePillars />
-        <PortfolioShowcase />
-        <OrgSection />
-        <Pricing />
-      </main>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <div className="min-h-screen bg-background text-slate-100 selection:bg-teal-500/30 selection:text-teal-300">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/for/nurses" element={<NursesFunnel />} />
+          <Route path="/for/paramedics" element={<ParamedicsFunnel />} />
+          <Route path="/for/project-managers" element={<ProjectManagersFunnel />} />
+          <Route path="/for/students" element={<StudentsFunnel />} />
+          <Route path="/for/enterprise" element={<EnterpriseFunnel />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 };
 
