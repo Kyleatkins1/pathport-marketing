@@ -51,7 +51,7 @@ export const Pricing: React.FC = () => {
             </div>
 
             <a 
-              href="https://app.pathport.app/auth?signup=true"
+              href="https://app.getpathport.com/auth?signup=true"
               className="w-full py-3 rounded-xl glass-card border border-slate-700 text-center font-medium text-slate-200 hover:text-white hover:border-slate-600 transition-all block"
             >
               Get Started Free
@@ -93,13 +93,13 @@ export const Pricing: React.FC = () => {
                 </li>
                 <li className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-teal-300 shrink-0" />
-                  <span>Custom URL (`pathport.app/p/yourname`)</span>
+                  <span>Custom URL (`getpathport.com/p/yourname`)</span>
                 </li>
               </ul>
             </div>
 
             <a 
-              href="https://app.pathport.app/auth?signup=true&plan=pro"
+              href="https://app.getpathport.com/auth?signup=true&plan=pro"
               className="w-full py-3.5 rounded-xl bg-gradient-to-r from-primary to-primary-dark text-center font-bold text-white shadow-glowTeal hover:scale-[1.02] transition-all block border border-teal-400/40"
             >
               Start 14-Day Free Pro Trial
@@ -138,7 +138,7 @@ export const Pricing: React.FC = () => {
             </div>
 
             <a 
-              href="mailto:enterprise@pathport.app"
+              href="mailto:enterprise@getpathport.com"
               className="w-full py-3 rounded-xl glass-card border border-slate-700 text-center font-medium text-slate-200 hover:text-white hover:border-slate-600 transition-all block"
             >
               Contact Sales

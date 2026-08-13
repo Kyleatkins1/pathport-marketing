@@ -52,7 +52,7 @@ export const OrgSection: React.FC = () => {
 
               <div className="pt-4">
                 <a 
-                  href="mailto:enterprise@pathport.app?subject=PathPort%20Org%20Demo"
+                  href="mailto:enterprise@getpathport.com?subject=PathPort%20Org%20Demo"
                   className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-primary to-primary-dark text-white font-semibold text-sm shadow-glowTeal hover:scale-[1.02] transition-all border border-teal-400/30"
                 >
                   <span>Request Enterprise Org Demo</span>

@@ -93,7 +93,7 @@ export const FeaturePillars: React.FC = () => {
               </div>
               <h3 className="text-2xl font-bold text-white">3. Verifiable Digital Portfolio</h3>
               <p className="text-slate-300 text-sm leading-relaxed">
-                Share a clean, modern digital portfolio link (`pathport.app/p/yourname`) with recruiters, admissions boards, or clients. Employers can verify credentials instantly without logins.
+                Share a clean, modern digital portfolio link (`getpathport.com/p/yourname`) with recruiters, admissions boards, or clients. Employers can verify credentials instantly without logins.
               </p>
 
               <ul className="space-y-3 pt-2 text-sm text-slate-300">

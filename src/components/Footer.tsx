@@ -48,9 +48,9 @@ export const Footer: React.FC = () => {
             <h4 className="font-display font-bold text-white text-xs tracking-wider uppercase">Company & Legal</h4>
             <ul className="space-y-2 text-xs">
               <li><a href="https://veritastech.io" target="_blank" rel="noreferrer" className="hover:text-primary-glow transition-colors">Veritas Technologies</a></li>
-              <li><a href="mailto:support@pathport.app" className="hover:text-primary-glow transition-colors">Support & Security</a></li>
-              <li><a href="https://app.pathport.app/privacy" className="hover:text-primary-glow transition-colors">Privacy Policy</a></li>
-              <li><a href="https://app.pathport.app/terms" className="hover:text-primary-glow transition-colors">Terms of Service</a></li>
+              <li><a href="mailto:support@getpathport.com" className="hover:text-primary-glow transition-colors">Support & Security</a></li>
+              <li><a href="https://app.getpathport.com/privacy" className="hover:text-primary-glow transition-colors">Privacy Policy</a></li>
+              <li><a href="https://app.getpathport.com/terms" className="hover:text-primary-glow transition-colors">Terms of Service</a></li>
             </ul>
           </div>
 

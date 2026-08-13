@@ -26,13 +26,13 @@ export const Navbar: React.FC = () => {
           {/* Action Buttons */}
           <div className="hidden md:flex items-center gap-4">
             <a 
-              href="https://app.pathport.app/auth" 
+              href="https://app.getpathport.com/auth" 
               className="text-sm font-medium text-slate-300 hover:text-white px-4 py-2 rounded-lg transition-colors"
             >
               Sign In
             </a>
             <a 
-              href="https://app.pathport.app/auth?signup=true" 
+              href="https://app.getpathport.com/auth?signup=true" 
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-primary to-primary-dark text-white font-medium text-sm shadow-glowTeal hover:opacity-95 transition-all hover:scale-[1.02] border border-teal-400/30"
             >
               <span>Build Your PathPort</span>
@@ -90,13 +90,13 @@ export const Navbar: React.FC = () => {
           </a>
           <div className="pt-4 border-t border-slate-800 flex flex-col gap-3">
             <a 
-              href="https://app.pathport.app/auth" 
+              href="https://app.getpathport.com/auth" 
               className="w-full text-center py-2.5 text-slate-300 font-medium hover:text-white"
             >
               Sign In
             </a>
             <a 
-              href="https://app.pathport.app/auth?signup=true" 
+              href="https://app.getpathport.com/auth?signup=true" 
               className="w-full text-center py-3 rounded-xl bg-gradient-to-r from-primary to-primary-dark text-white font-medium shadow-glowTeal"
             >
               Build Your PathPort

@@ -44,7 +44,7 @@ export const Hero: React.FC = () => {
             {/* Dual CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
               <a 
-                href="https://app.pathport.app/auth?signup=true"
+                href="https://app.getpathport.com/auth?signup=true"
                 className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-primary via-teal-500 to-primary-dark text-white font-semibold text-base shadow-glowTeal hover:scale-[1.02] transition-all border border-teal-400/40"
               >
                 <span>Build Your PathPort — Free</span>
@@ -110,7 +110,7 @@ export const Hero: React.FC = () => {
                         Alex Chen, RN, PMP
                         <ShieldCheck className="w-4 h-4 text-teal-400" />
                       </h3>
-                      <p className="text-xs text-slate-400">pathport.app/p/alex-chen</p>
+                      <p className="text-xs text-slate-400">getpathport.com/p/alex-chen</p>
                     </div>
                   </div>
 
@@ -195,7 +195,7 @@ export const Hero: React.FC = () => {
               </div>
             </div>
 
-            <p className="text-xs text-teal-300 font-mono mb-4">pathport.app/p/alex-chen</p>
+            <p className="text-xs text-teal-300 font-mono mb-4">getpathport.com/p/alex-chen</p>
 
             <button 
               onClick={() => setQrModalOpen(false)}

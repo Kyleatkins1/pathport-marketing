@@ -27,7 +27,7 @@ export const PortfolioShowcase: React.FC = () => {
       role: "Senior Project Manager",
       certCount: 1,
       licenseCount: 0,
-      handle: "pathport.app/p/marcus-vance",
+      handle: "getpathport.com/p/marcus-vance",
       bio: "Managing complex enterprise software deliverables & agile transformations.",
       credentials: [
         { title: "PMP® — Project Management Professional", issuer: "Project Management Institute (PMI)", type: "Certification", status: "Active (Oct 2027)", verified: true }
@@ -39,7 +39,7 @@ export const PortfolioShowcase: React.FC = () => {
       role: "ICU Charge Nurse",
       certCount: 4,
       licenseCount: 2,
-      handle: "pathport.app/p/sarah-jenkins-rn",
+      handle: "getpathport.com/p/sarah-jenkins-rn",
       bio: "10+ years critical care nursing across NY & NJ state licensing boards.",
       ceusCompleted: "30 / 30 Hours Complete",
       credentials: [
@@ -55,7 +55,7 @@ export const PortfolioShowcase: React.FC = () => {
       role: "Lead DevOps & Cloud Engineer",
       certCount: 5,
       licenseCount: 0,
-      handle: "pathport.app/p/david-kim",
+      handle: "getpathport.com/p/david-kim",
       bio: "Automating cloud infrastructure, Kubernetes clusters, and CI/CD pipelines.",
       credentials: [
         { title: "AWS Certified Solutions Architect — Professional", issuer: "Amazon Web Services", type: "Cloud Cert", status: "Active", verified: true },
@@ -167,7 +167,7 @@ export const PortfolioShowcase: React.FC = () => {
             </div>
 
             <a 
-              href="https://app.pathport.app/auth?signup=true"
+              href="https://app.getpathport.com/auth?signup=true"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-sm font-medium transition-colors border border-slate-700"
             >
               <span>Build A Portfolio Like This</span>
