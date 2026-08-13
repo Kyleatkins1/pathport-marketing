@@ -15,6 +15,7 @@ import { ParamedicsFunnel } from './pages/ParamedicsFunnel';
 import { ProjectManagersFunnel } from './pages/ProjectManagersFunnel';
 import { StudentsFunnel } from './pages/StudentsFunnel';
 import { EnterpriseFunnel } from './pages/EnterpriseFunnel';
+import { BoardCertificationsFunnel } from './pages/BoardCertificationsFunnel';
 
 const HomePage: React.FC = () => (
   <>
@@ -42,6 +43,7 @@ export const App: React.FC = () => {
           <Route path="/for/project-managers" element={<ProjectManagersFunnel />} />
           <Route path="/for/students" element={<StudentsFunnel />} />
           <Route path="/for/enterprise" element={<EnterpriseFunnel />} />
+          <Route path="/for/board-certifications" element={<BoardCertificationsFunnel />} />
         </Routes>
       </div>
     </BrowserRouter>
