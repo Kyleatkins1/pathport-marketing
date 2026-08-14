@@ -77,9 +77,9 @@ export const Navbar: React.FC = () => {
             </a>
             <a 
               href="https://app.getpathport.com/auth?signup=true" 
-              className="hidden md:inline-flex items-center gap-2 px-4.5 py-2.5 rounded-xl bg-gradient-to-r from-primary to-primary-dark text-white font-medium text-xs sm:text-sm shadow-glowTeal hover:opacity-95 transition-all hover:scale-[1.02] border border-teal-400/30"
+              className="hidden md:inline-flex items-center gap-2 px-4.5 py-2.5 rounded-xl bg-gradient-to-r from-primary to-primary-dark text-white font-medium text-xs sm:text-sm shadow-glowTeal hover:opacity-95 transition-all hover:scale-[1.02] border border-teal-400/30 font-semibold"
             >
-              <span>Build PathPort</span>
+              <span>Get Started Free</span>
               <ArrowRight className="w-4 h-4" />
             </a>
 
@@ -119,7 +119,7 @@ export const Navbar: React.FC = () => {
               href="https://app.getpathport.com/auth?signup=true" 
               className="w-full text-center py-3 rounded-xl bg-gradient-to-r from-primary to-primary-dark text-white font-bold text-sm shadow-glowTeal"
             >
-              Build Your PathPort Free
+              Get Started Free
             </a>
           </div>
         </div>
