@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BrandedQRCode } from './BrandedQRCode';
-import { ArrowRight, ShieldCheck, QrCode, Award, CheckCircle2, Sparkles, ExternalLink } from 'lucide-react';
+import { ArrowRight, ShieldCheck, QrCode, Award, CheckCircle2, Sparkles, ExternalLink, Briefcase, Compass, Layers } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   const [qrModalOpen, setQrModalOpen] = useState(false);
-  const [activeBadgeIndex, setActiveBadgeIndex] = useState(0);
+  const [activeTab, setActiveTab] = useState<'case_study' | 'credentials' | 'portfolios'>('case_study');
 
   const sampleBadges = [
-    { title: "PMP® Project Management", issuer: "PMI", status: "Active", date: "Expires Oct 2027", color: "from-amber-500/20 to-amber-600/10 border-amber-500/40 text-amber-300" },
+    { title: "NREMT Paramedic", issuer: "National Registry EMTs", status: "Issuer-Verified", date: "Recert 2026", color: "from-emerald-500/20 to-emerald-600/10 border-emerald-500/40 text-emerald-300" },
     { title: "Registered Nurse (RN)", issuer: "NYS Board of Nursing", status: "Active (CEU Compliant)", date: "License #592810", color: "from-teal-500/20 to-teal-600/10 border-teal-500/40 text-teal-300" },
-    { title: "AWS Solutions Architect", issuer: "Amazon Web Services", status: "Verified", date: "Issued Jan 2025", color: "from-cyan-500/20 to-cyan-600/10 border-cyan-500/40 text-cyan-300" },
-    { title: "NREMT Paramedic", issuer: "National Registry EMTs", status: "Active", date: "Recert 2026", color: "from-emerald-500/20 to-emerald-600/10 border-emerald-500/40 text-emerald-300" }
+    { title: "AWS Solutions Architect", issuer: "Amazon Web Services", status: "Imported (Credly)", date: "Issued Jan 2025", color: "from-cyan-500/20 to-cyan-600/10 border-cyan-500/40 text-cyan-300" },
+    { title: "PMP® Project Management", issuer: "PMI", status: "Active", date: "Expires Oct 2027", color: "from-amber-500/20 to-amber-600/10 border-amber-500/40 text-amber-300" }
   ];
 
   return (
@@ -29,35 +29,35 @@ export const Hero: React.FC = () => {
             {/* Pill Tag */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border border-teal-500/30 text-teal-300 text-xs sm:text-sm font-semibold tracking-wide shadow-glowTeal">
               <Sparkles className="w-4 h-4 text-secondary" />
-              <span>THE UNIVERSAL CREDENTIAL PASSPORT</span>
+              <span>YOUR CAREER IS BIGGER THAN A RÉSUMÉ</span>
             </div>
 
             {/* Main Headline */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.1]">
-              Every Certification, License & Achievement.{' '}
-              <span className="text-gradient-teal block mt-2">One Powerful Passport.</span>
+              Maintain Yourself Once.{' '}
+              <span className="text-gradient-teal block mt-2">Present Yourself Many Ways.</span>
             </h1>
 
-            {/* Subheadline emphasizing universal positioning */}
+            {/* Subheadline emphasizing complete record, case studies & portfolios */}
             <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
-              Whether you hold a <span className="text-amber-300 font-semibold">single PMP certification</span> or manage <span className="text-teal-300 font-semibold">15 certifications and 3 state licenses</span>, PathPort consolidates your entire professional journey into one shareable, verifiable digital portfolio.
+              PathPort is your persistent, portable professional identity. Turn unlisted projects into rich case studies, build tailored portfolios for every target role, and automate continuing education renewals with verified 6-level provenance.
             </p>
 
             {/* Dual CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
               <a 
-                href="https://app.getpathport.com/auth?signup=true"
+                href="https://app.getpathport.com"
                 className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-primary via-teal-500 to-primary-dark text-white font-semibold text-base shadow-glowTeal hover:scale-[1.02] transition-all border border-teal-400/40"
               >
-                <span>Build Your PathPort — Free</span>
+                <span>Launch Your Identity — Free</span>
                 <ArrowRight className="w-5 h-5" />
               </a>
 
               <a 
-                href="#portfolio-demo"
+                href="#ecosystem"
                 className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl glass-card border border-slate-700 text-slate-200 font-medium text-base hover:bg-slate-800/80 hover:text-white transition-all"
               >
-                <span>Explore Live Portfolio Demo</span>
+                <span>Explore App, Teams & Certify</span>
                 <ExternalLink className="w-4 h-4 text-slate-400" />
               </a>
             </div>
@@ -67,29 +67,29 @@ export const Hero: React.FC = () => {
               <div>
                 <div className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-200">
                   <CheckCircle2 className="w-4 h-4 text-primary-glow" />
-                  <span>100% Free Vault</span>
+                  <span>Rich Case Studies</span>
                 </div>
-                <p className="text-xs text-slate-400 mt-0.5">Secure PDF & badge storage</p>
+                <p className="text-xs text-slate-400 mt-0.5">Challenge, Approach & Evidence</p>
               </div>
               <div>
                 <div className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-200">
                   <CheckCircle2 className="w-4 h-4 text-secondary" />
-                  <span>State CEU Math</span>
+                  <span>Tailored Portfolios</span>
                 </div>
-                <p className="text-xs text-slate-400 mt-0.5">Automated renewal rules</p>
+                <p className="text-xs text-slate-400 mt-0.5">Dynamic object-reference links</p>
               </div>
               <div>
                 <div className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-200">
                   <CheckCircle2 className="w-4 h-4 text-cyan-400" />
-                  <span>Instant Verification</span>
+                  <span>Verified Provenance</span>
                 </div>
-                <p className="text-xs text-slate-400 mt-0.5">Shareable URL & QR code</p>
+                <p className="text-xs text-slate-400 mt-0.5">6-level trust authentication</p>
               </div>
             </div>
 
           </div>
 
-          {/* Right Column: Floating 3D Passport Card Visual */}
+          {/* Right Column: Floating 3D Passport / Portfolio Card Visual */}
           <div className="lg:col-span-5 relative">
             <div className="relative mx-auto max-w-md lg:max-w-none">
               
@@ -99,7 +99,7 @@ export const Hero: React.FC = () => {
               {/* Glass Passport Card */}
               <div className="relative glass-card rounded-2xl p-6 sm:p-8 border border-white/15 shadow-glass animate-float">
                 
-                {/* Passport Card Header */}
+                {/* Card Header */}
                 <div className="flex items-center justify-between pb-6 border-b border-slate-800">
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-slate-800 to-slate-700 p-0.5 border border-teal-500/50 shadow-inner">
@@ -109,10 +109,10 @@ export const Hero: React.FC = () => {
                     </div>
                     <div>
                       <h3 className="font-display font-bold text-white text-lg flex items-center gap-2">
-                        Alex Chen, RN, PMP
+                        Alex Chen
                         <ShieldCheck className="w-4 h-4 text-teal-400" />
                       </h3>
-                      <p className="text-xs text-slate-400">getpathport.com/p/alex-chen</p>
+                      <p className="text-xs text-slate-400">Junior Full-Stack Engineer & NRP</p>
                     </div>
                   </div>
 
@@ -122,49 +122,104 @@ export const Hero: React.FC = () => {
                     title="View QR Code"
                   >
                     <QrCode className="w-4 h-4" />
-                    <span className="hidden sm:inline font-semibold text-xs">QR</span>
+                    <span className="hidden sm:inline font-semibold text-xs">Share</span>
                   </button>
                 </div>
 
-                {/* Passport Verified Badges Stack */}
-                <div className="py-6 space-y-3">
-                  <div className="flex items-center justify-between text-xs font-semibold text-slate-400 tracking-wider uppercase mb-2">
-                    <span>Active Credentials (4)</span>
-                    <span className="text-emerald-400 flex items-center gap-1">
-                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                      Verified
-                    </span>
-                  </div>
+                {/* Interactive Mode Tabs */}
+                <div className="flex gap-2 pt-4 pb-2 border-b border-slate-800/80">
+                  <button
+                    onClick={() => setActiveTab('case_study')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
+                      activeTab === 'case_study' ? 'bg-teal-500/20 text-teal-300 border border-teal-500/40' : 'text-slate-400 hover:text-slate-200'
+                    }`}
+                  >
+                    <Briefcase className="w-3.5 h-3.5" />
+                    Case Study
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('credentials')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
+                      activeTab === 'credentials' ? 'bg-teal-500/20 text-teal-300 border border-teal-500/40' : 'text-slate-400 hover:text-slate-200'
+                    }`}
+                  >
+                    <Award className="w-3.5 h-3.5" />
+                    Credentials
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('portfolios')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
+                      activeTab === 'portfolios' ? 'bg-teal-500/20 text-teal-300 border border-teal-500/40' : 'text-slate-400 hover:text-slate-200'
+                    }`}
+                  >
+                    <Layers className="w-3.5 h-3.5" />
+                    Portfolios (2)
+                  </button>
+                </div>
 
-                  {sampleBadges.map((badge, idx) => (
-                    <div 
-                      key={idx}
-                      onClick={() => setActiveBadgeIndex(idx)}
-                      className={`p-3.5 rounded-xl border bg-gradient-to-r ${badge.color} transition-all cursor-pointer flex items-center justify-between ${
-                        activeBadgeIndex === idx ? 'scale-[1.02] shadow-lg border-opacity-100' : 'opacity-90 hover:opacity-100'
-                      }`}
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="p-2 rounded-lg bg-slate-900/80 border border-slate-700">
-                          <Award className="w-4 h-4 text-secondary" />
-                        </div>
-                        <div>
-                          <div className="font-semibold text-white text-sm">{badge.title}</div>
-                          <div className="text-xs text-slate-400">{badge.issuer}</div>
-                        </div>
+                {/* Tab Content */}
+                <div className="py-4 min-h-[220px]">
+                  {activeTab === 'case_study' && (
+                    <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800 space-y-2.5">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-bold text-teal-300 uppercase tracking-wider">FEATURED CASE STUDY</span>
+                        <span className="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Evidenced</span>
                       </div>
-                      <div className="text-right text-xs">
-                        <div className="font-medium text-emerald-400">{badge.status}</div>
-                        <div className="text-slate-400 text-[11px]">{badge.date}</div>
+                      <h4 className="font-bold text-white text-sm">Hot Wheels Virtual Garage & Telemetry</h4>
+                      <p className="text-xs text-slate-300 leading-relaxed">
+                        <strong className="text-slate-100">Challenge:</strong> Low-latency 3D rendering and state synchronization across 10k collector models.
+                      </p>
+                      <p className="text-xs text-slate-300 leading-relaxed">
+                        <strong className="text-slate-100">Outcome:</strong> Sub-16ms frame render times with zero state drift on edge workers.
+                      </p>
+                    </div>
+                  )}
+
+                  {activeTab === 'credentials' && (
+                    <div className="space-y-2.5">
+                      {sampleBadges.slice(0, 3).map((badge, idx) => (
+                        <div key={idx} className={`p-3 rounded-xl border bg-gradient-to-r ${badge.color} flex items-center justify-between`}>
+                          <div>
+                            <div className="font-semibold text-white text-xs">{badge.title}</div>
+                            <div className="text-[11px] text-slate-400">{badge.issuer}</div>
+                          </div>
+                          <div className="text-right text-[11px]">
+                            <div className="font-medium text-emerald-400">{badge.status}</div>
+                            <div className="text-slate-400 text-[10px]">{badge.date}</div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {activeTab === 'portfolios' && (
+                    <div className="space-y-2.5">
+                      <div className="p-3 rounded-xl bg-slate-950/80 border border-teal-500/30 flex items-center justify-between">
+                        <div>
+                          <div className="font-semibold text-white text-xs">Full-Stack Tech Portfolio</div>
+                          <div className="text-[11px] text-slate-400">Target: Junior Software Engineer</div>
+                        </div>
+                        <span className="text-xs font-mono text-teal-300 bg-teal-500/10 px-2 py-0.5 rounded border border-teal-500/20">Public (/p/alex-dev)</span>
+                      </div>
+
+                      <div className="p-3 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center justify-between">
+                        <div>
+                          <div className="font-semibold text-white text-xs">Clinical Leadership Portfolio</div>
+                          <div className="text-[11px] text-slate-400">Target: Flight Paramedic Position</div>
+                        </div>
+                        <span className="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">Unlisted (/p/alex-flight)</span>
                       </div>
                     </div>
-                  ))}
+                  )}
                 </div>
 
                 {/* Passport Card Footer */}
                 <div className="pt-4 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-                  <span>CEU Status: <strong className="text-teal-300 font-semibold">30 / 30 Hours Complete</strong></span>
-                  <span className="text-amber-400 font-bold text-xs uppercase tracking-wider">VALIDATED</span>
+                  <span className="flex items-center gap-1 text-teal-300">
+                    <Compass className="w-3.5 h-3.5" />
+                    Path Goal: <strong>Junior Full-Stack</strong>
+                  </span>
+                  <span className="text-emerald-400 font-bold text-xs uppercase tracking-wider">SYNCED</span>
                 </div>
 
               </div>
@@ -180,11 +235,11 @@ export const Hero: React.FC = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
           <div className="glass-card max-w-sm w-full rounded-2xl p-6 border border-slate-700 text-center relative shadow-2xl">
             <h4 className="font-display font-bold text-white text-lg mb-1">Alex Chen's PathPort</h4>
-            <p className="text-xs text-slate-400 mb-4">Scan to view instant verified credentials</p>
+            <p className="text-xs text-slate-400 mb-4">Scan to view instant verified portfolio</p>
             
             <div className="my-4 flex justify-center">
               <BrandedQRCode 
-                value="https://getpathport.com/p/alex-chen"
+                value="https://app.getpathport.com/p/alex-chen"
                 size={190}
               />
             </div>
@@ -193,7 +248,7 @@ export const Hero: React.FC = () => {
               to="/p/alex-chen" 
               className="text-sm font-semibold text-teal-300 hover:text-teal-200 hover:underline mb-4 inline-flex items-center justify-center gap-1.5"
             >
-              <span>getpathport.com/p/alex-chen</span>
+              <span>app.getpathport.com/p/alex-chen</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </Link>
 

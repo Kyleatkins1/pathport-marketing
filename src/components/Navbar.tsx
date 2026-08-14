@@ -10,9 +10,9 @@ export const Navbar: React.FC = () => {
 
   const navLinks = [
     { name: "Features", target: "features" },
-    { name: "Credential Vault", target: "vault" },
-    { name: "CEU Engine", target: "vault" },
-    { name: "For Orgs", target: "organizations" },
+    { name: "Case Studies", target: "features" },
+    { name: "For Employers", target: "ecosystem" },
+    { name: "For Certifying Bodies", target: "ecosystem" },
     { name: "Pricing", target: "pricing" }
   ];
 

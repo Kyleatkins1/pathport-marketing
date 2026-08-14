@@ -22,7 +22,7 @@ export const Pricing: React.FC = () => {
           <div className="flex items-center gap-2 shrink-0">
             <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-teal-500/20 text-teal-300 text-xs font-semibold border border-teal-500/30">
               <GraduationCap className="w-3.5 h-3.5" />
-              Free for .edu Students
+              Free for Students
             </span>
           </div>
         </div>
@@ -31,10 +31,10 @@ export const Pricing: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-10 space-y-4">
           <h2 className="text-xs font-bold text-teal-400 uppercase tracking-widest">Transparent Pricing</h2>
           <p className="text-3xl sm:text-4xl font-extrabold text-white">
-            Simple Plans for Individuals & Organizations
+            Simple Plans for Individuals, Employers & Issuers
           </p>
           <p className="text-slate-400 text-base">
-            Start for free with your personal vault, upgrade for automated state CEU renewal tracking and AI parsing.
+            Start for free with your personal identity vault. Upgrade for unlimited case studies, multiple tailored portfolios, and automated state CEU math.
           </p>
 
           {/* Billing Cycle Toggle */}
@@ -65,8 +65,8 @@ export const Pricing: React.FC = () => {
           {/* Free Vault */}
           <div className="glass-card rounded-2xl p-8 border border-slate-800 flex flex-col justify-between hover:border-slate-700 transition-all">
             <div>
-              <h3 className="text-xl font-bold text-white mb-2">Free Vault</h3>
-              <p className="text-xs text-slate-400 mb-6">High-schoolers, casual users, and initial trials.</p>
+              <h3 className="text-xl font-bold text-white mb-2">Individual Free</h3>
+              <p className="text-xs text-slate-400 mb-6">Students, new graduates, and initial portfolio creation.</p>
               
               <div className="mb-6">
                 <span className="text-4xl font-extrabold text-white">$0</span>
@@ -76,32 +76,32 @@ export const Pricing: React.FC = () => {
               <ul className="space-y-3 text-sm text-slate-300 mb-8">
                 <li className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-teal-400 shrink-0" />
-                  <span>Up to 10 Credentials & Certificates</span>
+                  <span>Persistent Professional Identity</span>
                 </li>
                 <li className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-teal-400 shrink-0" />
-                  <span>Encrypted PDF & Image Vault</span>
+                  <span>Up to 3 Structured Case Studies</span>
                 </li>
                 <li className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-teal-400 shrink-0" />
-                  <span>1 Verifiable Digital Portfolio</span>
+                  <span>1 Tailored Shareable Portfolio</span>
                 </li>
                 <li className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-teal-400 shrink-0" />
-                  <span>Basic Expiration Reminders</span>
+                  <span>Encrypted Credentials Ledger</span>
                 </li>
                 <li className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-teal-400 shrink-0" />
-                  <span>Instant QR Code Sharing</span>
+                  <span>Instant QR & OpenGraph Sharing</span>
                 </li>
               </ul>
             </div>
 
             <a 
-              href="https://app.getpathport.com/auth?signup=true"
+              href="https://app.getpathport.com"
               className="w-full py-3.5 rounded-xl glass-card border border-slate-700 text-center font-medium text-slate-200 hover:text-white hover:border-slate-600 transition-all block"
             >
-              Get Started Free
+              Start Free
             </a>
           </div>
 
@@ -109,12 +109,12 @@ export const Pricing: React.FC = () => {
           <div className="glass-card rounded-2xl p-8 border-2 border-teal-500 relative flex flex-col justify-between shadow-glowTeal bg-gradient-to-b from-slate-900/90 via-slate-900/95 to-slate-950">
             <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-primary via-teal-500 to-secondary text-white text-xs font-bold uppercase tracking-wider flex items-center gap-1 shadow-lg">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>MOST POPULAR FOR INDIVIDUALS</span>
+              <span>MOST POPULAR FOR PROFESSIONALS</span>
             </div>
 
             <div>
-              <h3 className="text-xl font-bold text-white mb-2">Pro Passport</h3>
-              <p className="text-xs text-slate-400 mb-6">For working nurses, EMTs, power users, and certified professionals.</p>
+              <h3 className="text-xl font-bold text-white mb-2">Individual Pro</h3>
+              <p className="text-xs text-slate-400 mb-6">For clinicians, engineers, project managers, and career switchers.</p>
               
               <div className="mb-6">
                 <span className="text-4xl font-extrabold text-white">
@@ -132,7 +132,11 @@ export const Pricing: React.FC = () => {
                 </li>
                 <li className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-teal-300 shrink-0" />
-                  <span className="font-semibold text-teal-200">Unlimited Credentials Stored</span>
+                  <span className="font-semibold text-teal-200">Unlimited Case Studies & Portfolios</span>
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <Check className="w-4 h-4 text-teal-300 shrink-0" />
+                  <span>Deterministic Path Career Advisor</span>
                 </li>
                 <li className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-teal-300 shrink-0" />
@@ -140,25 +144,21 @@ export const Pricing: React.FC = () => {
                 </li>
                 <li className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-teal-300 shrink-0" />
-                  <span>Smart Expiration Reminders (90/60/30 days)</span>
+                  <span>Proactive Expiration Radar (90/60/30 days)</span>
                 </li>
                 <li className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-teal-300 shrink-0" />
-                  <span>Credly & Open Badges Auto-Import</span>
+                  <span>AI Certificate & Resume OCR Extraction</span>
                 </li>
                 <li className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-teal-300 shrink-0" />
-                  <span>AI Resume & Certificate PDF Parser</span>
-                </li>
-                <li className="flex items-center gap-2.5">
-                  <Check className="w-4 h-4 text-teal-300 shrink-0" />
-                  <span>Custom URL (`getpathport.com/p/yourname`)</span>
+                  <span>Custom Slug URL (`app.getpathport.com/p/name`)</span>
                 </li>
               </ul>
             </div>
 
             <a 
-              href={`https://app.getpathport.com/auth?signup=true&plan=${isAnnual ? 'pro_annual' : 'pro_monthly'}`}
+              href="https://app.getpathport.com"
               className="w-full py-3.5 rounded-xl bg-gradient-to-r from-primary to-primary-dark text-center font-bold text-white shadow-glowTeal hover:scale-[1.02] transition-all block border border-teal-400/40"
             >
               Start 14-Day Free Pro Trial
@@ -169,10 +169,10 @@ export const Pricing: React.FC = () => {
           <div className="glass-card rounded-2xl p-8 border border-slate-800 flex flex-col justify-between hover:border-slate-700 transition-all">
             <div>
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-xl font-bold text-white">Teams / Org</h3>
+                <h3 className="text-xl font-bold text-white">PathPort Teams</h3>
                 <Building2 className="w-5 h-5 text-amber-400" />
               </div>
-              <p className="text-xs text-slate-400 mb-6">Clinics, fire/EMS depts, schools, and training programs.</p>
+              <p className="text-xs text-slate-400 mb-6">Clinics, fire/EMS agencies, engineering firms, and hospital systems.</p>
               
               <div className="mb-6">
                 <span className="text-4xl font-extrabold text-white">$5</span>
@@ -183,15 +183,7 @@ export const Pricing: React.FC = () => {
               <ul className="space-y-3 text-sm text-slate-300 mb-8">
                 <li className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-amber-400 shrink-0" />
-                  <span>Everything in Pro per member</span>
-                </li>
-                <li className="flex items-center gap-2.5">
-                  <Check className="w-4 h-4 text-amber-400 shrink-0" />
-                  <span>Org-Wide Compliance Admin Dashboard</span>
-                </li>
-                <li className="flex items-center gap-2.5">
-                  <Check className="w-4 h-4 text-amber-400 shrink-0" />
-                  <span>Automated Workforce Lapse Alerts</span>
+                  <span>Everything in Pro for all members</span>
                 </li>
                 <li className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-amber-400 shrink-0" />
@@ -199,17 +191,25 @@ export const Pricing: React.FC = () => {
                 </li>
                 <li className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-amber-400 shrink-0" />
-                  <span>Accrediting Board Export Reports</span>
+                  <span>Workforce Expiration Radar & Risk Alerts</span>
                 </li>
                 <li className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-amber-400 shrink-0" />
-                  <span>Bulk Member Verification & Priority Support</span>
+                  <span>Strict Employee Privacy Firewall (RLS)</span>
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <Check className="w-4 h-4 text-amber-400 shrink-0" />
+                  <span>Accrediting Board Audit Exports</span>
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <Check className="w-4 h-4 text-amber-400 shrink-0" />
+                  <span>Bulk Verification & Priority SLA Support</span>
                 </li>
               </ul>
             </div>
 
             <a 
-              href="mailto:enterprise@getpathport.com?subject=PathPort%20Org%20Inquiry"
+              href="mailto:sales@getpathport.com?subject=PathPort%20Teams%20Inquiry"
               className="w-full py-3.5 rounded-xl glass-card border border-slate-700 text-center font-medium text-slate-200 hover:text-white hover:border-slate-600 transition-all block"
             >
               Contact Sales / Request Demo
