@@ -1,4 +1,4 @@
-// Cloudflare Pages Edge Function for /api/beta-signup
+// Cloudflare Pages Edge Function for /api/beta-signup — Loops.so PathPort Beta enrollment
 /// <reference types="@cloudflare/workers-types" />
 
 interface Env {
