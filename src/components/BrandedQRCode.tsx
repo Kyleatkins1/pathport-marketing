@@ -12,25 +12,39 @@ interface BrandedQRCodeProps {
 export const BrandedQRCode: React.FC<BrandedQRCodeProps> = ({
   value,
   size = 200,
-  fgColor = "#2DD4BF", // Electric Teal
-  bgColor = "#0F172A", // Deep Slate
+  fgColor = "#0F172A", // Deep Slate
+  bgColor = "#FFFFFF", // Clean Background
   showLogo = true
 }) => {
+  const logoSize = Math.round(size * 0.20);
+  const badgeSize = logoSize + 14;
+
   return (
-    <div className="inline-block p-3 rounded-2xl bg-slate-900 border border-teal-500/30 shadow-glowTeal relative group">
-      <QRCodeSVG
-        value={value}
-        size={size}
-        bgColor={bgColor}
-        fgColor={fgColor}
-        level="H" // High error correction level permits logo excavation
-        imageSettings={showLogo ? {
-          src: "/logo.png",
-          height: Math.round(size * 0.22),
-          width: Math.round(size * 0.22),
-          excavate: true,
-        } : undefined}
-      />
+    <div className="inline-block p-4 rounded-3xl bg-white border border-slate-200 shadow-sm relative">
+      <div className="relative flex items-center justify-center">
+        <QRCodeSVG
+          value={value}
+          size={size}
+          bgColor={bgColor}
+          fgColor={fgColor}
+          level="H" // High error correction level (30%) permits center badge overlay
+        />
+        {showLogo && (
+          <div 
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white shadow-md border border-slate-200/90 flex items-center justify-center p-1.5 pointer-events-none"
+            style={{ width: badgeSize, height: badgeSize }}
+          >
+            <img 
+              src="/logo.png" 
+              alt="PathPort" 
+              style={{ width: logoSize, height: logoSize }}
+              className="object-contain" 
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 };
+
+export default BrandedQRCode;

@@ -33,8 +33,8 @@ const HomePage: React.FC = () => (
       <FeaturePillars />
       <PortfolioShowcase />
       <OrgSection />
-      <FAQ />
       <Pricing />
+      <FAQ />
     </main>
     <Footer />
   </>
@@ -43,7 +43,7 @@ const HomePage: React.FC = () => (
 export const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-background text-slate-100 selection:bg-teal-500/30 selection:text-teal-300">
+      <div className="min-h-screen bg-slate-50 text-slate-900 selection:bg-teal-500/20 selection:text-teal-900">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/for/nurses" element={<NursesFunnel />} />

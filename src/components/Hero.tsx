@@ -1,267 +1,236 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BrandedQRCode } from './BrandedQRCode';
-import { ArrowRight, ShieldCheck, QrCode, Award, CheckCircle2, Sparkles, ExternalLink, Briefcase, Compass, Layers } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Sparkles, ExternalLink, Eye } from 'lucide-react';
+import { BetaRegistrationModal } from './BetaRegistrationModal';
 
 export const Hero: React.FC = () => {
-  const [qrModalOpen, setQrModalOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<'case_study' | 'credentials' | 'portfolios'>('case_study');
-
-  const sampleBadges = [
-    { title: "NREMT Paramedic", issuer: "National Registry EMTs", status: "Issuer-Verified", date: "Recert 2026", color: "from-emerald-500/20 to-emerald-600/10 border-emerald-500/40 text-emerald-300" },
-    { title: "Registered Nurse (RN)", issuer: "NYS Board of Nursing", status: "Active (CEU Compliant)", date: "License #592810", color: "from-teal-500/20 to-teal-600/10 border-teal-500/40 text-teal-300" },
-    { title: "AWS Solutions Architect", issuer: "Amazon Web Services", status: "Imported (Credly)", date: "Issued Jan 2025", color: "from-cyan-500/20 to-cyan-600/10 border-cyan-500/40 text-cyan-300" },
-    { title: "PMP® Project Management", issuer: "PMI", status: "Active", date: "Expires Oct 2027", color: "from-amber-500/20 to-amber-600/10 border-amber-500/40 text-amber-300" }
-  ];
+  const [isBetaModalOpen, setIsBetaModalOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState<'credentials' | 'case_study' | 'portfolios'>('credentials');
 
   return (
-    <section className="relative pt-12 pb-24 md:pt-20 md:pb-32 overflow-hidden bg-ambient-grid">
-      {/* Background Glowing Ambient Orbs */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary/20 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute top-1/3 right-10 w-[350px] h-[350px] bg-secondary/15 rounded-full blur-[120px] pointer-events-none" />
-
+    <section className="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden bg-slate-50 border-b border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          {/* Left Column: Copy & Messaging */}
+          {/* Left Column: Core Positioning */}
           <div className="lg:col-span-7 text-center lg:text-left space-y-6">
-            
             {/* Pill Tag */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border border-teal-500/30 text-teal-300 text-xs sm:text-sm font-semibold tracking-wide shadow-glowTeal">
-              <Sparkles className="w-4 h-4 text-secondary" />
-              <span>YOUR CAREER IS BIGGER THAN A RÉSUMÉ</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs font-semibold shadow-2xs">
+              <Sparkles className="w-3.5 h-3.5 text-emerald-700" />
+              <span>FOUNDING BETA COHORT • LIVING PROFESSIONAL IDENTITY</span>
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.1]">
-              Maintain Yourself Once.{' '}
-              <span className="text-gradient-teal block mt-2">Present Yourself Many Ways.</span>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-black tracking-tight text-slate-900 leading-[1.08]">
+              Your career is bigger than a résumé.{' '}
+              <span className="text-teal-800 block mt-2">Maintain once. Present many ways.</span>
             </h1>
 
-            {/* Subheadline emphasizing complete record, case studies & portfolios */}
-            <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
-              PathPort is your persistent, portable professional identity. Turn unlisted projects into rich case studies, build tailored portfolios for every target role, and automate continuing education renewals with verified 6-level provenance.
+            {/* Subheadline */}
+            <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+              PathPort is your persistent, portable professional record. Capture real evidence, turn unlisted projects into tangible case studies, build tailored portfolio views for target audiences, and automate CE renewal tracking without duplicate data.
             </p>
 
-            {/* Dual CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
-              <a 
-                href="https://app.getpathport.com"
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-primary via-teal-500 to-primary-dark text-white font-semibold text-base shadow-glowTeal hover:scale-[1.02] transition-all border border-teal-400/40"
-              >
-                <span>Launch Your Identity — Free</span>
-                <ArrowRight className="w-5 h-5" />
-              </a>
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row gap-3.5 justify-center lg:justify-start pt-3">
+              <div>
+                <button
+                  onClick={() => setIsBetaModalOpen(true)}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-sm shadow-xs hover:scale-[1.02] transition-all cursor-pointer"
+                >
+                  <span>Register for Beta Access</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+                <div className="text-[11px] text-slate-500 mt-2 text-center sm:text-left">
+                  Founding Cohort 1 invitations rolling out weekly
+                </div>
+              </div>
 
-              <a 
-                href="#ecosystem"
-                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl glass-card border border-slate-700 text-slate-200 font-medium text-base hover:bg-slate-800/80 hover:text-white transition-all"
+              <Link
+                to="/for/nurses"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 font-semibold text-sm shadow-2xs transition-all h-[46px]"
               >
-                <span>Explore App, Teams & Certify</span>
+                <span>See Role Examples</span>
                 <ExternalLink className="w-4 h-4 text-slate-400" />
-              </a>
+              </Link>
             </div>
 
-            {/* Trust bullet features */}
-            <div className="pt-6 grid grid-cols-3 gap-4 border-t border-slate-800/80 text-left">
+            {/* 3 Core Trust Guarantees */}
+            <div className="pt-6 grid grid-cols-3 gap-4 border-t border-slate-200 text-left">
               <div>
-                <div className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-200">
-                  <CheckCircle2 className="w-4 h-4 text-primary-glow" />
-                  <span>Rich Case Studies</span>
+                <div className="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-slate-900">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700" />
+                  <span>Authoritative Proof</span>
                 </div>
-                <p className="text-xs text-slate-400 mt-0.5">Challenge, Approach & Evidence</p>
+                <p className="text-[11px] text-slate-500 mt-0.5">6-level provenance verification</p>
               </div>
               <div>
-                <div className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-200">
-                  <CheckCircle2 className="w-4 h-4 text-secondary" />
-                  <span>Tailored Portfolios</span>
+                <div className="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-slate-900">
+                  <CheckCircle2 className="w-4 h-4 text-teal-700" />
+                  <span>Tangible Case Studies</span>
                 </div>
-                <p className="text-xs text-slate-400 mt-0.5">Dynamic object-reference links</p>
+                <p className="text-[11px] text-slate-500 mt-0.5">Challenge, approach & proof</p>
               </div>
               <div>
-                <div className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-200">
-                  <CheckCircle2 className="w-4 h-4 text-cyan-400" />
-                  <span>Verified Provenance</span>
+                <div className="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-slate-900">
+                  <CheckCircle2 className="w-4 h-4 text-teal-700" />
+                  <span>Living Portfolios</span>
                 </div>
-                <p className="text-xs text-slate-400 mt-0.5">6-level trust authentication</p>
+                <p className="text-[11px] text-slate-500 mt-0.5">Zero copy / live object links</p>
               </div>
             </div>
-
           </div>
 
-          {/* Right Column: Floating 3D Passport / Portfolio Card Visual */}
+          {/* Right Column: High-Craft Live Interactive Evidence Card Preview (Sarah Jenkins Persona) */}
           <div className="lg:col-span-5 relative">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
-              
-              {/* Outer Card Glow Halo */}
-              <div className="absolute -inset-1.5 bg-gradient-to-r from-primary via-secondary to-accent-cyan rounded-3xl blur-xl opacity-40 animate-pulse-slow pointer-events-none" />
-
-              {/* Glass Passport Card */}
-              <div className="relative glass-card rounded-2xl p-6 sm:p-8 border border-white/15 shadow-glass animate-float">
-                
-                {/* Card Header */}
-                <div className="flex items-center justify-between pb-6 border-b border-slate-800">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-slate-800 to-slate-700 p-0.5 border border-teal-500/50 shadow-inner">
-                      <div className="w-full h-full rounded-full bg-slate-950 flex items-center justify-center font-display font-bold text-teal-300 text-lg">
-                        AC
-                      </div>
+            <div className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-xl relative space-y-5">
+              {/* Card Header */}
+              <div className="flex items-center justify-between pb-4 border-b border-slate-100">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-2xl bg-teal-800 text-white font-bold flex items-center justify-center shadow-xs">
+                    SJ
+                  </div>
+                  <div>
+                    <div className="font-display font-bold text-sm text-slate-900 flex items-center gap-1.5">
+                      <span>Sarah Jenkins, BSN, RN</span>
+                      <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
                     </div>
-                    <div>
-                      <h3 className="font-display font-bold text-white text-lg flex items-center gap-2">
-                        Alex Chen
-                        <ShieldCheck className="w-4 h-4 text-teal-400" />
-                      </h3>
-                      <p className="text-xs text-slate-400">Junior Full-Stack Engineer & NRP</p>
+                    <p className="text-xs text-slate-500">ICU Charge Nurse & Clinical Preceptor</p>
+                  </div>
+                </div>
+                <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 text-[10px] font-bold border border-emerald-200">
+                  Verified ID
+                </span>
+              </div>
+
+              {/* Tab Selector */}
+              <div className="flex bg-slate-100 p-1 rounded-xl text-[11px] font-semibold text-slate-600">
+                <button
+                  onClick={() => setActiveTab('credentials')}
+                  className={`flex-1 py-1.5 rounded-lg transition-all cursor-pointer ${
+                    activeTab === 'credentials' ? 'bg-white text-slate-900 font-bold shadow-xs' : 'hover:text-slate-900'
+                  }`}
+                >
+                  Credentials (8)
+                </button>
+                <button
+                  onClick={() => setActiveTab('case_study')}
+                  className={`flex-1 py-1.5 rounded-lg transition-all cursor-pointer ${
+                    activeTab === 'case_study' ? 'bg-white text-slate-900 font-bold shadow-xs' : 'hover:text-slate-900'
+                  }`}
+                >
+                  Case Studies (3)
+                </button>
+                <button
+                  onClick={() => setActiveTab('portfolios')}
+                  className={`flex-1 py-1.5 rounded-lg transition-all cursor-pointer ${
+                    activeTab === 'portfolios' ? 'bg-white text-slate-900 font-bold shadow-xs' : 'hover:text-slate-900'
+                  }`}
+                >
+                  Portfolios (2)
+                </button>
+              </div>
+
+              {/* Tab Content */}
+              <div className="min-h-[220px]">
+                {activeTab === 'credentials' && (
+                  <div className="space-y-2.5">
+                    <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 space-y-1">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="font-bold text-slate-900">Registered Nurse (RN) License</span>
+                        <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-800 text-[10px] font-bold border border-emerald-200">
+                          Issuer Verified
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-slate-500">NYS Board of Nursing • Active & Compliant • #RN784019</p>
+                    </div>
+
+                    <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 space-y-1">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="font-bold text-slate-900">CCRN® — Critical Care Registered Nurse</span>
+                        <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-800 text-[10px] font-bold border border-emerald-200">
+                          Issuer Verified
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-slate-500">AACN Certification Corp • Recert 2026 • #CCRN-9921</p>
+                    </div>
+
+                    <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 space-y-1">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="font-bold text-slate-900">ACLS / PALS Provider</span>
+                        <span className="px-2 py-0.5 rounded-full bg-blue-50 text-blue-800 text-[10px] font-bold border border-blue-200">
+                          Provider Reported
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-slate-500">American Heart Association • 24 Hours CE</p>
                     </div>
                   </div>
+                )}
 
-                  <button 
-                    onClick={() => setQrModalOpen(true)}
-                    className="p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-teal-300 transition-colors border border-slate-700 flex items-center gap-1.5 text-xs"
-                    title="View QR Code"
-                  >
-                    <QrCode className="w-4 h-4" />
-                    <span className="hidden sm:inline font-semibold text-xs">Share</span>
-                  </button>
-                </div>
-
-                {/* Interactive Mode Tabs */}
-                <div className="flex gap-2 pt-4 pb-2 border-b border-slate-800/80">
-                  <button
-                    onClick={() => setActiveTab('case_study')}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
-                      activeTab === 'case_study' ? 'bg-teal-500/20 text-teal-300 border border-teal-500/40' : 'text-slate-400 hover:text-slate-200'
-                    }`}
-                  >
-                    <Briefcase className="w-3.5 h-3.5" />
-                    Case Study
-                  </button>
-                  <button
-                    onClick={() => setActiveTab('credentials')}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
-                      activeTab === 'credentials' ? 'bg-teal-500/20 text-teal-300 border border-teal-500/40' : 'text-slate-400 hover:text-slate-200'
-                    }`}
-                  >
-                    <Award className="w-3.5 h-3.5" />
-                    Credentials
-                  </button>
-                  <button
-                    onClick={() => setActiveTab('portfolios')}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
-                      activeTab === 'portfolios' ? 'bg-teal-500/20 text-teal-300 border border-teal-500/40' : 'text-slate-400 hover:text-slate-200'
-                    }`}
-                  >
-                    <Layers className="w-3.5 h-3.5" />
-                    Portfolios (2)
-                  </button>
-                </div>
-
-                {/* Tab Content */}
-                <div className="py-4 min-h-[220px]">
-                  {activeTab === 'case_study' && (
-                    <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800 space-y-2.5">
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-bold text-teal-300 uppercase tracking-wider">FEATURED CASE STUDY</span>
-                        <span className="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Evidenced</span>
-                      </div>
-                      <h4 className="font-bold text-white text-sm">Hot Wheels Virtual Garage & Telemetry</h4>
-                      <p className="text-xs text-slate-300 leading-relaxed">
-                        <strong className="text-slate-100">Challenge:</strong> Low-latency 3D rendering and state synchronization across 10k collector models.
-                      </p>
-                      <p className="text-xs text-slate-300 leading-relaxed">
-                        <strong className="text-slate-100">Outcome:</strong> Sub-16ms frame render times with zero state drift on edge workers.
-                      </p>
+                {activeTab === 'case_study' && (
+                  <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 space-y-2.5">
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="font-bold text-slate-900">Telemetry Unit Sepsis Protocol</span>
+                      <span className="px-2 py-0.5 rounded-full bg-purple-50 text-purple-800 text-[10px] font-bold border border-purple-200">
+                        Clinical Case Study
+                      </span>
                     </div>
-                  )}
+                    <p className="text-[11px] text-slate-600 leading-relaxed">
+                      <strong>Challenge:</strong> Standardize rapid sepsis screening across a 48-bed step-down telemetry unit.
+                    </p>
+                    <p className="text-[11px] text-slate-600 leading-relaxed">
+                      <strong>Outcome:</strong> Reduced mean time to ICU transfer by 42 minutes across 180 patient admissions.
+                    </p>
+                  </div>
+                )}
 
-                  {activeTab === 'credentials' && (
-                    <div className="space-y-2.5">
-                      {sampleBadges.slice(0, 3).map((badge, idx) => (
-                        <div key={idx} className={`p-3 rounded-xl border bg-gradient-to-r ${badge.color} flex items-center justify-between`}>
-                          <div>
-                            <div className="font-semibold text-white text-xs">{badge.title}</div>
-                            <div className="text-[11px] text-slate-400">{badge.issuer}</div>
-                          </div>
-                          <div className="text-right text-[11px]">
-                            <div className="font-medium text-emerald-400">{badge.status}</div>
-                            <div className="text-slate-400 text-[10px]">{badge.date}</div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {activeTab === 'portfolios' && (
-                    <div className="space-y-2.5">
-                      <div className="p-3 rounded-xl bg-slate-950/80 border border-teal-500/30 flex items-center justify-between">
-                        <div>
-                          <div className="font-semibold text-white text-xs">Full-Stack Tech Portfolio</div>
-                          <div className="text-[11px] text-slate-400">Target: Junior Software Engineer</div>
-                        </div>
-                        <span className="text-xs font-mono text-teal-300 bg-teal-500/10 px-2 py-0.5 rounded border border-teal-500/20">Public (/p/alex-dev)</span>
+                {activeTab === 'portfolios' && (
+                  <div className="space-y-2.5">
+                    <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 space-y-1">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="font-bold text-slate-900">Hospital Credentialing & Travel View</span>
+                        <span className="text-[10px] text-slate-500 font-mono flex items-center gap-1">
+                          <Eye className="w-3 h-3" /> 38 views
+                        </span>
                       </div>
-
-                      <div className="p-3 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center justify-between">
-                        <div>
-                          <div className="font-semibold text-white text-xs">Clinical Leadership Portfolio</div>
-                          <div className="text-[11px] text-slate-400">Target: Flight Paramedic Position</div>
-                        </div>
-                        <span className="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">Unlisted (/p/alex-flight)</span>
-                      </div>
+                      <div className="text-[11px] font-mono text-teal-800">getpathport.com/p/sarah-jenkins-rn</div>
                     </div>
-                  )}
-                </div>
 
-                {/* Passport Card Footer */}
-                <div className="pt-4 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-                  <span className="flex items-center gap-1 text-teal-300">
-                    <Compass className="w-3.5 h-3.5" />
-                    Path Goal: <strong>Junior Full-Stack</strong>
-                  </span>
-                  <span className="text-emerald-400 font-bold text-xs uppercase tracking-wider">SYNCED</span>
-                </div>
-
+                    <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 space-y-1">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="font-bold text-slate-900">Academic Preceptor & Faculty View</span>
+                        <span className="text-[10px] text-slate-500 font-mono flex items-center gap-1">
+                          <Eye className="w-3 h-3" /> 19 views
+                        </span>
+                      </div>
+                      <div className="text-[11px] font-mono text-teal-800">getpathport.com/p/sarah-preceptor</div>
+                    </div>
+                  </div>
+                )}
               </div>
 
+              {/* Bottom Quick Action */}
+              <div className="pt-2">
+                <button
+                  onClick={() => setIsBetaModalOpen(true)}
+                  className="w-full py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                >
+                  <span>Build Your Living Record</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
             </div>
           </div>
-
         </div>
       </div>
 
-      {/* QR Code Modal */}
-      {qrModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
-          <div className="glass-card max-w-sm w-full rounded-2xl p-6 border border-slate-700 text-center relative shadow-2xl">
-            <h4 className="font-display font-bold text-white text-lg mb-1">Alex Chen's PathPort</h4>
-            <p className="text-xs text-slate-400 mb-4">Scan to view instant verified portfolio</p>
-            
-            <div className="my-4 flex justify-center">
-              <BrandedQRCode 
-                value="https://app.getpathport.com/p/alex-chen"
-                size={190}
-              />
-            </div>
-
-            <Link 
-              to="/p/alex-chen" 
-              className="text-sm font-semibold text-teal-300 hover:text-teal-200 hover:underline mb-4 inline-flex items-center justify-center gap-1.5"
-            >
-              <span>app.getpathport.com/p/alex-chen</span>
-              <ExternalLink className="w-3.5 h-3.5" />
-            </Link>
-
-            <button 
-              onClick={() => setQrModalOpen(false)}
-              className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-sm font-medium transition-colors"
-            >
-              Close Preview
-            </button>
-          </div>
-        </div>
-      )}
-
+      {/* Modal */}
+      <BetaRegistrationModal
+        isOpen={isBetaModalOpen}
+        onClose={() => setIsBetaModalOpen(false)}
+        source="hero_cta"
+      />
     </section>
   );
 };
+
+export default Hero;

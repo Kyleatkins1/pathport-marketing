@@ -11,28 +11,24 @@ export const FAQ: React.FC = () => {
 
   const faqs: FAQItem[] = [
     {
-      question: "How does PathPort verify state licenses and professional certifications?",
-      answer: "PathPort connects directly to state licensing board registries, Credly API endpoints, and 1EdTech Open Badges 2.0/3.0 assertions. Our AI OCR parser also reads official PDF certificates and issue timestamps to generate verifiable digital assertions that third parties can verify without logins."
+      question: "How does PathPort differ from a PDF résumé or LinkedIn profile?",
+      answer: "A résumé is a 1-page summary of claims. PathPort is your persistent, authoritative living record. It stores the full evidence behind your accomplishments — rich case studies (with Challenge, Approach, and Measurable Outcomes), verified licenses, continuing education history, and dynamic portfolios tailored for each audience with zero data duplication."
     },
     {
-      question: "What happens if I change employers or state licensing boards?",
-      answer: "Your PathPort Passport belongs to you, not your employer. You maintain full access to your universal vault forever. If you move states or switch health systems, simply update your state board preference in the CEU engine to re-calculate state-specific contact hour requirements automatically."
+      question: "What does 'Maintain Once, Present Many Ways' mean?",
+      answer: "You never need to rebuild your portfolio from scratch. PathPort uses an object-reference architecture: your credentials, case studies, and experiences live in your core record once. When you create a tailored view for an executive role or client proposal, it references those items live. If you update a credential or case study, all active portfolio views reflect the update immediately."
     },
     {
-      question: "How is my personal document data encrypted and protected?",
-      answer: "All certificates, licenses, and resume documents stored in PathPort are encrypted using AES-256 at rest and TLS 1.3 in transit. PathPort operates under strict Row Level Security (RLS) policies. Veritas Technology Solutions, LLC never sells or monetizes your personal credential data."
+      question: "How does PathPort protect individual privacy?",
+      answer: "PathPort is built on a strict privacy-by-default architecture. All new case studies, credentials, and portfolios default to private or unlisted. Employers (via PathPort Teams) only receive scoped, consent-mediated visibility into credentials strictly required for compliance. When you offboard from a company, employer access is revoked instantly while your personal record remains intact."
     },
     {
-      question: "Is the $49/yr Founding Member price really locked for 2 years?",
-      answer: "Yes! For the first 500 professionals who join PathPort, your Pro Passport rate is locked at $49/year (normally $79/year) for 2 full years. You get unlimited credential storage, full CEU tracking engines, AI resume parsing, and custom URL slugs."
+      question: "What is 6-level provenance verification?",
+      answer: "PathPort provides transparent proof standards for every credential and evidence item: self-reported, document-supported, imported, employer-verified, provider-reported, and issuer-verified. Viewers and employers see the exact level of verification backing each assertion without login friction."
     },
     {
-      question: "Are college students eligible for free access?",
-      answer: "Absolutely. Students with an active `.edu` email address receive 100% free access to PathPort Pro for as long as they are enrolled, allowing them to build an impressive digital achievement portfolio before graduation."
-    },
-    {
-      question: "Can I export my digital portfolio for hardcopy or PDF job applications?",
-      answer: "Yes. In addition to your custom web URL (`getpathport.com/p/yourname`) and high-resolution QR code, PathPort allows one-click export of your verified credential timeline into a clean PDF portfolio."
+      question: "What happens during the Beta Phase?",
+      answer: "Founding members who register for the Beta get priority access to create their living record, build tailored portfolios, and track CE renewals. All core individual features will remain free for life for beta cohort members."
     }
   ];
 
@@ -41,44 +37,49 @@ export const FAQ: React.FC = () => {
   };
 
   return (
-    <section id="faq" className="py-24 relative bg-slate-950/80 border-t border-slate-800 scroll-mt-20">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+    <section id="faq" className="py-20 md:py-28 bg-white border-t border-slate-200 scroll-mt-16">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Header */}
-        <div className="text-center mb-16 space-y-4">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-teal-500/10 text-teal-300 text-xs font-semibold border border-teal-500/30">
-            <HelpCircle className="w-4 h-4 text-teal-300" />
-            FREQUENTLY ASKED QUESTIONS
+        <div className="text-center space-y-3">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold">
+            <HelpCircle className="w-3.5 h-3.5" />
+            <span>FREQUENTLY ASKED QUESTIONS</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white">Everything You Need to Know</h2>
-          <p className="text-slate-400 text-base">
-            Have questions about how PathPort protects your credentials or calculates CEUs? We've got answers.
+          <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-slate-900 tracking-tight">
+            Everything You Need to Know
+          </h2>
+          <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+            Learn how PathPort safeguards your evidence, calculates renewals, and powers living portfolios.
           </p>
         </div>
 
         {/* Accordion Container */}
-        <div className="space-y-4">
+        <div className="space-y-3">
           {faqs.map((faq, idx) => {
             const isOpen = openIndex === idx;
             return (
-              <div 
+              <div
                 key={idx}
-                className="glass-card rounded-2xl border border-slate-800/80 overflow-hidden transition-all duration-200"
+                className="bg-slate-50 rounded-2xl border border-slate-200/90 overflow-hidden transition-all"
               >
                 <button
                   onClick={() => toggleFAQ(idx)}
-                  className="w-full p-6 text-left flex items-center justify-between gap-4 focus:outline-none group"
+                  className="w-full p-5 text-left flex items-center justify-between gap-4 focus:outline-none group cursor-pointer"
                 >
-                  <span className="font-bold text-white text-base sm:text-lg group-hover:text-teal-300 transition-colors">
+                  <span className="font-bold text-slate-900 text-sm sm:text-base group-hover:text-teal-800 transition-colors">
                     {faq.question}
                   </span>
-                  <div className={`w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 transition-transform duration-200 ${isOpen ? 'rotate-180 text-teal-300 bg-teal-500/10 border-teal-500/30' : ''}`}>
-                    <ChevronDown className="w-5 h-5" />
+                  <div
+                    className={`w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-slate-400 transition-transform duration-200 ${
+                      isOpen ? 'rotate-180 text-teal-800 border-teal-300 bg-teal-50' : ''
+                    }`}
+                  >
+                    <ChevronDown className="w-4 h-4" />
                   </div>
                 </button>
 
                 {isOpen && (
-                  <div className="px-6 pb-6 text-slate-300 text-sm sm:text-base leading-relaxed border-t border-slate-800/50 pt-4">
+                  <div className="px-5 pb-5 text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-slate-200/60 pt-3.5">
                     {faq.answer}
                   </div>
                 )}
@@ -86,8 +87,9 @@ export const FAQ: React.FC = () => {
             );
           })}
         </div>
-
       </div>
     </section>
   );
 };
+
+export default FAQ;

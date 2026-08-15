@@ -1,77 +1,115 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
-import { Building2, ShieldAlert, BarChart3, Users, ArrowRight } from 'lucide-react';
+import { BetaRegistrationModal } from '../components/BetaRegistrationModal';
+import { Building2, BarChart3, ArrowRight, Lock, Activity } from 'lucide-react';
 
 export const EnterpriseFunnel: React.FC = () => {
+  const [isBetaModalOpen, setIsBetaModalOpen] = useState(false);
+
   return (
-    <div className="min-h-screen bg-background text-slate-100">
+    <div className="min-h-screen bg-slate-50 text-slate-900">
       <Navbar />
 
-      <main className="py-16 md:py-24 relative bg-ambient-grid">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-amber-500/10 text-amber-400 text-xs font-semibold border border-amber-500/30">
-              <Building2 className="w-4 h-4 text-amber-400" />
-              WORKFORCE COMPLIANCE & LAPSE PREVENTION
+      <main className="py-16 md:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+          {/* Header */}
+          <div className="text-center max-w-3xl mx-auto space-y-4">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-indigo-50 text-indigo-900 text-xs font-semibold border border-indigo-200">
+              <Building2 className="w-4 h-4 text-indigo-700" />
+              PATHPORT TEAMS • WORKFORCE CREDENTIAL COMPLIANCE
             </span>
 
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-white leading-tight">
-              Real-Time Workforce Credential Tracking for <span className="text-gradient-gold">Teams & Enterprises</span>
+            <h1 className="text-4xl sm:text-5xl font-display font-extrabold text-slate-900 tracking-tight leading-tight">
+              Workforce Compliance Without Privacy Violations.{' '}
+              <span className="text-teal-800 block mt-1">Lapse Prevention & Scoped Access.</span>
             </h1>
 
-            <p className="text-slate-300 text-lg">
-              Eliminate spreadsheet chaos and license lapse fines. PathPort Org Mode provides clinics, hospitals, EMS agencies, and training programs a unified dashboard for all employee credentials.
+            <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
+              Eliminate spreadsheet chaos and license lapse fines. PathPort Teams provides clinical health systems, EMS agencies, and engineering firms a real-time compliance radar mediated by scoped employee consent.
             </p>
 
-            <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
-                href="mailto:enterprise@getpathport.com?subject=PathPort%20Org%20Demo" 
-                className="px-8 py-4 rounded-xl bg-gradient-to-r from-secondary via-amber-500 to-amber-600 text-white font-bold text-base shadow-glowGold hover:scale-[1.02] transition-all flex items-center justify-center gap-2"
+            <div className="pt-2 flex flex-col sm:flex-row gap-3.5 justify-center">
+              <button
+                onClick={() => setIsBetaModalOpen(true)}
+                className="px-8 py-3.5 rounded-2xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-sm shadow-xs hover:scale-[1.02] transition-all flex items-center justify-center gap-2"
               >
-                <span>Request Enterprise Org Demo</span>
-                <ArrowRight className="w-5 h-5" />
-              </a>
+                <span>Request Teams Design Partner Access</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 my-16">
-            <div className="glass-card rounded-2xl p-8 border border-white/10">
-              <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center mb-6">
-                <ShieldAlert className="w-6 h-6" />
+          {/* 3 Core Value Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-xs space-y-4">
+              <div className="w-12 h-12 rounded-2xl bg-teal-800 text-white flex items-center justify-center shadow-xs">
+                <Activity className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">Automated Expiration Lapse Alerts</h3>
-              <p className="text-slate-300 text-sm">
-                Receive proactive notifications 90, 60, and 30 days before employee state licenses or specialty certs expire.
+              <h3 className="text-lg font-display font-bold text-slate-900">
+                30 / 60 / 90-Day Expiration Radar
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Automated deficiency alerts notify managers and workers before mandatory state licenses or specialty credentials expire.
               </p>
             </div>
 
-            <div className="glass-card rounded-2xl p-8 border border-white/10">
-              <div className="w-12 h-12 rounded-xl bg-teal-500/10 border border-teal-500/30 text-teal-400 flex items-center justify-center mb-6">
+            <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-xs space-y-4">
+              <div className="w-12 h-12 rounded-2xl bg-teal-800 text-white flex items-center justify-center shadow-xs">
+                <Lock className="w-6 h-6" />
+              </div>
+              <h3 className="text-lg font-display font-bold text-slate-900">
+                Strict Privacy Firewalls
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Employers only see role-assigned compliance status and required credentials. Personal case studies, unrelated licenses, and career goals remain private to the worker.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-xs space-y-4">
+              <div className="w-12 h-12 rounded-2xl bg-teal-800 text-white flex items-center justify-center shadow-xs">
                 <BarChart3 className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">Accreditation Audit Export</h3>
-              <p className="text-slate-300 text-sm">
-                Generate instant compliance reports for state inspectors, Joint Commission, or NREMT accreditation audits.
-              </p>
-            </div>
-
-            <div className="glass-card rounded-2xl p-8 border border-white/10">
-              <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center mb-6">
-                <Users className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-2">Bulk Verification & Roles</h3>
-              <p className="text-slate-300 text-sm">
-                Manage team rosters, assign role-based requirement templates, and verify staff credentials with zero friction.
+              <h3 className="text-lg font-display font-bold text-slate-900">
+                Accreditation Audit Export
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Generate 1-click verified compliance packages for state health inspectors, Joint Commission, or CAMTS audits.
               </p>
             </div>
           </div>
 
+          {/* CTA Banner */}
+          <div className="bg-white rounded-3xl p-10 text-center border border-slate-200 shadow-sm space-y-4">
+            <h3 className="text-2xl font-display font-extrabold text-slate-900">
+              Join Our Workforce Design Partner Cohort
+            </h3>
+            <p className="text-slate-600 text-xs sm:text-sm max-w-lg mx-auto">
+              Empower your staff to own their professional identity while automating your clinical and technical compliance governance.
+            </p>
+            <div>
+              <button
+                onClick={() => setIsBetaModalOpen(true)}
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-xs shadow-xs transition-all"
+              >
+                <span>Request Teams Design Partner Access</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
         </div>
       </main>
 
       <Footer />
+
+      <BetaRegistrationModal
+        isOpen={isBetaModalOpen}
+        onClose={() => setIsBetaModalOpen(false)}
+        defaultAudience="Employer / Workforce Compliance"
+        source="enterprise_funnel"
+      />
     </div>
   );
 };
+
+export default EnterpriseFunnel;

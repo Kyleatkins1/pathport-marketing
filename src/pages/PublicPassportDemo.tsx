@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { Logo } from '../components/Logo';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { BrandedQRCode } from '../components/BrandedQRCode';
+import { Logo } from '../components/Logo';
+import { Footer } from '../components/Footer';
+import { BetaRegistrationModal } from '../components/BetaRegistrationModal';
 import { 
-  ShieldCheck, Award, Calendar, QrCode, ExternalLink, 
-  Presentation, FileCode, ArrowRight, Sparkles, Building2, MapPin
+  ShieldCheck, Award, QrCode, 
+  Presentation, ArrowRight, MapPin, 
+  FileText
 } from 'lucide-react';
 
 interface PassportProfile {
+  id: string;
   name: string;
   title: string;
   handle: string;
@@ -24,15 +28,16 @@ interface PassportProfile {
     expiryDate: string;
     id: string;
     verified: boolean;
-    status: 'ACTIVE' | 'CURRENT';
+    provenance: string;
     skills: string[];
   }[];
   projects: {
     title: string;
     category: string;
     certAttached: string;
-    description: string;
-    linkText: string;
+    challenge: string;
+    approach: string;
+    outcome: string;
   }[];
   posters: {
     title: string;
@@ -43,491 +48,508 @@ interface PassportProfile {
 }
 
 const profilesData: Record<string, PassportProfile> = {
-  'alex-chen': {
-    name: "Alex Chen",
-    title: "Senior Cloud Architect & PMP®",
-    handle: "alex-chen",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=300",
-    location: "San Francisco, CA",
-    verifiedCount: 7,
-    ceusCompleted: "30 / 30 Hours Complete",
-    verifiedSince: "March 2022",
-    bio: "Multi-certified Enterprise Cloud Architect specializing in AWS multi-region infrastructure, Kubernetes migration, and Agile project governance.",
-    credentials: [
-      {
-        title: "PMP® - Project Management Professional",
-        issuer: "Project Management Institute (PMI)",
-        issueDate: "Jan 2021",
-        expiryDate: "Jan 2027",
-        id: "PMI-2940185",
-        verified: true,
-        status: "ACTIVE",
-        skills: ["Agile Governance", "Risk Management", "Budgeting ($5M+)"]
-      },
-      {
-        title: "AWS Certified Solutions Architect – Professional",
-        issuer: "Amazon Web Services",
-        issueDate: "Nov 2022",
-        expiryDate: "Nov 2025",
-        id: "AWS-PSA-99214",
-        verified: true,
-        status: "ACTIVE",
-        skills: ["Multi-Region VPC", "Serverless Architecture", "IAM Governance"]
-      },
-      {
-        title: "Certified Kubernetes Administrator (CKA)",
-        issuer: "Linux Foundation / CNCF",
-        issueDate: "Aug 2023",
-        expiryDate: "Aug 2026",
-        id: "LF-CKA-88102",
-        verified: true,
-        status: "ACTIVE",
-        skills: ["Kubernetes", "Helm", "Cluster Security"]
-      }
-    ],
-    projects: [
-      {
-        title: "Healthcare Cloud Migration ($12M Project)",
-        category: "Enterprise Infrastructure",
-        certAttached: "PMP® & AWS Solutions Architect",
-        description: "Led 14-engineer team migrating legacy EHR systems to multi-region AWS setup with zero downtime.",
-        linkText: "View Migration Case Study"
-      },
-      {
-        title: "Zero-Trust IAM Policy Engine",
-        category: "Security & Governance",
-        certAttached: "AWS Certified Solutions Architect",
-        description: "Architected automated role-based access control engine enforcing SOC2 and HIPAA compliance.",
-        linkText: "View Security Architecture"
-      }
-    ],
-    posters: [
-      {
-        title: "Kubernetes Multi-Region Resilience at Scale",
-        conference: "AWS re:Invent 2024",
-        year: "2024",
-        type: "Keynote Presentation"
-      },
-      {
-        title: "Agile Risk Management in Cloud Transformation",
-        conference: "Global PMI Symposium",
-        year: "2023",
-        type: "Research Poster"
-      }
-    ]
-  },
-  'marcus-vance': {
-    name: "Marcus Vance",
-    title: "Lead Technical Project Manager",
-    handle: "marcus-vance",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=300",
-    location: "Austin, TX",
-    verifiedCount: 5,
-    ceusCompleted: "60 / 60 PDUs Complete",
-    verifiedSince: "June 2021",
-    bio: "Certified PMP® and CSM® with 10+ years leading fintech software delivery and cross-functional engineering pods.",
-    credentials: [
-      {
-        title: "PMP® - Project Management Professional",
-        issuer: "Project Management Institute (PMI)",
-        issueDate: "May 2019",
-        expiryDate: "May 2025",
-        id: "PMI-1882041",
-        verified: true,
-        status: "ACTIVE",
-        skills: ["PDU Cycle Management", "Scrum at Scale", "Fintech Compliance"]
-      },
-      {
-        title: "Certified ScrumMaster® (CSM)",
-        issuer: "Scrum Alliance",
-        issueDate: "Feb 2020",
-        expiryDate: "Feb 2026",
-        id: "SA-CSM-40192",
-        verified: true,
-        status: "ACTIVE",
-        skills: ["Sprint Planning", "Retrospectives", "Jira Architecture"]
-      }
-    ],
-    projects: [
-      {
-        title: "Real-Time Payment Processing Pipeline",
-        category: "Fintech Platform",
-        certAttached: "PMP® & CSM®",
-        description: "Managed 3-pod team delivering PCI-DSS compliant payment processing engine handling $40M daily volume.",
-        linkText: "View Platform Overview"
-      }
-    ],
-    posters: [
-      {
-        title: "Scaling Agile in FinTech Environments",
-        conference: "Agile Alliance 2024",
-        year: "2024",
-        type: "Panel Presentation"
-      }
-    ]
-  },
   'sarah-jenkins': {
-    name: "Sarah Jenkins",
-    title: "ICU Charge Nurse, BSN, RN, CCRN®",
-    handle: "sarah-jenkins",
+    id: 'sarah-jenkins',
+    name: "Sarah Jenkins, BSN, RN, CCRN®",
+    title: "ICU Charge Nurse & Clinical Preceptor",
+    handle: "sarah-jenkins-rn",
     avatar: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=300",
     location: "New York, NY",
-    verifiedCount: 6,
-    ceusCompleted: "24 / 24 Board CEUs Complete",
+    verifiedCount: 3,
+    ceusCompleted: "24 / 24 Board CEUs (100% Compliant)",
     verifiedSince: "August 2020",
-    bio: "Board-certified Critical Care Registered Nurse with 8 years in Level 1 Trauma ICU. State licensed in NY and FL.",
+    bio: "Critical Care Registered Nurse with 8 years in Level 1 Trauma ICU. Certified Preceptor for graduate nurse residency. Focused on sepsis screening protocols and bedside hemodynamic monitoring.",
     credentials: [
       {
-        title: "Registered Nurse (RN) - New York State Board",
+        title: "Registered Nurse (RN) License",
         issuer: "NYS Office of the Professions",
         issueDate: "Jul 2018",
         expiryDate: "Jul 2026",
         id: "NY-RN-784019",
         verified: true,
-        status: "ACTIVE",
-        skills: ["ICU Care", "Infection Control", "Hemodynamic Monitoring"]
+        provenance: "Issuer Verified",
+        skills: ["ICU Resuscitation", "Infection Control", "Hemodynamic Monitoring"]
       },
       {
-        title: "CCRN® - Critical Care Registered Nurse",
+        title: "CCRN® — Critical Care Registered Nurse",
         issuer: "AACN Certification Corporation",
         issueDate: "Oct 2020",
         expiryDate: "Oct 2026",
         id: "AACN-CCRN-9921",
         verified: true,
-        status: "ACTIVE",
-        skills: ["Ventilator Management", "VAD Support", "CRRT"]
+        provenance: "Issuer Verified",
+        skills: ["Mechanical Ventilation", "VAD Support", "CRRT Management"]
       },
       {
-        title: "Advanced Cardiovascular Life Support (ACLS)",
+        title: "ACLS / PALS Provider",
         issuer: "American Heart Association",
-        issueDate: "Jan 2024",
-        expiryDate: "Jan 2026",
-        id: "AHA-ACLS-55102",
+        issueDate: "Feb 2024",
+        expiryDate: "Feb 2026",
+        id: "AHA-ACLS-8812",
         verified: true,
-        status: "ACTIVE",
-        skills: ["Cardiac Arrest Protocols", "ECG Analysis"]
+        provenance: "Provider Reported",
+        skills: ["Advanced Cardiac Life Support", "Pediatric Resuscitation"]
       }
     ],
     projects: [
       {
-        title: "Sepsis Early Warning System Protocol",
+        title: "Telemetry Unit Sepsis Early-Warning Protocol",
         category: "Clinical Quality Improvement",
         certAttached: "CCRN® & NYS RN",
-        description: "Co-authored hospital-wide ICU sepsis protocol reducing onset-to-treatment time by 38%.",
-        linkText: "View Clinical Case Study"
+        challenge: "Standardize rapid sepsis screening across a 48-bed step-down telemetry unit to avoid ICU bounce-backs.",
+        approach: "Co-authored nursing bedside screening protocol and led simulation training for 60 staff nurses.",
+        outcome: "Reduced mean time to ICU transfer by 42 minutes across 180 patient admissions."
       }
     ],
     posters: [
       {
-        title: "Reducing CAUTI Rates in High-Acuity ICU Units",
+        title: "Preceptor Best Practices in Trauma ICU Units",
         conference: "AACN National Teaching Institute",
         year: "2024",
-        type: "Research Poster"
+        type: "Clinical Poster"
+      }
+    ]
+  },
+  'elena-rodriguez': {
+    id: 'elena-rodriguez',
+    name: "Elena Rodriguez, NRP, FP-C",
+    title: "Critical Care Flight Paramedic & Clinical Educator",
+    handle: "elena-flight-lead",
+    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=300",
+    location: "Denver, CO",
+    verifiedCount: 3,
+    ceusCompleted: "60 / 60 NREMT NCCP Hours Complete",
+    verifiedSince: "January 2021",
+    bio: "Critical care rotary transport clinician with 10 years pre-hospital experience. Specializing in high-altitude neonatal transport, invasive hemodynamic lines, and pre-hospital RSI.",
+    credentials: [
+      {
+        title: "National Registry Paramedic (NRP)",
+        issuer: "National Registry of EMTs (NREMT)",
+        issueDate: "Mar 2016",
+        expiryDate: "Mar 2026",
+        id: "NREMT-NP948102",
+        verified: true,
+        provenance: "Issuer Verified",
+        skills: ["Rapid Sequence Intubation", "12-Lead ECG", "Pre-Hospital Trauma"]
+      },
+      {
+        title: "Certified Flight Paramedic (FP-C)",
+        issuer: "IBSC Board of Specialty",
+        issueDate: "Nov 2019",
+        expiryDate: "Nov 2027",
+        id: "IBSC-FP2918",
+        verified: true,
+        provenance: "Issuer Verified",
+        skills: ["Aero-Medical Physiology", "Ventilator Transport", "Arterial Lines"]
+      },
+      {
+        title: "Critical Care Transport (CCT)",
+        issuer: "University Medical Center",
+        issueDate: "Jun 2023",
+        expiryDate: "Jun 2026",
+        id: "UMC-CCT-109",
+        verified: true,
+        provenance: "Provider Reported",
+        skills: ["Blood Product Infusions", "IABP Balloon Pump"]
+      }
+    ],
+    projects: [
+      {
+        title: "High-Altitude Pre-Hospital RSI Ventilator Protocol",
+        category: "Critical Care Transport",
+        certAttached: "FP-C & NREMT Paramedic",
+        challenge: "Mitigate barometric pressure drops during high-altitude helicopter evacuations in respiratory failure patients.",
+        approach: "Implemented dynamic PEEP titration algorithms and Hamilton-T1 preset profiles for flight crews.",
+        outcome: "Maintained 100% SpO2 stability and 0% extubation failures across 64 high-acuity flight missions."
+      }
+    ],
+    posters: [
+      {
+        title: "Ventilator Synchrony in High-Altitude Rotary Aircraft",
+        conference: "Air Medical Transport Conference (AMTC)",
+        year: "2024",
+        type: "Scientific Presentation"
+      }
+    ]
+  },
+  'marcus-vance': {
+    id: 'marcus-vance',
+    name: "Marcus Vance, PMP®, CSM",
+    title: "Senior Technical Program Manager & Solutions Architect",
+    handle: "marcus-vance",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=300",
+    location: "Austin, TX",
+    verifiedCount: 3,
+    ceusCompleted: "60 / 60 PMI PDUs (Current Cycle)",
+    verifiedSince: "June 2019",
+    bio: "Technical Program Director leading distributed systems, cloud migrations, and high-velocity engineering organizations. Certified Project Management Professional and AWS Solutions Architect.",
+    credentials: [
+      {
+        title: "PMP® — Project Management Professional",
+        issuer: "Project Management Institute (PMI)",
+        issueDate: "May 2018",
+        expiryDate: "May 2027",
+        id: "PMI-2948190",
+        verified: true,
+        provenance: "Issuer Verified",
+        skills: ["Agile Governance", "Budget Optimization", "Risk Management"]
+      },
+      {
+        title: "AWS Certified Solutions Architect — Professional",
+        issuer: "Amazon Web Services (AWS)",
+        issueDate: "Aug 2021",
+        expiryDate: "Aug 2027",
+        id: "AWS-PSA-88192",
+        verified: true,
+        provenance: "Issuer Verified",
+        skills: ["Multi-Region VPC", "Distributed Databases", "Kubernetes (EKS)"]
+      },
+      {
+        title: "Certified ScrumMaster (CSM)",
+        issuer: "Scrum Alliance",
+        issueDate: "Jan 2020",
+        expiryDate: "Jan 2026",
+        id: "CSM-994821",
+        verified: true,
+        provenance: "Provider Reported",
+        skills: ["Sprint Planning", "Release Velocity", "Cross-Functional Leadership"]
+      }
+    ],
+    projects: [
+      {
+        title: "Zero-Downtime Multi-Region Database Sharding",
+        category: "Cloud Engineering & Delivery",
+        certAttached: "PMP® & AWS Solutions Architect",
+        challenge: "Migrate 45M user records from single-region legacy database to active-active PostgreSQL cluster with zero outage window.",
+        approach: "Led cross-functional team of 14 engineers using CRDT replication and phased dual-write shadow deployments.",
+        outcome: "Completed migration across 4 global regions with 0 seconds of user downtime and 35% reduced latency."
+      }
+    ],
+    posters: [
+      {
+        title: "Engineering Governance in Distributed Cloud Systems",
+        conference: "DevOps World 2024",
+        year: "2024",
+        type: "Architecture Talk"
       }
     ]
   },
   'david-kim': {
-    name: "David Kim",
-    title: "Senior DevOps & Security Lead",
-    handle: "david-kim",
+    id: 'david-kim',
+    name: "David Kim, MS",
+    title: "Bioengineering Research Fellow & Capstone Lead",
+    handle: "david-kim-bio",
     avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=300",
-    location: "Seattle, WA",
-    verifiedCount: 8,
-    ceusCompleted: "45 / 45 CPE Credits Complete",
-    verifiedSince: "January 2021",
-    bio: "DevOps Lead specializing in automated CI/CD security pipelines, Terraform IaC, and Kubernetes security hardening.",
+    location: "Baltimore, MD",
+    verifiedCount: 2,
+    ceusCompleted: "Active Academic Record",
+    verifiedSince: "September 2022",
+    bio: "Biomedical engineering graduate with published peer-reviewed research in microfluidic biosensors, clinical trial protocols, and wearable medical diagnostics.",
     credentials: [
       {
-        title: "Certified Information Systems Security Professional (CISSP)",
-        issuer: "(ISC)²",
-        issueDate: "Apr 2021",
-        expiryDate: "Apr 2027",
-        id: "ISC2-CISSP-9018",
+        title: "M.S. in Biomedical Engineering",
+        issuer: "Johns Hopkins University",
+        issueDate: "May 2024",
+        expiryDate: "Lifetime",
+        id: "JHU-MS-2024",
         verified: true,
-        status: "ACTIVE",
-        skills: ["Security Architecture", "Cryptography", "Identity Management"]
+        provenance: "Issuer Verified",
+        skills: ["Microfluidics", "Biosensor Design", "Statistical Analysis"]
       },
       {
-        title: "AWS Certified Security – Specialty",
-        issuer: "Amazon Web Services",
-        issueDate: "Dec 2022",
-        expiryDate: "Dec 2025",
-        id: "AWS-SEC-33291",
+        title: "Good Clinical Practice (GCP) Certification",
+        issuer: "CITI Program",
+        issueDate: "Sep 2023",
+        expiryDate: "Sep 2026",
+        id: "CITI-GCP-8841",
         verified: true,
-        status: "ACTIVE",
-        skills: ["KMS Encryption", "GuardDuty", "WAF Security"]
+        provenance: "Issuer Verified",
+        skills: ["Clinical Protocols", "IRB Compliance", "Human Subject Safety"]
       }
     ],
     projects: [
       {
-        title: "Automated DevSecOps Pipeline Integration",
-        category: "Cloud Security",
-        certAttached: "CISSP & AWS Security Specialty",
-        description: "Implemented static code security analysis and automated container vulnerability scanning in GitHub Actions.",
-        linkText: "View Pipeline Spec"
+        title: "Point-of-Care Microfluidic Biosensor Validation",
+        category: "Biomedical Engineering",
+        certAttached: "M.S. Biomedical Engineering",
+        challenge: "Engineer a low-cost microfluidic cartridge to detect sepsis protein biomarkers within 15 minutes of fingerstick blood draw.",
+        approach: "Fabricated PDMS micro-channels and integrated optical fluorescence detection module with Arduino telemetry.",
+        outcome: "Achieved 98.4% diagnostic sensitivity in preclinical blood plasma assay trials."
       }
     ],
     posters: [
       {
-        title: "Zero-Trust Infrastructure Code Hardening",
-        conference: "KubeCon North America",
+        title: "Microfluidic Plasma Fractionation in Diagnostics",
+        conference: "Biomedical Engineering Society (BMES)",
         year: "2024",
-        type: "Technical Presentation"
+        type: "Peer-Reviewed Paper"
       }
     ]
   }
 };
 
-// Alias map for demo profile IDs & alternate handles
 const slugAliases: Record<string, string> = {
-  'nurse-multi': 'sarah-jenkins',
   'sarah-jenkins-rn': 'sarah-jenkins',
+  'nurse-multi': 'sarah-jenkins',
+  'elena-flight-lead': 'elena-rodriguez',
+  'paramedic-cct': 'elena-rodriguez',
+  'marcus-vance': 'marcus-vance',
   'pmp-single': 'marcus-vance',
-  'tech-cloud': 'david-kim'
+  'david-kim-bio': 'david-kim',
+  'student-research': 'david-kim',
+  'alex-chen': 'marcus-vance'
 };
 
 export const PublicPassportDemo: React.FC = () => {
   const { slug } = useParams<{ slug?: string }>();
+  const navigate = useNavigate();
   const [qrModalOpen, setQrModalOpen] = useState(false);
+  const [isBetaModalOpen, setIsBetaModalOpen] = useState(false);
 
-  // Normalize slug using alias mapping or direct lookup, fallback to alex-chen
-  const normalizedSlug = slug ? (slugAliases[slug] || slug) : 'alex-chen';
-  const profileKey = profilesData[normalizedSlug] ? normalizedSlug : 'alex-chen';
+  const normalizedSlug = slug ? (slugAliases[slug] || slug) : 'sarah-jenkins';
+  const profileKey = profilesData[normalizedSlug] ? normalizedSlug : 'sarah-jenkins';
   const profile = profilesData[profileKey];
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-teal-500/30 selection:text-teal-300">
-      
-      {/* Top Banner (Verified PathPort Header) */}
-      <header className="border-b border-slate-800/80 bg-slate-900/60 backdrop-blur-md sticky top-0 z-40">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
-            <Logo size={32} />
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans">
+      {/* Top Banner - identical styling to main Navbar */}
+      <header className="sticky top-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200/90 dark:border-slate-800 transition-colors select-none">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-2 group shrink-0">
+            <Logo size={28} />
           </Link>
 
           <div className="flex items-center gap-3">
-            <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold border border-emerald-500/30">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              VERIFIED PATHPORT PASSPORT
+            <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-semibold border border-emerald-200 dark:border-emerald-800">
+              <span className="w-2 h-2 rounded-full bg-emerald-500" />
+              VERIFIED RECORD VIEW
             </span>
 
             <button 
               onClick={() => setQrModalOpen(true)}
-              className="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 flex items-center gap-2 transition-colors"
+              className="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer"
             >
-              <QrCode className="w-4 h-4 text-teal-400" />
+              <QrCode className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400" />
               <span>QR Code</span>
             </button>
 
-            <a 
-              href="https://app.getpathport.com/auth?signup=true" 
-              className="px-4 py-1.5 rounded-lg bg-gradient-to-r from-primary to-primary-dark text-white text-xs font-bold shadow-glowTeal hover:scale-105 transition-all hidden sm:inline-flex items-center gap-1.5"
+            <button 
+              onClick={() => setIsBetaModalOpen(true)}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-teal-800 hover:bg-teal-700 text-white text-xs font-semibold shadow-2xs hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
             >
               <span>Build Yours</span>
               <ArrowRight className="w-3.5 h-3.5" />
-            </a>
+            </button>
           </div>
         </div>
       </header>
 
-      {/* Main Profile Passport Layout */}
-      <main className="py-12 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-        
-        {/* Profile Card Header */}
-        <div className="glass-card rounded-3xl p-8 border border-slate-800 bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
+      {/* Sub-Header: Persona Switcher Bar */}
+      <div className="bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800 py-3 px-4">
+        <div className="max-w-5xl mx-auto flex items-center justify-between gap-4 overflow-x-auto">
+          <span className="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider shrink-0 hidden sm:inline">
+            Sample Living Portfolios:
+          </span>
+          <div className="flex items-center gap-2">
+            {Object.values(profilesData).map((p) => {
+              const isCurrent = p.id === profileKey;
+              return (
+                <button
+                  key={p.id}
+                  onClick={() => navigate(`/p/${p.handle}`)}
+                  className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer ${
+                    isCurrent
+                      ? 'bg-teal-800 text-white shadow-2xs'
+                      : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
+                  }`}
+                >
+                  <Award className="w-3.5 h-3.5" />
+                  <span>{p.name.split(',')[0]}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </div>
 
-          <div className="flex flex-col md:flex-row gap-6 items-start md:items-center justify-between relative z-10">
+      {/* Main Profile Layout */}
+      <main className="py-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        {/* Profile Card Header */}
+        <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800 shadow-xs space-y-6">
+          <div className="flex flex-col md:flex-row gap-6 items-start md:items-center justify-between">
             <div className="flex items-center gap-5">
               <img 
                 src={profile.avatar} 
                 alt={profile.name} 
-                className="w-20 h-20 rounded-2xl object-cover border-2 border-teal-500/50 shadow-glowTeal"
+                className="w-20 h-20 rounded-2xl object-cover border-2 border-teal-800 shadow-xs"
               />
               <div className="space-y-1">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <h1 className="text-2xl sm:text-3xl font-bold text-white">{profile.name}</h1>
-                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-teal-500/20 text-teal-300 text-xs font-semibold border border-teal-500/30">
-                    <ShieldCheck className="w-3.5 h-3.5 text-teal-400" />
+                  <h1 className="text-2xl font-display font-bold text-slate-900 dark:text-white">{profile.name}</h1>
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-semibold border border-emerald-200 dark:border-emerald-800">
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" />
                     Verified User
                   </span>
                 </div>
-                <p className="text-slate-300 font-medium text-sm">{profile.title}</p>
-                <div className="flex items-center gap-4 text-xs text-slate-400 pt-1">
-                  <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-slate-500" /> {profile.location}</span>
+                <p className="text-slate-600 dark:text-slate-300 font-medium text-xs sm:text-sm">{profile.title}</p>
+                <div className="flex items-center gap-3 text-xs text-slate-400 dark:text-slate-500 pt-1">
+                  <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-slate-400" /> {profile.location}</span>
                   <span>•</span>
                   <span>Member since {profile.verifiedSince}</span>
                 </div>
               </div>
             </div>
 
-            <div className="bg-slate-900/80 rounded-2xl p-4 border border-slate-800 text-xs space-y-2 shrink-0">
-              <div className="text-slate-400 flex items-center justify-between gap-6">
+            <div className="bg-slate-50 dark:bg-slate-800/80 rounded-2xl p-4 border border-slate-200 dark:border-slate-700 text-xs space-y-1.5 shrink-0">
+              <div className="text-slate-600 dark:text-slate-300 flex items-center justify-between gap-6">
                 <span>Verified Credentials:</span>
-                <strong className="text-white font-bold">{profile.verifiedCount} Active</strong>
+                <strong className="text-slate-900 dark:text-white font-bold">{profile.verifiedCount} Active</strong>
               </div>
-              <div className="text-slate-400 flex items-center justify-between gap-6">
-                <span>CEU Status:</span>
-                <strong className="text-teal-300 font-semibold">{profile.ceusCompleted}</strong>
+              <div className="text-slate-600 dark:text-slate-300 flex items-center justify-between gap-6">
+                <span>CE Renewal Status:</span>
+                <strong className="text-teal-800 dark:text-teal-400 font-semibold">{profile.ceusCompleted}</strong>
               </div>
-              <div className="text-slate-400 flex items-center justify-between gap-6">
-                <span>Passport Slug:</span>
-                <strong className="text-teal-300 font-mono">getpathport.com/p/{profile.handle}</strong>
+              <div className="text-slate-600 dark:text-slate-300 flex items-center justify-between gap-6">
+                <span>Live Portfolio Link:</span>
+                <strong className="text-teal-800 dark:text-teal-400 font-mono">getpathport.com/p/{profile.handle}</strong>
               </div>
             </div>
           </div>
 
-          <p className="mt-6 pt-6 border-t border-slate-800/80 text-slate-300 text-sm leading-relaxed">
+          <p className="pt-4 border-t border-slate-100 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">
             {profile.bio}
           </p>
         </div>
 
-        {/* Section 1: Active Verified Credentials */}
+        {/* Credentials Section */}
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-white flex items-center gap-2">
-              <Award className="w-5 h-5 text-teal-400" />
-              <span>Active Verified Credentials ({profile.credentials.length})</span>
+            <h2 className="text-lg font-display font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <Award className="w-5 h-5 text-teal-800 dark:text-teal-400" />
+              <span>Verified Credentials & Licenses</span>
             </h2>
-            <span className="text-xs text-teal-400 font-semibold bg-teal-500/10 border border-teal-500/30 px-3 py-1 rounded-full">
-              AES-256 Encrypted Storage
+            <span className="text-xs font-semibold text-emerald-800 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+              6-Level Provenance Verified
             </span>
           </div>
 
-          <div className="grid grid-cols-1 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {profile.credentials.map((cred, idx) => (
-              <div 
-                key={idx}
-                className="glass-card rounded-2xl p-6 border border-slate-800 hover:border-teal-500/40 transition-all bg-slate-900/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
-              >
+              <div key={idx} className="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-xs space-y-3 flex flex-col justify-between">
                 <div className="space-y-2">
-                  <div className="flex items-center gap-3">
-                    <span className="w-2.5 h-2.5 rounded-full bg-teal-400 animate-pulse" />
-                    <h3 className="font-bold text-white text-lg">{cred.title}</h3>
+                  <div className="flex items-start justify-between gap-2">
+                    <span className="px-2 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-[10px] font-bold border border-emerald-200 dark:border-emerald-800">
+                      {cred.provenance}
+                    </span>
+                    <span className="text-[10px] text-slate-400 dark:text-slate-500 font-mono">#{cred.id}</span>
                   </div>
-                  <p className="text-slate-400 text-xs flex items-center gap-2">
-                    <Building2 className="w-3.5 h-3.5 text-slate-500" />
-                    <span>Issued by <strong>{cred.issuer}</strong></span>
-                    <span>•</span>
-                    <span className="font-mono text-slate-400">ID: {cred.id}</span>
-                  </p>
-                  <div className="flex flex-wrap gap-1.5 pt-1">
-                    {cred.skills.map((skill, sIdx) => (
-                      <span key={sIdx} className="px-2.5 py-0.5 rounded-md bg-slate-800 text-slate-300 text-[11px] border border-slate-700 font-medium">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
+                  <h3 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white leading-snug">{cred.title}</h3>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">{cred.issuer}</p>
                 </div>
-
-                <div className="text-left sm:text-right shrink-0 space-y-1">
-                  <span className="inline-block text-xs font-bold uppercase tracking-wider text-teal-300 bg-teal-500/10 border border-teal-500/30 px-3 py-1 rounded-lg">
-                    VERIFIED & CURRENT
-                  </span>
-                  <p className="text-xs text-slate-400 flex items-center justify-start sm:justify-end gap-1">
-                    <Calendar className="w-3.5 h-3.5 text-slate-500" />
-                    Valid thru {cred.expiryDate}
-                  </p>
+                <div className="pt-2 border-t border-slate-100 dark:border-slate-800 text-[11px] text-slate-500 dark:text-slate-400 flex items-center justify-between">
+                  <span>Issued: {cred.issueDate}</span>
+                  <span className="font-semibold text-teal-800 dark:text-teal-400">Expires: {cred.expiryDate}</span>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Section 2: Project Proof & Real-World Attachments */}
+        {/* Case Studies Section */}
         <div className="space-y-4">
-          <h2 className="text-xl font-bold text-white flex items-center gap-2">
-            <FileCode className="w-5 h-5 text-amber-400" />
-            <span>Project Proof & Credential Attachments ({profile.projects.length})</span>
+          <h2 className="text-lg font-display font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <Presentation className="w-5 h-5 text-teal-800 dark:text-teal-400" />
+            <span>Structured Case Studies</span>
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4">
             {profile.projects.map((proj, idx) => (
-              <div key={idx} className="glass-card rounded-2xl p-6 border border-slate-800 space-y-3 bg-slate-900/40">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="px-2.5 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/30 font-medium">
-                    {proj.category}
-                  </span>
-                  <span className="text-slate-400 text-[11px]">Attached to: <strong>{proj.certAttached}</strong></span>
+              <div key={idx} className="bg-white dark:bg-slate-900 rounded-3xl p-7 border border-slate-200 dark:border-slate-800 shadow-xs space-y-4">
+                <div className="flex items-center justify-between flex-wrap gap-2">
+                  <h3 className="font-display font-bold text-base text-slate-900 dark:text-white">{proj.title}</h3>
+                  <div className="flex items-center gap-2">
+                    <span className="px-2.5 py-0.5 rounded-full bg-purple-50 dark:bg-purple-950/60 text-purple-800 dark:text-purple-300 text-xs font-bold border border-purple-200 dark:border-purple-800">
+                      {proj.category}
+                    </span>
+                    <span className="text-xs text-teal-800 dark:text-teal-300 font-semibold bg-teal-50 dark:bg-teal-950/60 px-2.5 py-0.5 rounded-full border border-teal-200 dark:border-teal-800">
+                      Backed by: {proj.certAttached}
+                    </span>
+                  </div>
                 </div>
-                <h3 className="font-bold text-white text-base">{proj.title}</h3>
-                <p className="text-slate-300 text-xs leading-relaxed">{proj.description}</p>
-                <div className="pt-2 border-t border-slate-800 flex items-center justify-between text-xs text-teal-300 font-semibold">
-                  <span>{proj.linkText}</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-100 dark:border-slate-800">
+                  <div>
+                    <strong className="text-slate-900 dark:text-white block mb-1">Challenge & Context:</strong>
+                    <span>{proj.challenge}</span>
+                  </div>
+                  <div>
+                    <strong className="text-slate-900 dark:text-white block mb-1">Approach Applied:</strong>
+                    <span>{proj.approach}</span>
+                  </div>
+                </div>
+
+                <div className="p-3.5 rounded-2xl bg-emerald-50/60 dark:bg-emerald-950/40 border border-emerald-200/80 dark:border-emerald-800/80 text-xs text-emerald-900 dark:text-emerald-300 font-medium">
+                  <strong>Measurable Outcome:</strong> {proj.outcome}
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Section 3: Conference Posters & Keynote Gallery */}
-        <div className="space-y-4">
-          <h2 className="text-xl font-bold text-white flex items-center gap-2">
-            <Presentation className="w-5 h-5 text-purple-400" />
-            <span>Conference Posters & Presentations ({profile.posters.length})</span>
-          </h2>
+        {/* Publications & Presentations */}
+        {profile.posters && profile.posters.length > 0 && (
+          <div className="space-y-4">
+            <h2 className="text-lg font-display font-bold text-slate-900 flex items-center gap-2">
+              <FileText className="w-5 h-5 text-teal-800" />
+              <span>Publications & Keynotes</span>
+            </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {profile.posters.map((poster, idx) => (
-              <div key={idx} className="glass-card rounded-2xl p-6 border border-purple-500/30 space-y-2 bg-gradient-to-r from-slate-900 via-slate-950 to-purple-950/20">
-                <span className="px-2.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/30 text-xs font-semibold">
-                  {poster.type} • {poster.year}
-                </span>
-                <h3 className="font-bold text-white text-base pt-1">{poster.title}</h3>
-                <p className="text-slate-400 text-xs">Presented at: <strong>{poster.conference}</strong></p>
-              </div>
-            ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {profile.posters.map((poster, idx) => (
+                <div key={idx} className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs space-y-1.5">
+                  <span className="text-[10px] font-bold text-teal-800 uppercase tracking-wider">{poster.type}</span>
+                  <h3 className="font-bold text-xs sm:text-sm text-slate-900">{poster.title}</h3>
+                  <p className="text-xs text-slate-500">{poster.conference} • {poster.year}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-
-        {/* Claim Your PathPort CTA Banner */}
-        <div className="glass-card rounded-3xl p-8 text-center border border-teal-500/30 bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 shadow-glowTeal space-y-4">
-          <Sparkles className="w-8 h-8 text-teal-300 mx-auto" />
-          <h3 className="text-2xl font-extrabold text-white">Create Your Own Free Verified PathPort</h3>
-          <p className="text-slate-300 text-sm max-w-xl mx-auto">
-            Consolidate your certifications, state licenses, project proof, and posters into one shareable passport like {profile.name}.
-          </p>
-          <a 
-            href="https://app.getpathport.com/auth?signup=true"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-primary to-primary-dark text-white font-bold text-sm shadow-glowTeal hover:scale-105 transition-all"
-          >
-            <span>Claim Your Free PathPort Passport</span>
-            <ArrowRight className="w-4 h-4" />
-          </a>
-        </div>
-
+        )}
       </main>
 
-      {/* QR Code Modal */}
+      {/* QR Modal */}
       {qrModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
-          <div className="glass-card max-w-sm w-full rounded-2xl p-6 border border-slate-700 text-center relative shadow-2xl">
-            <h4 className="font-bold text-white text-lg mb-1">{profile.name}'s PathPort</h4>
-            <p className="text-xs text-slate-400 mb-4">Scan to view instant verified credentials</p>
-            
-            <div className="my-4 flex justify-center">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+          <div className="bg-white rounded-3xl p-8 max-w-sm w-full text-center space-y-4 border border-slate-200 shadow-2xl">
+            <h3 className="text-lg font-bold text-slate-900">Scan Verified Record</h3>
+            <div className="flex justify-center py-2">
               <BrandedQRCode 
-                value={`https://getpathport.com/p/${profile.handle}`}
-                size={190}
+                value={`https://getpathport.com/p/${profile.handle}`} 
+                size={200}
+                showLogo={true}
               />
             </div>
-
-            <p className="text-sm font-semibold text-teal-300 mb-4">getpathport.com/p/{profile.handle}</p>
-
-            <button 
+            <p className="text-xs text-slate-500 font-mono">getpathport.com/p/{profile.handle}</p>
+            <button
               onClick={() => setQrModalOpen(false)}
-              className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-sm font-medium transition-colors border border-slate-700"
+              className="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold cursor-pointer"
             >
-              Close Preview
+              Close
             </button>
           </div>
         </div>
       )}
 
-      <footer className="border-t border-slate-900 py-8 text-center text-xs text-slate-500">
-        <p>PathPort verified public passport view. Powered by Veritas Technology Solutions, LLC.</p>
-      </footer>
+      {/* Beta Modal */}
+      <BetaRegistrationModal
+        isOpen={isBetaModalOpen}
+        onClose={() => setIsBetaModalOpen(false)}
+        source="public_portfolio_demo"
+      />
+
+      <Footer />
     </div>
   );
 };
+
+export default PublicPassportDemo;
