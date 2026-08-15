@@ -8,6 +8,11 @@ const distDir = path.resolve(__dirname, '../dist');
 
 const routes = [
   {
+    path: '',
+    title: 'PathPort — Living Professional Record, Tailored Portfolios & PathAI',
+    description: 'Maintain yourself once. Present yourself many ways. Turn unlisted projects into rich case studies, build tailored portfolios, track CE renewals, and chart your career with PathAI.'
+  },
+  {
     path: 'for/nurses',
     title: 'PathPort for Nurses & Healthcare Leaders — Licenses, CEUs & FACHE®',
     description: 'Consolidate multi-state RN/NP licenses, specialty board certifications, FACHE® records, and mandatory CE contact hours into verified case studies and tailored portfolios.'
@@ -122,17 +127,21 @@ function generatePrerenderedPages() {
       `<meta name="twitter:description" content="${route.description}" />`
     );
 
-    // Write file to target route folder
-    const targetFolder = path.join(distDir, route.path);
-    if (!fs.existsSync(targetFolder)) {
-      fs.mkdirSync(targetFolder, { recursive: true });
-    }
+    if (route.path === '') {
+      fs.writeFileSync(baseHtmlPath, customizedHtml, 'utf8');
+      console.log(`✓ Prerendered: /index.html (Homepage)`);
+    } else {
+      const targetFolder = path.join(distDir, route.path);
+      if (!fs.existsSync(targetFolder)) {
+        fs.mkdirSync(targetFolder, { recursive: true });
+      }
 
-    fs.writeFileSync(path.join(targetFolder, 'index.html'), customizedHtml, 'utf8');
-    console.log(`✓ Prerendered: /${route.path}/index.html`);
+      fs.writeFileSync(path.join(targetFolder, 'index.html'), customizedHtml, 'utf8');
+      console.log(`✓ Prerendered: /${route.path}/index.html`);
+    }
   });
 
-  console.log('✅ Static Prerendering completed successfully for all routes.');
+  console.log('✅ Static Prerendering completed successfully for all routes including homepage.');
 }
 
 generatePrerenderedPages();

@@ -6,23 +6,90 @@
     <link rel="alternate icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PathPort — Your Living Professional Record & Evidence Platform</title>
-    <meta name="description" content="Your career is bigger than a résumé. PathPort is your portable professional record. Turn unlisted projects into rich case studies, build tailored portfolios, and track CE renewals." />
+    <title>PathPort — Living Professional Record, Tailored Portfolios & PathAI</title>
+    <meta name="description" content="Maintain yourself once. Present yourself many ways. Turn unlisted projects into rich case studies, build tailored portfolios, track CE renewals, and chart your career with PathAI." />
+    <link rel="canonical" href="https://getpathport.com/" />
     
-    <!-- OpenGraph / Twitter Meta Tags -->
+    <!-- OpenGraph / Social Sharing Meta Tags -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://getpathport.com/" />
-    <meta property="og:title" content="PathPort — The Living Professional Identity & Evidence Record" />
-    <meta property="og:description" content="Maintain yourself once. Present yourself many ways. Structured case studies, tailored portfolios, and CE renewals." />
+    <meta property="og:title" content="PathPort — Living Professional Record, Tailored Portfolios & PathAI" />
+    <meta property="og:description" content="Maintain yourself once. Present yourself many ways. Turn unlisted projects into rich case studies, build tailored portfolios, track CE renewals, and chart your career with PathAI." />
     <meta property="og:image" content="https://getpathport.com/logo.png" />
+    <meta property="og:site_name" content="PathPort" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="PathPort — Living Professional Record & Evidence" />
     <meta name="twitter:description" content="Maintain yourself once. Present yourself many ways with verified credentials, case studies, and living portfolios." />
+    <meta name="twitter:image" content="https://getpathport.com/logo.png" />
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Schema.org JSON-LD Structured Data for Crawlers & AI Scrapers -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://getpathport.com/#organization",
+          "name": "PathPort",
+          "url": "https://getpathport.com",
+          "logo": "https://getpathport.com/logo.png",
+          "sameAs": ["https://twitter.com/PathPortApp", "https://linkedin.com/company/pathport"]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://getpathport.com/#website",
+          "url": "https://getpathport.com",
+          "name": "PathPort",
+          "publisher": { "@id": "https://getpathport.com/#organization" }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "PathPort Living Professional Record",
+          "operatingSystem": "Web, iOS, Android",
+          "applicationCategory": "BusinessApplication",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "How does PathPort differ from a PDF résumé or LinkedIn profile?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A résumé is a 1-page summary of claims. PathPort is your persistent, authoritative living record. It stores the full evidence behind your accomplishments — rich case studies, verified licenses, continuing education history, and dynamic portfolios tailored for each audience with zero data duplication."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What does 'Maintain Once, Present Many Ways' mean?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "You never need to rebuild your portfolio from scratch. PathPort uses an object-reference architecture: your credentials, case studies, and experiences live in your core record once. When you create a tailored view for an executive role or client proposal, it references those items live."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How does PathPort protect individual privacy?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "PathPort is built on a strict privacy-by-default architecture. All new case studies, credentials, and portfolios default to private or unlisted. Employers only receive scoped, consent-mediated visibility into credentials strictly required for compliance."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
   </head>
   <body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-teal-500/20 selection:text-teal-900 min-h-screen">
     <div id="root"></div>
