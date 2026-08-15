@@ -90,18 +90,18 @@ export const PortfolioShowcase: React.FC = () => {
   const [activeProfile, setActiveProfile] = useState<DemoProfile>(profiles[0]);
 
   return (
-    <section id="portfolios" className="py-20 md:py-28 bg-slate-50 border-b border-slate-200 scroll-mt-16 select-none">
+    <section id="portfolios" className="py-20 md:py-28 bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 scroll-mt-16 select-none transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold">
-            <Sparkles className="w-3.5 h-3.5 text-emerald-700" />
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-xs font-semibold">
+            <Sparkles className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" />
             TAILORED PORTFOLIO ENGINE
           </span>
-          <h2 className="text-3xl sm:text-4xl font-display font-black text-slate-900 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-display font-black text-slate-900 dark:text-white tracking-tight">
             See the Living Record in Action
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
             Select a verified discipline below to explore how credentials, structured case studies, and tailored lenses present in real time.
           </p>
         </div>
@@ -116,22 +116,22 @@ export const PortfolioShowcase: React.FC = () => {
                 onClick={() => setActiveProfile(p)}
                 className={`p-3.5 rounded-2xl text-left transition-all cursor-pointer flex items-center gap-3 border ${
                   isSelected
-                    ? 'bg-white border-2 border-teal-800 shadow-md ring-2 ring-teal-800/10'
-                    : 'bg-white/80 hover:bg-white border-slate-200/90 hover:border-slate-300 shadow-2xs'
+                    ? 'bg-white dark:bg-slate-900 border-2 border-teal-800 dark:border-teal-400 shadow-md ring-2 ring-teal-800/10'
+                    : 'bg-white/80 dark:bg-slate-900/60 hover:bg-white dark:hover:bg-slate-900 border-slate-200/90 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 shadow-2xs'
                 }`}
               >
                 <img 
                   src={p.avatar} 
                   alt={p.name} 
                   className={`w-10 h-10 rounded-xl object-cover shrink-0 border ${
-                    isSelected ? 'border-teal-800' : 'border-slate-200'
+                    isSelected ? 'border-teal-800 dark:border-teal-400' : 'border-slate-200 dark:border-slate-700'
                   }`}
                 />
                 <div className="min-w-0 flex-1">
-                  <div className={`font-bold text-xs truncate ${isSelected ? 'text-teal-900 font-extrabold' : 'text-slate-900'}`}>
+                  <div className={`font-bold text-xs truncate ${isSelected ? 'text-teal-900 dark:text-teal-300 font-extrabold' : 'text-slate-900 dark:text-white'}`}>
                     {p.name.split(',')[0]}
                   </div>
-                  <div className="text-[10px] text-teal-800 font-semibold truncate">
+                  <div className="text-[10px] text-teal-800 dark:text-teal-400 font-semibold truncate">
                     {p.badge}
                   </div>
                 </div>
@@ -141,45 +141,45 @@ export const PortfolioShowcase: React.FC = () => {
         </div>
 
         {/* Interactive Living Portfolio Card Preview */}
-        <div className="max-w-4xl mx-auto bg-white rounded-3xl p-8 sm:p-10 border border-slate-200 shadow-sm space-y-7">
+        <div className="max-w-4xl mx-auto bg-white dark:bg-slate-900 rounded-3xl p-8 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm space-y-7">
           {/* Top Bar: Handle & Scope */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100 dark:border-slate-800">
             <div>
-              <div className="text-xs font-mono text-teal-800 font-bold flex items-center gap-1.5">
+              <div className="text-xs font-mono text-teal-800 dark:text-teal-400 font-bold flex items-center gap-1.5">
                 <span>getpathport.com/p/{activeProfile.handle}</span>
               </div>
-              <h3 className="text-2xl font-display font-bold text-slate-900 mt-1">
+              <h3 className="text-2xl font-display font-bold text-slate-900 dark:text-white mt-1">
                 {activeProfile.name}
               </h3>
-              <p className="text-xs text-slate-500">{activeProfile.role}</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400">{activeProfile.role}</p>
             </div>
 
             <Link
               to={`/p/${activeProfile.handle}`}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold shadow-2xs hover:scale-[1.02] transition-all self-start sm:self-auto"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-teal-800 dark:hover:bg-teal-700 text-white text-xs font-semibold shadow-2xs hover:scale-[1.02] transition-all self-start sm:self-auto"
             >
               <span>View Full /p/ Page</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </Link>
           </div>
 
-          <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
             {activeProfile.bio}
           </p>
 
           {/* Credentials Grid */}
           <div className="space-y-3">
-            <div className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
-              <Award className="w-4 h-4 text-teal-800" />
+            <div className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+              <Award className="w-4 h-4 text-teal-800 dark:text-teal-400" />
               <span>Verified Credentials & Board Certifications</span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
               {activeProfile.credentials.map((c, i) => (
-                <div key={i} className="p-4 rounded-2xl bg-slate-50 border border-slate-100 space-y-1.5">
-                  <div className="text-xs font-bold text-slate-900 leading-tight">{c.title}</div>
-                  <div className="text-[10px] text-slate-500">{c.issuer}</div>
-                  <div className="pt-1 flex items-center gap-1 text-[10px] text-emerald-800 font-bold">
-                    <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                <div key={i} className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-100 dark:border-slate-700/80 space-y-1.5">
+                  <div className="text-xs font-bold text-slate-900 dark:text-white leading-tight">{c.title}</div>
+                  <div className="text-[10px] text-slate-500 dark:text-slate-400">{c.issuer}</div>
+                  <div className="pt-1 flex items-center gap-1 text-[10px] text-emerald-800 dark:text-emerald-300 font-bold">
+                    <CheckCircle2 className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
                     <span>{c.status}</span>
                   </div>
                 </div>
@@ -188,18 +188,18 @@ export const PortfolioShowcase: React.FC = () => {
           </div>
 
           {/* Case Study Callout */}
-          <div className="p-6 rounded-2xl bg-slate-50 border border-slate-100 space-y-2">
+          <div className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-100 dark:border-slate-700/80 space-y-2">
             <div className="flex items-center justify-between">
-              <div className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
-                <Presentation className="w-4 h-4 text-teal-800" />
+              <div className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+                <Presentation className="w-4 h-4 text-teal-800 dark:text-teal-400" />
                 <span>Featured Structured Case Study</span>
               </div>
-              <span className="text-[10px] font-mono text-purple-800 bg-purple-50 border border-purple-200 px-2 py-0.5 rounded-full font-bold">
+              <span className="text-[10px] font-mono text-purple-800 dark:text-purple-300 bg-purple-50 dark:bg-purple-950/60 border border-purple-200 dark:border-purple-800 px-2 py-0.5 rounded-full font-bold">
                 Evidence Attached
               </span>
             </div>
-            <div className="text-sm font-bold text-slate-900">{activeProfile.caseStudyTitle}</div>
-            <p className="text-xs text-slate-600 leading-relaxed">
+            <div className="text-sm font-bold text-slate-900 dark:text-white">{activeProfile.caseStudyTitle}</div>
+            <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
               <strong>Outcome:</strong> {activeProfile.caseStudyOutcome}
             </p>
           </div>

@@ -63,12 +63,12 @@ export const BetaRegistrationModal: React.FC<BetaRegistrationModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-lg w-full overflow-hidden relative">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm animate-in fade-in duration-200">
+      <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl max-w-lg w-full overflow-hidden relative">
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+          className="absolute top-5 right-5 p-2 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
         >
           <X className="w-5 h-5" />
         </button>
@@ -76,22 +76,22 @@ export const BetaRegistrationModal: React.FC<BetaRegistrationModalProps> = ({
         {submitted ? (
           /* Success Confirmation State */
           <div className="p-8 sm:p-10 text-center space-y-5">
-            <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-800 flex items-center justify-center mx-auto shadow-xs">
-              <CheckCircle2 className="w-8 h-8 text-emerald-700" />
+            <div className="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 flex items-center justify-center mx-auto shadow-xs">
+              <CheckCircle2 className="w-8 h-8 text-emerald-700 dark:text-emerald-400" />
             </div>
             <div className="space-y-2">
-              <h3 className="text-2xl font-display font-extrabold text-slate-900">
+              <h3 className="text-2xl font-display font-black text-slate-900 dark:text-white">
                 You're on the Beta List!
               </h3>
-              <p className="text-sm text-slate-600 leading-relaxed max-w-sm mx-auto">
+              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-sm mx-auto">
                 Thanks, <strong>{name.split(' ')[0]}</strong>. We sent a confirmation to{' '}
-                <span className="font-semibold text-slate-900">{email}</span>. You will receive priority access as cohorts open.
+                <span className="font-semibold text-slate-900 dark:text-white">{email}</span>. You will receive priority access as cohorts open.
               </p>
             </div>
 
-            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-xs text-slate-600 text-left space-y-1.5">
-              <div className="font-bold text-slate-900 flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-teal-800" />
+            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-xs text-slate-600 dark:text-slate-300 text-left space-y-1.5">
+              <div className="font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4 text-teal-800 dark:text-teal-400" />
                 <span>What happens next:</span>
               </div>
               <p>1. Access invitations are rolled out weekly in verified cohorts.</p>
@@ -101,92 +101,113 @@ export const BetaRegistrationModal: React.FC<BetaRegistrationModalProps> = ({
 
             <button
               onClick={handleReset}
-              className="w-full py-3 rounded-xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-xs shadow-xs transition-colors"
+              className="w-full py-3 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-teal-800 dark:hover:bg-teal-700 text-white font-semibold text-xs transition-colors cursor-pointer shadow-xs"
             >
               Done
             </button>
           </div>
         ) : (
           /* Registration Form */
-          <div className="p-8 sm:p-10 space-y-6">
+          <form onSubmit={handleSubmit} className="p-8 sm:p-10 space-y-6">
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-xs font-semibold">
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>Founding Cohort Access</span>
+                <span>FOUNDING COHORT</span>
               </div>
-              <h2 className="text-2xl font-display font-extrabold text-slate-900">
-                Register for PathPort Beta
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Maintain yourself once. Present yourself many ways. Experience the living professional record before public launch.
+              <h3 className="text-2xl font-display font-black text-slate-900 dark:text-white tracking-tight">
+                Join the Living Identity Beta
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+                Register to establish your portable record, automate CE tracking, and present tailored portfolios.
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-slate-700">Full Name</label>
+            <div className="space-y-4">
+              {/* Full Name */}
+              <div>
+                <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">
+                  Full Name
+                </label>
                 <div className="relative">
-                  <User className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                    <User className="w-4 h-4" />
+                  </div>
                   <input
                     type="text"
                     required
-                    placeholder="Kyle Atkins"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-900 placeholder:text-slate-400 focus:bg-white focus:border-teal-800 outline-none transition-all"
+                    placeholder="e.g. Sarah Jenkins"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-teal-800 focus:bg-white dark:focus:bg-slate-800 transition-all"
                   />
                 </div>
               </div>
 
-              <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-slate-700">Email Address</label>
+              {/* Work Email */}
+              <div>
+                <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">
+                  Work or Professional Email
+                </label>
                 <div className="relative">
-                  <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                    <Mail className="w-4 h-4" />
+                  </div>
                   <input
                     type="email"
                     required
-                    placeholder="kyle@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-900 placeholder:text-slate-400 focus:bg-white focus:border-teal-800 outline-none transition-all"
+                    placeholder="sarah@hospital.org"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-teal-800 focus:bg-white dark:focus:bg-slate-800 transition-all"
                   />
                 </div>
               </div>
 
-              <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-slate-700">Your Primary Field / Audience</label>
+              {/* Primary Discipline / Track */}
+              <div>
+                <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">
+                  Primary Discipline / Role
+                </label>
                 <div className="relative">
-                  <Briefcase className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                    <Briefcase className="w-4 h-4" />
+                  </div>
                   <select
                     value={audience}
                     onChange={(e) => setAudience(e.target.value)}
-                    className="w-full pl-10 pr-8 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-900 focus:bg-white focus:border-teal-800 outline-none transition-all appearance-none cursor-pointer"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-teal-800 focus:bg-white dark:focus:bg-slate-800 transition-all cursor-pointer"
                   >
                     {AUDIENCE_OPTIONS.map((opt) => (
-                      <option key={opt} value={opt}>
+                      <option key={opt} value={opt} className="dark:bg-slate-900 text-slate-900 dark:text-white">
                         {opt}
                       </option>
                     ))}
                   </select>
                 </div>
               </div>
+            </div>
 
-              <div className="pt-2">
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full py-3 rounded-xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-xs shadow-xs transition-colors flex items-center justify-center gap-2"
-                >
-                  <span>{loading ? 'Submitting...' : 'Join Beta Priority Access'}</span>
+            {/* Privacy Note */}
+            <div className="text-[11px] text-slate-500 dark:text-slate-400 leading-tight">
+              We respect your privacy. No spam, ever. Your information is strictly used to provision your beta workspace.
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full py-3.5 rounded-xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-xs sm:text-sm transition-all shadow-xs flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
+            >
+              {loading ? (
+                <span>Registering...</span>
+              ) : (
+                <>
+                  <span>Request Priority Access</span>
                   <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
-
-              <p className="text-[11px] text-slate-400 text-center">
-                Strict privacy. No spam. Unsubscribe at any time.
-              </p>
-            </form>
-          </div>
+                </>
+              )}
+            </button>
+          </form>
         )}
       </div>
     </div>

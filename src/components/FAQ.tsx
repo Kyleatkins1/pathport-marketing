@@ -37,18 +37,18 @@ export const FAQ: React.FC = () => {
   };
 
   return (
-    <section id="faq" className="py-20 md:py-28 bg-white border-t border-slate-200 scroll-mt-16">
+    <section id="faq" className="py-20 md:py-28 bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 scroll-mt-16 transition-colors">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Header */}
         <div className="text-center space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-xs font-semibold">
             <HelpCircle className="w-3.5 h-3.5" />
             <span>FREQUENTLY ASKED QUESTIONS</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-slate-900 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-display font-black text-slate-900 dark:text-white tracking-tight">
             Everything You Need to Know
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
             Learn how PathPort safeguards your evidence, calculates renewals, and powers living portfolios.
           </p>
         </div>
@@ -60,18 +60,18 @@ export const FAQ: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="bg-slate-50 rounded-2xl border border-slate-200/90 overflow-hidden transition-all"
+                className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/90 dark:border-slate-800 overflow-hidden transition-all shadow-2xs"
               >
                 <button
                   onClick={() => toggleFAQ(idx)}
                   className="w-full p-5 text-left flex items-center justify-between gap-4 focus:outline-none group cursor-pointer"
                 >
-                  <span className="font-bold text-slate-900 text-sm sm:text-base group-hover:text-teal-800 transition-colors">
+                  <span className="font-bold text-slate-900 dark:text-white text-sm sm:text-base group-hover:text-teal-800 dark:group-hover:text-teal-400 transition-colors">
                     {faq.question}
                   </span>
                   <div
-                    className={`w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-slate-400 transition-transform duration-200 ${
-                      isOpen ? 'rotate-180 text-teal-800 border-teal-300 bg-teal-50' : ''
+                    className={`w-7 h-7 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-400 dark:text-slate-300 transition-transform duration-200 ${
+                      isOpen ? 'rotate-180 text-teal-800 dark:text-teal-400 border-teal-300 dark:border-teal-600 bg-teal-50 dark:bg-teal-950/60' : ''
                     }`}
                   >
                     <ChevronDown className="w-4 h-4" />
@@ -79,7 +79,7 @@ export const FAQ: React.FC = () => {
                 </button>
 
                 {isOpen && (
-                  <div className="px-5 pb-5 text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-slate-200/60 pt-3.5">
+                  <div className="px-5 pb-5 text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed border-t border-slate-100 dark:border-slate-800 pt-3.5">
                     {faq.answer}
                   </div>
                 )}

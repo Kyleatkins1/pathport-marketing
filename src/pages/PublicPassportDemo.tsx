@@ -1,16 +1,43 @@
 import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { BrandedQRCode } from '../components/BrandedQRCode';
+import { 
+  Award, ShieldCheck, QrCode, MapPin, 
+  ArrowRight, FileText, Presentation, Sun, Moon 
+} from 'lucide-react';
 import { Logo } from '../components/Logo';
+import { BrandedQRCode } from '../components/BrandedQRCode';
 import { Footer } from '../components/Footer';
 import { BetaRegistrationModal } from '../components/BetaRegistrationModal';
-import { 
-  ShieldCheck, Award, QrCode, 
-  Presentation, ArrowRight, MapPin, 
-  FileText
-} from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
-interface PassportProfile {
+interface CredentialItem {
+  title: string;
+  issuer: string;
+  issueDate: string;
+  expiryDate: string;
+  id: string;
+  verified: boolean;
+  provenance: string;
+  skills: string[];
+}
+
+interface ProjectItem {
+  title: string;
+  category: string;
+  certAttached: string;
+  challenge: string;
+  approach: string;
+  outcome: string;
+}
+
+interface PublicationItem {
+  title: string;
+  conference: string;
+  year: string;
+  type: string;
+}
+
+interface PersonaProfile {
   id: string;
   name: string;
   title: string;
@@ -21,42 +48,21 @@ interface PassportProfile {
   ceusCompleted: string;
   verifiedSince: string;
   bio: string;
-  credentials: {
-    title: string;
-    issuer: string;
-    issueDate: string;
-    expiryDate: string;
-    id: string;
-    verified: boolean;
-    provenance: string;
-    skills: string[];
-  }[];
-  projects: {
-    title: string;
-    category: string;
-    certAttached: string;
-    challenge: string;
-    approach: string;
-    outcome: string;
-  }[];
-  posters: {
-    title: string;
-    conference: string;
-    year: string;
-    type: string;
-  }[];
+  credentials: CredentialItem[];
+  projects: ProjectItem[];
+  posters?: PublicationItem[];
 }
 
-const profilesData: Record<string, PassportProfile> = {
+const profilesData: Record<string, PersonaProfile> = {
   'sarah-jenkins': {
     id: 'sarah-jenkins',
-    name: "Sarah Jenkins, BSN, RN, CCRN®",
-    title: "ICU Charge Nurse & Clinical Preceptor",
+    name: "Sarah Jenkins, BSN, RN",
+    title: "Critical Care Charge Nurse & Clinical Preceptor",
     handle: "sarah-jenkins-rn",
     avatar: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=300",
     location: "New York, NY",
     verifiedCount: 3,
-    ceusCompleted: "24 / 24 Board CEUs (100% Compliant)",
+    ceusCompleted: "36 / 36 Contact Hours Complete",
     verifiedSince: "August 2020",
     bio: "Critical Care Registered Nurse with 8 years in Level 1 Trauma ICU. Certified Preceptor for graduate nurse residency. Focused on sepsis screening protocols and bedside hemodynamic monitoring.",
     credentials: [
@@ -107,6 +113,12 @@ const profilesData: Record<string, PassportProfile> = {
         conference: "AACN National Teaching Institute",
         year: "2024",
         type: "Clinical Poster"
+      },
+      {
+        title: "Bedside Sepsis Screening & Early Escalation Protocols",
+        conference: "Emergency Nurses Association (ENA)",
+        year: "2023",
+        type: "Invited Speaker"
       }
     ]
   },
@@ -169,6 +181,12 @@ const profilesData: Record<string, PassportProfile> = {
         conference: "Air Medical Transport Conference (AMTC)",
         year: "2024",
         type: "Scientific Presentation"
+      },
+      {
+        title: "Pre-Hospital RSI in Pediatric Flight Transport",
+        conference: "Critical Care Transport Medicine Conference",
+        year: "2023",
+        type: "Keynote Workshop"
       }
     ]
   },
@@ -231,6 +249,12 @@ const profilesData: Record<string, PassportProfile> = {
         conference: "DevOps World 2024",
         year: "2024",
         type: "Architecture Talk"
+      },
+      {
+        title: "Zero-Downtime Database Migrations at Enterprise Scale",
+        conference: "AWS Summit Austin",
+        year: "2023",
+        type: "Technical Session"
       }
     ]
   },
@@ -283,6 +307,12 @@ const profilesData: Record<string, PassportProfile> = {
         conference: "Biomedical Engineering Society (BMES)",
         year: "2024",
         type: "Peer-Reviewed Paper"
+      },
+      {
+        title: "Point-of-Care Sepsis Biomarker Detection Sensors",
+        conference: "IEEE Engineering in Medicine and Biology (EMBC)",
+        year: "2024",
+        type: "Conference Presentation"
       }
     ]
   }
@@ -305,13 +335,14 @@ export const PublicPassportDemo: React.FC = () => {
   const navigate = useNavigate();
   const [qrModalOpen, setQrModalOpen] = useState(false);
   const [isBetaModalOpen, setIsBetaModalOpen] = useState(false);
+  const { resolvedTheme, toggleTheme } = useTheme();
 
   const normalizedSlug = slug ? (slugAliases[slug] || slug) : 'sarah-jenkins';
   const profileKey = profilesData[normalizedSlug] ? normalizedSlug : 'sarah-jenkins';
   const profile = profilesData[profileKey];
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans transition-colors">
       {/* Top Banner - identical styling to main Navbar */}
       <header className="sticky top-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200/90 dark:border-slate-800 transition-colors select-none">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -324,6 +355,19 @@ export const PublicPassportDemo: React.FC = () => {
               <span className="w-2 h-2 rounded-full bg-emerald-500" />
               VERIFIED RECORD VIEW
             </span>
+
+            {/* Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              aria-label="Toggle Theme"
+              className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors cursor-pointer"
+            >
+              {resolvedTheme === 'dark' ? (
+                <Sun className="w-4 h-4 text-amber-400" />
+              ) : (
+                <Moon className="w-4 h-4 text-slate-600" />
+              )}
+            </button>
 
             <button 
               onClick={() => setQrModalOpen(true)}
@@ -345,7 +389,7 @@ export const PublicPassportDemo: React.FC = () => {
       </header>
 
       {/* Sub-Header: Persona Switcher Bar */}
-      <div className="bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800 py-3 px-4">
+      <div className="bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800 py-3 px-4 transition-colors">
         <div className="max-w-5xl mx-auto flex items-center justify-between gap-4 overflow-x-auto">
           <span className="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider shrink-0 hidden sm:inline">
             Sample Living Portfolios:
@@ -375,13 +419,13 @@ export const PublicPassportDemo: React.FC = () => {
       {/* Main Profile Layout */}
       <main className="py-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         {/* Profile Card Header */}
-        <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800 shadow-xs space-y-6">
+        <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800 shadow-xs space-y-6 transition-colors">
           <div className="flex flex-col md:flex-row gap-6 items-start md:items-center justify-between">
             <div className="flex items-center gap-5">
               <img 
                 src={profile.avatar} 
                 alt={profile.name} 
-                className="w-20 h-20 rounded-2xl object-cover border-2 border-teal-800 shadow-xs"
+                className="w-20 h-20 rounded-2xl object-cover border-2 border-teal-800 dark:border-teal-400 shadow-xs"
               />
               <div className="space-y-1">
                 <div className="flex items-center gap-2 flex-wrap">
@@ -435,7 +479,7 @@ export const PublicPassportDemo: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {profile.credentials.map((cred, idx) => (
-              <div key={idx} className="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-xs space-y-3 flex flex-col justify-between">
+              <div key={idx} className="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-xs space-y-3 flex flex-col justify-between transition-colors">
                 <div className="space-y-2">
                   <div className="flex items-start justify-between gap-2">
                     <span className="px-2 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-[10px] font-bold border border-emerald-200 dark:border-emerald-800">
@@ -464,7 +508,7 @@ export const PublicPassportDemo: React.FC = () => {
 
           <div className="grid grid-cols-1 gap-4">
             {profile.projects.map((proj, idx) => (
-              <div key={idx} className="bg-white dark:bg-slate-900 rounded-3xl p-7 border border-slate-200 dark:border-slate-800 shadow-xs space-y-4">
+              <div key={idx} className="bg-white dark:bg-slate-900 rounded-3xl p-7 border border-slate-200 dark:border-slate-800 shadow-xs space-y-4 transition-colors">
                 <div className="flex items-center justify-between flex-wrap gap-2">
                   <h3 className="font-display font-bold text-base text-slate-900 dark:text-white">{proj.title}</h3>
                   <div className="flex items-center gap-2">
@@ -496,20 +540,29 @@ export const PublicPassportDemo: React.FC = () => {
           </div>
         </div>
 
-        {/* Publications & Presentations */}
+        {/* Publications & Speaking Engagements Section */}
         {profile.posters && profile.posters.length > 0 && (
           <div className="space-y-4">
-            <h2 className="text-lg font-display font-bold text-slate-900 flex items-center gap-2">
-              <FileText className="w-5 h-5 text-teal-800" />
-              <span>Publications & Keynotes</span>
+            <h2 className="text-lg font-display font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <FileText className="w-5 h-5 text-teal-800 dark:text-teal-400" />
+              <span>Publications & Speaking Engagements</span>
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {profile.posters.map((poster, idx) => (
-                <div key={idx} className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs space-y-1.5">
-                  <span className="text-[10px] font-bold text-teal-800 uppercase tracking-wider">{poster.type}</span>
-                  <h3 className="font-bold text-xs sm:text-sm text-slate-900">{poster.title}</h3>
-                  <p className="text-xs text-slate-500">{poster.conference} • {poster.year}</p>
+                <div 
+                  key={idx} 
+                  className="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-xs space-y-1.5 transition-colors"
+                >
+                  <span className="text-[10px] font-bold text-teal-800 dark:text-teal-400 uppercase tracking-wider">
+                    {poster.type}
+                  </span>
+                  <h3 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">
+                    {poster.title}
+                  </h3>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">
+                    {poster.conference} • {poster.year}
+                  </p>
                 </div>
               ))}
             </div>
@@ -519,20 +572,20 @@ export const PublicPassportDemo: React.FC = () => {
 
       {/* QR Modal */}
       {qrModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
-          <div className="bg-white rounded-3xl p-8 max-w-sm w-full text-center space-y-4 border border-slate-200 shadow-2xl">
-            <h3 className="text-lg font-bold text-slate-900">Scan Verified Record</h3>
-            <div className="flex justify-center py-2">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 max-w-sm w-full text-center space-y-4 border border-slate-200 dark:border-slate-800 shadow-2xl">
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white">Scan Verified Record</h3>
+            <div className="flex justify-center py-2 bg-white rounded-2xl p-4 border border-slate-100 dark:border-slate-800 shadow-inner">
               <BrandedQRCode 
                 value={`https://getpathport.com/p/${profile.handle}`} 
                 size={200}
                 showLogo={true}
               />
             </div>
-            <p className="text-xs text-slate-500 font-mono">getpathport.com/p/{profile.handle}</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 font-mono">getpathport.com/p/{profile.handle}</p>
             <button
               onClick={() => setQrModalOpen(false)}
-              className="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold cursor-pointer"
+              className="w-full py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-semibold cursor-pointer transition-colors"
             >
               Close
             </button>

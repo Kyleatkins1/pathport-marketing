@@ -1,13 +1,19 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Logo } from './Logo';
-import { Menu, X, ChevronDown, ArrowRight, Stethoscope, Activity, Briefcase, GraduationCap, Building2, Award } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
+import { 
+  Menu, X, ChevronDown, ArrowRight, Stethoscope, 
+  Activity, Briefcase, GraduationCap, Building2, 
+  Award, Sun, Moon 
+} from 'lucide-react';
 import { BetaRegistrationModal } from './BetaRegistrationModal';
 
 export const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isBetaModalOpen, setIsBetaModalOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const { resolvedTheme, toggleTheme } = useTheme();
   const dropdownRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
@@ -64,7 +70,7 @@ export const Navbar: React.FC = () => {
                   className="flex items-center gap-1 hover:text-teal-800 dark:hover:text-teal-400 transition-colors cursor-pointer py-2"
                 >
                   <span>Who It's For</span>
-                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${dropdownOpen ? 'rotate-180 text-teal-800' : ''}`} />
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${dropdownOpen ? 'rotate-180 text-teal-800 dark:text-teal-400' : ''}`} />
                 </button>
 
                 {dropdownOpen && (
@@ -103,8 +109,21 @@ export const Navbar: React.FC = () => {
               </a>
             </nav>
 
-            {/* Right: CTA Actions */}
+            {/* Right: CTA Actions & Theme Toggle */}
             <div className="hidden md:flex items-center gap-3">
+              {/* Theme Toggle Button */}
+              <button
+                onClick={toggleTheme}
+                aria-label="Toggle Dark/Light Mode"
+                className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors cursor-pointer"
+              >
+                {resolvedTheme === 'dark' ? (
+                  <Sun className="w-4 h-4 text-amber-400" />
+                ) : (
+                  <Moon className="w-4 h-4 text-slate-600" />
+                )}
+              </button>
+
               <button
                 onClick={() => setIsBetaModalOpen(true)}
                 className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-teal-800 hover:bg-teal-700 text-white text-xs font-semibold shadow-2xs hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
@@ -114,8 +133,20 @@ export const Navbar: React.FC = () => {
               </button>
             </div>
 
-            {/* Mobile Hamburger Button */}
-            <div className="flex md:hidden items-center gap-2">
+            {/* Mobile Hamburger & Theme Toggle Button */}
+            <div className="flex md:hidden items-center gap-1.5">
+              <button
+                onClick={toggleTheme}
+                aria-label="Toggle Theme"
+                className="p-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300"
+              >
+                {resolvedTheme === 'dark' ? (
+                  <Sun className="w-4 h-4 text-amber-400" />
+                ) : (
+                  <Moon className="w-4 h-4 text-slate-600" />
+                )}
+              </button>
+
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="p-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none"

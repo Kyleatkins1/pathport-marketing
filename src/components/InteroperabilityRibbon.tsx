@@ -47,16 +47,16 @@ export const InteroperabilityRibbon: React.FC = () => {
   ];
 
   return (
-    <section className="py-18 bg-white border-y border-slate-200 overflow-hidden relative select-none">
+    <section className="py-18 bg-white dark:bg-slate-900 border-y border-slate-200 dark:border-slate-800 overflow-hidden relative select-none transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center space-y-3">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold">
-          <Sparkles className="w-3.5 h-3.5 text-emerald-700" />
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-xs font-semibold">
+          <Sparkles className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" />
           <span>UNIVERSAL EVIDENCE & CREDENTIAL PASSPORT</span>
         </div>
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-black text-slate-900 tracking-tight">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-black text-slate-900 dark:text-white tracking-tight">
           Built for every credential, license, CEU, project & portfolio.
         </h2>
-        <p className="text-slate-600 text-xs sm:text-sm max-w-3xl mx-auto leading-relaxed">
+        <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm max-w-3xl mx-auto leading-relaxed">
           PathPort isn't confined to a single discipline. Whether you have state clinical licenses requiring CEUs, 60-PDU project management cycles, cloud architecture proofs, or peer-reviewed research—showcase your entire journey in one sovereign, living PathPort.
         </p>
       </div>
@@ -64,8 +64,8 @@ export const InteroperabilityRibbon: React.FC = () => {
       {/* Dual Infinite Scrolling Marquees with Fade Gradients */}
       <div className="relative space-y-4">
         {/* Left and Right Edge Fade Gradients */}
-        <div className="absolute top-0 bottom-0 left-0 w-28 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
-        <div className="absolute top-0 bottom-0 right-0 w-28 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 bottom-0 left-0 w-28 bg-gradient-to-r from-white via-white/80 to-transparent dark:from-slate-900 dark:via-slate-900/80 dark:to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 bottom-0 right-0 w-28 bg-gradient-to-l from-white via-white/80 to-transparent dark:from-slate-900 dark:via-slate-900/80 dark:to-transparent z-10 pointer-events-none" />
 
         {/* Row 1: Credentials, Licenses & Board Specializations */}
         <div className="overflow-hidden flex">
@@ -75,17 +75,17 @@ export const InteroperabilityRibbon: React.FC = () => {
               return (
                 <div
                   key={idx}
-                  className="flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-2xs hover:border-teal-700 hover:bg-white hover:shadow-xs transition-all whitespace-nowrap group shrink-0"
+                  className="flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/90 dark:border-slate-700/80 shadow-2xs hover:border-teal-700 hover:bg-white dark:hover:bg-slate-800 hover:shadow-xs transition-all whitespace-nowrap group shrink-0"
                 >
-                  <div className="w-8 h-8 rounded-xl bg-teal-50 text-teal-800 flex items-center justify-center shrink-0 group-hover:bg-teal-800 group-hover:text-white transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-teal-50 dark:bg-teal-900/40 text-teal-800 dark:text-teal-300 flex items-center justify-center shrink-0 group-hover:bg-teal-800 group-hover:text-white transition-colors">
                     <IconComp className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="font-bold text-xs text-slate-900 group-hover:text-teal-800 transition-colors">
+                    <div className="font-bold text-xs text-slate-900 dark:text-white group-hover:text-teal-800 dark:group-hover:text-teal-300 transition-colors">
                       {item.title}
                     </div>
-                    <div className="text-[10px] text-slate-500 font-medium">
-                      {item.issuer} • <span className="text-teal-800 font-semibold">{item.category}</span>
+                    <div className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">
+                      {item.issuer} • <span className="text-teal-800 dark:text-teal-400 font-semibold">{item.category}</span>
                     </div>
                   </div>
                 </div>
@@ -102,17 +102,17 @@ export const InteroperabilityRibbon: React.FC = () => {
               return (
                 <div
                   key={idx}
-                  className="flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-2xs hover:border-teal-700 hover:bg-white hover:shadow-xs transition-all whitespace-nowrap group shrink-0"
+                  className="flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/90 dark:border-slate-700/80 shadow-2xs hover:border-teal-700 hover:bg-white dark:hover:bg-slate-800 hover:shadow-xs transition-all whitespace-nowrap group shrink-0"
                 >
-                  <div className="w-8 h-8 rounded-xl bg-purple-50 text-purple-800 flex items-center justify-center shrink-0 group-hover:bg-purple-800 group-hover:text-white transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-purple-50 dark:bg-purple-900/40 text-purple-800 dark:text-purple-300 flex items-center justify-center shrink-0 group-hover:bg-purple-800 group-hover:text-white transition-colors">
                     <IconComp className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="font-bold text-xs text-slate-900 group-hover:text-purple-800 transition-colors">
+                    <div className="font-bold text-xs text-slate-900 dark:text-white group-hover:text-purple-800 dark:group-hover:text-purple-300 transition-colors">
                       {item.title}
                     </div>
-                    <div className="text-[10px] text-slate-500 font-medium">
-                      {item.issuer} • <span className="text-purple-800 font-semibold">{item.category}</span>
+                    <div className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">
+                      {item.issuer} • <span className="text-purple-800 dark:text-purple-400 font-semibold">{item.category}</span>
                     </div>
                   </div>
                 </div>
