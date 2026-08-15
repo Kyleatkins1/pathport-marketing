@@ -330,6 +330,8 @@ const slugAliases: Record<string, string> = {
   'alex-chen': 'marcus-vance'
 };
 
+import { SEO } from '../components/SEO';
+
 export const PublicPassportDemo: React.FC = () => {
   const { slug } = useParams<{ slug?: string }>();
   const navigate = useNavigate();
@@ -341,8 +343,40 @@ export const PublicPassportDemo: React.FC = () => {
   const profileKey = profilesData[normalizedSlug] ? normalizedSlug : 'sarah-jenkins';
   const profile = profilesData[profileKey];
 
+  const personJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "mainEntity": {
+      "@type": "Person",
+      "name": profile.name,
+      "jobTitle": profile.title,
+      "image": profile.avatar,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": profile.location
+      },
+      "description": profile.bio,
+      "hasCredential": profile.credentials.map(c => ({
+        "@type": "EducationalOccupationalCredential",
+        "name": c.title,
+        "credentialCategory": c.provenance,
+        "recognizedBy": {
+          "@type": "Organization",
+          "name": c.issuer
+        }
+      }))
+    }
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans transition-colors">
+      <SEO
+        title={`${profile.name} — Verified PathPort Record & Portfolio`}
+        description={`${profile.title} in ${profile.location}. ${profile.bio}`}
+        image={profile.avatar}
+        type="profile"
+        jsonLd={personJsonLd}
+      />
       {/* Top Banner - identical styling to main Navbar */}
       <header className="sticky top-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200/90 dark:border-slate-800 transition-colors select-none">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">

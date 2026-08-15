@@ -113,7 +113,7 @@ export const FeaturePillars: React.FC = () => {
         {/* 4 Deep Dive Feature Pillars */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
           {/* Pillar 1: Tangible Case Studies */}
-          <div className="bg-slate-50 dark:bg-slate-800/70 rounded-3xl p-7 border border-slate-200/90 dark:border-slate-700/80 flex flex-col justify-between space-y-6 hover:border-teal-700 dark:hover:border-teal-500 transition-all">
+          <div id="case-studies" className="bg-slate-50 dark:bg-slate-800/70 rounded-3xl p-7 border border-slate-200/90 dark:border-slate-700/80 flex flex-col justify-between space-y-6 hover:border-teal-700 dark:hover:border-teal-500 transition-all scroll-mt-24">
             <div className="space-y-3.5">
               <div className="w-11 h-11 rounded-2xl bg-teal-800 text-white flex items-center justify-center shadow-xs">
                 <Briefcase className="w-5 h-5" />
@@ -149,7 +149,7 @@ export const FeaturePillars: React.FC = () => {
           </div>
 
           {/* Pillar 3: Verified Credentials & CE */}
-          <div className="bg-slate-50 dark:bg-slate-800/70 rounded-3xl p-7 border border-slate-200/90 dark:border-slate-700/80 flex flex-col justify-between space-y-6 hover:border-teal-700 dark:hover:border-teal-500 transition-all">
+          <div id="renewals" className="bg-slate-50 dark:bg-slate-800/70 rounded-3xl p-7 border border-slate-200/90 dark:border-slate-700/80 flex flex-col justify-between space-y-6 hover:border-teal-700 dark:hover:border-teal-500 transition-all scroll-mt-24">
             <div className="space-y-3.5">
               <div className="w-11 h-11 rounded-2xl bg-teal-800 text-white flex items-center justify-center shadow-xs">
                 <Award className="w-5 h-5" />

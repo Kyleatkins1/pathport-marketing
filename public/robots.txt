@@ -1,20 +1,27 @@
+# Robots.txt for PathPort Marketing Platform
 User-agent: *
 Allow: /
+Allow: /for/
+Allow: /p/
+Allow: /privacy
+Allow: /terms
+Allow: /security
 
-# Explicitly allow AI Search Engines & Indexers
+# AI Crawlers & Scrapers
 User-agent: GPTBot
 Allow: /
 
-User-agent: PerplexityBot
+User-agent: ChatGPT-User
 Allow: /
 
 User-agent: ClaudeBot
 Allow: /
 
-User-agent: Google-Extended
+User-agent: PerplexityBot
 Allow: /
 
-User-agent: Bingbot
+User-agent: Applebot
 Allow: /
 
+# Sitemap
 Sitemap: https://getpathport.com/sitemap.xml

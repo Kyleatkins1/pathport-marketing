@@ -40,8 +40,8 @@ export const Footer: React.FC = () => {
               <li><Link to="/for/paramedics" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">Paramedics & EMS</Link></li>
               <li><Link to="/for/project-managers" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">Project & Technical Leads</Link></li>
               <li><Link to="/for/students" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">Students & Early Career</Link></li>
-              <li><a href="/#features" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">Structured Case Studies</a></li>
-              <li><a href="/#features" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">CE Renewal Engine</a></li>
+              <li><a href="/#case-studies" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">Structured Case Studies</a></li>
+              <li><a href="/#renewals" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">CE Renewal Engine</a></li>
             </ul>
           </div>
 
@@ -54,7 +54,7 @@ export const Footer: React.FC = () => {
               <li><Link to="/for/enterprise" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">Workforce Teams & Radar</Link></li>
               <li><Link to="/for/board-certifications" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">Certification Boards</Link></li>
               <li><a href="/#portfolios" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">Tailored Portfolio Views</a></li>
-              <li><a href="/#features" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">Deterministic Path Scoring</a></li>
+              <li><a href="/#path-ai" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">PathAI Career Advisor</a></li>
               <li><Link to="/p/sarah-jenkins-rn" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">Live Verified Portfolio Demo</Link></li>
             </ul>
           </div>

@@ -5,6 +5,7 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { InteroperabilityRibbon } from './components/InteroperabilityRibbon';
 import { FeaturePillars } from './components/FeaturePillars';
+import { PathAISection } from './components/PathAISection';
 import { PortfolioShowcase } from './components/PortfolioShowcase';
 import { OrgSection } from './components/OrgSection';
 import { FAQ } from './components/FAQ';
@@ -25,13 +26,71 @@ import { TermsOfService } from './pages/TermsOfService';
 import { SecurityWhitepaper } from './pages/SecurityWhitepaper';
 import { PublicPassportDemo } from './pages/PublicPassportDemo';
 
+import { ScrollManager } from './components/ScrollManager';
+import { SEO } from './components/SEO';
+
+const homeFaqJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://getpathport.com/#website",
+      "url": "https://getpathport.com",
+      "name": "PathPort",
+      "description": "The portable, living professional record and evidence platform."
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "PathPort Living Professional Record",
+      "operatingSystem": "Web, iOS, Android",
+      "applicationCategory": "BusinessApplication",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does PathPort differ from a PDF résumé or LinkedIn profile?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A résumé is a 1-page summary of claims. PathPort is your persistent, authoritative living record. It stores the full evidence behind your accomplishments — rich case studies, verified licenses, continuing education history, and dynamic portfolios tailored for each audience with zero data duplication."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does 'Maintain Once, Present Many Ways' mean?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You never need to rebuild your portfolio from scratch. PathPort uses an object-reference architecture: your credentials, case studies, and experiences live in your core record once. When you create a tailored view for an executive role or client proposal, it references those items live."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does PathPort protect individual privacy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "PathPort is built on a strict privacy-by-default architecture. All new case studies, credentials, and portfolios default to private or unlisted. Employers only receive scoped, consent-mediated visibility into credentials strictly required for compliance."
+          }
+        }
+      ]
+    }
+  ]
+};
+
 const HomePage: React.FC = () => (
   <>
+    <SEO 
+      title="PathPort — Living Professional Record, Tailored Portfolios & PathAI"
+      description="Maintain yourself once. Present yourself many ways. Turn unlisted projects into rich case studies, build tailored portfolios, track CE renewals, and chart your career with PathAI."
+      jsonLd={homeFaqJsonLd}
+    />
     <Navbar />
     <main>
       <Hero />
       <InteroperabilityRibbon />
       <FeaturePillars />
+      <PathAISection />
       <PortfolioShowcase />
       <OrgSection />
       <Pricing />
@@ -45,6 +104,7 @@ export const App: React.FC = () => {
   return (
     <ThemeProvider>
       <BrowserRouter>
+        <ScrollManager />
         <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-teal-500/20 selection:text-teal-900 transition-colors duration-150">
           <Routes>
             <Route path="/" element={<HomePage />} />

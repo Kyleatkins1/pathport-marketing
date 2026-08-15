@@ -90,7 +90,9 @@ export const PortfolioShowcase: React.FC = () => {
   const [activeProfile, setActiveProfile] = useState<DemoProfile>(profiles[0]);
 
   return (
-    <section id="portfolios" className="py-20 md:py-28 bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 scroll-mt-16 select-none transition-colors">
+    <section id="portfolios" className="py-20 md:py-28 bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 scroll-mt-20 select-none transition-colors relative">
+      {/* Alias anchor for singular #portfolio */}
+      <span id="portfolio" className="absolute -top-20" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
@@ -158,7 +160,7 @@ export const PortfolioShowcase: React.FC = () => {
               to={`/p/${activeProfile.handle}`}
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-teal-800 dark:hover:bg-teal-700 text-white text-xs font-semibold shadow-2xs hover:scale-[1.02] transition-all self-start sm:self-auto"
             >
-              <span>View Full /p/ Page</span>
+              <span>View Full PathPortfolio</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </Link>
           </div>

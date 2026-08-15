@@ -3,9 +3,15 @@ import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { ShieldCheck } from 'lucide-react';
 
+import { SEO } from '../components/SEO';
+
 export const PrivacyPolicy: React.FC = () => {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
+      <SEO 
+        title="PathPort — Privacy Policy & Zero Data Selling Commitment"
+        description="PathPort Privacy Policy. Individual record sovereignty, privacy-by-default architecture, scoped employer consent, and zero data selling commitment."
+      />
       <Navbar />
 
       <main className="py-16 md:py-24">

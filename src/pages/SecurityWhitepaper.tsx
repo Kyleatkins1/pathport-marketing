@@ -3,9 +3,15 @@ import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { Lock, ShieldCheck, Database, KeyRound, Server } from 'lucide-react';
 
+import { SEO } from '../components/SEO';
+
 export const SecurityWhitepaper: React.FC = () => {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
+      <SEO 
+        title="PathPort — Security & Data Protection Architecture Whitepaper"
+        description="PathPort Security Whitepaper. Technical specifications for AES-256 storage encryption, PostgreSQL Row Level Security (RLS), and 6-level provenance standards."
+      />
       <Navbar />
 
       <main className="py-16 md:py-24">

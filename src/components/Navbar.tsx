@@ -5,7 +5,7 @@ import { useTheme } from '../context/ThemeContext';
 import { 
   Menu, X, ChevronDown, ArrowRight, Stethoscope, 
   Activity, Briefcase, GraduationCap, Building2, 
-  Award, Sun, Moon 
+  Award, Sun, Moon, Sparkles 
 } from 'lucide-react';
 import { BetaRegistrationModal } from './BetaRegistrationModal';
 
@@ -35,7 +35,7 @@ export const Navbar: React.FC = () => {
   }, [location.pathname]);
 
   const audienceLinks = [
-    { name: 'Nurses & Healthcare', path: '/for/nurses', icon: Stethoscope, desc: 'Clinical quality & CE tracking' },
+    { name: 'Nursing & Healthcare Leaders', path: '/for/nurses', icon: Stethoscope, desc: 'Clinical quality, leadership & PathAI' },
     { name: 'Paramedics & EMS', path: '/for/paramedics', icon: Activity, desc: 'NCCP recert & critical care' },
     { name: 'Project & Technical Leads', path: '/for/project-managers', icon: Briefcase, desc: 'Delivery case studies & 60 PDUs' },
     { name: 'Students & Early Career', path: '/for/students', icon: GraduationCap, desc: 'Capstone evidence & degrees' },
@@ -57,6 +57,11 @@ export const Navbar: React.FC = () => {
             <nav className="hidden md:flex items-center gap-7 text-xs font-semibold text-slate-600 dark:text-slate-300">
               <a href="/#features" className="hover:text-teal-800 dark:hover:text-teal-400 transition-colors">
                 The Living Record
+              </a>
+
+              <a href="/#path-ai" className="hover:text-teal-800 dark:hover:text-teal-400 transition-colors flex items-center gap-1.5 text-teal-800 dark:text-teal-400 font-bold">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>PathAI Advisor</span>
               </a>
               
               <a href="/#why" className="hover:text-teal-800 dark:hover:text-teal-400 transition-colors">
@@ -169,6 +174,14 @@ export const Navbar: React.FC = () => {
                 The Living Record
               </a>
               <a
+                href="/#path-ai"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-3 py-2 rounded-lg text-xs font-semibold text-teal-800 dark:text-teal-400 hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center gap-1.5"
+              >
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>PathAI Advisor</span>
+              </a>
+              <a
                 href="/#why"
                 onClick={() => setMobileMenuOpen(false)}
                 className="block px-3 py-2 rounded-lg text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800"
@@ -208,7 +221,7 @@ export const Navbar: React.FC = () => {
                   setMobileMenuOpen(false);
                   setIsBetaModalOpen(true);
                 }}
-                className="w-full py-2.5 rounded-xl bg-teal-800 text-white font-semibold text-xs text-center flex items-center justify-center gap-2 shadow-xs"
+                className="w-full py-2.5 rounded-xl bg-teal-800 text-white font-semibold text-xs text-center flex items-center justify-center gap-2 shadow-xs cursor-pointer"
               >
                 <span>Register for Beta Access</span>
                 <ArrowRight className="w-4 h-4" />
