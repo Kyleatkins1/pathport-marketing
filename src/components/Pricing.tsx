@@ -21,10 +21,10 @@ export const Pricing: React.FC = () => {
             <span>BETA PHASE ACCESS</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-display font-black text-slate-900 dark:text-white tracking-tight">
-            Transparent, Simple Beta Access
+            Simple, Transparent Beta Access
           </h2>
           <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
-            PathPort is currently rolling out in founding cohorts. Individuals join for free with lifetime grandfathered access.
+            PathPort is currently rolling out in founding beta cohorts. Register your email to join the waitlist.
           </p>
         </div>
 
@@ -47,7 +47,7 @@ export const Pricing: React.FC = () => {
               {/* Price & Subtitle Row (Fixed Height for Alignment) */}
               <div className="min-h-[64px] flex flex-col justify-center">
                 <div className="text-3xl font-display font-black text-slate-900 dark:text-white leading-none">Free</div>
-                <div className="text-xs text-emerald-800 dark:text-emerald-400 font-semibold mt-1.5">Free for lifetime of Beta Cohort</div>
+                <div className="text-xs text-emerald-800 dark:text-emerald-400 font-semibold mt-1.5">Free during Beta</div>
               </div>
 
               {/* Description (Fixed Height for Alignment) */}
@@ -59,7 +59,7 @@ export const Pricing: React.FC = () => {
               <ul className="space-y-2.5 text-xs text-slate-700 dark:text-slate-200 pt-2 border-t border-slate-100 dark:border-slate-700 min-h-[160px]">
                 <li className="flex items-start gap-2">
                   <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" />
-                  <span>Unlimited credentials & CE logging</span>
+                  <span>Credentials & CE record keeping</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" />
@@ -107,7 +107,7 @@ export const Pricing: React.FC = () => {
 
               {/* Description (Fixed Height for Alignment) */}
               <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed min-h-[48px]">
-                Advanced AI capabilities, verified custom domains for portfolios, and multi-state automated CE synchronization.
+                Advanced path planning, custom domains for portfolios, and extended evidence storage.
               </p>
 
               {/* Feature Checklist */}
@@ -118,11 +118,11 @@ export const Pricing: React.FC = () => {
                 </li>
                 <li className="flex items-start gap-2">
                   <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" />
-                  <span>AI resume & document OCR</span>
+                  <span>Document extraction & OCR (Beta)</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" />
-                  <span>Advanced portfolio view analytics</span>
+                  <span>Portfolio view analytics</span>
                 </li>
               </ul>
             </div>
@@ -151,24 +151,24 @@ export const Pricing: React.FC = () => {
 
               {/* Price & Subtitle Row (Fixed Height for Alignment) */}
               <div className="min-h-[64px] flex flex-col justify-center">
-                <div className="text-3xl font-display font-black text-slate-900 dark:text-white leading-none">Design Partner</div>
+                <div className="text-3xl font-display font-black text-slate-900 dark:text-white leading-none">Pilot Program</div>
                 <div className="text-xs text-slate-500 dark:text-slate-400 mt-1.5">Employer Workforce Compliance</div>
               </div>
 
               {/* Description (Fixed Height for Alignment) */}
               <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed min-h-[48px]">
-                Scoped workforce roster compliance, license expiration radar, and consent-mediated audits.
+                Scoped workforce roster compliance, license expiration tracking, and consent-mediated reviews.
               </p>
 
               {/* Feature Checklist */}
               <ul className="space-y-2.5 text-xs text-slate-700 dark:text-slate-200 pt-2 border-t border-slate-100 dark:border-slate-700 min-h-[160px]">
                 <li className="flex items-start gap-2">
                   <Check className="w-3.5 h-3.5 text-indigo-700 dark:text-indigo-400 shrink-0 mt-0.5" />
-                  <span>Workforce compliance radar</span>
+                  <span>Workforce compliance tracking</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <Check className="w-3.5 h-3.5 text-indigo-700 dark:text-indigo-400 shrink-0 mt-0.5" />
-                  <span>Automated deficiency alerts</span>
+                  <span>Upcoming expiration alerts</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <Check className="w-3.5 h-3.5 text-indigo-700 dark:text-indigo-400 shrink-0 mt-0.5" />
@@ -207,7 +207,7 @@ export const Pricing: React.FC = () => {
 
               {/* Description (Fixed Height for Alignment) */}
               <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed min-h-[48px]">
-                CE review queues, multi-year certification cycle governance, and authoritative credential issuance.
+                CE review queues, multi-year certification cycle governance, and verified credential issuance.
               </p>
 
               {/* Feature Checklist */}
@@ -222,7 +222,7 @@ export const Pricing: React.FC = () => {
                 </li>
                 <li className="flex items-start gap-2">
                   <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" />
-                  <span>Authoritative cryptographic badges</span>
+                  <span>Source-verified digital badges</span>
                 </li>
               </ul>
             </div>

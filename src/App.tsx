@@ -37,14 +37,13 @@ const homeFaqJsonLd = {
       "@id": "https://getpathport.com/#website",
       "url": "https://getpathport.com",
       "name": "PathPort",
-      "description": "The portable, living professional record and evidence platform."
+      "description": "Your career is bigger than a résumé. PathPort is your portable professional record."
     },
     {
       "@type": "SoftwareApplication",
       "name": "PathPort Living Professional Record",
       "operatingSystem": "Web, iOS, Android",
-      "applicationCategory": "BusinessApplication",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      "applicationCategory": "BusinessApplication"
     },
     {
       "@type": "FAQPage",
@@ -62,7 +61,7 @@ const homeFaqJsonLd = {
           "name": "What does 'Maintain Once, Present Many Ways' mean?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "You never need to rebuild your portfolio from scratch. PathPort uses an object-reference architecture: your credentials, case studies, and experiences live in your core record once. When you create a tailored view for an executive role or client proposal, it references those items live."
+            "text": "You never need to rebuild your portfolio from scratch. Your credentials, case studies, and experiences live in your core record once. When you create a tailored view for an executive role or client proposal, it references those items live without duplicate data."
           }
         },
         {
@@ -81,8 +80,8 @@ const homeFaqJsonLd = {
 const HomePage: React.FC = () => (
   <>
     <SEO 
-      title="PathPort — Living Professional Record, Tailored Portfolios & PathAI"
-      description="Maintain yourself once. Present yourself many ways. Turn unlisted projects into rich case studies, build tailored portfolios, track CE renewals, and chart your career with PathAI."
+      title="PathPort — Your Living Professional Record"
+      description="Your career is bigger than a résumé. PathPort is your portable professional record. Capture verified evidence, turn projects into rich case studies, present tailored portfolios, and guide your career growth."
       jsonLd={homeFaqJsonLd}
     />
     <Navbar />

@@ -16,7 +16,7 @@ export const FeaturePillars: React.FC = () => {
             The things a résumé leaves behind.
           </h2>
           <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
-            A static PDF résumé reduces years of problem-solving, clinical interventions, system architectures, and continuing education into flat bullet points. PathPort gives you a living record that proves what you can do.
+            A résumé compresses years of projects, research, leadership, creative work, accomplishments, learning, and problem-solving into a handful of bullet points. PathPort gives you a living record that proves what you can do.
           </p>
         </div>
 
@@ -38,7 +38,7 @@ export const FeaturePillars: React.FC = () => {
                 <XCircle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
                 <div>
                   <strong className="text-slate-900 dark:text-white block">Drops Crucial Context:</strong>
-                  <span>Forces multi-month clinical rollouts and technical projects into 2 brief bullet points.</span>
+                  <span>Forces multi-month initiatives, engineering projects, and research into 2 brief bullet points.</span>
                 </div>
               </li>
               <li className="flex items-start gap-3">
@@ -52,14 +52,14 @@ export const FeaturePillars: React.FC = () => {
                 <XCircle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
                 <div>
                   <strong className="text-slate-900 dark:text-white block">Version Chaos:</strong>
-                  <span>Requires saving 5 different PDF versions for different target jobs that quickly become stale.</span>
+                  <span>Requires saving 5 different PDF versions for different target roles that quickly become stale.</span>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <XCircle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
                 <div>
                   <strong className="text-slate-900 dark:text-white block">Manual CE Tracking:</strong>
-                  <span>Leaves you scrambling across 4 different state licensing portals weeks before expiration.</span>
+                  <span>Leaves you scrambling across disparate portals weeks before renewal deadlines.</span>
                 </div>
               </li>
             </ul>
@@ -88,22 +88,22 @@ export const FeaturePillars: React.FC = () => {
               <li className="flex items-start gap-3">
                 <CheckCircle2 className="w-4 h-4 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" />
                 <div>
-                  <strong className="text-slate-900 dark:text-white block">6-Level Provenance:</strong>
-                  <span>Transparent authentication badges (Issuer Verified, Provider Reported) third parties trust.</span>
+                  <strong className="text-slate-900 dark:text-white block">Source Provenance:</strong>
+                  <span>Transparent authentication badges (Issuer Verified, Provider Reported) so viewers know where evidence came from.</span>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <CheckCircle2 className="w-4 h-4 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" />
                 <div>
-                  <strong className="text-slate-900 dark:text-white block">Tailored Portfolio Lenses:</strong>
-                  <span>Maintain once, present many ways with custom `/p/:slug` links that update in real time.</span>
+                  <strong className="text-slate-900 dark:text-white block">Tailored Portfolios:</strong>
+                  <span>Build once, share many ways with custom `/p/:slug` views that update when your living record does.</span>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <CheckCircle2 className="w-4 h-4 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" />
                 <div>
-                  <strong className="text-slate-900 dark:text-white block">Deterministic Renewal Engine:</strong>
-                  <span>Automated multi-topic category audit calculations so you never miss a renewal deadline.</span>
+                  <strong className="text-slate-900 dark:text-white block">Renewal Organization:</strong>
+                  <span>Organize requirements and hours by category so you know what you still need before renewal.</span>
                 </div>
               </li>
             </ul>
@@ -126,7 +126,7 @@ export const FeaturePillars: React.FC = () => {
               </p>
             </div>
             <div className="pt-3 border-t border-slate-200 dark:border-slate-700 text-[10px] font-bold text-teal-800 dark:text-teal-400 tracking-wider uppercase">
-              EVIDENCE ENGINE
+              VERIFIED EVIDENCE
             </div>
           </div>
 
@@ -144,7 +144,7 @@ export const FeaturePillars: React.FC = () => {
               </p>
             </div>
             <div className="pt-3 border-t border-slate-200 dark:border-slate-700 text-[10px] font-bold text-teal-800 dark:text-teal-400 tracking-wider uppercase">
-              PORTFOLIO LENS
+              TAILORED VIEWS
             </div>
           </div>
 
@@ -155,18 +155,18 @@ export const FeaturePillars: React.FC = () => {
                 <Award className="w-5 h-5" />
               </div>
               <h3 className="text-base font-display font-bold text-slate-900 dark:text-white">
-                CE & Provenance
+                CE & Credentials
               </h3>
               <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                Consolidate licenses, board certifications, and continuing education. Track mandatory categories with 6-level provenance verification.
+                Consolidate licenses, certifications, and continuing education. Track mandatory categories with clear source verification.
               </p>
             </div>
             <div className="pt-3 border-t border-slate-200 dark:border-slate-700 text-[10px] font-bold text-teal-800 dark:text-teal-400 tracking-wider uppercase">
-              RENEWAL ENGINE
+              RENEWAL TRACKING
             </div>
           </div>
 
-          {/* Pillar 4: Deterministic Path Advisor */}
+          {/* Pillar 4: Path Career Advisor */}
           <div className="bg-slate-50 dark:bg-slate-800/70 rounded-3xl p-7 border border-slate-200/90 dark:border-slate-700/80 flex flex-col justify-between space-y-6 hover:border-teal-700 dark:hover:border-teal-500 transition-all">
             <div className="space-y-3.5">
               <div className="w-11 h-11 rounded-2xl bg-teal-800 text-white flex items-center justify-center shadow-xs">
@@ -176,15 +176,14 @@ export const FeaturePillars: React.FC = () => {
                 Path Career Advisor
               </h3>
               <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                No generic summaries. Exact capability gap math comparing your complete record against prerequisite requirements for target roles.
+                See useful next steps and requirement comparisons based on your actual record, case studies, and career goals.
               </p>
             </div>
             <div className="pt-3 border-t border-slate-200 dark:border-slate-700 text-[10px] font-bold text-teal-800 dark:text-teal-400 tracking-wider uppercase">
-              PATH NAVIGATOR
+              CAREER GUIDANCE
             </div>
           </div>
         </div>
-
       </div>
     </section>
   );

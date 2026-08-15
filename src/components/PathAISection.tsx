@@ -27,7 +27,7 @@ export const PathAISection: React.FC = () => {
       title: "Leadership Progression: Senior PM ➔ VP of Technical Programs",
       badge: "Executive Advancement",
       matchScore: "92% Prerequisite Match",
-      analysis: "PathAI evaluated Marcus's PMP credential, AWS Pro architecture proofs, and 4-region CRDT migration case study.",
+      analysis: "PathAI evaluated Marcus's PMP credential, AWS Pro architecture proofs, and 4-region database migration case study.",
       actionItems: [
         { status: "complete", text: "Satisfied: 8+ years distributed systems architecture & agile governance" },
         { status: "complete", text: "Satisfied: Zero-downtime multi-million dollar program delivery evidence" },
@@ -61,7 +61,7 @@ export const PathAISection: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 dark:bg-teal-950/60 text-teal-800 dark:text-teal-300 border border-teal-200 dark:border-teal-800 text-xs font-semibold shadow-2xs">
             <Sparkles className="w-3.5 h-3.5 text-teal-700 dark:text-teal-400" />
-            <span>PATHAI • YOUR SOVEREIGN CAREER ADVISOR</span>
+            <span>PATHAI • YOUR CAREER ADVISOR</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-slate-900 dark:text-white tracking-tight leading-tight">
@@ -70,7 +70,7 @@ export const PathAISection: React.FC = () => {
           </h2>
 
           <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
-            Generic chatbots don't know what you've actually accomplished. <strong>PathAI</strong> deeply understands your verified credentials, clinical interventions, engineering projects, and CE history — helping you pivot careers, master new domains, and target your next big promotion with exact capability gap math.
+            Generic chatbots don't know what you've actually accomplished. <strong>PathAI</strong> understands your verified credentials, clinical interventions, engineering projects, and CE history — helping you explore new paths, build new skills, and target your next move by identifying requirement gaps and recommending practical next steps.
           </p>
         </div>
 
@@ -135,7 +135,7 @@ export const PathAISection: React.FC = () => {
 
               <div className="flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400">
                 <Bot className="w-4 h-4 text-teal-800 dark:text-teal-400" />
-                <span>Deterministic Gap Math</span>
+                <span>Requirement Gap Analysis</span>
               </div>
             </div>
 
@@ -185,7 +185,7 @@ export const PathAISection: React.FC = () => {
                 onClick={() => setIsBetaModalOpen(true)}
                 className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-xs shadow-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer shrink-0"
               >
-                <span>Unlock PathAI with Founding Beta</span>
+                <span>Explore PathAI with Beta</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
@@ -200,7 +200,7 @@ export const PathAISection: React.FC = () => {
             </div>
             <h4 className="font-bold text-sm text-slate-900 dark:text-white">Career Pivot Guidance</h4>
             <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-              Explore realistic adjacent roles and see exactly how your existing experience maps to new titles.
+              Explore realistic adjacent roles and see how your existing experience translates to new fields.
             </p>
           </div>
 
@@ -208,9 +208,9 @@ export const PathAISection: React.FC = () => {
             <div className="w-10 h-10 rounded-xl bg-teal-800 text-white flex items-center justify-center shadow-xs">
               <Target className="w-5 h-5" />
             </div>
-            <h4 className="font-bold text-sm text-slate-900 dark:text-white">Prerequisite Gap Math</h4>
+            <h4 className="font-bold text-sm text-slate-900 dark:text-white">Requirement Gap Analysis</h4>
             <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-              Calculates missing certifications, mandatory topic CEUs, or evidence artifacts needed for your goals.
+              Identifies missing qualifications, required courses, or evidence artifacts needed for your target goals.
             </p>
           </div>
 
@@ -218,9 +218,9 @@ export const PathAISection: React.FC = () => {
             <div className="w-10 h-10 rounded-xl bg-teal-800 text-white flex items-center justify-center shadow-xs">
               <BookOpen className="w-5 h-5" />
             </div>
-            <h4 className="font-bold text-sm text-slate-900 dark:text-white">Curated CE Pathways</h4>
+            <h4 className="font-bold text-sm text-slate-900 dark:text-white">Curated Learning Pathways</h4>
             <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-              Recommends accredited courses and certifications that satisfy multiple state and specialty requirements at once.
+              Discovers accredited courses and certifications that satisfy multiple state and specialty requirements.
             </p>
           </div>
 
@@ -230,7 +230,7 @@ export const PathAISection: React.FC = () => {
             </div>
             <h4 className="font-bold text-sm text-slate-900 dark:text-white">Tailored Pitch Drafter</h4>
             <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-              Translates complex project outcomes and clinical wins into crisp, tailored case studies that resonate with target hiring teams.
+              Helps you summarize complex project outcomes into crisp, structured case studies for your portfolios.
             </p>
           </div>
         </div>

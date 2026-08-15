@@ -9,13 +9,13 @@ const distDir = path.resolve(__dirname, '../dist');
 const routes = [
   {
     path: '',
-    title: 'PathPort — Living Professional Record, Tailored Portfolios & PathAI',
-    description: 'Maintain yourself once. Present yourself many ways. Turn unlisted projects into rich case studies, build tailored portfolios, track CE renewals, and chart your career with PathAI.'
+    title: 'PathPort — Your Living Professional Record',
+    description: 'Your career is bigger than a résumé. PathPort is your portable professional record. Capture verified evidence, turn projects into rich case studies, present tailored portfolios, and guide your career growth.'
   },
   {
     path: 'for/nurses',
-    title: 'PathPort for Nurses & Healthcare Leaders — Licenses, CEUs & FACHE®',
-    description: 'Consolidate multi-state RN/NP licenses, specialty board certifications, FACHE® records, and mandatory CE contact hours into verified case studies and tailored portfolios.'
+    title: 'PathPort for Nurses & Healthcare Leaders — Licenses, CEUs & Career Growth',
+    description: 'Consolidate multi-state RN/NP licenses, specialty board certifications, executive records, and mandatory CE contact hours into verified case studies and tailored portfolios.'
   },
   {
     path: 'for/paramedics',
@@ -34,13 +34,13 @@ const routes = [
   },
   {
     path: 'for/enterprise',
-    title: 'PathPort Teams — Workforce Compliance Radar, License Lapse Prevention & Privacy',
-    description: 'Eliminate spreadsheet chaos and regulatory fines. Real-time workforce compliance radar for healthcare systems, aviation, and engineering enterprises.'
+    title: 'PathPort Teams — Workforce Compliance Radar, Expiration Tracking & Privacy',
+    description: 'Reduce administrative friction and compliance risks. Real-time workforce credential expiration tracking for healthcare, aviation, and engineering enterprises.'
   },
   {
     path: 'for/board-certifications',
     title: 'PathPort Certify — Modern Credential Governance & Reviewer Workspace',
-    description: 'Automate topic audit math, reviewer submission queues, and authoritative provenance badges for healthcare, engineering, and specialty certification programs.'
+    description: 'Automate topic audit calculations, reviewer submission queues, and authoritative provenance badges for healthcare, engineering, and specialty certification programs.'
   },
   {
     path: 'privacy',
@@ -55,27 +55,27 @@ const routes = [
   {
     path: 'security',
     title: 'PathPort — Security & Data Protection Architecture Whitepaper',
-    description: 'PathPort Security Whitepaper. Technical specifications for AES-256 storage encryption, PostgreSQL Row Level Security (RLS), and 6-level provenance standards.'
+    description: 'PathPort Security Whitepaper. Technical specifications for AES-256 storage encryption, PostgreSQL Row Level Security (RLS), and source verification standards.'
   },
   {
     path: 'p/sarah-jenkins-rn',
-    title: 'Sarah Jenkins, BSN, RN — Verified PathPort Record & Portfolio',
-    description: 'Critical Care Charge Nurse & Clinical Preceptor in New York, NY. Verified NYS RN & CCRN® credentials with sepsis protocol case study.'
+    title: 'Sarah Jenkins, BSN, RN — Simulated Demo Portfolio',
+    description: 'Critical Care Charge Nurse & Clinical Preceptor in New York, NY. Verified NYS RN & CCRN® credentials with sepsis protocol case study (Demo).'
   },
   {
     path: 'p/elena-flight-lead',
-    title: 'Elena Rodriguez, NRP, FP-C — Verified PathPort Record & Portfolio',
-    description: 'Critical Care Flight Paramedic & Clinical Educator in Denver, CO. NREMT and IBSC FP-C flight transport credentials.'
+    title: 'Elena Rodriguez, NRP, FP-C — Simulated Demo Portfolio',
+    description: 'Critical Care Flight Paramedic & Clinical Educator in Denver, CO. NREMT and IBSC FP-C flight transport credentials (Demo).'
   },
   {
     path: 'p/marcus-vance',
-    title: 'Marcus Vance, PMP®, CSM — Verified PathPort Record & Portfolio',
-    description: 'Senior Technical Program Director. PMP® certified with 4-region database migration case study.'
+    title: 'Marcus Vance, PMP®, CSM — Simulated Demo Portfolio',
+    description: 'Senior Technical Program Director. PMP® certified with 4-region database migration case study (Demo).'
   },
   {
     path: 'p/david-kim-bio',
-    title: 'David Kim, MS — Verified PathPort Record & Portfolio',
-    description: 'Bioengineering Research Fellow & Capstone Lead. Published peer-reviewed research in microfluidic biosensors.'
+    title: 'David Kim, MS — Simulated Demo Portfolio',
+    description: 'Bioengineering Research Fellow & Capstone Lead. Published research in microfluidic biosensors (Demo).'
   }
 ];
 

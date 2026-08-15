@@ -4,7 +4,7 @@ import { Footer } from '../components/Footer';
 import { BetaRegistrationModal } from '../components/BetaRegistrationModal';
 import { 
   ArrowRight, Award, Clock, Briefcase, 
-  Sparkles, Compass, TrendingUp, Activity, 
+  Sparkles, Compass, TrendingUp, HeartPulse, 
   ShieldCheck, CheckCircle2, FileText, Plane 
 } from 'lucide-react';
 
@@ -17,18 +17,18 @@ export const ParamedicsFunnel: React.FC = () => {
   const roleDetails = {
     field: {
       title: "911 Field Clinicians & Community Paramedicine (NRP, EMT-P)",
-      description: "Track 60-hour NCCP renewal categories automatically. Capture pre-hospital cardiac arrest resuscitations, trauma triage case studies, and field preceptorship hours.",
-      highlight: "NREMT National (30h), State (15h), and Individual (15h) auto-audit calculations."
+      description: "Track recertification categories organized by requirements. Capture pre-hospital resuscitations, trauma triage case studies, and field preceptorship hours.",
+      highlight: "National (30h), State (15h), and Individual (15h) requirement tracking (Example)."
     },
     flight: {
       title: "Critical Care Transport & Flight Paramedics (FP-C, CCP-C)",
-      description: "Manage IBSC specialty board recertification, ventilator management protocols, invasive arterial line monitoring, and aero-medical flight case studies.",
-      highlight: "Aero-medical transport case studies with pre-hospital RSI and ventilator synchrony proof."
+      description: "Manage specialty board recertification, ventilator management protocols, invasive line monitoring, and aero-medical flight case studies.",
+      highlight: "Aero-medical transport case studies with pre-hospital RSI and ventilator documentation (Example)."
     },
     leadership: {
       title: "EMS Officers, Operations Chiefs & Clinical Educators",
-      description: "Document EMS agency protocol revisions, FTO training programs, QA/QI review metrics, and leadership credentials (FACPE, NEMSMA).",
-      highlight: "Tailored executive lenses for agency leadership transitions and state regulatory audits."
+      description: "Document EMS agency protocol revisions, FTO training programs, QA/QI review metrics, and leadership credentials.",
+      highlight: "Tailored executive lenses for agency leadership transitions and audits (Example)."
     }
   };
 
@@ -46,17 +46,17 @@ export const ParamedicsFunnel: React.FC = () => {
           {/* Header */}
           <div className="text-center max-w-4xl mx-auto space-y-4">
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-semibold border border-emerald-200 dark:border-emerald-800">
-              <Activity className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
-              EMS, FLIGHT & CRITICAL CARE RECORD
+              <Plane className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
+              PATHPORT FOR PARAMEDICS & EMS PROFESSIONALS
             </span>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-slate-900 dark:text-white tracking-tight leading-tight">
-              Show the Real Work Behind the Patch.{' '}
-              <span className="text-teal-800 dark:text-teal-400 block sm:inline-block">Recert, Flight Evidence & PathAI.</span>
+              Pre-Hospital Clinical Proof.{' '}
+              <span className="text-teal-800 dark:text-teal-400 block sm:inline-block">From 911 Frontline to Critical Care Flight.</span>
             </h1>
 
             <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-              Consolidate NREMT, state paramedic licenses, and IBSC board specialties (FP-C, CCP-C). Document high-acuity resuscitation case studies, FTO field evaluations, and QA protocols in one living record.
+              Your field saves, airway management, and critical care competencies deserve more than a flat PDF. Consolidate your NREMT registry, state cards, and flight certifications in a portable living passport.
             </p>
 
             <div className="pt-2 flex flex-col sm:flex-row gap-3.5 justify-center">
@@ -64,59 +64,59 @@ export const ParamedicsFunnel: React.FC = () => {
                 onClick={() => setIsBetaModalOpen(true)}
                 className="px-8 py-3.5 rounded-2xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-sm shadow-xs hover:scale-[1.02] transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
-                <span>Register for EMS Beta Access</span>
+                <span>Register for Beta Access</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           </div>
 
-          {/* Across All Disciplines: Field, Flight & EMS Leadership */}
-          <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm space-y-8">
+          {/* Role Segmentation Matrix */}
+          <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-xs space-y-8">
             <div className="text-center max-w-2xl mx-auto space-y-2">
               <h2 className="text-2xl font-display font-bold text-slate-900 dark:text-white">
-                Built for Every Frontier of Emergency Services
+                Built for Every Stage of Pre-Hospital Care
               </h2>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
-                From frontline 911 response to rotary critical care and agency operations.
+                Select your EMS track to see how PathPort organizes your clinical credentials:
               </p>
             </div>
 
-            {/* Role Switcher */}
+            {/* Role Selector Tabs */}
             <div className="flex flex-wrap justify-center gap-2.5">
               <button
                 onClick={() => setSelectedRole('field')}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-2 border ${
+                className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 border ${
                   selectedRole === 'field'
                     ? 'bg-teal-800 text-white border-teal-800 shadow-xs'
                     : 'bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700'
                 }`}
               >
-                <Activity className="w-3.5 h-3.5" />
-                <span>911 Field Clinicians</span>
+                <HeartPulse className="w-3.5 h-3.5" />
+                <span>911 & Field Clinicians</span>
               </button>
 
               <button
                 onClick={() => setSelectedRole('flight')}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-2 border ${
+                className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 border ${
                   selectedRole === 'flight'
                     ? 'bg-teal-800 text-white border-teal-800 shadow-xs'
                     : 'bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700'
                 }`}
               >
                 <Plane className="w-3.5 h-3.5" />
-                <span>Critical Care & Flight Leads</span>
+                <span>Flight & Critical Care (FP-C)</span>
               </button>
 
               <button
                 onClick={() => setSelectedRole('leadership')}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-2 border ${
+                className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 border ${
                   selectedRole === 'leadership'
                     ? 'bg-teal-800 text-white border-teal-800 shadow-xs'
                     : 'bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700'
                 }`}
               >
                 <ShieldCheck className="w-3.5 h-3.5" />
-                <span>EMS Officers & Educators</span>
+                <span>EMS Officers & Chiefs</span>
               </button>
             </div>
 
@@ -142,10 +142,10 @@ export const ParamedicsFunnel: React.FC = () => {
                 <Clock className="w-6 h-6" />
               </div>
               <h3 className="text-lg font-display font-bold text-slate-900 dark:text-white">
-                NREMT NCCP & IBSC Auto-Math
+                60-Hour NCCP & State CE Organizer
               </h3>
               <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                Automatically calculates National (30 hrs), State/Local (15 hrs), and Individual (15 hrs) continuing education requirements with mandatory topic audits.
+                Keep your National (30h), State (15h), and Individual (15h) continuing education hours categorized and ready for audit.
               </p>
             </div>
 
@@ -154,10 +154,10 @@ export const ParamedicsFunnel: React.FC = () => {
                 <Briefcase className="w-6 h-6" />
               </div>
               <h3 className="text-lg font-display font-bold text-slate-900 dark:text-white">
-                Resuscitation & Flight Case Studies
+                Pre-Hospital Case Studies
               </h3>
               <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                Structured reports on invasive airways, RSI protocols, and ventilator management with anonymized timeline and outcome tracking.
+                Turn RSI interventions, pediatric resuscitations, and MCI triage coordination into structured, verified case studies.
               </p>
             </div>
 
@@ -169,25 +169,25 @@ export const ParamedicsFunnel: React.FC = () => {
                 Flight & Agency Portfolios
               </h3>
               <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                Generate tailored `/p/elena-flight` links with verified credentials for flight service applications, agency transfers, or educational faculty roles.
+                Share a single unlisted link (`getpathport.com/p/elena-flight-lead`) with flight recruiters or agency medical directors.
               </p>
             </div>
           </div>
 
-          {/* PathAI Spotlight: EMS & Flight Advancement Advisor */}
+          {/* PathAI Career Advisor Spotlight for EMS */}
           <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 sm:p-12 border-2 border-teal-800/80 dark:border-teal-500 shadow-md space-y-8 transition-colors">
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 dark:bg-teal-950/60 border border-teal-200 dark:border-teal-800 text-teal-800 dark:text-teal-300 text-xs font-semibold">
                 <Sparkles className="w-3.5 h-3.5 text-teal-700 dark:text-teal-400" />
-                <span>PATHAI • EMS & FLIGHT ADVANCEMENT SPOTLIGHT</span>
+                <span>PATHAI • EMS CAREER ADVISOR SPOTLIGHT</span>
               </div>
 
               <div className="max-w-3xl space-y-3">
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-black text-slate-900 dark:text-white tracking-tight leading-tight">
-                  Meet PathAI: Guiding Field Paramedics to Flight Transport & Agency Leadership
+                  Meet PathAI: Guiding Your Journey from 911 Field to Flight Lead
                 </h2>
                 <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">
-                  Whether you're targeting your <strong>Certified Flight Paramedic (FP-C)</strong>, stepping up to EMS Field Training Officer (FTO), or advancing into operations management—PathAI evaluates your verified clinical hours and CE logs to chart the exact prerequisite roadmap.
+                  Whether you're targeting your <strong>Certified Flight Paramedic (FP-C)</strong>, stepping up to EMS Field Training Officer (FTO), or advancing into operations management—PathAI evaluates your verified clinical hours and CE logs to chart practical next steps.
                 </p>
               </div>
 
@@ -196,13 +196,13 @@ export const ParamedicsFunnel: React.FC = () => {
                   <Compass className="w-5 h-5 text-teal-800 dark:text-teal-400" />
                   <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Flight Transport Readiness</h4>
                   <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
-                    Evaluates high-acuity field years, ventilator labs, and aero-medical physiology hours for IBSC board exam qualification.
+                    Evaluates high-acuity field years, ventilator labs, and aero-medical physiology hours for board exam prep.
                   </p>
                 </div>
 
                 <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 space-y-2">
                   <TrendingUp className="w-5 h-5 text-teal-800 dark:text-teal-400" />
-                  <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">NCCP & State Gap Math</h4>
+                  <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Requirement Gap Analysis</h4>
                   <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
                     Identifies missing mandatory topic hours (Pediatric, Airway, Trauma) across local, state, and national recertification rules.
                   </p>
@@ -212,7 +212,7 @@ export const ParamedicsFunnel: React.FC = () => {
                   <FileText className="w-5 h-5 text-teal-800 dark:text-teal-400" />
                   <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Field Case Study Drafter</h4>
                   <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
-                    Transforms anonymized field resuscitations and protocol QA into structured evidence case studies flight recruiters trust.
+                    Transforms anonymized field resuscitations and protocol QA into structured evidence case studies flight recruiters value.
                   </p>
                 </div>
               </div>
@@ -238,14 +238,14 @@ export const ParamedicsFunnel: React.FC = () => {
               Stop losing recertification records across agency portals.
             </h2>
             <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm max-w-xl mx-auto">
-              Join founding paramedics from 911 services, flight programs, and hospital-based critical care transport.
+              Join founding paramedics from 911 services, flight programs, and critical care transport.
             </p>
             <div className="pt-2">
               <button
                 onClick={() => setIsBetaModalOpen(true)}
                 className="px-8 py-3.5 rounded-2xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-xs sm:text-sm shadow-xs transition-all cursor-pointer"
               >
-                Register for Free Beta Access
+                Register for Beta Access
               </button>
             </div>
           </div>

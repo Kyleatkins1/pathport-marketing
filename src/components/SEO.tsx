@@ -10,8 +10,8 @@ interface SEOProps {
 }
 
 export const SEO: React.FC<SEOProps> = ({
-  title = "PathPort — Your Living Professional Record & Evidence Platform",
-  description = "Your career is bigger than a résumé. PathPort is your persistent, portable professional record. Turn unlisted projects into rich case studies, build tailored portfolios, and track CE renewals.",
+  title = "PathPort — Your Living Professional Record",
+  description = "Your career is bigger than a résumé. PathPort is your portable professional record. Capture verified evidence, turn projects into rich case studies, present tailored portfolios, and guide your career growth.",
   image = "https://getpathport.com/logo.png",
   type = "website",
   jsonLd
@@ -83,12 +83,7 @@ export const SEO: React.FC<SEOProps> = ({
           "@type": "SoftwareApplication",
           "name": "PathPort Living Professional Record",
           "operatingSystem": "Web, iOS, Android",
-          "applicationCategory": "BusinessApplication",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-          }
+          "applicationCategory": "BusinessApplication"
         }
       ]
     };

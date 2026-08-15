@@ -387,7 +387,7 @@ export const PublicPassportDemo: React.FC = () => {
           <div className="flex items-center gap-3">
             <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-semibold border border-emerald-200 dark:border-emerald-800">
               <span className="w-2 h-2 rounded-full bg-emerald-500" />
-              VERIFIED RECORD VIEW
+              SIMULATED DEMO PROFILE
             </span>
 
             {/* Theme Toggle */}
@@ -507,7 +507,7 @@ export const PublicPassportDemo: React.FC = () => {
               <span>Verified Credentials & Licenses</span>
             </h2>
             <span className="text-xs font-semibold text-emerald-800 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
-              6-Level Provenance Verified
+              Source Verified (Demo)
             </span>
           </div>
 

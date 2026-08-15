@@ -16,7 +16,7 @@ export const Footer: React.FC = () => {
               <Logo size={28} />
             </Link>
             <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed max-w-sm">
-              PathPort is the individual's portable, sovereign living identity and evidence record. Maintain yourself once, present yourself many ways with tailored portfolios, structured case studies, and automated renewals.
+              PathPort is the individual's portable, sovereign living identity and evidence record. Maintain yourself once, present yourself many ways with tailored portfolios, structured case studies, and organized renewal tracking.
             </p>
             <div className="space-y-2 pt-2 text-[11px] text-slate-500 dark:text-slate-400">
               <div className="flex items-center gap-1.5 font-medium text-emerald-800 dark:text-emerald-400">
@@ -25,7 +25,7 @@ export const Footer: React.FC = () => {
               </div>
               <div className="flex items-center gap-1.5 font-medium text-teal-800 dark:text-teal-400">
                 <Lock className="w-3.5 h-3.5 text-teal-700 dark:text-teal-400 shrink-0" />
-                <span>Scoped Consent & 6-Level Provenance</span>
+                <span>Scoped Consent & Source Verification</span>
               </div>
             </div>
           </div>
@@ -41,7 +41,7 @@ export const Footer: React.FC = () => {
               <li><Link to="/for/project-managers" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">Project & Technical Leads</Link></li>
               <li><Link to="/for/students" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">Students & Early Career</Link></li>
               <li><a href="/#case-studies" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">Structured Case Studies</a></li>
-              <li><a href="/#renewals" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">CE Renewal Engine</a></li>
+              <li><a href="/#renewals" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">CE Renewal Tracking</a></li>
             </ul>
           </div>
 

@@ -27,7 +27,7 @@ export const Hero: React.FC = () => {
 
             {/* Subheadline */}
             <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
-              PathPort is your persistent, portable professional record. Capture real evidence, turn unlisted projects into tangible case studies, build tailored portfolio views for target audiences, and automate CE renewal tracking without duplicate data.
+              PathPort is your persistent, portable professional record. Capture real evidence, turn unlisted projects into tangible case studies, build tailored portfolio views for target audiences, and keep credentials and continuing education organized for renewal without duplicate data.
             </p>
 
             {/* CTAs */}
@@ -41,7 +41,7 @@ export const Hero: React.FC = () => {
                   <ArrowRight className="w-4 h-4" />
                 </button>
                 <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-2 text-center sm:text-left">
-                  Founding Cohort 1 invitations rolling out weekly
+                  Invitations rolling out as beta expands
                 </div>
               </div>
 
@@ -61,7 +61,7 @@ export const Hero: React.FC = () => {
                   <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
                   <span>Authoritative Proof</span>
                 </div>
-                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">6-level provenance verification</p>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Know where evidence came from</p>
               </div>
               <div>
                 <div className="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
@@ -75,7 +75,7 @@ export const Hero: React.FC = () => {
                   <CheckCircle2 className="w-4 h-4 text-teal-700 dark:text-teal-400" />
                   <span>Living Portfolios</span>
                 </div>
-                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Zero copy / live object links</p>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Build once, share many ways</p>
               </div>
             </div>
           </div>
@@ -98,7 +98,7 @@ export const Hero: React.FC = () => {
                   </div>
                 </div>
                 <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-[10px] font-bold border border-emerald-200 dark:border-emerald-800">
-                  Verified ID
+                  Simulated Profile (Demo)
                 </span>
               </div>
 
@@ -141,17 +141,17 @@ export const Hero: React.FC = () => {
                           Issuer Verified
                         </span>
                       </div>
-                      <p className="text-[11px] text-slate-500 dark:text-slate-400">NYS Board of Nursing • Active & Compliant • #RN784019</p>
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400">Example State Board of Nursing • Active • #RN784019</p>
                     </div>
 
                     <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 space-y-1">
                       <div className="flex items-center justify-between text-xs">
-                        <span className="font-bold text-slate-900 dark:text-white">CCRN® — Critical Care Registered Nurse</span>
+                        <span className="font-bold text-slate-900 dark:text-white">CCRN® — Critical Care Specialty</span>
                         <span className="px-2 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-[10px] font-bold border border-emerald-200 dark:border-emerald-800">
                           Issuer Verified
                         </span>
                       </div>
-                      <p className="text-[11px] text-slate-500 dark:text-slate-400">AACN Certification Corp • Recert 2026 • #CCRN-9921</p>
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400">Specialty Certification Board • Recert 2026 • #CCRN-9921</p>
                     </div>
 
                     <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 space-y-1">
@@ -161,7 +161,7 @@ export const Hero: React.FC = () => {
                           Provider Reported
                         </span>
                       </div>
-                      <p className="text-[11px] text-slate-500 dark:text-slate-400">American Heart Association • 24 Hours CE</p>
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400">Accredited CE Provider • 24 Hours CE</p>
                     </div>
                   </div>
                 )}

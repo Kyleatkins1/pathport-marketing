@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Sparkles, CheckCircle2, ArrowRight, ShieldCheck, Mail, User, Briefcase } from 'lucide-react';
+import { X, Sparkles, CheckCircle2, ArrowRight, ShieldCheck, Mail, User, Briefcase, AlertCircle, RefreshCw } from 'lucide-react';
 import { registerForBeta } from '../services/loops';
 
 interface BetaRegistrationModalProps {
@@ -20,6 +20,8 @@ const AUDIENCE_OPTIONS = [
   'Other Professional',
 ];
 
+type ModalStatus = 'idle' | 'submitting' | 'success' | 'error';
+
 export const BetaRegistrationModal: React.FC<BetaRegistrationModalProps> = ({
   isOpen,
   onClose,
@@ -29,8 +31,8 @@ export const BetaRegistrationModal: React.FC<BetaRegistrationModalProps> = ({
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [audience, setAudience] = useState(defaultAudience);
-  const [loading, setLoading] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<ModalStatus>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   if (!isOpen) return null;
 
@@ -38,28 +40,37 @@ export const BetaRegistrationModal: React.FC<BetaRegistrationModalProps> = ({
     e.preventDefault();
     if (!email || !name) return;
 
-    setLoading(true);
+    setStatus('submitting');
+    setErrorMessage('');
     try {
-      await registerForBeta({
+      const res = await registerForBeta({
         name,
         email,
         audience,
         source,
       });
-      setSubmitted(true);
-    } catch (err) {
-      console.error(err);
-      setSubmitted(true);
-    } finally {
-      setLoading(false);
+      if (res && res.success === false) {
+        throw new Error('Registration unsuccessful');
+      }
+      setStatus('success');
+    } catch (err: any) {
+      console.error('Beta registration error:', err);
+      setStatus('error');
+      setErrorMessage('We couldn’t complete your registration. Please try again.');
     }
   };
 
   const handleReset = () => {
-    setSubmitted(false);
+    setStatus('idle');
+    setErrorMessage('');
     setName('');
     setEmail('');
     onClose();
+  };
+
+  const handleRetry = () => {
+    setStatus('idle');
+    setErrorMessage('');
   };
 
   return (
@@ -67,13 +78,14 @@ export const BetaRegistrationModal: React.FC<BetaRegistrationModalProps> = ({
       <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl max-w-lg w-full overflow-hidden relative">
         {/* Close Button */}
         <button
-          onClick={onClose}
+          onClick={handleReset}
+          aria-label="Close Modal"
           className="absolute top-5 right-5 p-2 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
         >
           <X className="w-5 h-5" />
         </button>
 
-        {submitted ? (
+        {status === 'success' ? (
           /* Success Confirmation State */
           <div className="p-8 sm:p-10 text-center space-y-5">
             <div className="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 flex items-center justify-center mx-auto shadow-xs">
@@ -81,11 +93,11 @@ export const BetaRegistrationModal: React.FC<BetaRegistrationModalProps> = ({
             </div>
             <div className="space-y-2">
               <h3 className="text-2xl font-display font-black text-slate-900 dark:text-white">
-                You're on the Beta List!
+                You’re on the Beta List
               </h3>
               <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-sm mx-auto">
                 Thanks, <strong>{name.split(' ')[0]}</strong>. We sent a confirmation to{' '}
-                <span className="font-semibold text-slate-900 dark:text-white">{email}</span>. You will receive priority access as cohorts open.
+                <span className="font-semibold text-slate-900 dark:text-white">{email}</span>. We’ll email you as beta access expands.
               </p>
             </div>
 
@@ -94,9 +106,9 @@ export const BetaRegistrationModal: React.FC<BetaRegistrationModalProps> = ({
                 <ShieldCheck className="w-4 h-4 text-teal-800 dark:text-teal-400" />
                 <span>What happens next:</span>
               </div>
-              <p>1. Access invitations are rolled out weekly in verified cohorts.</p>
-              <p>2. You'll receive a direct link to create your authoritative living record.</p>
-              <p>3. As a founding beta member, individual features remain free for life.</p>
+              <p>1. You’re reserved on the beta waitlist.</p>
+              <p>2. We’ll email you an invitation to set up your living professional record.</p>
+              <p>3. Your feedback will help guide upcoming capabilities and tools.</p>
             </div>
 
             <button
@@ -106,19 +118,52 @@ export const BetaRegistrationModal: React.FC<BetaRegistrationModalProps> = ({
               Done
             </button>
           </div>
+        ) : status === 'error' ? (
+          /* Real Error State */
+          <div className="p-8 sm:p-10 text-center space-y-5">
+            <div className="w-14 h-14 rounded-2xl bg-rose-50 dark:bg-rose-950/60 text-rose-800 dark:text-rose-300 flex items-center justify-center mx-auto shadow-xs">
+              <AlertCircle className="w-8 h-8 text-rose-600 dark:text-rose-400" />
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-2xl font-display font-black text-slate-900 dark:text-white">
+                Registration Incomplete
+              </h3>
+              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-sm mx-auto">
+                {errorMessage || 'We couldn’t complete your registration. Please try again.'}
+              </p>
+            </div>
+
+            <div className="flex gap-3 pt-2">
+              <button
+                type="button"
+                onClick={handleRetry}
+                className="flex-1 py-3 rounded-xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-xs transition-all shadow-xs flex items-center justify-center gap-1.5 cursor-pointer"
+              >
+                <RefreshCw className="w-3.5 h-3.5" />
+                <span>Try Again</span>
+              </button>
+              <button
+                type="button"
+                onClick={handleReset}
+                className="px-5 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-colors cursor-pointer"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
         ) : (
-          /* Registration Form */
+          /* Registration Form (idle & submitting) */
           <form onSubmit={handleSubmit} className="p-8 sm:p-10 space-y-6">
             <div className="space-y-2">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-xs font-semibold">
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>FOUNDING COHORT</span>
+                <span>BETA ACCESS</span>
               </div>
               <h3 className="text-2xl font-display font-black text-slate-900 dark:text-white tracking-tight">
                 Join the Living Identity Beta
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
-                Register to establish your portable record, automate CE tracking, and present tailored portfolios.
+                Register to establish your portable record, keep credentials and continuing education organized for renewal, and present tailored portfolios.
               </p>
             </div>
 
@@ -143,10 +188,10 @@ export const BetaRegistrationModal: React.FC<BetaRegistrationModalProps> = ({
                 </div>
               </div>
 
-              {/* Work Email */}
+              {/* Email */}
               <div>
                 <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">
-                  Work or Professional Email
+                  Email
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
@@ -157,7 +202,7 @@ export const BetaRegistrationModal: React.FC<BetaRegistrationModalProps> = ({
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="sarah@hospital.org"
+                    placeholder="you@domain.com"
                     className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-teal-800 focus:bg-white dark:focus:bg-slate-800 transition-all"
                   />
                 </div>
@@ -189,16 +234,16 @@ export const BetaRegistrationModal: React.FC<BetaRegistrationModalProps> = ({
 
             {/* Privacy Note */}
             <div className="text-[11px] text-slate-500 dark:text-slate-400 leading-tight">
-              We respect your privacy. No spam, ever. Your information is strictly used to provision your beta workspace.
+              We respect your privacy. No spam, ever. Your information is strictly used to communicate about beta access.
             </div>
 
             {/* Submit Button */}
             <button
               type="submit"
-              disabled={loading}
+              disabled={status === 'submitting'}
               className="w-full py-3.5 rounded-xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-xs sm:text-sm transition-all shadow-xs flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
             >
-              {loading ? (
+              {status === 'submitting' ? (
                 <span>Registering...</span>
               ) : (
                 <>

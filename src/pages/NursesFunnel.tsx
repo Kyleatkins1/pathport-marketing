@@ -16,32 +16,32 @@ export const NursesFunnel: React.FC = () => {
 
   const roleDetails = {
     clinical: {
-      title: "Bedside & Specialty Clinicians (ICU, ER, OR, Flight)",
-      description: "Capture resuscitation protocols, ECMO competency, unit quality initiatives, and state board CEUs in a living record that travels with you.",
-      highlight: "Instant CE & License Verification across multiple state compact boards."
+      title: "Bedside & Specialty Clinicians (e.g. ICU, ER, OR, Flight)",
+      description: "Capture resuscitation protocols, specialty competencies, unit quality initiatives, and state board CEUs in a living record that travels with you.",
+      highlight: "CE & license tracking across state compact boards (Example)."
     },
     leadership: {
       title: "Nurse Managers, Clinical Directors & Preceptors",
-      description: "Prove operational impact that résumés leave behind: hospital committee leadership, unit sepsis protocol rollouts, staff retention improvements, and graduate residency mentorship.",
-      highlight: "Structured Challenge-Approach-Outcome case studies with clinical quality ROI."
+      description: "Prove operational impact that résumés leave behind: hospital committee leadership, sepsis protocol rollouts, staff retention improvements, and mentorship.",
+      highlight: "Structured Challenge-Approach-Outcome case studies with clinical quality metrics (Example)."
     },
     advanced: {
       title: "Advanced Practice (NPs, CRNAs, CNSs) & Health Informatics",
-      description: "Manage complex board certifications, prescriptive authority requirements, clinical research publications, and EHR technology implementations.",
-      highlight: "Tailored portfolio lenses for hospital credentialing, faculty appointments, and consulting."
+      description: "Manage specialty board certifications, prescriptive authority requirements, clinical research publications, and EHR technology implementations.",
+      highlight: "Tailored portfolio views for credentialing, faculty appointments, and consulting (Example)."
     },
     executive: {
-      title: "Healthcare Executives & Administrators (FACHE®, NEA-BC®, CNOs)",
-      description: "Target healthcare executive advancement: consolidate FACHE® fellowship hours, executive healthcare governance, Board of Directors contributions, and hospital-wide clinical quality transformations.",
-      highlight: "PathAI Fellowship Gap Math for ACHE & AONE executive credentialing."
+      title: "Healthcare Executives & Administrators (e.g. FACHE®, NEA-BC®, CNOs)",
+      description: "Target healthcare executive advancement: consolidate executive governance, Board contributions, and health system quality initiatives.",
+      highlight: "PathAI Fellowship Gap Analysis for executive credentialing (Example)."
     }
   };
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
       <SEO
-        title="PathPort for Nurses & Healthcare Leaders — Licenses, CEUs & FACHE®"
-        description="Consolidate multi-state RN/NP licenses, specialty board certifications, FACHE® records, and mandatory CE contact hours into verified case studies and tailored portfolios."
+        title="PathPort for Nurses & Healthcare Leaders — Licenses, CEUs & Career Growth"
+        description="Consolidate multi-state RN/NP licenses, specialty board certifications, executive records, and mandatory CE contact hours into verified case studies and tailored portfolios."
       />
       <Navbar />
 
@@ -52,16 +52,16 @@ export const NursesFunnel: React.FC = () => {
           <div className="text-center max-w-4xl mx-auto space-y-4">
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-semibold border border-emerald-200 dark:border-emerald-800">
               <Stethoscope className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
-              NURSING & HEALTHCARE LEADERSHIP RECORD
+              PATHPORT FOR NURSING & HEALTHCARE LEADERS
             </span>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-slate-900 dark:text-white tracking-tight leading-tight">
-              Your Career is Bigger Than a Shift.{' '}
-              <span className="text-teal-800 dark:text-teal-400 block sm:inline-block">Clinical Proof, Leadership & PathAI.</span>
+              Clinical & Leadership Proof.{' '}
+              <span className="text-teal-800 dark:text-teal-400 block sm:inline-block">From Bedside to Healthcare Executive.</span>
             </h1>
 
             <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-              Consolidate your state RN/NP licenses, specialty board certifications, FACHE® records, and mandatory CE contact hours into verified case studies and tailored portfolios.
+              Your nursing and healthcare career is more than a list of acronyms. Consolidate licenses, track specialty CE hours, prove quality improvement ROI, and target executive advancement.
             </p>
 
             <div className="pt-2 flex flex-col sm:flex-row gap-3.5 justify-center">
@@ -69,28 +69,28 @@ export const NursesFunnel: React.FC = () => {
                 onClick={() => setIsBetaModalOpen(true)}
                 className="px-8 py-3.5 rounded-2xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-sm shadow-xs hover:scale-[1.02] transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
-                <span>Register for Healthcare & Nursing Beta</span>
+                <span>Register for Beta Access</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           </div>
 
-          {/* Across All Disciplines: Clinical, Leadership, Advanced Practice & Executive Tabs */}
-          <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm space-y-8">
+          {/* Role Segmentation Matrix */}
+          <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-xs space-y-8">
             <div className="text-center max-w-2xl mx-auto space-y-2">
               <h2 className="text-2xl font-display font-bold text-slate-900 dark:text-white">
-                Built for Every Stage of Healthcare Leadership
+                Tailored for Every Stage of Healthcare Leadership
               </h2>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
-                From bedside trauma care to health informatics and hospital executive suites.
+                Select your focus area to see how PathPort proves your capabilities:
               </p>
             </div>
 
-            {/* Role Switcher */}
+            {/* Role Selector Tabs */}
             <div className="flex flex-wrap justify-center gap-2.5">
               <button
                 onClick={() => setSelectedRole('clinical')}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-2 border ${
+                className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 border ${
                   selectedRole === 'clinical'
                     ? 'bg-teal-800 text-white border-teal-800 shadow-xs'
                     : 'bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700'
@@ -102,38 +102,38 @@ export const NursesFunnel: React.FC = () => {
 
               <button
                 onClick={() => setSelectedRole('leadership')}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-2 border ${
+                className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 border ${
                   selectedRole === 'leadership'
                     ? 'bg-teal-800 text-white border-teal-800 shadow-xs'
                     : 'bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700'
                 }`}
               >
-                <Building2 className="w-3.5 h-3.5" />
-                <span>Managers, Directors & Preceptors</span>
+                <Briefcase className="w-3.5 h-3.5" />
+                <span>Managers & Preceptors</span>
               </button>
 
               <button
                 onClick={() => setSelectedRole('advanced')}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-2 border ${
+                className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 border ${
                   selectedRole === 'advanced'
                     ? 'bg-teal-800 text-white border-teal-800 shadow-xs'
                     : 'bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700'
                 }`}
               >
-                <Award className="w-3.5 h-3.5" />
-                <span>Advanced Practice & Informatics</span>
+                <Stethoscope className="w-3.5 h-3.5" />
+                <span>Advanced Practice (NPs/CRNAs)</span>
               </button>
 
               <button
                 onClick={() => setSelectedRole('executive')}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-2 border ${
+                className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 border ${
                   selectedRole === 'executive'
                     ? 'bg-teal-800 text-white border-teal-800 shadow-xs'
                     : 'bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700'
                 }`}
               >
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>FACHE® Executives & CNOs</span>
+                <Building2 className="w-3.5 h-3.5" />
+                <span>Executives & Administrators</span>
               </button>
             </div>
 
@@ -156,13 +156,13 @@ export const NursesFunnel: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800 shadow-xs space-y-4">
               <div className="w-12 h-12 rounded-2xl bg-teal-800 text-white flex items-center justify-center shadow-xs">
-                <Clock className="w-6 h-6" />
+                <Award className="w-6 h-6" />
               </div>
               <h3 className="text-lg font-display font-bold text-slate-900 dark:text-white">
-                Multi-State & Executive CE Tracking
+                Multi-State License & CE Vault
               </h3>
               <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                Calculates mandatory state board requirements (Pharmacology, Implicit Bias) and executive requirements (ACHE Qualified Education hours) automatically.
+                Keep compact licenses, CPR/ACLS certifications, and contact hours organized with expiration alerts.
               </p>
             </div>
 
@@ -171,57 +171,57 @@ export const NursesFunnel: React.FC = () => {
                 <Briefcase className="w-6 h-6" />
               </div>
               <h3 className="text-lg font-display font-bold text-slate-900 dark:text-white">
-                Clinical QI & Governance Case Studies
+                QI & Clinical Case Studies
               </h3>
               <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                Document unit process improvements, sepsis protocols, hospital committee governance, and staff retention in structured Challenge-Approach-Outcome formats.
+                Document unit sepsis protocols, CAUTI reductions, and committee achievements in structured challenge-outcome stories.
               </p>
             </div>
 
             <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800 shadow-xs space-y-4">
               <div className="w-12 h-12 rounded-2xl bg-teal-800 text-white flex items-center justify-center shadow-xs">
-                <Award className="w-6 h-6" />
+                <Clock className="w-6 h-6" />
               </div>
               <h3 className="text-lg font-display font-bold text-slate-900 dark:text-white">
-                Tailored Travel & Executive Lenses
+                Tailored Portfolios (/p/ links)
               </h3>
               <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                Maintain your record once and generate clean `/p/sarah-rn` links for hospital credentialing, travel nursing contracts, administrative promotions, or health system C-suite dossiers.
+                Generate tailored unlisted portfolio links for travel nursing agencies, hospital credentialing, or academic appointments.
               </p>
             </div>
           </div>
 
-          {/* PathAI Spotlight: The Healthcare & Executive Career Co-Pilot */}
+          {/* PathAI Career Advisor Spotlight for Nursing */}
           <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 sm:p-12 border-2 border-teal-800/80 dark:border-teal-500 shadow-md space-y-8 transition-colors">
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 dark:bg-teal-950/60 border border-teal-200 dark:border-teal-800 text-teal-800 dark:text-teal-300 text-xs font-semibold">
                 <Sparkles className="w-3.5 h-3.5 text-teal-700 dark:text-teal-400" />
-                <span>PATHAI • HEALTHCARE & EXECUTIVE ADVISOR SPOTLIGHT</span>
+                <span>PATHAI • HEALTHCARE ADVISOR SPOTLIGHT</span>
               </div>
 
               <div className="max-w-3xl space-y-3">
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-black text-slate-900 dark:text-white tracking-tight leading-tight">
-                  Meet PathAI: Guiding Your Journey from Bedside to FACHE® Executive
+                  Meet PathAI: Guiding Your Journey from Bedside to Healthcare Executive
                 </h2>
                 <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">
-                  Whether you want to transition from bedside nursing to health informatics, prepare for an NP or CRNA program, step into nurse management, or earn your <strong>FACHE® Fellowship in Healthcare Management</strong>—PathAI evaluates your complete evidence record to chart your exact next steps.
+                  Whether you want to transition from bedside nursing to health informatics, prepare for an advanced practice program, step into management, or target executive fellowship—PathAI evaluates your evidence record to suggest practical next steps.
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
                 <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 space-y-2">
                   <Compass className="w-5 h-5 text-teal-800 dark:text-teal-400" />
-                  <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">FACHE® & Executive Readiness</h4>
+                  <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Executive Readiness</h4>
                   <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
-                    Evaluates healthcare management tenure, ACHE continuing education hours, and committee governance for Board certification.
+                    Evaluates healthcare management experience, continuing education hours, and committee governance.
                   </p>
                 </div>
 
                 <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 space-y-2">
                   <TrendingUp className="w-5 h-5 text-teal-800 dark:text-teal-400" />
-                  <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Prerequisite Gap Math</h4>
+                  <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Requirement Gap Analysis</h4>
                   <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
-                    Identifies missing executive education credits, clinical contact hours, or quality case studies required for your next promotion.
+                    Identifies missing education credits, clinical contact hours, or quality case studies required for your next move.
                   </p>
                 </div>
 
@@ -229,14 +229,14 @@ export const NursesFunnel: React.FC = () => {
                   <FileText className="w-5 h-5 text-teal-800 dark:text-teal-400" />
                   <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">QI & Governance Drafter</h4>
                   <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
-                    Transforms clinical quality metrics and hospital system rollouts into structured, executive-ready case studies.
+                    Transforms clinical quality metrics and system rollouts into structured case studies.
                   </p>
                 </div>
               </div>
 
               <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-100 dark:border-slate-800">
                 <div className="text-xs text-slate-500 dark:text-slate-400">
-                  Privacy-first: Your career growth intent is 100% sovereign and never disclosed to employers.
+                  Privacy-first: Your career growth intent is personal and never disclosed to employers.
                 </div>
                 <button
                   onClick={() => setIsBetaModalOpen(true)}
@@ -262,7 +262,7 @@ export const NursesFunnel: React.FC = () => {
                 onClick={() => setIsBetaModalOpen(true)}
                 className="px-8 py-3.5 rounded-2xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-xs sm:text-sm shadow-xs transition-all cursor-pointer"
               >
-                Register for Free Beta Access
+                Register for Beta Access
               </button>
             </div>
           </div>
@@ -275,7 +275,7 @@ export const NursesFunnel: React.FC = () => {
         isOpen={isBetaModalOpen}
         onClose={() => setIsBetaModalOpen(false)}
         defaultAudience="Nurse / Healthcare Professional"
-        source="nurses_healthcare_funnel"
+        source="nurses_funnel"
       />
     </div>
   );

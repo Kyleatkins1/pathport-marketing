@@ -15,27 +15,27 @@ export const EnterpriseFunnel: React.FC = () => {
 
   const industryDetails = {
     health: {
-      title: "Health Systems, Hospital Networks & Clinics (Joint Commission, Magnet, CMS)",
-      description: "Track physician credentialing, RN license compacts, BLS/ACLS/PALS expiration dates, and mandatory clinical competencies across thousands of clinical staff without invading off-duty privacy.",
-      highlight: "Joint Commission & Magnet compliance radar with automated license lapse prevention."
+      title: "Health Systems, Hospital Networks & Clinics (e.g. Joint Commission & CMS Standards)",
+      description: "Track clinical licenses, BLS/ACLS/PALS expiration dates, and mandatory competencies across staff without invading off-duty privacy.",
+      highlight: "Compliance radar with proactive expiration and deficiency alerts (Example)."
     },
     ems: {
-      title: "EMS Agencies, Air Medical & Critical Care Operators (CAMTS, FAA)",
-      description: "Manage NREMT certifications, state paramedic cards, IBSC FP-C flight credentials, and FAA Part 135 flight crew clinical qualifications with live roster deficiency audits.",
-      highlight: "100% CAMTS-ready regulatory audit reporting with zero spreadsheet reconciliation."
+      title: "EMS Agencies, Air Medical & Transport Operators (e.g. CAMTS & FAA Standards)",
+      description: "Manage paramedic certifications, flight credentials, and clinical qualifications with live roster compliance audits.",
+      highlight: "Audit-ready reporting with streamlined roster verification (Example)."
     },
     defense: {
-      title: "Defense Contractors & Engineering Enterprises (CMMC, ISO 9001)",
-      description: "Maintain verified workforce records for security clearances, Professional Engineer (PE) licenses, AWS/GovCloud certifications, and Scrum delivery credentials.",
-      highlight: "Zero-knowledge scoped consent firewalls: offboarding instantly revokes employer access."
+      title: "Defense Contractors & Technical Enterprises (e.g. CMMC & ISO Standards)",
+      description: "Maintain verified workforce records for certifications, engineering credentials, and agile delivery qualifications.",
+      highlight: "Scoped consent architecture: offboarding revokes employer visibility while personal records stay with the individual."
     }
   };
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
       <SEO
-        title="PathPort Teams — Workforce Compliance Radar, License Lapse Prevention & Privacy"
-        description="Eliminate spreadsheet chaos and regulatory fines. Real-time workforce compliance radar for healthcare systems, aviation, and engineering enterprises."
+        title="PathPort Teams — Workforce Compliance Radar, Expiration Tracking & Privacy"
+        description="Reduce administrative friction and compliance risks. Real-time workforce credential expiration tracking for healthcare, aviation, and engineering enterprises."
       />
       <Navbar />
 
@@ -51,11 +51,11 @@ export const EnterpriseFunnel: React.FC = () => {
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-slate-900 dark:text-white tracking-tight leading-tight">
               Workforce Compliance Without the Chaos.{' '}
-              <span className="text-teal-800 dark:text-teal-400 block sm:inline-block">Lapse Radar, Audits & PathAI.</span>
+              <span className="text-teal-800 dark:text-teal-400 block sm:inline-block">Lapse Prevention, Audits & Insights.</span>
             </h1>
 
             <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-              Eliminate spreadsheet chaos and license lapse fines. PathPort Teams provides clinical health systems, EMS agencies, and engineering firms a real-time compliance radar mediated by scoped employee consent.
+              Reduce administrative friction and compliance risks. PathPort Teams provides clinical health systems, EMS operators, and technical enterprises real-time expiration tracking mediated by scoped employee consent.
             </p>
 
             <div className="pt-2 flex flex-col sm:flex-row gap-3.5 justify-center">
@@ -69,22 +69,22 @@ export const EnterpriseFunnel: React.FC = () => {
             </div>
           </div>
 
-          {/* Across All Industries: Health Systems, EMS Operators & Defense Engineering */}
-          <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm space-y-8">
+          {/* Industry Segmentation Matrix */}
+          <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-xs space-y-8">
             <div className="text-center max-w-2xl mx-auto space-y-2">
               <h2 className="text-2xl font-display font-bold text-slate-900 dark:text-white">
-                Engineered for High-Stakes Compliance Environments
+                Engineered for High-Consequence Workforces
               </h2>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
-                Tailored workflows for hospital systems, emergency flight operators, and defense contractors.
+                Select your industry track to see how PathPort Teams handles compliance:
               </p>
             </div>
 
-            {/* Industry Switcher */}
+            {/* Industry Selector Tabs */}
             <div className="flex flex-wrap justify-center gap-2.5">
               <button
                 onClick={() => setSelectedIndustry('health')}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-2 border ${
+                className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 border ${
                   selectedIndustry === 'health'
                     ? 'bg-teal-800 text-white border-teal-800 shadow-xs'
                     : 'bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700'
@@ -96,26 +96,26 @@ export const EnterpriseFunnel: React.FC = () => {
 
               <button
                 onClick={() => setSelectedIndustry('ems')}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-2 border ${
+                className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 border ${
                   selectedIndustry === 'ems'
                     ? 'bg-teal-800 text-white border-teal-800 shadow-xs'
                     : 'bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700'
                 }`}
               >
                 <Plane className="w-3.5 h-3.5" />
-                <span>EMS & Flight Transport Operators</span>
+                <span>EMS & Air Medical Operators</span>
               </button>
 
               <button
                 onClick={() => setSelectedIndustry('defense')}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-2 border ${
+                className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 border ${
                   selectedIndustry === 'defense'
                     ? 'bg-teal-800 text-white border-teal-800 shadow-xs'
                     : 'bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700'
                 }`}
               >
                 <Cpu className="w-3.5 h-3.5" />
-                <span>Defense & Engineering Firms</span>
+                <span>Technical & Engineering Firms</span>
               </button>
             </div>
 
@@ -144,7 +144,7 @@ export const EnterpriseFunnel: React.FC = () => {
                 30 / 60 / 90-Day Expiration Radar
               </h3>
               <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                Automated deficiency alerts notify managers and workers before mandatory state licenses or specialty credentials expire.
+                Upcoming deficiency notifications alert managers and workers before mandatory state licenses or specialty credentials expire.
               </p>
             </div>
 
@@ -168,7 +168,7 @@ export const EnterpriseFunnel: React.FC = () => {
                 Audit-Ready Regulatory Reports
               </h3>
               <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                Export one-click compliance reports for Joint Commission, state health departments, CAMTS, and defense contract audits.
+                Generate compliance summaries for standard industry audits and state inspections with clear provenance.
               </p>
             </div>
           </div>
@@ -183,10 +183,10 @@ export const EnterpriseFunnel: React.FC = () => {
 
               <div className="max-w-3xl space-y-3">
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-black text-slate-900 dark:text-white tracking-tight leading-tight">
-                  Automated Workforce Deficiency Remediation Powered by PathAI
+                  Proactive Workforce Deficiency Remediation
                 </h2>
                 <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">
-                  When a clinician or engineer approaches a license renewal deadline, PathAI doesn't just send an alert—it proactively identifies compliant continuing education courses and notifies the employee with exact remaining hours to maintain 100% roster readiness.
+                  When a team member approaches a credential expiration window, PathAI helps identify compliant continuing education courses and notifies the employee with remaining requirements to keep rosters ready.
                 </p>
               </div>
 
@@ -195,7 +195,7 @@ export const EnterpriseFunnel: React.FC = () => {
                   <Activity className="w-5 h-5 text-teal-800 dark:text-teal-400" />
                   <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Proactive Expiration Radar</h4>
                   <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
-                    Visual heatmaps showing 30, 60, and 90-day renewal windows across hospital units or flight bases.
+                    Visual overviews showing 30, 60, and 90-day renewal windows across departments and units.
                   </p>
                 </div>
 
@@ -209,16 +209,16 @@ export const EnterpriseFunnel: React.FC = () => {
 
                 <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 space-y-2">
                   <BarChart3 className="w-5 h-5 text-teal-800 dark:text-teal-400" />
-                  <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Instant Audit Logs</h4>
+                  <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Structured Audit Logs</h4>
                   <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
-                    Generate cryptographically verifiable roster compliance summaries for state inspectors in seconds.
+                    Export verified roster compliance summaries for regulatory review and quality audits.
                   </p>
                 </div>
               </div>
 
               <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-100 dark:border-slate-800">
                 <div className="text-xs text-slate-500 dark:text-slate-400">
-                  Enterprise-ready: SOC 2 compliance, PostgreSQL RLS, and HIPAA data isolation.
+                  Enterprise architecture: PostgreSQL RLS security, AES-256 storage, and scoped tenant isolation.
                 </div>
                 <button
                   onClick={() => setIsBetaModalOpen(true)}
@@ -234,10 +234,10 @@ export const EnterpriseFunnel: React.FC = () => {
           {/* Bottom CTA Banner */}
           <div className="bg-white dark:bg-slate-900 rounded-3xl p-10 border border-slate-200 dark:border-slate-800 shadow-sm text-center space-y-4">
             <h2 className="text-2xl font-display font-bold text-slate-900 dark:text-white">
-              Protect your organization from compliance lapses.
+              Keep your workforce credentials organized and compliant.
             </h2>
             <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm max-w-xl mx-auto">
-              Join enterprise healthcare providers, aviation operators, and defense contractors in the design partner program.
+              Join healthcare providers, aviation operators, and technical firms in the PathPort Teams beta pilot.
             </p>
             <div className="pt-2">
               <button
