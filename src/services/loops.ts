@@ -3,45 +3,71 @@ export interface BetaSignupPayload {
   name: string;
   audience?: string;
   source?: string;
+  betaSource?: string;
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
 }
 
 /**
- * Submits beta registrations directly to Loops.so
+ * Extracts UTM query parameters from the current URL search parameters.
+ */
+function getUtmParams(): { utmSource?: string; utmMedium?: string; utmCampaign?: string } {
+  if (typeof window === 'undefined') return {};
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const utmSource = params.get('utm_source') || undefined;
+    const utmMedium = params.get('utm_medium') || undefined;
+    const utmCampaign = params.get('utm_campaign') || undefined;
+    return { utmSource, utmMedium, utmCampaign };
+  } catch {
+    return {};
+  }
+}
+
+/**
+ * Submits beta registrations to the secure server-side endpoint (/api/beta-signup),
+ * which idempotently creates/updates the contact in Loops.so and adds them to the PathPort Beta list.
  */
 export async function registerForBeta(payload: BetaSignupPayload): Promise<{ success: boolean; message?: string }> {
-  const apiKey = (import.meta as any).env?.VITE_LOOPS_API_KEY || '00e90b2773d29a946e128f05227a7669';
-  const nameParts = payload.name.trim().split(' ');
-  const firstName = nameParts[0] || '';
-  const lastName = nameParts.slice(1).join(' ') || '';
+  const utm = getUtmParams();
+
+  const body = {
+    name: payload.name.trim(),
+    email: payload.email.trim(),
+    audience: payload.audience || 'Other Professional',
+    source: payload.source || 'PathPort',
+    betaSource: payload.betaSource || payload.source || 'homepage',
+    utmSource: payload.utmSource || utm.utmSource,
+    utmMedium: payload.utmMedium || utm.utmMedium,
+    utmCampaign: payload.utmCampaign || utm.utmCampaign,
+  };
 
   try {
-    const response = await fetch('https://app.loops.so/api/v1/contacts/create', {
+    const response = await fetch('/api/beta-signup', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        email: payload.email,
-        firstName,
-        lastName,
-        userGroup: 'Beta Waitlist',
-        source: payload.source || 'homepage',
-        audience: payload.audience || 'General Professional',
-        subscribed: true,
-      }),
+      body: JSON.stringify(body),
     });
 
-    if (!response.ok) {
-      const errText = await response.text();
-      console.warn('[Loops API] Contact creation notice:', errText);
-      // Even if contact already exists in Loops, we treat as success to provide positive user UX
-      return { success: true, message: 'You are on the beta priority list!' };
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok || data.success === false) {
+      const errorMsg = data.message || 'We couldn’t complete your registration. Please try again.';
+      return { success: false, message: errorMsg };
     }
 
-    return { success: true, message: 'Welcome to the PathPort Beta!' };
+    return {
+      success: true,
+      message: data.message || 'You’re on the beta list.',
+    };
   } catch (error) {
-    console.error('[Loops] Error connecting to Loops API:', error);
-    return { success: true, message: 'Welcome to the PathPort Beta!' };
+    console.error('[Beta Registration Error]:', error);
+    return {
+      success: false,
+      message: 'We couldn’t complete your registration. Please try again.',
+    };
   }
 }

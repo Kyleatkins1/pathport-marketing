@@ -1,41 +1,79 @@
 # Loops.so Email Automation & Onboarding Campaign Guide
 
-## 1. Automation ("Loop") Setup in Loops.so
+## 1. Automation ("Loop") & Audience Setup in Loops.so
 
-### Step 1: Create the Loop Automation
+### Step 1: Mailing List Configuration
+- **Mailing List Name:** `PathPort Beta`
+- **Mailing List ID:** `cmstx4t94ey4r0jx5a3psh1cb`
+- **List Scope:** All successful Register for Beta Access submissions are automatically enrolled in this list.
+
+### Step 2: Create the Loop Automation
 1. Navigate to **Loops** (https://app.loops.so) ➔ **Automations (Loops)**.
 2. Click **Create Loop** and name it `Beta Onboarding Sequence`.
 3. **Trigger Condition:**
-   - Trigger: `Contact Added` or `Contact Updated`
-   - Filter: `User Group equals "Beta Waitlist"`
+   - Trigger: `Contact Added to List` ➔ Select `PathPort Beta` (or trigger on `userGroup equals "beta_waitlist"`).
 
 ---
 
-## 2. Drip Campaign Email Templates
+## 2. Server Configuration & Cloudflare Pages Environment Variables
 
-### Email 1: Welcome & Founding Cohort Confirmation
+To protect credentials, the Loops API key is kept strictly on the server side:
+
+### Environment Variables
+| Variable Name | Description | Example / Value |
+|---|---|---|
+| `LOOPS_API_KEY` | Secret Loops API Key (Keep Encrypted) | `00e90...` |
+| `LOOPS_BETA_LIST_ID` | Loops Mailing List ID for "PathPort Beta" | `cmstx4t94ey4r0jx5a3psh1cb` |
+
+### Setting up in Cloudflare Pages:
+1. Go to the **Cloudflare Dashboard** ➔ **Workers & Pages**.
+2. Select the `pathport-marketing` Pages project.
+3. Navigate to **Settings** ➔ **Environment variables**.
+4. Click **Add variables**:
+   - Variable name: `LOOPS_API_KEY` ➔ Value: `<your-loops-api-key>` (Select **Encrypt**).
+   - Variable name: `LOOPS_BETA_LIST_ID` ➔ Value: `cmstx4t94ey4r0jx5a3psh1cb`.
+5. Apply to both **Production** and **Preview** environments and save.
+
+---
+
+## 3. Contact Properties Mapped on Registration
+
+Every submission to `/api/beta-signup` idempotently stores:
+- `email`: Normalized lowercase email string
+- `firstName`: User's first name
+- `userGroup`: `beta_waitlist`
+- `audience`: Selected target role (e.g. `Nurse / Healthcare Professional`, `Project Manager / PMO`, etc.)
+- `source`: `PathPort`
+- `betaSource`: Contextual source (e.g. `homepage`, `pricing_table`, `nurses_funnel`)
+- `betaRegisteredAt`: ISO 8601 registration timestamp
+- `utmSource`, `utmMedium`, `utmCampaign`: URL attribution parameters (when present)
+- `mailingLists`: `{ [LOOPS_BETA_LIST_ID]: true }` (Subscribes user to `PathPort Beta`)
+
+---
+
+## 4. Drip Campaign Email Templates
+
+### Email 1: Welcome & Beta Registration Confirmation
 * **Send Timing:** Immediately on submission (`Delay: 0 minutes`)
-* **Subject:** `Welcome to the PathPort Beta — Your Living Record Invitation`
+* **Subject:** `Welcome to the PathPort Beta — You're on the List`
 * **Preview Text:** `Maintain yourself once. Present yourself many ways.`
 
 **Body Content:**
 ```markdown
 Hi {{firstName | default: "there"}},
 
-Welcome to the founding cohort of PathPort.
+Welcome to the founding community of PathPort.
 
 Your career is bigger than a static 1-page résumé. Over years of practice, you’ve led critical projects, earned demanding certifications, resolved complex crises, and accumulated continuing education. 
 
 PathPort is built to give you back ownership of your professional story:
 
-1. **The Canonical Living Record:** Consolidate your licenses, board certifications, degrees, and work history in one persistent, portable profile you own forever.
-2. **Structured Case Studies:** Document the real work behind your credentials—Challenge, Approach, and Measurable Outcomes with evidence attachments.
+1. **The Canonical Living Record:** Consolidate your licenses, board certifications, degrees, and work history in one persistent, portable profile you own.
+2. **Structured Case Studies:** Document the real work behind your credentials—Challenge, Approach, and Measurable Outcomes with attached evidence.
 3. **Tailored Portfolios:** Create dedicated public or unlisted views (e.g. `getpathport.com/p/yourname`) for specific hiring managers, medical directors, or clients with zero copy-pasting.
-4. **Automated CE & Provenance:** Real-time renewal math across multi-topic category requirements with 6-level provenance verification.
+4. **Organized CE & Provenance:** Real-time renewal organization across multi-topic category requirements with source verification.
 
-As a founding beta member, your personal living record and portfolio features are free for life.
-
-We are rolling out invitation links to private beta workspaces weekly. Keep an eye on your inbox for your access link.
+We’re expanding beta access and testing new capabilities with founding members. Keep an eye on your inbox for your access updates.
 
 In the meantime, feel free to reply directly to this email with what you're most excited to build.
 
@@ -71,7 +109,7 @@ In PathPort, you don't reduce a 6-month initiative to two bullet points. You cap
 - **Your Approach & Role:** Exact methods, frameworks, and leadership applied.
 - **Outcome & Evidence:** Measurable metrics, linked credentials, and attached artifacts.
 
-When cohort access opens for your account this week, we'll walk you through creating your first case study in under 5 minutes.
+As your beta access expands, we'll guide you through creating your first case study in minutes.
 
 Best,
 **The PathPort Team**
@@ -94,10 +132,10 @@ Most professionals have multiple distinct audiences:
 - A client evaluating specific technical capabilities.
 - An academic institution reviewing teaching and preceptorship.
 
-With traditional websites or PDF resumes, you’re forced to maintain 5 different file versions that quickly become stale.
+With traditional websites or PDF resumes, you’re forced to maintain different file versions that quickly become stale.
 
-PathPort uses an **object-reference architecture**:
-Your credentials, case studies, and experiences live in your core record once. When you build a tailored portfolio (like `/p/{{firstName | downcase}}-leadership`), you select which items to spotlight.
+PathPort solves this:
+Your credentials, case studies, and experiences live in your core record once. When you build a tailored portfolio view (like `/p/{{firstName | downcase}}-leadership`), you select which items to spotlight.
 
 If you update a credential or earn a new license, every active portfolio link updates automatically.
 
@@ -111,8 +149,8 @@ Best,
 
 ### Email 4: CE Tracking & Scoped Privacy
 * **Send Timing:** 12 days after signup (`Delay: 5 days after Email 3`)
-* **Subject:** `Never panic before a renewal deadline again`
-* **Preview Text:** `Automated topic audit math meets strict privacy firewalls.`
+* **Subject:** `Keep your renewals organized and compliant`
+* **Preview Text:** `Automated topic organization meets strict privacy firewalls.`
 
 **Body Content:**
 ```markdown
@@ -120,7 +158,7 @@ Hi {{firstName | default: "there"}},
 
 If you hold state licenses (Nursing, EMS, Engineering) or board credentials (CCRN, FP-C, PMP, AWS), you know the dread of logging into multiple portals to check topic minimums weeks before a renewal deadline.
 
-PathPort's **CE Renewal Engine** automatically checks your logged courses against specific topic requirements (like infection control, pharmacotherapeutics, or pediatric resuscitation).
+PathPort's **CE Renewal Organizer** automatically categorizes your logged courses against specific topic requirements (like infection control, pharmacotherapeutics, or pediatric resuscitation).
 
 Even better: our **Privacy-by-Default Architecture** ensures that when you connect with an employer, they only see the credentials strictly required for your active job role. Your personal projects, private case studies, and career goals remain yours alone.
 
