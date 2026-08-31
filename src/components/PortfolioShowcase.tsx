@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Award, CheckCircle2, Presentation, ExternalLink, Sparkles } from 'lucide-react';
+import { Award, CheckCircle2, Presentation, ExternalLink, ShieldCheck } from 'lucide-react';
 
 interface DemoProfile {
   id: string;
@@ -89,6 +89,29 @@ export const PortfolioShowcase: React.FC = () => {
 
   const [activeProfile, setActiveProfile] = useState<DemoProfile>(profiles[0]);
 
+  const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
+    let nextIndex = index;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      nextIndex = (index + 1) % profiles.length;
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      nextIndex = (index - 1 + profiles.length) % profiles.length;
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      nextIndex = 0;
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      nextIndex = profiles.length - 1;
+    }
+
+    if (nextIndex !== index) {
+      setActiveProfile(profiles[nextIndex]);
+      const nextBtn = document.getElementById(`portfolio-tab-${profiles[nextIndex].id}`);
+      nextBtn?.focus();
+    }
+  };
+
   return (
     <section id="portfolios" className="py-20 md:py-28 bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 scroll-mt-20 select-none transition-colors relative">
       {/* Alias anchor for singular #portfolio */}
@@ -97,8 +120,8 @@ export const PortfolioShowcase: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-xs font-semibold">
-            <Sparkles className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" />
-            TAILORED PORTFOLIO ENGINE
+            <ShieldCheck className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" aria-hidden="true" />
+            Verified Portfolio Examples
           </span>
           <h2 className="text-3xl sm:text-4xl font-display font-black text-slate-900 dark:text-white tracking-tight">
             See the Living Record in Action
@@ -108,15 +131,25 @@ export const PortfolioShowcase: React.FC = () => {
           </p>
         </div>
 
-        {/* Rich Persona Selector Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 max-w-5xl mx-auto">
-          {profiles.map((p) => {
+        {/* Rich Persona Selector Cards (ARIA Tablist) */}
+        <div 
+          role="tablist"
+          aria-label="Verified Practitioner Profiles"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 max-w-5xl mx-auto"
+        >
+          {profiles.map((p, idx) => {
             const isSelected = p.id === activeProfile.id;
             return (
               <button
                 key={p.id}
+                id={`portfolio-tab-${p.id}`}
+                role="tab"
+                aria-selected={isSelected}
+                aria-controls={`portfolio-panel-${p.id}`}
+                tabIndex={isSelected ? 0 : -1}
                 onClick={() => setActiveProfile(p)}
-                className={`p-3.5 rounded-2xl text-left transition-all cursor-pointer flex items-center gap-3 border ${
+                onKeyDown={(e) => handleKeyDown(e, idx)}
+                className={`p-3.5 rounded-2xl text-left transition-all cursor-pointer flex items-center gap-3 border min-h-[44px] ${
                   isSelected
                     ? 'bg-white dark:bg-slate-900 border-2 border-teal-800 dark:border-teal-400 shadow-md ring-2 ring-teal-800/10'
                     : 'bg-white/80 dark:bg-slate-900/60 hover:bg-white dark:hover:bg-slate-900 border-slate-200/90 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 shadow-2xs'
@@ -124,7 +157,7 @@ export const PortfolioShowcase: React.FC = () => {
               >
                 <img 
                   src={p.avatar} 
-                  alt={p.name} 
+                  alt={`Portrait of ${p.name}`} 
                   className={`w-10 h-10 rounded-xl object-cover shrink-0 border ${
                     isSelected ? 'border-teal-800 dark:border-teal-400' : 'border-slate-200 dark:border-slate-700'
                   }`}
@@ -142,8 +175,14 @@ export const PortfolioShowcase: React.FC = () => {
           })}
         </div>
 
-        {/* Interactive Living Portfolio Card Preview */}
-        <div className="max-w-4xl mx-auto bg-white dark:bg-slate-900 rounded-3xl p-8 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm space-y-7">
+        {/* Interactive Living Portfolio Card Preview (ARIA Tabpanel) */}
+        <div 
+          id={`portfolio-panel-${activeProfile.id}`}
+          role="tabpanel"
+          aria-labelledby={`portfolio-tab-${activeProfile.id}`}
+          className="max-w-4xl mx-auto bg-white dark:bg-slate-900 rounded-3xl p-8 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm space-y-7 transition-all focus:outline-none"
+          tabIndex={0}
+        >
           {/* Top Bar: Handle & Scope */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100 dark:border-slate-800">
             <div>
@@ -158,10 +197,10 @@ export const PortfolioShowcase: React.FC = () => {
 
             <Link
               to={`/p/${activeProfile.handle}`}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-teal-800 dark:hover:bg-teal-700 text-white text-xs font-semibold shadow-2xs hover:scale-[1.02] transition-all self-start sm:self-auto"
+              className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 min-h-[44px] rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-teal-800 dark:hover:bg-teal-700 text-white text-xs font-semibold shadow-2xs hover:scale-[1.02] transition-all self-start sm:self-auto"
             >
               <span>View Full PathPortfolio</span>
-              <ExternalLink className="w-3.5 h-3.5" />
+              <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
             </Link>
           </div>
 
@@ -172,7 +211,7 @@ export const PortfolioShowcase: React.FC = () => {
           {/* Credentials Grid */}
           <div className="space-y-3">
             <div className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
-              <Award className="w-4 h-4 text-teal-800 dark:text-teal-400" />
+              <Award className="w-4 h-4 text-teal-800 dark:text-teal-400" aria-hidden="true" />
               <span>Verified Credentials & Board Certifications</span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
@@ -181,7 +220,7 @@ export const PortfolioShowcase: React.FC = () => {
                   <div className="text-xs font-bold text-slate-900 dark:text-white leading-tight">{c.title}</div>
                   <div className="text-[10px] text-slate-500 dark:text-slate-400">{c.issuer}</div>
                   <div className="pt-1 flex items-center gap-1 text-[10px] text-emerald-800 dark:text-emerald-300 font-bold">
-                    <CheckCircle2 className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
+                    <CheckCircle2 className="w-3 h-3 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
                     <span>{c.status}</span>
                   </div>
                 </div>
@@ -193,7 +232,7 @@ export const PortfolioShowcase: React.FC = () => {
           <div className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-100 dark:border-slate-700/80 space-y-2">
             <div className="flex items-center justify-between">
               <div className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
-                <Presentation className="w-4 h-4 text-teal-800 dark:text-teal-400" />
+                <Presentation className="w-4 h-4 text-teal-800 dark:text-teal-400" aria-hidden="true" />
                 <span>Featured Structured Case Study</span>
               </div>
               <span className="text-[10px] font-mono text-purple-800 dark:text-purple-300 bg-purple-50 dark:bg-purple-950/60 border border-purple-200 dark:border-purple-800 px-2 py-0.5 rounded-full font-bold">

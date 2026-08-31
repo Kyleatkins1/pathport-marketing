@@ -34,10 +34,11 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        display: ['Outfit', 'sans-serif'],
+        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        display: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
       },
       boxShadow: {
+        xs: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
         glass: "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
         glowTeal: "0 0 25px -5px rgba(13, 148, 136, 0.5)",
         glowGold: "0 0 25px -5px rgba(245, 158, 11, 0.4)",

@@ -4,10 +4,11 @@ import { Footer } from '../components/Footer';
 import { BetaRegistrationModal } from '../components/BetaRegistrationModal';
 import { 
   Building2, BarChart3, ArrowRight, Lock, Activity, 
-  Sparkles, ShieldCheck, CheckCircle2, HeartPulse, Plane, Cpu 
+  ShieldCheck, CheckCircle2, HeartPulse, Plane, Cpu 
 } from 'lucide-react';
 
 import { SEO } from '../components/SEO';
+import { PersonaPillarsSection } from '../components/PersonaPillarsSection';
 
 export const EnterpriseFunnel: React.FC = () => {
   const [isBetaModalOpen, setIsBetaModalOpen] = useState(false);
@@ -39,14 +40,14 @@ export const EnterpriseFunnel: React.FC = () => {
       />
       <Navbar />
 
-      <main className="py-16 md:py-24 space-y-20">
+      <main id="main-content" tabIndex={-1} className="py-16 md:py-24 space-y-20 focus:outline-none">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
           
           {/* Header */}
           <div className="text-center max-w-4xl mx-auto space-y-4">
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-900 dark:text-indigo-300 text-xs font-semibold border border-indigo-200 dark:border-indigo-800">
               <Building2 className="w-4 h-4 text-indigo-700 dark:text-indigo-400" />
-              PATHPORT TEAMS • WORKFORCE CREDENTIAL COMPLIANCE
+              PathPort Teams • Workforce Compliance
             </span>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-slate-900 dark:text-white tracking-tight leading-tight">
@@ -173,20 +174,21 @@ export const EnterpriseFunnel: React.FC = () => {
             </div>
           </div>
 
-          {/* PathAI & Workforce Radar Spotlight */}
+          {/* PathAI Compliance Radar & Growth Advisor */}
           <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 sm:p-12 border-2 border-teal-800/80 dark:border-teal-500 shadow-md space-y-8 transition-colors">
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 dark:bg-teal-950/60 border border-teal-200 dark:border-teal-800 text-teal-800 dark:text-teal-300 text-xs font-semibold">
-                <Sparkles className="w-3.5 h-3.5 text-teal-700 dark:text-teal-400" />
-                <span>PATHAI • WORKFORCE COMPLIANCE RADAR</span>
+                <Activity className="w-3.5 h-3.5 text-teal-700 dark:text-teal-400" />
+                <span>PathAI Compliance Radar</span>
               </div>
 
               <div className="max-w-3xl space-y-3">
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-black text-slate-900 dark:text-white tracking-tight leading-tight">
-                  Proactive Workforce Deficiency Remediation
+                  Workforce Intelligence That Respects the Whole Professional.{' '}
+                  <span className="text-teal-800 dark:text-teal-400 block mt-1">Lapse Prevention Without Intrusive Surveillance.</span>
                 </h2>
                 <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">
-                  When a team member approaches a credential expiration window, PathAI helps identify compliant continuing education courses and notifies the employee with remaining requirements to keep rosters ready.
+                  Legacy hospital databases silo credentials and trap employee data. PathPort Teams operates on an individual-sovereign architecture: employees maintain their own canonical records, granting your organization scoped consent to verify active role compliance in real time.
                 </p>
               </div>
 
@@ -230,6 +232,57 @@ export const EnterpriseFunnel: React.FC = () => {
               </div>
             </div>
           </div>
+
+          {/* 6 Action Pillars for Workforce Teams */}
+          <PersonaPillarsSection
+            eyebrow="Workforce Compliance Framework"
+            title="The 6 Action Pillars for Enterprise Teams"
+            subtitle="Equip your organization with a complete, structured framework to maintain audit readiness."
+            pillars={[
+              {
+                name: "1. Earn",
+                category: "Registry Verification Radar",
+                icon: ShieldCheck,
+                description: "Automated verification of employee licenses and certifications directly with official registries.",
+                example: "Continuous State Board & NREMT Registry Verification"
+              },
+              {
+                name: "2. Learn",
+                category: "Mandatory Training Tracking",
+                icon: Activity,
+                description: "Monitor employee completion of required hospital compliance modules and OSHA/HIPAA hours.",
+                example: "Department-Wide Mandatory Topic Tracking"
+              },
+              {
+                name: "3. Build",
+                category: "Role Qualification Templates",
+                icon: Cpu,
+                description: "Establish standardized capability benchmarks, clinical skill matrices, and unit requirement templates.",
+                example: "ICU Charge Nurse & Flight Lead Role Templates"
+              },
+              {
+                name: "4. Demonstrate",
+                category: "Audit-Ready Quality Dossiers",
+                icon: BarChart3,
+                description: "Instant proof of workforce compliance ready for Joint Commission, CAMTS, or ISO audits.",
+                example: "Instant Joint Commission Compliance Export"
+              },
+              {
+                name: "5. Experience",
+                category: "Roster Management & Multi-Site",
+                icon: Building2,
+                description: "Multi-facility department rosters with automated onboarding and lapse deficiency monitoring.",
+                example: "Multi-Hospital Unit Roster & Rotation Oversight"
+              },
+              {
+                name: "6. Reflect",
+                category: "Scoped Consent & Privacy",
+                icon: Lock,
+                description: "Employees maintain sovereign records; offboarding instantly severs organization access.",
+                example: "Privacy-Preserving Employee Offboarding Protocol"
+              }
+            ]}
+          />
 
           {/* Bottom CTA Banner */}
           <div className="bg-white dark:bg-slate-900 rounded-3xl p-10 border border-slate-200 dark:border-slate-800 shadow-sm text-center space-y-4">

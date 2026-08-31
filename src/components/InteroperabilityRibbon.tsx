@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
-  Award, ShieldCheck, FileText, Sparkles, GraduationCap, 
+  Award, ShieldCheck, FileText, GraduationCap, 
   Briefcase, Stethoscope, Cpu, CheckCircle2, HeartPulse, 
-  Layers, Compass, Flame, BookOpen, PenTool, Plane
+  Layers, Compass, Flame, BookOpen, PenTool, Plane, Play, Pause
 } from 'lucide-react';
 
 export const InteroperabilityRibbon: React.FC = () => {
+  const [isPaused, setIsPaused] = useState(false);
+
   const row1Credentials = [
     { title: 'State RN & NP Licenses', issuer: 'State Boards of Nursing', category: 'Healthcare / Nursing', icon: Stethoscope },
     { title: 'CCRN® Critical Care', issuer: 'AACN Certification Corp', category: 'Specialty Nursing', icon: HeartPulse },
@@ -18,7 +20,7 @@ export const InteroperabilityRibbon: React.FC = () => {
     { title: 'CISSP Cyber Security', issuer: '(ISC)²', category: 'Information Security', icon: LockIcon },
     { title: 'CEN Emergency Nursing', issuer: 'Board of Emergency Nursing', category: 'Emergency Medicine', icon: Stethoscope },
     { title: 'Google Cloud Professional', issuer: 'Google Cloud Platform', category: 'Cloud Architecture', icon: Cpu },
-    { title: 'Registered Pharmacist (PharmD/RPh)', issuer: 'State Pharmacy Boards', category: 'Clinical Pharmacy', icon: Sparkles },
+    { title: 'Registered Pharmacist (PharmD/RPh)', issuer: 'State Pharmacy Boards', category: 'Clinical Pharmacy', icon: HeartPulse },
     { title: 'LEED AP BD+C Building Design', issuer: 'U.S. Green Building Council', category: 'Architecture & Design', icon: PenTool },
     { title: 'FAA Part 107 Remote Pilot', issuer: 'Federal Aviation Administration', category: 'Commercial Aviation', icon: Plane },
     { title: 'Certified Kubernetes Admin (CKA)', issuer: 'Linux Foundation / CNCF', category: 'Cloud Native', icon: Cpu },
@@ -35,7 +37,7 @@ export const InteroperabilityRibbon: React.FC = () => {
     { title: 'Peer-Reviewed Journal DOIs', issuer: 'Scientific Societies', category: 'Scholarly Research', icon: BookOpen },
     { title: 'Multi-Region Distributed Migrations', issuer: 'Enterprise Deliveries', category: 'System Architecture', icon: Cpu },
     { title: 'Academic Preceptorship Logs', issuer: 'Graduate Residencies', category: 'Clinical Education', icon: GraduationCap },
-    { title: 'Conference Keynotes & Posters', issuer: 'National Conventions', category: 'Thought Leadership', icon: Sparkles },
+    { title: 'Conference Keynotes & Posters', issuer: 'National Conventions', category: 'Thought Leadership', icon: BookOpen },
     { title: 'NREMT 60-Hour NCCP Renewals', issuer: 'Universal CE Engine', category: 'Recertification Rules', icon: ShieldCheck },
     { title: 'Good Clinical Practice (GCP)', issuer: 'CITI Program / NIH', category: 'Clinical Trial Ethics', icon: ShieldCheck },
     { title: 'State Board CE Contact Hours', issuer: 'Audited CE Repositories', category: 'License Compliance', icon: HeartPulse },
@@ -48,17 +50,38 @@ export const InteroperabilityRibbon: React.FC = () => {
 
   return (
     <section className="py-18 bg-white dark:bg-slate-900 border-y border-slate-200 dark:border-slate-800 overflow-hidden relative select-none transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center space-y-3">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 text-center space-y-3">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-xs font-semibold">
-          <Sparkles className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" />
-          <span>UNIVERSAL EVIDENCE & CREDENTIAL PASSPORT</span>
+          <Award className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" aria-hidden="true" />
+          <span>Universal Evidence & Credential Passport</span>
         </div>
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-black text-slate-900 dark:text-white tracking-tight">
           Built for every credential, license, CEU, project & portfolio.
         </h2>
         <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm max-w-3xl mx-auto leading-relaxed">
-          PathPort isn't confined to a single discipline. Whether you have state clinical licenses requiring CEUs, 60-PDU project management cycles, cloud architecture proofs, or peer-reviewed research—showcase your entire journey in one sovereign, living PathPort.
+          PathPort works across disciplines: state clinical licenses requiring CEUs, 60-PDU project management cycles, cloud architecture proofs, or peer-reviewed research—organized in one living record you own.
         </p>
+
+        {/* Accessible Play/Pause Controls satisfying WCAG 2.2.2 */}
+        <div className="pt-2">
+          <button
+            onClick={() => setIsPaused(!isPaused)}
+            aria-label={isPaused ? "Play credential showcase animation" : "Pause credential showcase animation"}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 text-xs font-medium transition-colors cursor-pointer min-h-[44px]"
+          >
+            {isPaused ? (
+              <>
+                <Play className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 fill-current" aria-hidden="true" />
+                <span>Resume Animation</span>
+              </>
+            ) : (
+              <>
+                <Pause className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" aria-hidden="true" />
+                <span>Pause Animation</span>
+              </>
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Dual Infinite Scrolling Marquees with Fade Gradients */}
@@ -69,15 +92,18 @@ export const InteroperabilityRibbon: React.FC = () => {
 
         {/* Row 1: Credentials, Licenses & Board Specializations */}
         <div className="overflow-hidden flex">
-          <div className="animate-marquee flex items-center gap-3.5 pr-3.5">
+          <div 
+            className="animate-marquee flex items-center gap-3.5 pr-3.5"
+            style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
+          >
             {[...row1Credentials, ...row1Credentials].map((item, idx) => {
               const IconComp = item.icon;
               return (
                 <div
                   key={idx}
-                  className="flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/90 dark:border-slate-700/80 shadow-2xs hover:border-teal-700 hover:bg-white dark:hover:bg-slate-800 hover:shadow-xs transition-all whitespace-nowrap group shrink-0"
+                  className="flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/90 dark:border-slate-700/80 shadow-2xs hover:border-teal-700 hover:bg-white dark:hover:bg-slate-800 hover:shadow-xs transition-all whitespace-nowrap group shrink-0 focus-within:border-teal-700"
                 >
-                  <div className="w-8 h-8 rounded-xl bg-teal-50 dark:bg-teal-900/40 text-teal-800 dark:text-teal-300 flex items-center justify-center shrink-0 group-hover:bg-teal-800 group-hover:text-white transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-teal-50 dark:bg-teal-900/40 text-teal-800 dark:text-teal-300 flex items-center justify-center shrink-0 group-hover:bg-teal-800 group-hover:text-white transition-colors" aria-hidden="true">
                     <IconComp className="w-4 h-4" />
                   </div>
                   <div>
@@ -96,15 +122,18 @@ export const InteroperabilityRibbon: React.FC = () => {
 
         {/* Row 2: Projects, Case Studies, Degrees, CE Renewals & Evidence */}
         <div className="overflow-hidden flex">
-          <div className="animate-marquee-reverse flex items-center gap-3.5 pr-3.5">
+          <div 
+            className="animate-marquee-reverse flex items-center gap-3.5 pr-3.5"
+            style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
+          >
             {[...row2Evidence, ...row2Evidence].map((item, idx) => {
               const IconComp = item.icon;
               return (
                 <div
                   key={idx}
-                  className="flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/90 dark:border-slate-700/80 shadow-2xs hover:border-teal-700 hover:bg-white dark:hover:bg-slate-800 hover:shadow-xs transition-all whitespace-nowrap group shrink-0"
+                  className="flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/90 dark:border-slate-700/80 shadow-2xs hover:border-teal-700 hover:bg-white dark:hover:bg-slate-800 hover:shadow-xs transition-all whitespace-nowrap group shrink-0 focus-within:border-teal-700"
                 >
-                  <div className="w-8 h-8 rounded-xl bg-purple-50 dark:bg-purple-900/40 text-purple-800 dark:text-purple-300 flex items-center justify-center shrink-0 group-hover:bg-purple-800 group-hover:text-white transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-purple-50 dark:bg-purple-900/40 text-purple-800 dark:text-purple-300 flex items-center justify-center shrink-0 group-hover:bg-purple-800 group-hover:text-white transition-colors" aria-hidden="true">
                     <IconComp className="w-4 h-4" />
                   </div>
                   <div>
@@ -127,7 +156,7 @@ export const InteroperabilityRibbon: React.FC = () => {
 
 // Simple inline Lock icon component helper
 const LockIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <ShieldCheck className={className} />
+  <ShieldCheck className={className} aria-hidden="true" />
 );
 
 export default InteroperabilityRibbon;

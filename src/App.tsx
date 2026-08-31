@@ -20,6 +20,10 @@ import { StudentsFunnel } from './pages/StudentsFunnel';
 import { EnterpriseFunnel } from './pages/EnterpriseFunnel';
 import { BoardCertificationsFunnel } from './pages/BoardCertificationsFunnel';
 
+// Comparison & Utility Pages
+import { VsCeBroker } from './pages/marketing/funnels/VsCeBroker';
+import { RenewalCalculator } from './pages/marketing/tools/RenewalCalculator';
+
 // Legal & Security Pages
 import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { TermsOfService } from './pages/TermsOfService';
@@ -85,7 +89,7 @@ const HomePage: React.FC = () => (
       jsonLd={homeFaqJsonLd}
     />
     <Navbar />
-    <main>
+    <main id="main-content" tabIndex={-1} className="focus:outline-none">
       <Hero />
       <InteroperabilityRibbon />
       <FeaturePillars />
@@ -113,6 +117,10 @@ export const App: React.FC = () => {
             <Route path="/for/students" element={<StudentsFunnel />} />
             <Route path="/for/enterprise" element={<EnterpriseFunnel />} />
             <Route path="/for/board-certifications" element={<BoardCertificationsFunnel />} />
+            
+            {/* Comparison & Utility Tool Routes */}
+            <Route path="/vs/ce-broker" element={<VsCeBroker />} />
+            <Route path="/tools/renewal-calculator" element={<RenewalCalculator />} />
             
             {/* Public Verified Passport Route */}
             <Route path="/p/:slug" element={<PublicPassportDemo />} />

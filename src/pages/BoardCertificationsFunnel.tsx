@@ -4,10 +4,11 @@ import { Footer } from '../components/Footer';
 import { BetaRegistrationModal } from '../components/BetaRegistrationModal';
 import { 
   Award, ArrowRight, ShieldCheck, CheckCircle2, 
-  Sparkles, Compass, TrendingUp, HeartPulse, Cpu, BookOpen 
+  Compass, TrendingUp, HeartPulse, Cpu, BookOpen 
 } from 'lucide-react';
 
 import { SEO } from '../components/SEO';
+import { PersonaPillarsSection } from '../components/PersonaPillarsSection';
 
 export const BoardCertificationsFunnel: React.FC = () => {
   const [isBetaModalOpen, setIsBetaModalOpen] = useState(false);
@@ -39,14 +40,14 @@ export const BoardCertificationsFunnel: React.FC = () => {
       />
       <Navbar />
 
-      <main className="py-16 md:py-24 space-y-20">
+      <main id="main-content" tabIndex={-1} className="py-16 md:py-24 space-y-20 focus:outline-none">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
           
           {/* Header */}
           <div className="text-center max-w-4xl mx-auto space-y-4">
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-teal-50 dark:bg-teal-950/60 text-teal-800 dark:text-teal-300 text-xs font-semibold border border-teal-200 dark:border-teal-800">
               <Award className="w-4 h-4 text-teal-700 dark:text-teal-400" />
-              PATHPORT CERTIFY • CREDENTIAL ISSUANCE & REVENUE
+              PathPort Certify • Credential Issuance
             </span>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-slate-900 dark:text-white tracking-tight leading-tight">
@@ -219,23 +220,24 @@ export const BoardCertificationsFunnel: React.FC = () => {
           <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 sm:p-12 border-2 border-teal-800/80 dark:border-teal-500 shadow-md space-y-8 transition-colors">
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 dark:bg-teal-950/60 border border-teal-200 dark:border-teal-800 text-teal-800 dark:text-teal-300 text-xs font-semibold">
-                <Sparkles className="w-3.5 h-3.5 text-teal-700 dark:text-teal-400" />
-                <span>PATHAI • CREDENTIAL GOVERNANCE SPOTLIGHT</span>
+                <ShieldCheck className="w-3.5 h-3.5 text-teal-700 dark:text-teal-400" />
+                <span>PathAI Credential Governance</span>
               </div>
 
               <div className="max-w-3xl space-y-3">
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-black text-slate-900 dark:text-white tracking-tight leading-tight">
-                  Intelligent Topic Audits & Streamlined Candidate Review
+                  Comprehensive Candidate Governance.{' '}
+                  <span className="text-teal-800 dark:text-teal-400 block mt-1">Evaluating Multi-Pillar Competence, Not Just Exam Fees.</span>
                 </h2>
                 <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">
-                  Reduce administrative reviewer hours. PathPort Certify automatically parses submitted transcripts, categorizes topic contact hours against board requirements, and flags deficiencies before formal reviewer submission.
+                  Leading certification boards require more than multiple choice tests. PathPort Certify equips your organization with a complete rule engine to evaluate continuing education topic distributions, clinical case studies, and verified experience portfolios in a streamlined reviewer queue.
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
                 <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 space-y-2">
                   <Compass className="w-5 h-5 text-teal-800 dark:text-teal-400" />
-                  <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Automated Topic Verification</h4>
+                  <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Automated Topic Audits</h4>
                   <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
                     Evaluates submitted courses against accredited topic categories to prevent accidental over-counting.
                   </p>
@@ -272,6 +274,57 @@ export const BoardCertificationsFunnel: React.FC = () => {
               </div>
             </div>
           </div>
+
+          {/* 6 Action Pillars for Certification Bodies */}
+          <PersonaPillarsSection
+            eyebrow="Issuance Governance Framework"
+            title="The 6 Action Pillars for Credential Bodies & Specialty Boards"
+            subtitle="Administer rigorous, modern certification programs across all six dimensions of professional capability."
+            pillars={[
+              {
+                name: "1. Earn",
+                category: "Cryptographic Badges & Wallet Passes",
+                icon: Award,
+                description: "Issue tamper-evident, Issuer-Verified digital credentials with verifiable SHA-256 provenance.",
+                example: "Tamper-Evident Specialty Board Credential Issuance"
+              },
+              {
+                name: "2. Learn",
+                category: "Automated Topic Calculation Engine",
+                icon: BookOpen,
+                description: "Deterministic audit calculations evaluating candidate contact hours against versioned rules.",
+                example: "Strict Category Topic & CE Contact Hour Validation"
+              },
+              {
+                name: "3. Build",
+                category: "Program Requirements & Rule Sets",
+                icon: Cpu,
+                description: "Define versioned certification rules, prerequisite matrices, and recertification cycles.",
+                example: "Versioned Multi-Year Certification Rule Definition"
+              },
+              {
+                name: "4. Demonstrate",
+                category: "Candidate Evidence Review Queues",
+                icon: ShieldCheck,
+                description: "Streamlined reviewer queues with inline inspection of case studies, publications, and transcripts.",
+                example: "Candidate Clinical Evidence & Case Study Review"
+              },
+              {
+                name: "5. Experience",
+                category: "Tenure & Prerequisite Verification",
+                icon: TrendingUp,
+                description: "Validate prerequisite clinical practice hours, leadership tenure, and supervisory endorsements.",
+                example: "Candidate Clinical Tenure & Preceptorship Audit"
+              },
+              {
+                name: "6. Reflect",
+                category: "Audited Reviewer Decisions & Appeals",
+                icon: Compass,
+                description: "Transparent, immutable audit trails of reviewer decisions, candidate appeals, and renewal cycles.",
+                example: "Transparent Reviewer Audit Log & Governance"
+              }
+            ]}
+          />
         </div>
       </main>
 

@@ -4,11 +4,12 @@ import { Footer } from '../components/Footer';
 import { BetaRegistrationModal } from '../components/BetaRegistrationModal';
 import { 
   ArrowRight, Clock, Briefcase, 
-  Sparkles, Compass, TrendingUp, Cpu, 
+  Compass, TrendingUp, Cpu, 
   CheckCircle2, FileText, Layers, ShieldCheck 
 } from 'lucide-react';
 
 import { SEO } from '../components/SEO';
+import { PersonaPillarsSection } from '../components/PersonaPillarsSection';
 
 export const ProjectManagersFunnel: React.FC = () => {
   const [isBetaModalOpen, setIsBetaModalOpen] = useState(false);
@@ -40,14 +41,14 @@ export const ProjectManagersFunnel: React.FC = () => {
       />
       <Navbar />
 
-      <main className="py-16 md:py-24 space-y-20">
+      <main id="main-content" tabIndex={-1} className="py-16 md:py-24 space-y-20 focus:outline-none">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
           
           {/* Header */}
           <div className="text-center max-w-4xl mx-auto space-y-4">
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-semibold border border-emerald-200 dark:border-emerald-800">
               <Cpu className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
-              PATHPORT FOR PROJECT MANAGERS & TECHNICAL LEADS
+              For Project & Technical Leaders
             </span>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-slate-900 dark:text-white tracking-tight leading-tight">
@@ -178,16 +179,17 @@ export const ProjectManagersFunnel: React.FC = () => {
           <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 sm:p-12 border-2 border-teal-800/80 dark:border-teal-500 shadow-md space-y-8 transition-colors">
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 dark:bg-teal-950/60 border border-teal-200 dark:border-teal-800 text-teal-800 dark:text-teal-300 text-xs font-semibold">
-                <Sparkles className="w-3.5 h-3.5 text-teal-700 dark:text-teal-400" />
-                <span>PATHAI • TPM & PROGRAM LEADERSHIP ADVISOR</span>
+                <Compass className="w-3.5 h-3.5 text-teal-700 dark:text-teal-400" />
+                <span>PathAI Leadership Advisor</span>
               </div>
 
               <div className="max-w-3xl space-y-3">
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-black text-slate-900 dark:text-white tracking-tight leading-tight">
-                  Meet PathAI: Guiding Your Journey to VP of Technical Programs
+                  Advising Your Full Program Leadership Journey.{' '}
+                  <span className="text-teal-800 dark:text-teal-400 block mt-1">Not Just Recommending Generic Developer Badges.</span>
                 </h2>
                 <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">
-                  Whether you're stepping up from Senior PM to Director, moving into Cloud Engineering management, or earning your <strong>PgMP® Program Management Professional</strong>—PathAI evaluates your verified delivery record to chart your next career move.
+                  Generic credential tools see you work with engineers and recommend entry-level coding tests. PathAI knows your strengths are program governance, risk stewardship, and executive stakeholder alignment. Whether stepping up to Director of PMO or pursuing PgMP®, PathAI evaluates your real delivery proofs.
                 </p>
               </div>
 
@@ -196,7 +198,7 @@ export const ProjectManagersFunnel: React.FC = () => {
                   <Compass className="w-5 h-5 text-teal-800 dark:text-teal-400" />
                   <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Executive Track Mapping</h4>
                   <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
-                    Evaluates multi-million dollar budget stewardship and organizational transformation proofs for executive roles.
+                    Evaluates capital budget stewardship, vendor negotiation, and organizational restructuring proofs for executive roles.
                   </p>
                 </div>
 
@@ -210,7 +212,7 @@ export const ProjectManagersFunnel: React.FC = () => {
 
                 <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 space-y-2">
                   <FileText className="w-5 h-5 text-teal-800 dark:text-teal-400" />
-                  <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Enterprise Case Study Drafter</h4>
+                  <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Enterprise Case Study Studio</h4>
                   <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
                     Turns architecture migrations and sprint turnaround data into compelling, structured executive case studies.
                   </p>
@@ -232,10 +234,61 @@ export const ProjectManagersFunnel: React.FC = () => {
             </div>
           </div>
 
+          {/* 6 Action Pillars for Project & Technical Leaders */}
+          <PersonaPillarsSection
+            eyebrow="Delivery Leadership Framework"
+            title="The 6 Action Pillars for Project & Technical Leaders"
+            subtitle="Advancing into program director and executive engineering roles requires proof across all six dimensions."
+            pillars={[
+              {
+                name: "1. Earn",
+                category: "Professional Credentials & Certs",
+                icon: ShieldCheck,
+                description: "PMP®, PgMP®, Scrum Master (CSM), and cloud architecture certifications (AWS, GCP, Azure).",
+                example: "PMI PMP® or AWS Certified Solutions Architect"
+              },
+              {
+                name: "2. Learn",
+                category: "CCRS 60-PDU Triennial Tracking",
+                icon: Clock,
+                description: "Balanced PDU distribution across Ways of Working, Power Skills, and Business Acumen.",
+                example: "60 PDUs in Strategic Program Management"
+              },
+              {
+                name: "3. Build",
+                category: "Architecture & Framework Toolkits",
+                icon: Cpu,
+                description: "Agile release trains, governance charters, automated CI/CD release runbooks, and risk matrices.",
+                example: "Enterprise Zero-Downtime Migration Playbook"
+              },
+              {
+                name: "4. Demonstrate",
+                category: "Structured Delivery Case Studies",
+                icon: FileText,
+                description: "Verifiable Challenge-Approach-Outcome proofs: cloud cost reduction, legacy cutovers, and sprint velocity ROI.",
+                example: "4-Region Cloud Database Migration Case Study"
+              },
+              {
+                name: "5. Experience",
+                category: "Program Governance & Budget Oversight",
+                icon: Briefcase,
+                description: "Cross-functional engineering program leadership, vendor negotiations, and multi-million dollar capital budgets.",
+                example: "8+ Years Distributed Systems Program Leadership"
+              },
+              {
+                name: "6. Reflect",
+                category: "Executive Governance & Crisis Narratives",
+                icon: Layers,
+                description: "Structured narratives detailing stakeholder crisis leadership, post-mortem retrospectives, and agile philosophy.",
+                example: "Crisis Management & Stakeholder Alignment Narrative"
+              }
+            ]}
+          />
+
           {/* Bottom CTA Banner */}
           <div className="bg-white dark:bg-slate-900 rounded-3xl p-10 border border-slate-200 dark:border-slate-800 shadow-sm text-center space-y-4">
             <h2 className="text-2xl font-display font-bold text-slate-900 dark:text-white">
-              Ready to elevate your project leadership portfolio?
+              Ready to build your project leadership portfolio?
             </h2>
             <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm max-w-xl mx-auto">
               Join founding project directors, Scrum masters, and engineering delivery leaders.

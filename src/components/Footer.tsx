@@ -12,7 +12,7 @@ export const Footer: React.FC = () => {
           
           {/* Col 1: Brand & Thesis (span 4) */}
           <div className="md:col-span-4 space-y-4">
-            <Link to="/" className="inline-block">
+            <Link to="/" className="inline-block" aria-label="PathPort Home">
               <Logo size={28} />
             </Link>
             <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed max-w-sm">
@@ -20,11 +20,11 @@ export const Footer: React.FC = () => {
             </p>
             <div className="space-y-2 pt-2 text-[11px] text-slate-500 dark:text-slate-400">
               <div className="flex items-center gap-1.5 font-medium text-emerald-800 dark:text-emerald-400">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" aria-hidden="true" />
                 <span>Privacy-by-Default Architecture</span>
               </div>
               <div className="flex items-center gap-1.5 font-medium text-teal-800 dark:text-teal-400">
-                <Lock className="w-3.5 h-3.5 text-teal-700 dark:text-teal-400 shrink-0" />
+                <Lock className="w-3.5 h-3.5 text-teal-700 dark:text-teal-400 shrink-0" aria-hidden="true" />
                 <span>Scoped Consent & Source Verification</span>
               </div>
             </div>

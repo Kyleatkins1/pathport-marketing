@@ -4,11 +4,12 @@ import { Footer } from '../components/Footer';
 import { BetaRegistrationModal } from '../components/BetaRegistrationModal';
 import { 
   ArrowRight, Award, Clock, Briefcase, 
-  Sparkles, Compass, TrendingUp, HeartPulse, 
+  Compass, TrendingUp, HeartPulse, 
   ShieldCheck, CheckCircle2, FileText, Plane 
 } from 'lucide-react';
 
 import { SEO } from '../components/SEO';
+import { PersonaPillarsSection } from '../components/PersonaPillarsSection';
 
 export const ParamedicsFunnel: React.FC = () => {
   const [isBetaModalOpen, setIsBetaModalOpen] = useState(false);
@@ -40,14 +41,14 @@ export const ParamedicsFunnel: React.FC = () => {
       />
       <Navbar />
 
-      <main className="py-16 md:py-24 space-y-20">
+      <main id="main-content" tabIndex={-1} className="py-16 md:py-24 space-y-20 focus:outline-none">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
           
           {/* Header */}
           <div className="text-center max-w-4xl mx-auto space-y-4">
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-semibold border border-emerald-200 dark:border-emerald-800">
               <Plane className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
-              PATHPORT FOR PARAMEDICS & EMS PROFESSIONALS
+              For Paramedics & Emergency Clinicians
             </span>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-slate-900 dark:text-white tracking-tight leading-tight">
@@ -174,45 +175,46 @@ export const ParamedicsFunnel: React.FC = () => {
             </div>
           </div>
 
-          {/* PathAI Career Advisor Spotlight for EMS */}
+          {/* PathAI Career Advisor Spotlight for Paramedics */}
           <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 sm:p-12 border-2 border-teal-800/80 dark:border-teal-500 shadow-md space-y-8 transition-colors">
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 dark:bg-teal-950/60 border border-teal-200 dark:border-teal-800 text-teal-800 dark:text-teal-300 text-xs font-semibold">
-                <Sparkles className="w-3.5 h-3.5 text-teal-700 dark:text-teal-400" />
-                <span>PATHAI • EMS CAREER ADVISOR SPOTLIGHT</span>
+                <Compass className="w-3.5 h-3.5 text-teal-700 dark:text-teal-400" />
+                <span>PathAI EMS Advisor</span>
               </div>
 
               <div className="max-w-3xl space-y-3">
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-black text-slate-900 dark:text-white tracking-tight leading-tight">
-                  Meet PathAI: Guiding Your Journey from 911 Field to Flight Lead
+                  Advising Your Full Emergency Career Journey.{' '}
+                  <span className="text-teal-800 dark:text-teal-400 block mt-1">Beyond Just Stacking Repetitive Refresher Courses.</span>
                 </h2>
                 <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">
-                  Whether you're targeting your <strong>Certified Flight Paramedic (FP-C)</strong>, stepping up to EMS Field Training Officer (FTO), or advancing into operations management—PathAI evaluates your verified clinical hours and CE logs to chart practical next steps.
+                  Traditional EMS portals just prompt you to repeat CPR and airway cards. PathAI evaluates your entire clinical trajectory: your 911 field saves, ventilator labs, Field Training Officer (FTO) mentorship, and flight transport aspirations to map clear board prerequisites.
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
                 <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 space-y-2">
                   <Compass className="w-5 h-5 text-teal-800 dark:text-teal-400" />
-                  <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Flight Transport Readiness</h4>
+                  <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Flight & Critical Care Readiness</h4>
                   <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
-                    Evaluates high-acuity field years, ventilator labs, and aero-medical physiology hours for board exam prep.
+                    Evaluates high-acuity field years, ventilator labs, and aero-medical physiology hours for IBSC FP-C exam prep.
                   </p>
                 </div>
 
                 <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 space-y-2">
                   <TrendingUp className="w-5 h-5 text-teal-800 dark:text-teal-400" />
-                  <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Requirement Gap Analysis</h4>
+                  <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">NCCP Requirement Gap Analysis</h4>
                   <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
-                    Identifies missing mandatory topic hours (Pediatric, Airway, Trauma) across local, state, and national recertification rules.
+                    Identifies missing mandatory topic hours across National (30h), State (15h), and Individual (15h) recertification rules.
                   </p>
                 </div>
 
                 <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 space-y-2">
                   <FileText className="w-5 h-5 text-teal-800 dark:text-teal-400" />
-                  <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Field Case Study Drafter</h4>
+                  <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Field Case Study Studio</h4>
                   <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
-                    Transforms anonymized field resuscitations and protocol QA into structured evidence case studies flight recruiters value.
+                    Transforms pre-hospital cardiac resuscitations and protocol QA into structured evidence flight recruiters value.
                   </p>
                 </div>
               </div>
@@ -231,6 +233,57 @@ export const ParamedicsFunnel: React.FC = () => {
               </div>
             </div>
           </div>
+
+          {/* 6 Action Pillars for EMS & Paramedics */}
+          <PersonaPillarsSection
+            eyebrow="EMS Evidence Framework"
+            title="The 6 Action Pillars for Emergency Medical Clinicians"
+            subtitle="Advancing in pre-hospital, flight, and EMS operations requires structured proof across all six dimensions."
+            pillars={[
+              {
+                name: "1. Earn",
+                category: "National Registry & Board Specialties",
+                icon: Award,
+                description: "NREMT Paramedic certification, state agency credentials, IBSC FP-C / CCP-C, and instructor cards.",
+                example: "Nationally Registered Paramedic (NRP) & IBSC FP-C"
+              },
+              {
+                name: "2. Learn",
+                category: "NCCP 60-Hour Recertification",
+                icon: Clock,
+                description: "Automated distribution across National (30h), State/Local (15h), and Individual (15h) categories.",
+                example: "NREMT 60-Hour NCCP Cycle Tracking"
+              },
+              {
+                name: "3. Build",
+                category: "Clinical Guidelines & Training Curriculums",
+                icon: ShieldCheck,
+                description: "Pre-hospital RSI algorithms, mechanical ventilator checklists, and pediatric resuscitation kits.",
+                example: "Agency Mechanical Ventilation Protocol & Checklist"
+              },
+              {
+                name: "4. Demonstrate",
+                category: "High-Acuity Resuscitation Case Studies",
+                icon: FileText,
+                description: "Documented cardiac arrest saves, complex surgical airway management, and multi-agency MCI coordination.",
+                example: "Aero-Medical Critical Care RSI Case Study"
+              },
+              {
+                name: "5. Experience",
+                category: "Field Operations & FTO Preceptorship",
+                icon: Briefcase,
+                description: "High-volume 911 frontline shifts, critical care rotor wing flight hours, and new recruit field coaching.",
+                example: "10+ Years 911 Field Clinician & Lead FTO Officer"
+              },
+              {
+                name: "6. Reflect",
+                category: "Crew Resource Management (CRM) Narratives",
+                icon: HeartPulse,
+                description: "Incident command debriefs, high-stress communication frameworks, and clinical QA reflection logs.",
+                example: "Crew Resource Management in Flight Transport Narrative"
+              }
+            ]}
+          />
 
           {/* Bottom CTA Banner */}
           <div className="bg-white dark:bg-slate-900 rounded-3xl p-10 border border-slate-200 dark:border-slate-800 shadow-sm text-center space-y-4">

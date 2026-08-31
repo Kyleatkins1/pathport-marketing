@@ -8,16 +8,16 @@
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display tracking-tight text-slate-900;
+    @apply font-display tracking-tight text-slate-900 dark:text-white;
   }
 
-  /* Accessible Focus-Visible Rings */
+  /* Accessible Focus-Visible Rings satisfying WCAG 2.2 2.4.11 */
   :focus-visible {
-    @apply outline-none ring-2 ring-teal-800 ring-offset-2 ring-offset-slate-50;
+    @apply outline-none ring-2 ring-teal-700 dark:ring-teal-400 ring-offset-2 ring-offset-slate-50 dark:ring-offset-slate-950;
   }
 }
 
-/* WCAG 2.1 AA Reduced Motion Support */
+/* WCAG 2.2 AA Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {
     animation-duration: 0.01ms !important;
@@ -28,16 +28,33 @@
 }
 
 @layer utilities {
+  /* Veritas Ether Surface Hierarchy (NarcTrack / Veritas Standard) */
+  .card-surface-white {
+    @apply bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-3xl shadow-sm transition-all;
+  }
+
+  .card-surface-tinted {
+    @apply bg-teal-50/70 dark:bg-teal-950/30 border border-teal-200/80 dark:border-teal-800/60 rounded-3xl transition-all;
+  }
+
+  .card-surface-navy {
+    @apply bg-slate-950 border border-slate-800 rounded-3xl shadow-xl text-white transition-all;
+  }
+
+  .mesh-backdrop {
+    background-image: radial-gradient(circle at 50% 0%, rgba(13, 148, 136, 0.12) 0%, transparent 70%);
+  }
+
   .subtle-card {
-    @apply bg-white border border-slate-200/90 rounded-2xl shadow-xs transition-all;
+    @apply bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-2xl shadow-sm transition-all;
   }
 
   .subtle-card-hover {
-    @apply hover:border-slate-300 hover:shadow-md transition-all duration-200;
+    @apply hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md transition-all duration-200;
   }
 
   .glass-nav {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid rgba(226, 232, 240, 0.9);

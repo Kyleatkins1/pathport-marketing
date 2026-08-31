@@ -4,11 +4,12 @@ import { Footer } from '../components/Footer';
 import { BetaRegistrationModal } from '../components/BetaRegistrationModal';
 import { 
   ArrowRight, Award, Clock, Briefcase, 
-  Sparkles, Compass, TrendingUp, HeartPulse, Building2, 
+  Compass, TrendingUp, HeartPulse, Building2, 
   CheckCircle2, FileText, Stethoscope 
 } from 'lucide-react';
 
 import { SEO } from '../components/SEO';
+import { PersonaPillarsSection } from '../components/PersonaPillarsSection';
 
 export const NursesFunnel: React.FC = () => {
   const [isBetaModalOpen, setIsBetaModalOpen] = useState(false);
@@ -45,14 +46,14 @@ export const NursesFunnel: React.FC = () => {
       />
       <Navbar />
 
-      <main className="py-16 md:py-24 space-y-20">
+      <main id="main-content" tabIndex={-1} className="py-16 md:py-24 space-y-20 focus:outline-none">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
           
           {/* Header */}
           <div className="text-center max-w-4xl mx-auto space-y-4">
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-semibold border border-emerald-200 dark:border-emerald-800">
               <Stethoscope className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
-              PATHPORT FOR NURSING & HEALTHCARE LEADERS
+              For Nursing & Healthcare Leaders
             </span>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-slate-900 dark:text-white tracking-tight leading-tight">
@@ -195,25 +196,26 @@ export const NursesFunnel: React.FC = () => {
           <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 sm:p-12 border-2 border-teal-800/80 dark:border-teal-500 shadow-md space-y-8 transition-colors">
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 dark:bg-teal-950/60 border border-teal-200 dark:border-teal-800 text-teal-800 dark:text-teal-300 text-xs font-semibold">
-                <Sparkles className="w-3.5 h-3.5 text-teal-700 dark:text-teal-400" />
-                <span>PATHAI • HEALTHCARE ADVISOR SPOTLIGHT</span>
+                <Compass className="w-3.5 h-3.5 text-teal-700 dark:text-teal-400" />
+                <span>PathAI Career Advisor</span>
               </div>
 
               <div className="max-w-3xl space-y-3">
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-black text-slate-900 dark:text-white tracking-tight leading-tight">
-                  Meet PathAI: Guiding Your Journey from Bedside to Healthcare Executive
+                  Advising Your Full Healthcare Journey.{' '}
+                  <span className="text-teal-800 dark:text-teal-400 block mt-1">Not Just Recommending More Clinical Badges.</span>
                 </h2>
                 <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">
-                  Whether you want to transition from bedside nursing to health informatics, prepare for an advanced practice program, step into management, or target executive fellowship—PathAI evaluates your evidence record to suggest practical next steps.
+                  Generic LMS portals assume that because you have an RN license, you only want more bedside modules. PathAI knows your complete journey: your ICU charge tenure, EHR committee leadership, and personal career intent. Whether you are transitioning to Informatics, preparing for NP school, or targeting an executive CNO role, PathAI maps the exact evidence you need.
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
                 <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 space-y-2">
                   <Compass className="w-5 h-5 text-teal-800 dark:text-teal-400" />
-                  <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Executive Readiness</h4>
+                  <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Career Transition Mapping</h4>
                   <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
-                    Evaluates healthcare management experience, continuing education hours, and committee governance.
+                    Evaluates clinical charge leadership and committee participation to bridge into Informatics or Quality Management.
                   </p>
                 </div>
 
@@ -221,15 +223,15 @@ export const NursesFunnel: React.FC = () => {
                   <TrendingUp className="w-5 h-5 text-teal-800 dark:text-teal-400" />
                   <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Requirement Gap Analysis</h4>
                   <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
-                    Identifies missing education credits, clinical contact hours, or quality case studies required for your next move.
+                    Identifies missing state-mandated contact hours, specialty board prerequisites, or clinical case studies.
                   </p>
                 </div>
 
                 <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 space-y-2">
                   <FileText className="w-5 h-5 text-teal-800 dark:text-teal-400" />
-                  <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">QI & Governance Drafter</h4>
+                  <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">QI & Clinical Case Study Studio</h4>
                   <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
-                    Transforms clinical quality metrics and system rollouts into structured case studies.
+                    Transforms hospital sepsis initiatives, CAUTI reductions, and preceptorships into structured proof.
                   </p>
                 </div>
               </div>
@@ -248,6 +250,57 @@ export const NursesFunnel: React.FC = () => {
               </div>
             </div>
           </div>
+
+          {/* 6 Action Pillars for Nursing & Healthcare */}
+          <PersonaPillarsSection
+            eyebrow="Healthcare Evidence Framework"
+            title="The 6 Action Pillars for Healthcare Professionals"
+            subtitle="Advancing your nursing and healthcare career requires a balanced evidence portfolio across all six dimensions."
+            pillars={[
+              {
+                name: "1. Earn",
+                category: "Board Licenses & Specialty Certs",
+                icon: Award,
+                description: "State RN/NP multi-state compact licenses, CCRN, NEA-BC, and executive fellowships.",
+                example: "eNLC Multi-State RN License or ANCC Board Certification"
+              },
+              {
+                name: "2. Learn",
+                category: "Mandatory State CEUs & Topics",
+                icon: Clock,
+                description: "State BON-mandated contact hours (e.g. Florida Medical Errors, CA Implicit Bias, Texas Jurisprudence).",
+                example: "24 Biannual CE Contact Hours with Provider Tracking"
+              },
+              {
+                name: "3. Build",
+                category: "Clinical Protocols & Curriculums",
+                icon: Stethoscope,
+                description: "Unit training curriculums, simulation lab checklists, clinical preceptorship guides, and EHR order sets.",
+                example: "Unit-Wide Sepsis Triage Protocol & EHR Order Set"
+              },
+              {
+                name: "4. Demonstrate",
+                category: "Structured Clinical QI Case Studies",
+                icon: FileText,
+                description: "Measured quality improvements: CAUTI reduction, door-to-balloon times, and patient satisfaction outcomes.",
+                example: "ICU Sepsis Reduction Case Study (-38% Mortality)"
+              },
+              {
+                name: "5. Experience",
+                category: "Operational Leadership & Preceptorship",
+                icon: Briefcase,
+                description: "Inpatient charge nurse tenure, hospital committee chairs, code team leadership, and student precepting.",
+                example: "8+ Years Charge Nurse & Hospital EHR Committee Lead"
+              },
+              {
+                name: "6. Reflect",
+                category: "Patient Advocacy & Ethics Narratives",
+                icon: HeartPulse,
+                description: "Structured narratives detailing your clinical philosophy, ethical decision-making, and mentorship approach.",
+                example: "Patient-Centered Advocacy in Critical Care Narrative"
+              }
+            ]}
+          />
 
           {/* Bottom CTA Banner */}
           <div className="bg-white dark:bg-slate-900 rounded-3xl p-10 border border-slate-200 dark:border-slate-800 shadow-sm text-center space-y-4">

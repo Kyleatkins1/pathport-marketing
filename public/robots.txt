@@ -1,13 +1,17 @@
-# Robots.txt for PathPort Marketing Platform
+# Robots.txt for PathPort Marketing Platform (https://getpathport.com)
 User-agent: *
 Allow: /
 Allow: /for/
+Allow: /vs/
+Allow: /tools/
 Allow: /p/
 Allow: /privacy
 Allow: /terms
 Allow: /security
+Allow: /llms.txt
+Allow: /llms-full.txt
 
-# AI Crawlers & Scrapers
+# AI Search & LLM Crawlers
 User-agent: GPTBot
 Allow: /
 
@@ -17,11 +21,23 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
+User-agent: Claude-Web
+Allow: /
+
 User-agent: PerplexityBot
 Allow: /
 
-User-agent: Applebot
+User-agent: Google-Extended
 Allow: /
 
-# Sitemap
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+# Sitemap & LLM Knowledge Bases
 Sitemap: https://getpathport.com/sitemap.xml
+# LLMs.txt specification: https://llmstxt.org
+# LLMs: https://getpathport.com/llms.txt
+# LLMs Full: https://getpathport.com/llms-full.txt

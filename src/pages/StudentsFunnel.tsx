@@ -4,11 +4,12 @@ import { Footer } from '../components/Footer';
 import { BetaRegistrationModal } from '../components/BetaRegistrationModal';
 import { 
   ArrowRight, Award, Clock, Briefcase, 
-  Sparkles, Compass, TrendingUp, GraduationCap, 
+  Compass, TrendingUp, GraduationCap, 
   CheckCircle2, FileText 
 } from 'lucide-react';
 
 import { SEO } from '../components/SEO';
+import { PersonaPillarsSection } from '../components/PersonaPillarsSection';
 
 export const StudentsFunnel: React.FC = () => {
   const [isBetaModalOpen, setIsBetaModalOpen] = useState(false);
@@ -40,14 +41,14 @@ export const StudentsFunnel: React.FC = () => {
       />
       <Navbar />
 
-      <main className="py-16 md:py-24 space-y-20">
+      <main id="main-content" tabIndex={-1} className="py-16 md:py-24 space-y-20 focus:outline-none">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
           
           {/* Header */}
           <div className="text-center max-w-4xl mx-auto space-y-4">
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-semibold border border-emerald-200 dark:border-emerald-800">
               <GraduationCap className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
-              PATHPORT FOR STUDENTS, RESEARCHERS & EARLY CAREER
+              For Students & Early Career
             </span>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-slate-900 dark:text-white tracking-tight leading-tight">
@@ -178,23 +179,24 @@ export const StudentsFunnel: React.FC = () => {
           <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 sm:p-12 border-2 border-teal-800/80 dark:border-teal-500 shadow-md space-y-8 transition-colors">
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 dark:bg-teal-950/60 border border-teal-200 dark:border-teal-800 text-teal-800 dark:text-teal-300 text-xs font-semibold">
-                <Sparkles className="w-3.5 h-3.5 text-teal-700 dark:text-teal-400" />
-                <span>PATHAI • STUDENT & EARLY CAREER ADVISOR</span>
+                <Compass className="w-3.5 h-3.5 text-teal-700 dark:text-teal-400" />
+                <span>PathAI Career Advisor</span>
               </div>
 
               <div className="max-w-3xl space-y-3">
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-black text-slate-900 dark:text-white tracking-tight leading-tight">
-                  Meet PathAI: Guiding Your Transition from Classroom to Industry
+                  Advising Your Full Early Career Journey.{' '}
+                  <span className="text-teal-800 dark:text-teal-400 block mt-1">Beyond Just Grades and Generic Keyword Résumés.</span>
                 </h2>
                 <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">
-                  Whether you're targeting your first software engineering internship, applying to medical school, or pivoting into clinical informatics—PathAI evaluates your academic projects to guide your next moves.
+                  Traditional campus job boards match you solely on your degree title. PathAI evaluates your complete tangible record: your capstone project repos, laboratory research protocols, volunteer leadership, and career aspirations to build a competitive evidence portfolio.
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
                 <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 space-y-2">
                   <Compass className="w-5 h-5 text-teal-800 dark:text-teal-400" />
-                  <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Role Matching</h4>
+                  <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Role Readiness Matching</h4>
                   <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
                     Compares your coursework and capstones directly against real-world job requirements to calculate your capability readiness.
                   </p>
@@ -204,13 +206,13 @@ export const StudentsFunnel: React.FC = () => {
                   <TrendingUp className="w-5 h-5 text-teal-800 dark:text-teal-400" />
                   <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Requirement Gap Analysis</h4>
                   <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
-                    Identifies high-leverage micro-certifications to help close entry requirements quickly.
+                    Identifies high-leverage micro-certifications and accredited modules to help close entry requirements quickly.
                   </p>
                 </div>
 
                 <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 space-y-2">
                   <FileText className="w-5 h-5 text-teal-800 dark:text-teal-400" />
-                  <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Project Case Study Drafter</h4>
+                  <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Project Case Study Studio</h4>
                   <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
                     Turns raw repos, lab notes, and capstone results into tangible, evidence-backed case studies that impress interviewers.
                   </p>
@@ -231,6 +233,57 @@ export const StudentsFunnel: React.FC = () => {
               </div>
             </div>
           </div>
+
+          {/* 6 Action Pillars for Students & Early Career */}
+          <PersonaPillarsSection
+            eyebrow="Early Career Evidence Framework"
+            title="The 6 Action Pillars for Students & Graduates"
+            subtitle="Standing out to top employers and admissions committees requires balanced evidence across all six dimensions."
+            pillars={[
+              {
+                name: "1. Earn",
+                category: "Degrees & Entry Credentials",
+                icon: Award,
+                description: "University degrees, fundamental state licenses, and accredited industry foundation certs.",
+                example: "BS in Computer Science or Registered EMT Card"
+              },
+              {
+                name: "2. Learn",
+                category: "Foundational & Lab Modules",
+                icon: Clock,
+                description: "Elective coursework, technical laboratory workshops, and micro-credential certifications.",
+                example: "Advanced Biosensor Lab or Cloud Foundations"
+              },
+              {
+                name: "3. Build",
+                category: "Capstone Repos & Prototypes",
+                icon: GraduationCap,
+                description: "Senior capstones, prototype applications, hardware schematics, and open-source contributions.",
+                example: "Microfluidic Biosensor Hardware Prototype"
+              },
+              {
+                name: "4. Demonstrate",
+                category: "Structured Capstone Case Studies",
+                icon: FileText,
+                description: "Clear Challenge-Approach-Outcome documentation detailing team contributions and measurable outcomes.",
+                example: "Senior Capstone Delivery Case Study"
+              },
+              {
+                name: "5. Experience",
+                category: "Internships & Clinical Rotations",
+                icon: Briefcase,
+                description: "Summer internships, undergraduate teaching assistantships, and clinical shadow rotations.",
+                example: "12-Week Biomedical Research Fellow Rotation"
+              },
+              {
+                name: "6. Reflect",
+                category: "Career Vision & Research Narratives",
+                icon: Compass,
+                description: "Personal statements, ethical research philosophies, and career growth aspirations.",
+                example: "Translational Bioengineering Vision Narrative"
+              }
+            ]}
+          />
 
           {/* Bottom CTA Banner */}
           <div className="bg-white dark:bg-slate-900 rounded-3xl p-10 border border-slate-200 dark:border-slate-800 shadow-sm text-center space-y-4">

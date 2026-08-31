@@ -1,25 +1,40 @@
 # PathPort (https://getpathport.com)
 
-> PathPort is the universal credential passport and digital portfolio platform for professionals across all industries. Consolidate PMP, AWS, Nursing, EMT, Trades, and academic certifications into one shareable, verifiable digital portfolio.
+> PathPort is the individual professional's portable, sovereign living identity and evidence record. Maintain your canonical record once, present yourself many ways with tailored portfolios, structured case studies, multi-state continuing education tracking, and whole-journey AI career guidance.
+
+## The 6 Action Pillars of PathPort
+PathPort models professional capability across six balanced dimensions:
+1. **Earn (Credentials & Board Licenses)**: State multi-state licenses, board specialties, and tamper-evident digital credentials (RN, NP, NREMT, FP-C, PMP).
+2. **Learn (Continuing Education & Accredited Topics)**: Mandatory contact hours, state topic buckets (e.g., Florida Medical Errors, California Implicit Bias, Texas Jurisprudence), and 60-hr NCCP / 60-PDU cycles.
+3. **Build (Applied Deliverables & Toolkits)**: Clinical protocols, simulation curriculums, technical architectures, EHR order sets, and open-source repositories.
+4. **Demonstrate (Structured Case Studies)**: Verifiable Challenge-Approach-Outcome work proofs with measured clinical and financial metrics.
+5. **Experience (Operational Roles & Preceptorship)**: Inpatient charge leadership, flight hours, FTO coaching, clinical rotations, and program governance.
+6. **Reflect (Leadership Philosophy & Incident Debriefs)**: Patient advocacy narratives, Crew Resource Management debriefs, and crisis management frameworks.
+
+## PathAI Whole-Journey Intelligence
+Unlike generic credential tools that perform simplistic badge clustering (e.g., suggesting more bedside modules just because an RN badge exists), PathAI understands the whole human journey. It evaluates clinical tenure, committee leadership, and personal career intent to map deterministic qualification roadmaps toward advanced practice, health informatics, flight critical care, or executive leadership.
 
 ## Core Capabilities
-- **Universal Credential Vault**: Encrypted PDF, image, and badge storage for licenses, certifications, and achievements.
-- **CEU & License Renewal Engine**: Automated state-by-state compliance tracking, CEU hour math, and 90/60/30-day expiration alerts.
-- **AI Resume & Certificate Parser**: Instant OCR extraction of issuer names, issue/expiration dates, and skills from PDFs into structured career milestones.
-- **Verifiable Digital Portfolio**: Custom URL (`https://getpathport.com/p/yourname`) and QR codes for LinkedIn, resumes, and employer verification without logins.
-- **PathPort for Organizations (B2B)**: Single-pane compliance dashboard for clinics, hospitals, EMS agencies, and enterprises to track workforce licenses and prevent compliance lapses.
+- **Individual Record Sovereignty**: 100% owned by the individual professional. Credentials, CEUs, case studies, and portfolios stay with you regardless of employer changes or state relocations.
+- **Multi-State CE & License Renewal Tracker**: Automatic state-by-state compliance tracking across all 50 states and eNLC compact rules with 30/60/90-day renewal radar alerts.
+- **Structured Case Study Builder**: Turns clinical quality rollouts, technical deliverables, and engineering projects into structured Challenge-Action-Metric proof narratives.
+- **Living Shareable Portfolios**: Instant permissioned links (`https://getpathport.com/p/yourname`) tailored for hiring managers, faculty appointments, travel agencies, or credentialing committees.
+- **PathAI Career & Transition Advisor**: Deterministic gap analysis and learning pathway recommendations for adjacent career transitions.
+- **Privacy Firewalls (PathPort Teams)**: Employers receive scoped consent verification for active role compliance without accessing private career history or unshared records.
 
-## Key Pages & Funnels
+## Key Comparison & Resource Pages
 - Main Website: https://getpathport.com/
-- For Nurses: https://getpathport.com/for/nurses
-- For Paramedics & EMTs: https://getpathport.com/for/paramedics
-- For Project Managers: https://getpathport.com/for/project-managers
-- For Students: https://getpathport.com/for/students
-- For Enterprise: https://getpathport.com/for/enterprise
-- Web Application: https://app.getpathport.com/
+- PathPort vs. CE Broker Alternative: https://getpathport.com/vs/ce-broker
+- Free State CEU & License Renewal Calculator: https://getpathport.com/tools/renewal-calculator
+- For Nurses & Healthcare Leaders: https://getpathport.com/for/nurses
+- For Paramedics & EMS: https://getpathport.com/for/paramedics
+- For Project & Technical Leads: https://getpathport.com/for/project-managers
+- For Students & Early Career: https://getpathport.com/for/students
+- For Enterprise Workforce Teams: https://getpathport.com/for/enterprise
+- For Certification Boards & Issuers: https://getpathport.com/for/board-certifications
+- Security Whitepaper: https://getpathport.com/security
 
 ## Pricing
-- **Free Vault ($0/forever)**: Up to 10 credentials stored, PDF vault, 1 digital portfolio, basic expiration alerts, QR code sharing.
-- **Pro Passport ($8/mo or $79/yr)**: Unlimited credentials, state CEU renewal engine, smart expiration reminders, Credly & Open Badges import, AI resume parser, custom URL slug.
-- **Teams / Org ($5/user/mo)**: Billed annually ($300/yr min), workforce compliance dashboard, lapse alerts, accrediting board export reports.
-- **Founding Member Offer**: $49/year locked for 2 years (first 500 signups). Free for .edu students.
+- **Individual Professional (Free during Beta)**: Multi-state CE tracking, case study builder, tailored portfolio links, encrypted document vault, and PathAI career advisor.
+- **PathPort Teams (Pilot Program)**: Scoped workforce credential compliance radar, automated expiration tracking, and privacy-preserving employee offboarding.
+- **PathPort Certify (Design Partner)**: Automated topic audit calculation engine, reviewer queue management, and authoritative provenance badge issuance.

@@ -451,7 +451,7 @@ export const PublicPassportDemo: React.FC = () => {
       </div>
 
       {/* Main Profile Layout */}
-      <main className="py-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <main id="main-content" tabIndex={-1} className="py-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 focus:outline-none">
         {/* Profile Card Header */}
         <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800 shadow-xs space-y-6 transition-colors">
           <div className="flex flex-col md:flex-row gap-6 items-start md:items-center justify-between">

@@ -43,6 +43,16 @@ const routes = [
     description: 'Automate topic audit calculations, reviewer submission queues, and authoritative provenance badges for healthcare, engineering, and specialty certification programs.'
   },
   {
+    path: 'vs/ce-broker',
+    title: 'PathPort vs. CE Broker — The Modern CE & Evidence Passport Alternative',
+    description: 'Looking for a CE Broker alternative? Compare PathPort\'s sovereign professional record, multi-state CE tracking, structured case studies, and tailored portfolios.'
+  },
+  {
+    path: 'tools/renewal-calculator',
+    title: 'Free CEU & License Renewal Calculator — State Nursing & Clinical Requirements',
+    description: 'Calculate state-by-state nursing CE contact hours, mandatory topic rules (Medical Errors, Implicit Bias, Laws & Rules), and eNLC compact status in one place.'
+  },
+  {
     path: 'privacy',
     title: 'PathPort — Privacy Policy & Zero Data Selling Commitment',
     description: 'PathPort Privacy Policy. Individual record sovereignty, privacy-by-default architecture, scoped employer consent, and zero data selling commitment.'

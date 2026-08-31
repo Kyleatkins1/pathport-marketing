@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Check, Sparkles, Building2, Award, User, ArrowRight } from 'lucide-react';
+import { Check, ShieldCheck, Building2, Award, User, ArrowRight, Layers } from 'lucide-react';
 import { BetaRegistrationModal } from './BetaRegistrationModal';
 
 export const Pricing: React.FC = () => {
@@ -17,14 +17,14 @@ export const Pricing: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-xs font-semibold">
-            <Sparkles className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" />
-            <span>BETA PHASE ACCESS</span>
+            <ShieldCheck className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" />
+            <span>Early Access Plans</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-display font-black text-slate-900 dark:text-white tracking-tight">
-            Simple, Transparent Beta Access
+            Transparent Access for Individuals & Teams
           </h2>
           <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
-            PathPort is currently rolling out in founding beta cohorts. Register your email to join the waitlist.
+            Individual professional accounts are completely free during our founding rollout.
           </p>
         </div>
 
@@ -36,7 +36,7 @@ export const Pricing: React.FC = () => {
               {/* Category Header Row */}
               <div className="flex items-center justify-between h-6">
                 <div className="flex items-center gap-1.5 text-teal-800 dark:text-teal-400 font-bold text-xs">
-                  <User className="w-4 h-4" />
+                  <User className="w-4 h-4" aria-hidden="true" />
                   <span>Individual Professional</span>
                 </div>
                 <span className="px-2 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-[10px] font-bold border border-emerald-200 dark:border-emerald-800 uppercase">
@@ -58,19 +58,19 @@ export const Pricing: React.FC = () => {
               {/* Feature Checklist */}
               <ul className="space-y-2.5 text-xs text-slate-700 dark:text-slate-200 pt-2 border-t border-slate-100 dark:border-slate-700 min-h-[160px]">
                 <li className="flex items-start gap-2">
-                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" />
+                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" aria-hidden="true" />
                   <span>Credentials & CE record keeping</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" />
+                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" aria-hidden="true" />
                   <span>Structured Case Study builder</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" />
+                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" aria-hidden="true" />
                   <span>Tailored Portfolios (/p/ links)</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" />
+                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" aria-hidden="true" />
                   <span>Path Career Advisor matching</span>
                 </li>
               </ul>
@@ -78,20 +78,20 @@ export const Pricing: React.FC = () => {
 
             <button
               onClick={() => handleOpenModal('Other Professional')}
-              className="w-full py-3 rounded-xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-xs transition-all shadow-xs flex items-center justify-center gap-1.5 cursor-pointer"
+              className="w-full min-h-[44px] py-3 rounded-xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-xs transition-all shadow-xs flex items-center justify-center gap-1.5 cursor-pointer"
             >
               <span>Register for Beta Access</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
             </button>
           </div>
 
           {/* Card 2: Pro Tier */}
-          <div className="bg-white dark:bg-slate-800/80 rounded-3xl p-7 border border-slate-200/90 dark:border-slate-700/80 shadow-xs flex flex-col justify-between space-y-6">
+          <div className="card-surface-white p-7 border border-slate-200/90 dark:border-slate-700/80 shadow-xs flex flex-col justify-between space-y-6">
             <div className="space-y-4">
               {/* Category Header Row */}
               <div className="flex items-center justify-between h-6">
                 <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-300 font-bold text-xs">
-                  <Sparkles className="w-4 h-4 text-teal-800 dark:text-teal-400" />
+                  <Layers className="w-4 h-4 text-teal-800 dark:text-teal-400" aria-hidden="true" />
                   <span>PathPort Pro</span>
                 </div>
                 <span className="px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold uppercase">
@@ -113,15 +113,15 @@ export const Pricing: React.FC = () => {
               {/* Feature Checklist */}
               <ul className="space-y-2.5 text-xs text-slate-700 dark:text-slate-200 pt-2 border-t border-slate-100 dark:border-slate-700 min-h-[160px]">
                 <li className="flex items-start gap-2">
-                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" />
+                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" aria-hidden="true" />
                   <span>Custom portfolio domains</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" />
+                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" aria-hidden="true" />
                   <span>Document extraction & OCR (Beta)</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" />
+                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" aria-hidden="true" />
                   <span>Portfolio view analytics</span>
                 </li>
               </ul>
@@ -129,19 +129,19 @@ export const Pricing: React.FC = () => {
 
             <button
               onClick={() => handleOpenModal('Other Professional')}
-              className="w-full py-3 rounded-xl bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-800 dark:text-slate-200 font-semibold text-xs transition-colors cursor-pointer"
+              className="w-full min-h-[44px] py-3 rounded-xl bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-800 dark:text-slate-200 font-semibold text-xs transition-colors cursor-pointer flex items-center justify-center"
             >
               Notify on Pro Launch
             </button>
           </div>
 
           {/* Card 3: Teams */}
-          <div className="bg-white dark:bg-slate-800/80 rounded-3xl p-7 border border-slate-200/90 dark:border-slate-700/80 shadow-xs flex flex-col justify-between space-y-6">
+          <div className="card-surface-white p-7 border border-slate-200/90 dark:border-slate-700/80 shadow-xs flex flex-col justify-between space-y-6">
             <div className="space-y-4">
               {/* Category Header Row */}
               <div className="flex items-center justify-between h-6">
                 <div className="flex items-center gap-1.5 text-indigo-700 dark:text-indigo-400 font-bold text-xs">
-                  <Building2 className="w-4 h-4" />
+                  <Building2 className="w-4 h-4" aria-hidden="true" />
                   <span>PathPort Teams</span>
                 </div>
                 <span className="px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-800 dark:text-indigo-300 text-[10px] font-bold border border-indigo-200 dark:border-indigo-800 uppercase">
@@ -163,15 +163,15 @@ export const Pricing: React.FC = () => {
               {/* Feature Checklist */}
               <ul className="space-y-2.5 text-xs text-slate-700 dark:text-slate-200 pt-2 border-t border-slate-100 dark:border-slate-700 min-h-[160px]">
                 <li className="flex items-start gap-2">
-                  <Check className="w-3.5 h-3.5 text-indigo-700 dark:text-indigo-400 shrink-0 mt-0.5" />
+                  <Check className="w-3.5 h-3.5 text-indigo-700 dark:text-indigo-400 shrink-0 mt-0.5" aria-hidden="true" />
                   <span>Workforce compliance tracking</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Check className="w-3.5 h-3.5 text-indigo-700 dark:text-indigo-400 shrink-0 mt-0.5" />
+                  <Check className="w-3.5 h-3.5 text-indigo-700 dark:text-indigo-400 shrink-0 mt-0.5" aria-hidden="true" />
                   <span>Upcoming expiration alerts</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Check className="w-3.5 h-3.5 text-indigo-700 dark:text-indigo-400 shrink-0 mt-0.5" />
+                  <Check className="w-3.5 h-3.5 text-indigo-700 dark:text-indigo-400 shrink-0 mt-0.5" aria-hidden="true" />
                   <span>Privacy-preserving offboarding</span>
                 </li>
               </ul>
@@ -179,19 +179,19 @@ export const Pricing: React.FC = () => {
 
             <button
               onClick={() => handleOpenModal('Employer / Workforce Compliance')}
-              className="w-full py-3 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 hover:bg-indigo-100 dark:hover:bg-indigo-900/60 text-indigo-900 dark:text-indigo-300 font-semibold text-xs border border-indigo-200 dark:border-indigo-800 transition-colors cursor-pointer"
+              className="w-full min-h-[44px] py-3 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 hover:bg-indigo-100 dark:hover:bg-indigo-900/60 text-indigo-900 dark:text-indigo-300 font-semibold text-xs border border-indigo-200 dark:border-indigo-800 transition-colors cursor-pointer flex items-center justify-center"
             >
               Request Teams Access
             </button>
           </div>
 
           {/* Card 4: Certify */}
-          <div className="bg-white dark:bg-slate-800/80 rounded-3xl p-7 border border-slate-200/90 dark:border-slate-700/80 shadow-xs flex flex-col justify-between space-y-6">
+          <div className="card-surface-white p-7 border border-slate-200/90 dark:border-slate-700/80 shadow-xs flex flex-col justify-between space-y-6">
             <div className="space-y-4">
               {/* Category Header Row */}
               <div className="flex items-center justify-between h-6">
                 <div className="flex items-center gap-1.5 text-teal-800 dark:text-teal-400 font-bold text-xs">
-                  <Award className="w-4 h-4" />
+                  <Award className="w-4 h-4" aria-hidden="true" />
                   <span>PathPort Certify</span>
                 </div>
                 <span className="px-2 py-0.5 rounded-full bg-teal-50 dark:bg-teal-950/60 text-teal-800 dark:text-teal-300 text-[10px] font-bold border border-teal-200 dark:border-teal-800 uppercase">
@@ -213,15 +213,15 @@ export const Pricing: React.FC = () => {
               {/* Feature Checklist */}
               <ul className="space-y-2.5 text-xs text-slate-700 dark:text-slate-200 pt-2 border-t border-slate-100 dark:border-slate-700 min-h-[160px]">
                 <li className="flex items-start gap-2">
-                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" />
+                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" aria-hidden="true" />
                   <span>Reviewer submission queue</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" />
+                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" aria-hidden="true" />
                   <span>Cycle rule & topic governance</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" />
+                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" aria-hidden="true" />
                   <span>Source-verified digital badges</span>
                 </li>
               </ul>
@@ -229,7 +229,7 @@ export const Pricing: React.FC = () => {
 
             <button
               onClick={() => handleOpenModal('Certification Board / Issuer')}
-              className="w-full py-3 rounded-xl bg-teal-50 dark:bg-teal-950/60 hover:bg-teal-100 dark:hover:bg-teal-900/60 text-teal-900 dark:text-teal-300 font-semibold text-xs border border-teal-200 dark:border-teal-800 transition-colors cursor-pointer"
+              className="w-full min-h-[44px] py-3 rounded-xl bg-teal-50 dark:bg-teal-950/60 hover:bg-teal-100 dark:hover:bg-teal-900/60 text-teal-900 dark:text-teal-300 font-semibold text-xs border border-teal-200 dark:border-teal-800 transition-colors cursor-pointer flex items-center justify-center"
             >
               Talk With Our Team
             </button>

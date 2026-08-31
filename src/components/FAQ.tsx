@@ -12,23 +12,23 @@ export const FAQ: React.FC = () => {
   const faqs: FAQItem[] = [
     {
       question: "How does PathPort differ from a PDF résumé or LinkedIn profile?",
-      answer: "A résumé is a 1-page summary of claims. PathPort is your persistent, authoritative living record. It stores the full evidence behind your accomplishments — rich case studies (with Challenge, Approach, and Measurable Outcomes), verified credentials, continuing education history, and dynamic portfolios tailored for each audience with zero data duplication."
+      answer: "A résumé is a list of unverified claims that goes stale immediately. PathPort is a permanent record of your real career artifacts: verified state licenses, accredited CE hours, project case studies with attachments, and transcripts. Instead of emailing five PDFs, you share a single tailored link."
     },
     {
       question: "What does 'Maintain Once, Present Many Ways' mean?",
-      answer: "You never need to rebuild your portfolio from scratch. Your credentials, case studies, and experiences live in your core record once. When you create a tailored view for an executive role, client proposal, or new opportunity, it references those items live without duplicate data. If you update an item in your record, all active portfolio views reflect the update immediately."
+      answer: "You only enter your licenses, case studies, and achievements once into your core record. When you need to send a portfolio to a hospital credentialing office, an executive recruiter, or a conference committee, you generate a custom view that links directly to those items without re-typing data."
     },
     {
-      question: "How does PathPort protect individual privacy?",
-      answer: "PathPort is built on a strict privacy-by-default architecture. All new case studies, credentials, and portfolios default to private or unlisted. Employers (via PathPort Teams) only receive scoped, consent-mediated visibility into credentials strictly required for compliance. When you offboard from a company, employer access is revoked while your personal record remains yours."
+      question: "Who owns my data if my employer uses PathPort?",
+      answer: "You do. PathPort enforces strict individual sovereignty. Employers connect through scoped permissions to view only the specific licenses and compliance items required for your current role. If you change jobs, their access ends immediately and your record stays with you."
     },
     {
-      question: "How does PathPort verify credentials and evidence?",
-      answer: "Every credential and piece of evidence displays clear verification badges (such as self-reported, document-supported, provider-reported, or issuer-verified) so viewers and employers know exactly where the item came from without login friction."
+      question: "How does credential verification work?",
+      answer: "Every license and certification displays an objective provenance badge: Document Supported, State Registry Checked, or Issuer Verified. Viewers can inspect verification timestamps without having to create an account or log in."
     },
     {
-      question: "What happens during the Beta Phase?",
-      answer: "Founding members who register for the Beta get priority access to create their living record, build tailored portfolios, and test new capabilities as beta access expands."
+      question: "Is PathPort free during the early access rollout?",
+      answer: "Yes. Core record keeping, license tracking, case study authoring, and tailored portfolio sharing are free for individual professionals during our founding beta cohort."
     }
   ];
 
@@ -43,7 +43,7 @@ export const FAQ: React.FC = () => {
         <div className="text-center space-y-3">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-xs font-semibold">
             <HelpCircle className="w-3.5 h-3.5" />
-            <span>FREQUENTLY ASKED QUESTIONS</span>
+            <span>Frequently Asked Questions</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-display font-black text-slate-900 dark:text-white tracking-tight">
             Everything You Need to Know
@@ -57,29 +57,40 @@ export const FAQ: React.FC = () => {
         <div className="space-y-3">
           {faqs.map((faq, idx) => {
             const isOpen = openIndex === idx;
+            const questionId = `faq-question-${idx}`;
+            const answerId = `faq-answer-${idx}`;
             return (
               <div
                 key={idx}
                 className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/90 dark:border-slate-800 overflow-hidden transition-all shadow-2xs"
               >
                 <button
+                  id={questionId}
+                  aria-expanded={isOpen}
+                  aria-controls={answerId}
                   onClick={() => toggleFAQ(idx)}
-                  className="w-full p-5 text-left flex items-center justify-between gap-4 focus:outline-none group cursor-pointer"
+                  className="w-full p-5 text-left flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 dark:focus-visible:ring-teal-400 group cursor-pointer min-h-[44px]"
                 >
                   <span className="font-bold text-slate-900 dark:text-white text-sm sm:text-base group-hover:text-teal-800 dark:group-hover:text-teal-400 transition-colors">
                     {faq.question}
                   </span>
                   <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 group-hover:bg-teal-50 dark:group-hover:bg-teal-950/60 group-hover:text-teal-800 dark:group-hover:text-teal-300 transition-all ${
+                    className={`w-8 h-8 rounded-full flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 group-hover:bg-teal-50 dark:group-hover:bg-teal-950/60 group-hover:text-teal-800 dark:group-hover:text-teal-300 transition-all shrink-0 ${
                       isOpen ? 'rotate-180 bg-teal-50 dark:bg-teal-950/60 text-teal-800 dark:text-teal-300' : ''
                     }`}
+                    aria-hidden="true"
                   >
                     <ChevronDown className="w-4 h-4" />
                   </div>
                 </button>
 
                 {isOpen && (
-                  <div className="px-5 pb-5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 animate-in fade-in duration-150">
+                  <div 
+                    id={answerId}
+                    role="region"
+                    aria-labelledby={questionId}
+                    className="px-5 pb-5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 animate-in fade-in duration-150"
+                  >
                     {faq.answer}
                   </div>
                 )}
