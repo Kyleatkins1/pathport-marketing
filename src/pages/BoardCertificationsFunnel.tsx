@@ -47,7 +47,7 @@ export const BoardCertificationsFunnel: React.FC = () => {
           <div className="text-center max-w-4xl mx-auto space-y-4">
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-teal-50 dark:bg-teal-950/60 text-teal-800 dark:text-teal-300 text-xs font-semibold border border-teal-200 dark:border-teal-800">
               <Award className="w-4 h-4 text-teal-700 dark:text-teal-400" />
-              PathPort Certify • Credential Issuance
+              PathPort Certify • Launching Late 2026
             </span>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-slate-900 dark:text-white tracking-tight leading-tight">
@@ -64,7 +64,7 @@ export const BoardCertificationsFunnel: React.FC = () => {
                 onClick={() => setIsBetaModalOpen(true)}
                 className="px-8 py-3.5 rounded-2xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-sm shadow-xs hover:scale-[1.02] transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
-                <span>Request Certify Platform Briefing</span>
+                <span>Request Certify Platform Briefing (Late 2026)</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
@@ -333,7 +333,7 @@ export const BoardCertificationsFunnel: React.FC = () => {
       <BetaRegistrationModal
         isOpen={isBetaModalOpen}
         onClose={() => setIsBetaModalOpen(false)}
-        defaultAudience="Certification Board / Issuer"
+        defaultAudience="Certification Board / Issuer (Certify)"
         source="board_certifications_funnel"
       />
     </div>

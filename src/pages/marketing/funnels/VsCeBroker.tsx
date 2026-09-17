@@ -69,11 +69,11 @@ export const VsCeBroker: React.FC = () => {
       note: "Keep your original diploma scans, ACLS cards, and CE certificates permanently organized."
     },
     {
-      feature: "Account Fee for Individual Professionals",
-      pathport: "Free during Beta rollout",
-      ceBroker: "Free basic / $39.99–$99/yr Pro",
+      feature: "Trial & Professional Subscription",
+      pathport: "30-Day Pro Trial for Founding Cohort (No Card Required)",
+      ceBroker: "Limited basic / $39.99–$99/yr Pro",
       highlight: true,
-      note: "Full portfolio creation, case studies, and multi-state tracking with zero paywalled basics."
+      note: "Founding members receive 30 days of full Pro. Standard accounts include a 14-day Pro trial with transparent pricing from $8.33/mo."
     }
   ];
 
@@ -91,12 +91,12 @@ export const VsCeBroker: React.FC = () => {
       answer: "Nothing. You own your canonical PathPort record independently. Unlike employer-managed credential databases (e.g. EverCheck or hospital intranets) or single-state reporting silos, your PathPort account travels with you across health systems, multi-state compacts, and career pivots."
     },
     {
-      question: "Does PathPort charge a subscription to access my certificates?",
-      answer: "No. Individual professional accounts are free during our rollout. You will never be locked out of downloading your own certificates, case studies, or portfolio links."
+      question: "Will I ever be locked out of accessing my certificates?",
+      answer: "No. You own your canonical records, uploaded certificates, and case study exports. Even if your subscription lapses, you can always securely export and download your full documentation with zero hostage data."
     },
     {
       question: "How does PathPort handle privacy when sharing credentials with employers?",
-      answer: "PathPort operates on a strict privacy-by-default architecture. When an employer requests workforce compliance verification (PathPort Teams), you grant a scoped consent grant that only reveals whether your required licenses and certifications are active. Employers cannot inspect your private career notes, unshared projects, or unrelated credentials."
+      answer: "PathPort operates on a strict privacy-by-default architecture. When an employer requests workforce compliance verification (PathPort Workplace), you grant a scoped consent grant that only reveals whether your required licenses and certifications are active. Employers cannot inspect your private career notes, unshared projects, or unrelated credentials."
     }
   ];
 
@@ -174,7 +174,7 @@ export const VsCeBroker: React.FC = () => {
                 onClick={() => setIsBetaModalOpen(true)}
                 className="w-full sm:w-auto min-h-[48px] px-8 py-3 rounded-xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-xs shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
-                <span>Get Free Early Access</span>
+                <span>Join Early Access Waitlist</span>
                 <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </button>
               <Link
@@ -365,7 +365,7 @@ export const VsCeBroker: React.FC = () => {
               onClick={() => setIsBetaModalOpen(true)}
               className="min-h-[48px] px-8 py-3 rounded-xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-xs shadow-sm transition-all inline-flex items-center gap-2 cursor-pointer"
             >
-              <span>Register for Free Beta</span>
+              <span>Join Early Access Waitlist</span>
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </button>
           </div>
@@ -378,7 +378,7 @@ export const VsCeBroker: React.FC = () => {
       <BetaRegistrationModal
         isOpen={isBetaModalOpen}
         onClose={() => setIsBetaModalOpen(false)}
-        defaultAudience="Other Professional"
+        defaultAudience="Licensed Professional"
         source="vs_ce_broker"
       />
     </div>

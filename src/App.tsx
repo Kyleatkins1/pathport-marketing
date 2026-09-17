@@ -30,6 +30,7 @@ import { TermsOfService } from './pages/TermsOfService';
 import { SecurityWhitepaper } from './pages/SecurityWhitepaper';
 import { PublicPassportDemo } from './pages/PublicPassportDemo';
 
+import { PersonaQuickBar } from './components/PersonaQuickBar';
 import { ScrollManager } from './components/ScrollManager';
 import { SEO } from './components/SEO';
 
@@ -41,13 +42,18 @@ const homeFaqJsonLd = {
       "@id": "https://getpathport.com/#website",
       "url": "https://getpathport.com",
       "name": "PathPort",
-      "description": "Your career is bigger than a résumé. PathPort is your portable professional record."
+      "description": "Your professional journey evidence record. Organize projects, degrees, licenses, and renewal contact hours in one place. Powered by MyPath career intelligence."
     },
     {
       "@type": "SoftwareApplication",
       "name": "PathPort Living Professional Record",
       "operatingSystem": "Web, iOS, Android",
-      "applicationCategory": "BusinessApplication"
+      "applicationCategory": "BusinessApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
     },
     {
       "@type": "FAQPage",
@@ -84,13 +90,14 @@ const homeFaqJsonLd = {
 const HomePage: React.FC = () => (
   <>
     <SEO 
-      title="PathPort — Your Living Professional Record"
-      description="Your career is bigger than a résumé. PathPort is your portable professional record. Capture verified evidence, turn projects into rich case studies, present tailored portfolios, and guide your career growth."
+      title="PathPort — Own Your Journey. Shape What’s Next"
+      description="Your professional journey evidence record. Organize projects, degrees, licenses, and renewal contact hours in one place. Powered by MyPath career intelligence."
       jsonLd={homeFaqJsonLd}
     />
     <Navbar />
     <main id="main-content" tabIndex={-1} className="focus:outline-none">
       <Hero />
+      <PersonaQuickBar />
       <InteroperabilityRibbon />
       <FeaturePillars />
       <PathAISection />

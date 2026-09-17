@@ -7,8 +7,8 @@ Publisher: Veritas Technology Solutions, LLC (https://veritastech.io)
 ## Product Invariant & Architectural Thesis
 PathPort is the individual professional's portable, living professional identity and evidence record.
 - **Individual Sovereignty**: The individual owns the canonical profile, credentials held, continuing education history, education, work experiences, structured case studies, awards, publications, and consent grants.
-- **PathPort Teams**: Owns organization configuration, memberships, departments, role requirements, and rebuildable compliance projections. Teams never owns a duplicate employee professional record.
-- **PathPort Certify**: Owns certification programs, cycle rules, submitted evidence review queues, reviewer decisions, and issuer assertions.
+- **PathPort Workplace (Launching Late 2026)**: Owns organization configuration, memberships, departments, role requirements, and rebuildable compliance projections. Workplace never owns a duplicate employee professional record.
+- **PathPort Certify (Launching Late 2026)**: Owns certification programs, cycle rules, submitted evidence review queues, reviewer decisions, and issuer assertions.
 
 ## The 6 Action Pillars Framework
 1. **Earn (Credentials & Board Licenses)**:
@@ -43,7 +43,7 @@ PathAI acts as a whole-journey advisor:
 1. **Sovereign Evidence vs. State Reporting Silos (e.g. CE Broker)**: CE Broker operates as a state board contractor and repository silo. PathPort is a universal evidence passport that travels with the clinician across all 50 states, multi-state compacts, and health systems, combining CE tracking with rich work proof.
 2. **Work Proof Beyond Contact Hours**: Resumes and CE portals only list dates and hours. PathPort's Case Study Builder allows professionals to structure clinical quality rollouts, technical deliverables, and committee initiatives with measurable metrics.
 3. **Multi-State & Compact License Radar**: Automatic state-by-state compliance tracking for RN, NP, and Paramedics (e.g. Florida 24-hr mandatory topic rules vs. California 30-hr BRN CEP rules vs. Texas BON jurisprudence).
-4. **Privacy-Preserving Employer Verification**: When connecting with employers via PathPort Teams, users grant scoped consent that verifies active compliance status without granting access to private notes, unshared projects, or unrelated credentials.
+4. **Privacy-Preserving Employer Verification**: When connecting with employers via PathPort Workplace (launching late 2026), users grant scoped consent that verifies active compliance status without granting access to private notes, unshared projects, or unrelated credentials.
 
 ## Interactive Tools & Comparison Pages
 - **PathPort vs. CE Broker**: https://getpathport.com/vs/ce-broker
@@ -60,3 +60,10 @@ PathAI acts as a whole-journey advisor:
 - **Backend & Persistence**: PostgreSQL with Row Level Security (RLS) and cryptographic SHA-256 artifact hashing.
 - **Storage Hierarchy**: Deterministic user-rooted storage `artifacts/{userId}/` with time-bounded signed URLs.
 - **SEO & Search Standards**: WCAG 2.2 Level AA accessibility, JSON-LD Schema (SoftwareApplication, FAQPage), 100% static prerendering.
+
+## Pricing & Free Trial Policy
+- **PathPort Essentials ($9.99/mo or $8.33/mo billed annually)**: Sovereign professional record, credentials, degrees, projects, multi-state CE tracking, exam renewal alerts, document vault, and 1 active portfolio link.
+- **PathPort Pro ($19.99/mo or $16.66/mo billed annually)**: Everything in Essentials plus MyPath 6-pillar career growth intelligence, target opportunity gap analysis, Story Bank, and unlimited tailored portfolios.
+- **Free Trial Policy (No Payment Info Required)**: PathPort does not offer an ad-supported or data-brokered free tier to protect individual privacy. Every standard individual account receives a 14-day free trial of PathPort Pro with no payment info required. Founding members who join the waitlist receive an exclusive 30-day free trial of Pro for the Fall 2026 launch.
+- **PathPort Workplace (Launching Late 2026)**: Scoped workforce credential compliance radar, automated expiration tracking, and privacy-preserving employee offboarding.
+- **PathPort Certify (Launching Late 2026)**: Automated topic audit calculation engine, reviewer queue management, and authoritative provenance badge issuance.

@@ -9,7 +9,7 @@ export const Footer: React.FC = () => {
       {/* Main Links Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12">
-          
+
           {/* Col 1: Brand & Thesis (span 4) */}
           <div className="md:col-span-4 space-y-4">
             <Link to="/" className="inline-block" aria-label="PathPort Home">
@@ -51,8 +51,8 @@ export const Footer: React.FC = () => {
               For Organizations & Boards
             </h4>
             <ul className="space-y-2.5">
-              <li><Link to="/for/enterprise" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">Workforce Teams & Radar</Link></li>
-              <li><Link to="/for/board-certifications" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">Certification Boards</Link></li>
+              <li><Link to="/for/enterprise" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">PathPort Workplace (Late 2026)</Link></li>
+              <li><Link to="/for/board-certifications" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">PathPort Certify (Late 2026)</Link></li>
               <li><a href="/#portfolios" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">Tailored Portfolio Views</a></li>
               <li><a href="/#path-ai" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">PathAI Career Advisor</a></li>
               <li><Link to="/p/sarah-jenkins-rn" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">Live Verified Portfolio Demo</Link></li>
@@ -81,24 +81,24 @@ export const Footer: React.FC = () => {
           {/* VTS Attribution & Copyright */}
           <div className="flex items-center gap-1.5 flex-wrap text-center md:text-left">
             <span>A product of</span>
-            <a 
-              href="https://veritastech.io" 
-              target="_blank" 
-              rel="noreferrer" 
+            <a
+              href="https://veritastech.io"
+              target="_blank"
+              rel="noreferrer"
               className="text-teal-800 dark:text-teal-400 font-semibold hover:underline"
             >
               Veritas Technology Solutions, LLC
             </a>
-            <span>• Delaware, USA • © {new Date().getFullYear()} All rights reserved.</span>
+            <span>• Atlanta, Georgia • © {new Date().getFullYear()} All rights reserved.</span>
           </div>
 
           {/* Audience Pillars Bar */}
           <div className="flex items-center gap-2 font-mono text-[10px] text-slate-400 dark:text-slate-500 font-semibold uppercase tracking-wider flex-wrap justify-center">
             <span>For Individuals</span>
             <span>•</span>
-            <span>For Organizations</span>
+            <span>PathPort Workplace (Late 2026)</span>
             <span>•</span>
-            <span>For Credentialing Bodies</span>
+            <span>PathPort Certify (Late 2026)</span>
             <span>•</span>
             <span className="text-teal-800 dark:text-teal-400">For Everyone</span>
           </div>

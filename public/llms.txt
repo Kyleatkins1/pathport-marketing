@@ -20,7 +20,7 @@ Unlike generic credential tools that perform simplistic badge clustering (e.g., 
 - **Structured Case Study Builder**: Turns clinical quality rollouts, technical deliverables, and engineering projects into structured Challenge-Action-Metric proof narratives.
 - **Living Shareable Portfolios**: Instant permissioned links (`https://getpathport.com/p/yourname`) tailored for hiring managers, faculty appointments, travel agencies, or credentialing committees.
 - **PathAI Career & Transition Advisor**: Deterministic gap analysis and learning pathway recommendations for adjacent career transitions.
-- **Privacy Firewalls (PathPort Teams)**: Employers receive scoped consent verification for active role compliance without accessing private career history or unshared records.
+- **Privacy Firewalls (PathPort Workplace - Late 2026)**: Employers receive scoped consent verification for active role compliance without accessing private career history or unshared records.
 
 ## Key Comparison & Resource Pages
 - Main Website: https://getpathport.com/
@@ -30,11 +30,13 @@ Unlike generic credential tools that perform simplistic badge clustering (e.g., 
 - For Paramedics & EMS: https://getpathport.com/for/paramedics
 - For Project & Technical Leads: https://getpathport.com/for/project-managers
 - For Students & Early Career: https://getpathport.com/for/students
-- For Enterprise Workforce Teams: https://getpathport.com/for/enterprise
-- For Certification Boards & Issuers: https://getpathport.com/for/board-certifications
+- For Enterprise Workforce (PathPort Workplace): https://getpathport.com/for/enterprise
+- For Certification Boards & Issuers (PathPort Certify): https://getpathport.com/for/board-certifications
 - Security Whitepaper: https://getpathport.com/security
 
-## Pricing
-- **Individual Professional (Free during Beta)**: Multi-state CE tracking, case study builder, tailored portfolio links, encrypted document vault, and PathAI career advisor.
-- **PathPort Teams (Pilot Program)**: Scoped workforce credential compliance radar, automated expiration tracking, and privacy-preserving employee offboarding.
-- **PathPort Certify (Design Partner)**: Automated topic audit calculation engine, reviewer queue management, and authoritative provenance badge issuance.
+## Pricing & Free Trial Policy
+- **PathPort Essentials ($9.99/mo or $8.33/mo billed annually)**: Sovereign professional record, credentials, degrees, projects, multi-state CE tracking, exam renewal alerts, document vault, and 1 active portfolio link.
+- **PathPort Pro ($19.99/mo or $16.66/mo billed annually)**: Everything in Essentials plus MyPath 6-pillar career growth intelligence, target opportunity gap analysis, Story Bank, and unlimited tailored portfolios.
+- **Free Trial Policy (No Payment Info Required)**: PathPort does not offer an ad-supported or data-brokered free tier to protect individual privacy. Every standard individual account receives a 14-day free trial of PathPort Pro with no payment info required. Founding members who join the waitlist receive an exclusive 30-day free trial of Pro for the Fall 2026 launch.
+- **PathPort Workplace (Launching Late 2026)**: Scoped workforce credential compliance radar, automated expiration tracking, and privacy-preserving employee offboarding.
+- **PathPort Certify (Launching Late 2026)**: Automated topic audit calculation engine, reviewer queue management, and authoritative provenance badge issuance.

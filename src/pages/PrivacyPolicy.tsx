@@ -53,7 +53,7 @@ export const PrivacyPolicy: React.FC = () => {
             <section className="space-y-2.5">
               <h2 className="text-base sm:text-lg font-display font-bold text-slate-900 dark:text-white">4. Privacy-by-Default & Scoped Consent</h2>
               <p>
-                All new user artifacts, portfolios, case studies, and projects default to <strong>private or unlisted</strong>. Employers (via PathPort Teams) only receive scoped, consent-mediated visibility into credentials strictly required for active workforce compliance.
+                All new user artifacts, portfolios, case studies, and projects default to <strong>private or unlisted</strong>. Employers (via PathPort Workplace) only receive scoped, consent-mediated visibility into credentials strictly required for active workforce compliance.
               </p>
             </section>
 

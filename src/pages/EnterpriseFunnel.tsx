@@ -35,7 +35,7 @@ export const EnterpriseFunnel: React.FC = () => {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
       <SEO
-        title="PathPort Teams — Workforce Compliance Radar, Expiration Tracking & Privacy"
+        title="PathPort Workplace — Workforce Compliance Radar, Expiration Tracking & Privacy"
         description="Reduce administrative friction and compliance risks. Real-time workforce credential expiration tracking for healthcare, aviation, and engineering enterprises."
       />
       <Navbar />
@@ -47,7 +47,7 @@ export const EnterpriseFunnel: React.FC = () => {
           <div className="text-center max-w-4xl mx-auto space-y-4">
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-900 dark:text-indigo-300 text-xs font-semibold border border-indigo-200 dark:border-indigo-800">
               <Building2 className="w-4 h-4 text-indigo-700 dark:text-indigo-400" />
-              PathPort Teams • Workforce Compliance
+              PathPort Workplace • Launching Late 2026
             </span>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-slate-900 dark:text-white tracking-tight leading-tight">
@@ -56,7 +56,7 @@ export const EnterpriseFunnel: React.FC = () => {
             </h1>
 
             <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-              Reduce administrative friction and compliance risks. PathPort Teams provides clinical health systems, EMS operators, and technical enterprises real-time expiration tracking mediated by scoped employee consent.
+              Reduce administrative friction and compliance risks. PathPort Workplace provides clinical health systems, EMS operators, and technical enterprises real-time expiration tracking mediated by scoped employee consent.
             </p>
 
             <div className="pt-2 flex flex-col sm:flex-row gap-3.5 justify-center">
@@ -64,7 +64,7 @@ export const EnterpriseFunnel: React.FC = () => {
                 onClick={() => setIsBetaModalOpen(true)}
                 className="px-8 py-3.5 rounded-2xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-sm shadow-xs hover:scale-[1.02] transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
-                <span>Request Teams Design Partner Access</span>
+                <span>Request Workplace Pilot Access (Late 2026)</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
@@ -77,7 +77,7 @@ export const EnterpriseFunnel: React.FC = () => {
                 Engineered for High-Consequence Workforces
               </h2>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
-                Select your industry track to see how PathPort Teams handles compliance:
+                Select your industry track to see how PathPort Workplace handles compliance:
               </p>
             </div>
 
@@ -188,7 +188,7 @@ export const EnterpriseFunnel: React.FC = () => {
                   <span className="text-teal-800 dark:text-teal-400 block mt-1">Lapse Prevention Without Intrusive Surveillance.</span>
                 </h2>
                 <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">
-                  Legacy hospital databases silo credentials and trap employee data. PathPort Teams operates on an individual-sovereign architecture: employees maintain their own canonical records, granting your organization scoped consent to verify active role compliance in real time.
+                  Legacy hospital databases silo credentials and trap employee data. PathPort Workplace operates on an individual-sovereign architecture: employees maintain their own canonical records, granting your organization scoped consent to verify active role compliance in real time.
                 </p>
               </div>
 
@@ -226,17 +226,17 @@ export const EnterpriseFunnel: React.FC = () => {
                   onClick={() => setIsBetaModalOpen(true)}
                   className="w-full sm:w-auto px-6 py-3 rounded-xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-xs transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer shrink-0"
                 >
-                  <span>Request Teams Design Partner Access</span>
+                  <span>Request Workplace Pilot Access (Late 2026)</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
             </div>
           </div>
 
-          {/* 6 Action Pillars for Workforce Teams */}
+          {/* 6 Action Pillars for Workplace Compliance */}
           <PersonaPillarsSection
             eyebrow="Workforce Compliance Framework"
-            title="The 6 Action Pillars for Enterprise Teams"
+            title="The 6 Action Pillars for Workplace Compliance"
             subtitle="Equip your organization with a complete, structured framework to maintain audit readiness."
             pillars={[
               {
@@ -290,14 +290,14 @@ export const EnterpriseFunnel: React.FC = () => {
               Keep your workforce credentials organized and compliant.
             </h2>
             <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm max-w-xl mx-auto">
-              Join healthcare providers, aviation operators, and technical firms in the PathPort Teams beta pilot.
+              Join healthcare providers, aviation operators, and technical firms in the PathPort Workplace pilot launching late 2026.
             </p>
             <div className="pt-2">
               <button
                 onClick={() => setIsBetaModalOpen(true)}
                 className="px-8 py-3.5 rounded-2xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-xs sm:text-sm shadow-xs transition-all cursor-pointer"
               >
-                Schedule Workforce Compliance Briefing
+                Schedule Workplace Compliance Briefing (Late 2026)
               </button>
             </div>
           </div>
@@ -309,7 +309,7 @@ export const EnterpriseFunnel: React.FC = () => {
       <BetaRegistrationModal
         isOpen={isBetaModalOpen}
         onClose={() => setIsBetaModalOpen(false)}
-        defaultAudience="Employer / Workforce Compliance"
+        defaultAudience="Employer / Workforce Compliance (Workplace)"
         source="enterprise_funnel"
       />
     </div>

@@ -10,13 +10,16 @@ interface BetaRegistrationModalProps {
 }
 
 const AUDIENCE_OPTIONS = [
-  'Paramedic / Emergency Services',
   'Nurse / Healthcare Professional',
+  'Paramedic / Emergency Services',
   'Project Manager / PMO',
-  'Student / Early Career',
   'Engineering & Technology Leader',
-  'Employer / Workforce Compliance',
-  'Certification Board / Issuer',
+  'Licensed Professional',
+  'Certified Professional / Knowledge Specialist',
+  'Job Seeker / Career Changer',
+  'Student / Early Career',
+  'Employer / Workforce Compliance (Workplace)',
+  'Certification Board / Issuer (Certify)',
   'Other Professional',
 ];
 
@@ -41,6 +44,7 @@ export const BetaRegistrationModal: React.FC<BetaRegistrationModalProps> = ({
   // Capture previous focus and trap focus inside modal
   useEffect(() => {
     if (isOpen) {
+      setAudience(defaultAudience);
       previouslyFocusedElementRef.current = document.activeElement as HTMLElement;
       // Focus first input
       setTimeout(() => {
@@ -219,13 +223,13 @@ export const BetaRegistrationModal: React.FC<BetaRegistrationModalProps> = ({
             <div className="space-y-2">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-xs font-semibold">
                 <ShieldCheck className="w-3.5 h-3.5" aria-hidden="true" />
-                <span>Beta Access</span>
+                <span>Founding Members • 30-Day Pro Trial</span>
               </div>
               <h3 id="beta-modal-title" className="text-2xl font-display font-black text-slate-900 dark:text-white tracking-tight">
-                Join the Living Identity Beta
+                Join the Early Access Waitlist
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
-                Register to establish your portable record, keep credentials and continuing education organized for renewal, and present tailored portfolios.
+                Register for our Fall 2026 launch. Founding members receive an exclusive 30-day free trial of PathPort Pro with no payment info required.
               </p>
             </div>
 
@@ -300,7 +304,7 @@ export const BetaRegistrationModal: React.FC<BetaRegistrationModalProps> = ({
 
             {/* Privacy Note */}
             <div className="text-[11px] text-slate-500 dark:text-slate-400 leading-tight">
-              We respect your privacy. No spam, ever. Your information is strictly used to communicate about beta access.
+              We respect your privacy. No spam, ever. Your information is strictly used to communicate about early access and our Fall 2026 launch.
             </div>
 
             {/* Submit Button */}

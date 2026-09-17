@@ -27,8 +27,8 @@ export const FAQ: React.FC = () => {
       answer: "Every license and certification displays an objective provenance badge: Document Supported, State Registry Checked, or Issuer Verified. Viewers can inspect verification timestamps without having to create an account or log in."
     },
     {
-      question: "Is PathPort free during the early access rollout?",
-      answer: "Yes. Core record keeping, license tracking, case study authoring, and tailored portfolio sharing are free for individual professionals during our founding beta cohort."
+      question: "Is there a free version of PathPort, and how do trials work?",
+      answer: "To guarantee 100% individual sovereignty, zero data selling, and zero advertising, PathPort does not offer an ad-supported or data-brokered free tier. Instead, every standard account receives a 14-day free trial of PathPort Pro with no payment info required. Founding members who join our waitlist before our Fall 2026 launch receive an exclusive 30-day free trial of Pro. After your trial, you can choose between Essentials ($9.99/mo or $8.33/mo billed annually) or Pro ($19.99/mo or $16.66/mo billed annually), and your records always remain 100% exportable and owned by you."
     }
   ];
 

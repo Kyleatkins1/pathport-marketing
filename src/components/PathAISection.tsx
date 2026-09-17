@@ -285,7 +285,7 @@ export const PathAISection: React.FC = () => {
                 onClick={() => setIsBetaModalOpen(true)}
                 className="w-full sm:w-auto min-h-[44px] px-6 py-2.5 rounded-xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-xs shadow-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer shrink-0"
               >
-                <span>Try PathAI in Free Beta</span>
+                <span>Join Early Access Waitlist</span>
                 <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
               </button>
             </div>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, ExternalLink, Eye } from 'lucide-react';
+import { ArrowRight, ArrowDown, CheckCircle2, Eye } from 'lucide-react';
 import { BetaRegistrationModal } from './BetaRegistrationModal';
 
 export const Hero: React.FC = () => {
@@ -16,18 +15,18 @@ export const Hero: React.FC = () => {
             {/* Pill Tag */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 text-xs font-semibold shadow-2xs">
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" />
-              <span>Early Access • Portable Professional Record</span>
+              <span>Early Access • Launching Fall 2026 • Sovereign Evidence Record</span>
             </div>
 
             {/* Main Headline */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-black tracking-tight text-slate-900 dark:text-white leading-[1.08]">
-              Your career is more than bullet points on a résumé.{' '}
-              <span className="text-teal-800 dark:text-teal-400 block mt-2">Store your proof once. Share tailored views anywhere.</span>
+              Own your journey.{' '}
+              <span className="text-teal-800 dark:text-teal-400 block mt-2">Shape what’s next.</span>
             </h1>
 
             {/* Subheadline */}
             <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
-              PathPort is your permanent evidence record. Keep state licenses, CE renewal hours, transcripts, and real project case studies organized in one place you own. Send a single clean link instead of emailing five separate PDFs.
+              PathPort is your professional journey evidence record. Organize your projects, degrees, licenses, certifications, badges, and renewal contact hours in one place you own. Turn proven accomplishments into dynamic portfolios and grow your career with MyPath Career Intelligence.
             </p>
 
             {/* CTAs */}
@@ -37,45 +36,67 @@ export const Hero: React.FC = () => {
                   onClick={() => setIsBetaModalOpen(true)}
                   className="w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-sm shadow-xs hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-teal-700"
                 >
-                  <span>Get Early Access</span>
+                  <span>Join Early Access Waitlist</span>
                   <ArrowRight className="w-4 h-4" aria-hidden="true" />
                 </button>
                 <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-2 text-center sm:text-left">
-                  Invitations rolling out weekly to founding cohort
+                  Founding members: 30-day free trial of PathPort Pro • Standard 14-day trial • No payment info required
                 </div>
               </div>
 
-              <Link
-                to="/for/nurses"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 min-h-[48px] rounded-xl bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 font-semibold text-sm shadow-2xs transition-all focus-visible:ring-2 focus-visible:ring-teal-700"
+              <a
+                href="#portfolios"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const el = document.getElementById('portfolios');
+                  if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    window.history.pushState(null, '', '#portfolios');
+                  }
+                }}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 min-h-[48px] rounded-xl bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 font-semibold text-sm shadow-2xs hover:scale-[1.02] active:scale-[0.98] transition-all focus-visible:ring-2 focus-visible:ring-teal-700 cursor-pointer"
               >
                 <span>See Practitioner Examples</span>
-                <ExternalLink className="w-4 h-4 text-slate-400" aria-hidden="true" />
-              </Link>
+                <ArrowDown className="w-4 h-4 text-slate-400" aria-hidden="true" />
+              </a>
             </div>
 
-            {/* 3 Core Trust Guarantees (NarcTrack Metric Surfaces) */}
-            <div className="pt-6 grid grid-cols-1 sm:grid-cols-3 gap-3.5 border-t border-slate-200 dark:border-slate-800 text-left">
-              <div className="p-3.5 rounded-2xl bg-white/70 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800">
-                <div className="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400" aria-hidden="true" />
-                  <span>Verified Proof</span>
+            {/* 3 Core Trust Guarantees */}
+            <div className="pt-6 space-y-3.5 border-t border-slate-200 dark:border-slate-800 text-left">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+                <div className="p-3.5 rounded-2xl bg-white/70 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800">
+                  <div className="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400" aria-hidden="true" />
+                    <span>Verified Proof & Exams</span>
+                  </div>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">State boards, NREMT & PMI renewals</p>
                 </div>
-                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">State boards & official registries</p>
+                <div className="p-3.5 rounded-2xl bg-white/70 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800">
+                  <div className="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
+                    <CheckCircle2 className="w-4 h-4 text-teal-700 dark:text-teal-400" aria-hidden="true" />
+                    <span>Projects & Degrees</span>
+                  </div>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Case studies, transcripts & proof</p>
+                </div>
+                <div className="p-3.5 rounded-2xl bg-white/70 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800">
+                  <div className="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
+                    <CheckCircle2 className="w-4 h-4 text-teal-700 dark:text-teal-400" aria-hidden="true" />
+                    <span>Portfolios & MyPath</span>
+                  </div>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Tailored links & 6-pillar growth</p>
+                </div>
               </div>
-              <div className="p-3.5 rounded-2xl bg-white/70 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800">
-                <div className="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
-                  <CheckCircle2 className="w-4 h-4 text-teal-700 dark:text-teal-400" aria-hidden="true" />
-                  <span>Real Case Studies</span>
-                </div>
-                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Context, artifacts & metrics</p>
-              </div>
-              <div className="p-3.5 rounded-2xl bg-white/70 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800">
-                <div className="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
-                  <CheckCircle2 className="w-4 h-4 text-teal-700 dark:text-teal-400" aria-hidden="true" />
-                  <span>Tailored Portfolios</span>
-                </div>
-                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Single source, multiple lenses</p>
+
+              {/* Compliance & Privacy Reassurance */}
+              <div className="text-[11px] text-slate-500 dark:text-slate-400 flex flex-wrap items-center gap-x-2.5 gap-y-1">
+                <span className="flex items-center gap-1 font-medium text-slate-700 dark:text-slate-300">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 inline" aria-hidden="true" />
+                  Audit-ready packet formats for State Boards, NREMT & PMI
+                </span>
+                <span className="hidden sm:inline text-slate-300 dark:text-slate-700">•</span>
+                <span>100% clinician & professional sovereignty</span>
+                <span className="hidden sm:inline text-slate-300 dark:text-slate-700">•</span>
+                <span>Zero data selling</span>
               </div>
             </div>
           </div>
@@ -103,7 +124,7 @@ export const Hero: React.FC = () => {
               </div>
 
               {/* Tab Selector (ARIA Tablist) */}
-              <div 
+              <div
                 role="tablist"
                 aria-label="Interactive demo record tabs"
                 className="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl text-[11px] font-semibold text-slate-600 dark:text-slate-300"
@@ -114,9 +135,8 @@ export const Hero: React.FC = () => {
                   aria-selected={activeTab === 'credentials'}
                   aria-controls="hero-tab-content"
                   onClick={() => setActiveTab('credentials')}
-                  className={`flex-1 py-2 min-h-[44px] rounded-lg transition-all cursor-pointer flex items-center justify-center ${
-                    activeTab === 'credentials' ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white font-bold shadow-xs' : 'hover:text-slate-900 dark:hover:text-white'
-                  }`}
+                  className={`flex-1 py-2 min-h-[44px] rounded-lg transition-all cursor-pointer flex items-center justify-center ${activeTab === 'credentials' ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white font-bold shadow-xs' : 'hover:text-slate-900 dark:hover:text-white'
+                    }`}
                 >
                   Credentials (8)
                 </button>
@@ -126,9 +146,8 @@ export const Hero: React.FC = () => {
                   aria-selected={activeTab === 'case_study'}
                   aria-controls="hero-tab-content"
                   onClick={() => setActiveTab('case_study')}
-                  className={`flex-1 py-2 min-h-[44px] rounded-lg transition-all cursor-pointer flex items-center justify-center ${
-                    activeTab === 'case_study' ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white font-bold shadow-xs' : 'hover:text-slate-900 dark:hover:text-white'
-                  }`}
+                  className={`flex-1 py-2 min-h-[44px] rounded-lg transition-all cursor-pointer flex items-center justify-center ${activeTab === 'case_study' ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white font-bold shadow-xs' : 'hover:text-slate-900 dark:hover:text-white'
+                    }`}
                 >
                   Case Studies (3)
                 </button>
@@ -138,16 +157,15 @@ export const Hero: React.FC = () => {
                   aria-selected={activeTab === 'portfolios'}
                   aria-controls="hero-tab-content"
                   onClick={() => setActiveTab('portfolios')}
-                  className={`flex-1 py-2 min-h-[44px] rounded-lg transition-all cursor-pointer flex items-center justify-center ${
-                    activeTab === 'portfolios' ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white font-bold shadow-xs' : 'hover:text-slate-900 dark:hover:text-white'
-                  }`}
+                  className={`flex-1 py-2 min-h-[44px] rounded-lg transition-all cursor-pointer flex items-center justify-center ${activeTab === 'portfolios' ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white font-bold shadow-xs' : 'hover:text-slate-900 dark:hover:text-white'
+                    }`}
                 >
                   Portfolios (2)
                 </button>
               </div>
 
               {/* Tab Content (ARIA Tabpanel) */}
-              <div 
+              <div
                 id="hero-tab-content"
                 role="tabpanel"
                 aria-labelledby={`hero-tab-${activeTab === 'credentials' ? 'creds' : activeTab === 'case_study' ? 'studies' : 'ports'}`}

@@ -114,8 +114,9 @@ export const PortfolioShowcase: React.FC = () => {
 
   return (
     <section id="portfolios" className="py-20 md:py-28 bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 scroll-mt-20 select-none transition-colors relative">
-      {/* Alias anchor for singular #portfolio */}
+      {/* Alias anchors for singular #portfolio and #practitioner-examples */}
       <span id="portfolio" className="absolute -top-20" />
+      <span id="practitioner-examples" className="absolute -top-20" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">

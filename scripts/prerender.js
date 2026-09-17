@@ -9,32 +9,32 @@ const distDir = path.resolve(__dirname, '../dist');
 const routes = [
   {
     path: '',
-    title: 'PathPort — Your Living Professional Record',
-    description: 'Your career is bigger than a résumé. PathPort is your portable professional record. Capture verified evidence, turn projects into rich case studies, present tailored portfolios, and guide your career growth.'
+    title: 'PathPort — Own Your Journey. Shape What’s Next',
+    description: 'Your professional journey evidence record. Organize projects, degrees, licenses, and renewal contact hours in one place. Powered by MyPath career intelligence.'
   },
   {
     path: 'for/nurses',
-    title: 'PathPort for Nurses & Healthcare Leaders — Licenses, CEUs & Career Growth',
-    description: 'Consolidate multi-state RN/NP licenses, specialty board certifications, executive records, and mandatory CE contact hours into verified case studies and tailored portfolios.'
+    title: 'PathPort for Nurses — Licenses, CEUs & Career Portfolios',
+    description: 'Consolidate multi-state RN/NP licenses, degrees, exam renewals, and mandatory CE contact hours into verified case studies and tailored portfolios.'
   },
   {
     path: 'for/paramedics',
-    title: 'PathPort for Paramedics & EMS — NCCP Recert, Flight Evidence & FP-C',
-    description: 'Consolidate NREMT, state paramedic licenses, and IBSC board specialties (FP-C, CCP-C). Document high-acuity resuscitation case studies and QA protocols in one living record.'
+    title: 'PathPort for Paramedics & EMS — NCCP Recert & Flight Evidence',
+    description: 'Track NREMT, state paramedic licenses, and IBSC FP-C exam renewals. Document high-acuity resuscitation case studies and QA protocols in one living record.'
   },
   {
     path: 'for/project-managers',
-    title: 'PathPort for Project & Technical Leaders — PMP®, 60 PDUs & Delivery Case Studies',
-    description: 'Show the real work behind the PMP®. Consolidate PMP®, Scrum, and cloud architecture certifications with verified delivery case studies and 3-year CCRS cycle tracking.'
+    title: 'PathPort for Project & Technical Leaders — PMP®, 60 PDUs & Case Studies',
+    description: 'Show the real work behind the PMP®. Consolidate PMP®, Scrum, and architecture certifications with verified delivery case studies and 3-year CCRS cycle tracking.'
   },
   {
     path: 'for/students',
-    title: 'PathPort for Students & Early Career — Capstone Evidence & Research',
+    title: 'PathPort for Students & Early Career — Capstone Evidence & Degrees',
     description: "Don't wait until graduation for a sparse 1-page résumé. Document capstones, lab research, and micro-certifications in a living digital portfolio."
   },
   {
     path: 'for/enterprise',
-    title: 'PathPort Teams — Workforce Compliance Radar, Expiration Tracking & Privacy',
+    title: 'PathPort Workplace — Workforce Compliance Radar & Expiration Tracking',
     description: 'Reduce administrative friction and compliance risks. Real-time workforce credential expiration tracking for healthcare, aviation, and engineering enterprises.'
   },
   {
@@ -45,12 +45,12 @@ const routes = [
   {
     path: 'vs/ce-broker',
     title: 'PathPort vs. CE Broker — The Modern CE & Evidence Passport Alternative',
-    description: 'Looking for a CE Broker alternative? Compare PathPort\'s sovereign professional record, multi-state CE tracking, structured case studies, and tailored portfolios.'
+    description: 'Looking for a CE Broker alternative? Compare PathPort\'s sovereign record, multi-state CE tracking, case studies, and tailored portfolios.'
   },
   {
     path: 'tools/renewal-calculator',
-    title: 'Free CEU & License Renewal Calculator — State Nursing & Clinical Requirements',
-    description: 'Calculate state-by-state nursing CE contact hours, mandatory topic rules (Medical Errors, Implicit Bias, Laws & Rules), and eNLC compact status in one place.'
+    title: 'Free Nursing CEU & License Renewal Calculator — All 50 States',
+    description: 'Calculate state nursing CE contact hours, mandatory topic rules (Medical Errors, Implicit Bias, Laws & Rules), and eNLC compact status in one place.'
   },
   {
     path: 'privacy',
@@ -100,6 +100,7 @@ function generatePrerenderedPages() {
 
   routes.forEach(route => {
     let customizedHtml = baseHtml;
+    const routeUrl = route.path ? `https://getpathport.com/${route.path}` : 'https://getpathport.com/';
 
     // Replace title
     customizedHtml = customizedHtml.replace(
@@ -111,6 +112,18 @@ function generatePrerenderedPages() {
     customizedHtml = customizedHtml.replace(
       /<meta name="description" content=".*?" \/>/,
       `<meta name="description" content="${route.description}" />`
+    );
+
+    // Replace Canonical URL
+    customizedHtml = customizedHtml.replace(
+      /<link rel="canonical" href=".*?" \/>/,
+      `<link rel="canonical" href="${routeUrl}" />`
+    );
+
+    // Replace OG URL
+    customizedHtml = customizedHtml.replace(
+      /<meta property="og:url" content=".*?" \/>/,
+      `<meta property="og:url" content="${routeUrl}" />`
     );
 
     // Replace OG title
@@ -136,6 +149,42 @@ function generatePrerenderedPages() {
       /<meta name="twitter:description" content=".*?" \/>/,
       `<meta name="twitter:description" content="${route.description}" />`
     );
+
+    // Inject BreadcrumbList schema for sub-routes
+    if (route.path !== '') {
+      const segments = route.path.split('/').filter(Boolean);
+      let currentUrl = 'https://getpathport.com';
+      const itemListElement = [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://getpathport.com"
+        }
+      ];
+
+      segments.forEach((seg, idx) => {
+        currentUrl += `/${seg}`;
+        const formattedName = seg
+          .split('-')
+          .map(s => s.charAt(0).toUpperCase() + s.slice(1))
+          .join(' ');
+        itemListElement.push({
+          "@type": "ListItem",
+          "position": idx + 2,
+          "name": formattedName,
+          "item": currentUrl
+        });
+      });
+
+      const breadcrumbJson = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": itemListElement
+      });
+      const breadcrumbScript = `\n    <script type="application/ld+json">${breadcrumbJson}</script>`;
+      customizedHtml = customizedHtml.replace('</head>', `${breadcrumbScript}\n  </head>`);
+    }
 
     if (route.path === '') {
       fs.writeFileSync(baseHtmlPath, customizedHtml, 'utf8');

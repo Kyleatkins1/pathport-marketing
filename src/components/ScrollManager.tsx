@@ -5,6 +5,8 @@ const hashAliases: Record<string, string> = {
   'portfolio': 'portfolios',
   'portfolios': 'portfolios',
   'showcase': 'portfolios',
+  'examples': 'portfolios',
+  'practitioner-examples': 'portfolios',
   'pathai': 'path-ai',
   'path-ai': 'path-ai',
   'ai': 'path-ai',
@@ -21,6 +23,7 @@ const hashAliases: Record<string, string> = {
   'renewal': 'renewals',
   'ecosystem': 'ecosystem',
   'teams': 'ecosystem',
+  'workplace': 'ecosystem',
   'faq': 'faq'
 };
 

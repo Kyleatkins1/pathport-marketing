@@ -55,8 +55,8 @@ export const Navbar: React.FC = () => {
     { name: 'Paramedics & EMS', path: '/for/paramedics', icon: Activity, desc: 'NCCP recert & critical care' },
     { name: 'Project & Technical Leads', path: '/for/project-managers', icon: Briefcase, desc: 'Delivery case studies & 60 PDUs' },
     { name: 'Students & Early Career', path: '/for/students', icon: GraduationCap, desc: 'Capstone evidence & degrees' },
-    { name: 'Enterprise & Teams', path: '/for/enterprise', icon: Building2, desc: 'Workforce compliance radar' },
-    { name: 'Specialty Certification Boards', path: '/for/board-certifications', icon: Award, desc: 'Review queues & CE audits' },
+    { name: 'PathPort Workplace', path: '/for/enterprise', icon: Building2, desc: 'Workforce compliance • Late 2026' },
+    { name: 'PathPort Certify', path: '/for/board-certifications', icon: Award, desc: 'Credentialing bodies • Late 2026' },
   ];
 
   return (

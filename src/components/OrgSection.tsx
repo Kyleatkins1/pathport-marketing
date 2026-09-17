@@ -3,7 +3,7 @@ import { Building2, Award, Users, Lock, Activity, ShieldCheck } from 'lucide-rea
 import { BetaRegistrationModal } from './BetaRegistrationModal';
 
 export const OrgSection: React.FC = () => {
-  const [activeSegment, setActiveSegment] = useState<'teams' | 'certify'>('teams');
+  const [activeSegment, setActiveSegment] = useState<'workplace' | 'certify'>('workplace');
   const [isBetaModalOpen, setIsBetaModalOpen] = useState(false);
 
   return (
@@ -13,7 +13,7 @@ export const OrgSection: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-xs font-semibold">
             <Building2 className="w-3.5 h-3.5" />
-            <span>Organizations & Certifying Bodies</span>
+            <span>Organizations & Credentialing Bodies</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-slate-900 dark:text-white tracking-tight">
             Scoped access without duplicate databases.
@@ -29,19 +29,19 @@ export const OrgSection: React.FC = () => {
             className="flex justify-center gap-2.5 pt-2"
           >
             <button
-              id="org-tab-teams"
+              id="org-tab-workplace"
               role="tab"
-              aria-selected={activeSegment === 'teams'}
+              aria-selected={activeSegment === 'workplace'}
               aria-controls="org-showcase-panel"
-              onClick={() => setActiveSegment('teams')}
+              onClick={() => setActiveSegment('workplace')}
               className={`px-5 py-2.5 min-h-[44px] rounded-xl font-semibold text-xs transition-all flex items-center gap-2 border cursor-pointer ${
-                activeSegment === 'teams'
+                activeSegment === 'workplace'
                   ? 'bg-teal-800 text-white border-teal-800 shadow-xs scale-[1.02]'
                   : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800'
               }`}
             >
               <Users className="w-4 h-4" aria-hidden="true" />
-              <span>For Employers (PathPort Teams)</span>
+              <span>For Employers (PathPort Workplace)</span>
             </button>
 
             <button
@@ -57,7 +57,7 @@ export const OrgSection: React.FC = () => {
               }`}
             >
               <Award className="w-4 h-4" aria-hidden="true" />
-              <span>For Certification Bodies (PathPort Certify)</span>
+              <span>For Credentialing Bodies (PathPort Certify)</span>
             </button>
           </div>
         </div>
@@ -70,11 +70,11 @@ export const OrgSection: React.FC = () => {
           className="bg-white dark:bg-slate-900 rounded-3xl p-8 sm:p-12 border border-slate-200 dark:border-slate-800 shadow-sm focus:outline-none"
           tabIndex={0}
         >
-          {activeSegment === 'teams' ? (
+          {activeSegment === 'workplace' ? (
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-7 space-y-5">
                 <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-900 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 text-xs font-semibold">
-                  <span>PathPort Teams</span>
+                  <span>PathPort Workplace • Launching Late 2026</span>
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 dark:text-white">
                   Workforce Credential Compliance with Privacy Firewalls
@@ -106,7 +106,7 @@ export const OrgSection: React.FC = () => {
                     onClick={() => setIsBetaModalOpen(true)}
                     className="min-h-[44px] px-6 py-3 rounded-xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-xs shadow-xs transition-colors cursor-pointer flex items-center justify-center"
                   >
-                    Request Teams Design Partner Access
+                    Request Workplace Pilot Access (Late 2026)
                   </button>
                 </div>
               </div>
@@ -133,7 +133,7 @@ export const OrgSection: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-7 space-y-5">
                 <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 dark:bg-teal-950/60 text-teal-900 dark:text-teal-300 border border-teal-200 dark:border-teal-800 text-xs font-semibold">
-                  <span>PathPort Certify</span>
+                  <span>PathPort Certify • Launching Late 2026</span>
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 dark:text-white">
                   Authoritative Credential Governance & Review
@@ -165,7 +165,7 @@ export const OrgSection: React.FC = () => {
                     onClick={() => setIsBetaModalOpen(true)}
                     className="min-h-[44px] px-6 py-3 rounded-xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-xs shadow-xs transition-colors cursor-pointer flex items-center justify-center"
                   >
-                    Request Certify Reviewer Demo
+                    Request Certify Reviewer Demo (Late 2026)
                   </button>
                 </div>
               </div>
@@ -199,7 +199,7 @@ export const OrgSection: React.FC = () => {
       <BetaRegistrationModal
         isOpen={isBetaModalOpen}
         onClose={() => setIsBetaModalOpen(false)}
-        defaultAudience={activeSegment === 'teams' ? 'Employer / Workforce Compliance' : 'Certification Board / Issuer'}
+        defaultAudience={activeSegment === 'workplace' ? 'Employer / Workforce Compliance (Workplace)' : 'Certification Board / Issuer (Certify)'}
         source="ecosystem_section"
       />
     </section>

@@ -10,8 +10,8 @@ interface SEOProps {
 }
 
 export const SEO: React.FC<SEOProps> = ({
-  title = "PathPort — Your Living Professional Record",
-  description = "Your career is bigger than a résumé. PathPort is your portable professional record. Capture verified evidence, turn projects into rich case studies, present tailored portfolios, and guide your career growth.",
+  title = "PathPort — Own Your Journey. Shape What’s Next",
+  description = "Your portable, sovereign career record. Track projects, degrees, exam renewals, and CE contact hours. Powered by MyPath career intelligence.",
   image = "https://getpathport.com/logo.png",
   type = "website",
   jsonLd
@@ -61,31 +61,71 @@ export const SEO: React.FC<SEOProps> = ({
     canonicalLink.setAttribute('href', canonicalUrl);
 
     // 6. JSON-LD Structured Data
+    const graphItems: any[] = [
+      {
+        "@type": "Organization",
+        "@id": "https://getpathport.com/#organization",
+        "name": "PathPort",
+        "url": "https://getpathport.com",
+        "logo": "https://getpathport.com/logo.png",
+        "sameAs": ["https://twitter.com/PathPortApp", "https://linkedin.com/company/pathport"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://getpathport.com/#website",
+        "url": "https://getpathport.com",
+        "name": "PathPort",
+        "publisher": { "@id": "https://getpathport.com/#organization" }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "PathPort Living Professional Record",
+        "operatingSystem": "Web, iOS, Android",
+        "applicationCategory": "BusinessApplication",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    ];
+
+    // Dynamic BreadcrumbList Schema for sub-routes
+    const pathSegments = location.pathname.split('/').filter(Boolean);
+    if (pathSegments.length > 0) {
+      let currentPath = 'https://getpathport.com';
+      const breadcrumbs = [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://getpathport.com"
+        }
+      ];
+
+      pathSegments.forEach((segment, idx) => {
+        currentPath += `/${segment}`;
+        const name = segment
+          .split('-')
+          .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+          .join(' ');
+        breadcrumbs.push({
+          "@type": "ListItem",
+          "position": idx + 2,
+          "name": name,
+          "item": currentPath
+        });
+      });
+
+      graphItems.push({
+        "@type": "BreadcrumbList",
+        "itemListElement": breadcrumbs
+      });
+    }
+
     const defaultJsonLd = {
       "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Organization",
-          "@id": "https://getpathport.com/#organization",
-          "name": "PathPort",
-          "url": "https://getpathport.com",
-          "logo": "https://getpathport.com/logo.png",
-          "sameAs": ["https://twitter.com/PathPortApp", "https://linkedin.com/company/pathport"]
-        },
-        {
-          "@type": "WebSite",
-          "@id": "https://getpathport.com/#website",
-          "url": "https://getpathport.com",
-          "name": "PathPort",
-          "publisher": { "@id": "https://getpathport.com/#organization" }
-        },
-        {
-          "@type": "SoftwareApplication",
-          "name": "PathPort Living Professional Record",
-          "operatingSystem": "Web, iOS, Android",
-          "applicationCategory": "BusinessApplication"
-        }
-      ]
+      "@graph": graphItems
     };
 
     const structuredData = jsonLd || defaultJsonLd;
@@ -98,7 +138,7 @@ export const SEO: React.FC<SEOProps> = ({
     }
     jsonLdScript.textContent = JSON.stringify(structuredData);
 
-  }, [title, description, image, type, canonicalUrl, jsonLd]);
+  }, [title, description, image, type, canonicalUrl, jsonLd, location.pathname]);
 
   return null;
 };
