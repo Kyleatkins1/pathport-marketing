@@ -15,8 +15,8 @@ export const FAQ: React.FC = () => {
       answer: "A résumé is a list of unverified claims that goes stale immediately. PathPort is a permanent record of your real career artifacts: verified state licenses, accredited CE hours, project case studies with attachments, and transcripts. Instead of emailing five PDFs, you share a single tailored link."
     },
     {
-      question: "What does 'Maintain Once, Present Many Ways' mean?",
-      answer: "You only enter your licenses, case studies, and achievements once into your core record. When you need to send a portfolio to a hospital credentialing office, an executive recruiter, or a conference committee, you generate a custom view that links directly to those items without re-typing data."
+      question: "What does 'Own your journey. Shape what’s next.' mean?",
+      answer: "'Own your journey' means you hold sovereign ownership over your permanent professional record — your credentials, degrees, case studies, continuing education, and career artifacts live in one place, controlled solely by you. 'Shape what’s next' means using that living evidence to actively advance: MyPath career intelligence assesses credential gaps, recommends strategic next steps, prepares interview-ready stories, and generates tailored portfolio links without duplicate data entry."
     },
     {
       question: "Who owns my data if my employer uses PathPort?",

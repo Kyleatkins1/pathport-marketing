@@ -68,10 +68,10 @@ const homeFaqJsonLd = {
         },
         {
           "@type": "Question",
-          "name": "What does 'Maintain Once, Present Many Ways' mean?",
+          "name": "What does 'Own your journey. Shape what’s next.' mean?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "You never need to rebuild your portfolio from scratch. Your credentials, case studies, and experiences live in your core record once. When you create a tailored view for an executive role or client proposal, it references those items live without duplicate data."
+            "text": "'Own your journey' means you hold sovereign ownership over your permanent professional record — credentials, degrees, case studies, continuing education, and career artifacts live in one place, controlled solely by you. 'Shape what’s next' means using that living evidence to actively advance: MyPath career intelligence assesses credential gaps, recommends strategic next steps, prepares interview-ready stories, and generates tailored portfolio links without duplicate data entry."
           }
         },
         {

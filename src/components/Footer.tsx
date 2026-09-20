@@ -16,7 +16,8 @@ export const Footer: React.FC = () => {
               <Logo size={28} />
             </Link>
             <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed max-w-sm">
-              PathPort is the individual's portable, sovereign living identity and evidence record. Maintain yourself once, present yourself many ways with tailored portfolios, structured case studies, and organized renewal tracking.
+              <span className="font-semibold text-slate-900 dark:text-white block mb-1">Own your journey. Shape what’s next.</span>
+              PathPort is the individual's portable, sovereign living identity and evidence record — organize credentials, case studies, and renewals in one place, and present tailored views anywhere.
             </p>
             <div className="space-y-2 pt-2 text-[11px] text-slate-500 dark:text-slate-400">
               <div className="flex items-center gap-1.5 font-medium text-emerald-800 dark:text-emerald-400">

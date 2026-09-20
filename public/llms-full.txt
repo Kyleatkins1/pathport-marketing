@@ -5,7 +5,7 @@ App: https://app.getpathport.com
 Publisher: Veritas Technology Solutions, LLC (https://veritastech.io)
 
 ## Product Invariant & Architectural Thesis
-PathPort is the individual professional's portable, living professional identity and evidence record.
+PathPort is the individual professional's portable, living professional identity and evidence record. Own your journey. Shape what’s next.
 - **Individual Sovereignty**: The individual owns the canonical profile, credentials held, continuing education history, education, work experiences, structured case studies, awards, publications, and consent grants.
 - **PathPort Workplace (Launching Late 2026)**: Owns organization configuration, memberships, departments, role requirements, and rebuildable compliance projections. Workplace never owns a duplicate employee professional record.
 - **PathPort Certify (Launching Late 2026)**: Owns certification programs, cycle rules, submitted evidence review queues, reviewer decisions, and issuer assertions.
