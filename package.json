@@ -8,7 +8,7 @@
     "build": "astro build",
     "lint": "tsc --noEmit",
     "preview": "astro preview",
-    "deploy": "npm run build && npx wrangler pages deploy dist --project-name=pathport-marketing"
+    "deploy": "npm run build && CLOUDFLARE_ACCOUNT_ID=2ef2b78269fdf3665fc30bc1b986c4eb npx wrangler pages deploy dist --project-name=pathport-marketing --branch=main"
   },
   "dependencies": {
     "@astrojs/react": "^7.1.2",
