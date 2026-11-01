@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { TermsOfService } from '../views/TermsOfService';
+---
+
+<BaseLayout
+  title="PathPort — Terms of Service & Mobile App License | Veritas Technology Solutions, LLC"
+  description="PathPort Terms of Service by Veritas Technology Solutions, LLC. Covers PathPort Individual, Free Personal Identity Tracker, MyPortfolio, MyPath, Workplace, Certify, and iOS/Android Mobile Apps."
+  canonicalPath="/terms"
+  breadcrumbs={[
+    { name: 'Terms of Service', path: '/terms' },
+  ]}
+>
+  <TermsOfService client:load />
+</BaseLayout>
+

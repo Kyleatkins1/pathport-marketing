@@ -1,254 +1,248 @@
 import React, { useState } from 'react';
+import {
+  FileText,
+  Award,
+  Briefcase,
+  BookOpen,
+  ExternalLink,
+  CheckCircle2,
+  ShieldCheck,
+  Palette,
+  Lock,
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Award, CheckCircle2, Presentation, ExternalLink, ShieldCheck } from 'lucide-react';
 
-interface DemoProfile {
-  id: string;
-  name: string;
-  role: string;
-  badge: string;
-  handle: string;
-  avatar: string;
-  bio: string;
-  credentials: Array<{
-    title: string;
-    issuer: string;
-    type: string;
-    status: string;
-  }>;
-  caseStudyTitle: string;
-  caseStudyOutcome: string;
-}
+const SHOWCASES = [
+  {
+    role: 'Clinical & Healthcare (RN / APRN)',
+    demoSlug: 'sarah-jenkins-rn',
+    headline: 'Pair active multi-state licenses with clinical QI outcomes',
+    themeLabel: 'Modern Clinical Theme',
+    summary:
+      'Instead of listing "Charge Nurse, 2022–2026" on a plain resume, share a permissioned MyPortfolio view linking your active compact RN license, AACN CCRN certification, and de-identified quality improvement protocols.',
+    artifacts: [
+      {
+        type: 'Quality Improvement Case Study',
+        title: 'ICU Sepsis Early-Recognition Bundle',
+        metric: '22% faster antibiotic initiation across 1,400 admissions',
+        badge: 'Document-Supported (PDF)',
+      },
+      {
+        type: 'Preceptorship & Teaching',
+        title: 'Critical Care New-Grad Residency Preceptor',
+        metric: '420 precepted clinical hours • 6 RN cohorts onboarded',
+        badge: 'Document-Supported',
+      },
+      {
+        type: 'Credential & Renewal Packet',
+        title: 'FL Compact RN + CA RN + CCRN + ACLS/BLS',
+        metric: '100% renewal compliance • Original certificates attached',
+        badge: 'SHA-256 Vault Backed',
+      },
+    ],
+  },
+  {
+    role: 'Project & Technical Leadership (PMP)',
+    demoSlug: 'elena-rodriguez-pmp',
+    headline: 'Connect your PMP and cloud certifications to shipped systems',
+    themeLabel: 'Executive Dark Theme',
+    summary:
+      'Hiring managers and enterprise clients want proof of delivery. Link your PMI PMP and cloud credentials directly to architecture diagrams, post-mortems, and budget delivery summaries.',
+    artifacts: [
+      {
+        type: 'Program Delivery Case Study',
+        title: 'Multi-Region Core Banking Cloud Migration',
+        metric: '$14.2M budget • Zero unplanned downtime across 18 months',
+        badge: 'Architecture Deck Linked',
+      },
+      {
+        type: 'Published Framework',
+        title: 'Enterprise AI Governance & Risk Controls Playbook',
+        metric: 'Adopted across 11 engineering squads (240 engineers)',
+        badge: 'Publication Attached',
+      },
+      {
+        type: 'Verified Certifications',
+        title: 'PMI PMP (60/60 PDUs) • AWS Solutions Architect • CSM',
+        metric: 'Active standing • Direct certificate verification',
+        badge: 'Document-Supported',
+      },
+    ],
+  },
+  {
+    role: 'Students, Residents & New Graduates',
+    demoSlug: 'david-kim-bsn',
+    headline: 'Turn clinical rotations and capstones into first-job proof',
+    themeLabel: 'Minimal Academic Theme',
+    summary:
+      'New graduates often look identical on paper. Stand out to residency directors and hiring managers by presenting your capstone research, clinical rotation hours, and faculty evaluations in a clean link.',
+    artifacts: [
+      {
+        type: 'Senior Practicum Log',
+        title: 'Level-1 Trauma Emergency Department Practicum',
+        metric: '180 direct patient care hours • Preceptor evaluation attached',
+        badge: 'Document-Supported',
+      },
+      {
+        type: 'Honors Capstone Poster',
+        title: 'Reducing Pediatric Discharge Medication Errors',
+        metric: '1st Place — Spring Undergraduate Research Symposium',
+        badge: 'Poster PDF Attached',
+      },
+      {
+        type: 'Licensure & Readiness',
+        title: 'BSN Conferred • NCLEX-RN Scheduled • AHA BLS & ACLS',
+        metric: 'Ready for immediate hospital residency onboarding',
+        badge: 'SHA-256 Vault Backed',
+      },
+    ],
+  },
+];
 
 export const PortfolioShowcase: React.FC = () => {
-  const profiles: DemoProfile[] = [
-    {
-      id: 'nurse-multi',
-      name: 'Sarah Jenkins, BSN, RN',
-      role: 'ICU Charge Nurse & Preceptor',
-      badge: 'Healthcare & Nursing',
-      handle: 'sarah-jenkins-rn',
-      avatar: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=300',
-      bio: '10+ years critical care nursing across NY & NJ state licensing boards, with focus on ECMO and trauma resuscitation.',
-      credentials: [
-        { title: 'Registered Nurse (RN) License', issuer: 'NYS Board of Nursing', type: 'State License', status: 'Issuer Verified' },
-        { title: 'CCRN® — Critical Care Nurse', issuer: 'AACN Certification Corp', type: 'Specialty Board', status: 'Issuer Verified' },
-        { title: 'ACLS / PALS Provider', issuer: 'American Heart Association', type: 'Clinical Cert', status: 'Provider Reported' },
-      ],
-      caseStudyTitle: 'Telemetry Unit Sepsis Early-Warning Protocol',
-      caseStudyOutcome: 'Reduced mean time to ICU transfer by 42 minutes across 180 admissions.',
-    },
-    {
-      id: 'paramedic-cct',
-      name: 'Elena Rodriguez, NRP, FP-C',
-      role: 'Flight Paramedic & Clinical Educator',
-      badge: 'Emergency Services',
-      handle: 'elena-flight-lead',
-      avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=300',
-      bio: 'Critical care rotary transport clinician with focus on high-altitude neonatal ventilation and QA training.',
-      credentials: [
-        { title: 'National Registry Paramedic (NRP)', issuer: 'NREMT', type: 'Board Cert', status: 'Issuer Verified' },
-        { title: 'Certified Flight Paramedic (FP-C)', issuer: 'IBSC', type: 'Board Specialty', status: 'Issuer Verified' },
-        { title: 'Critical Care Transport (CCT)', issuer: 'University Medical Center', type: 'Specialty Cert', status: 'Provider Reported' },
-      ],
-      caseStudyTitle: 'Pre-Hospital RSI In-Flight Ventilator Protocol',
-      caseStudyOutcome: 'Maintained 100% SpO2 stability across 64 high-acuity inter-facility flights.',
-    },
-    {
-      id: 'pmp-single',
-      name: 'Marcus Vance, PMP®, CSM',
-      role: 'Senior Technical Program Director',
-      badge: 'Cloud & Technology',
-      handle: 'marcus-vance',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=300',
-      bio: 'Managing complex distributed system migrations, multi-region database architectures, and agile engineering teams.',
-      credentials: [
-        { title: 'PMP® — Project Management Pro', issuer: 'PMI', type: 'Certification', status: 'Issuer Verified' },
-        { title: 'AWS Solutions Architect - Pro', issuer: 'Amazon Web Services', type: 'Cloud Cert', status: 'Issuer Verified' },
-        { title: 'Certified ScrumMaster (CSM)', issuer: 'Scrum Alliance', type: 'Agile Cert', status: 'Provider Reported' },
-      ],
-      caseStudyTitle: 'Zero-Downtime Multi-Region Database Sharding',
-      caseStudyOutcome: 'Completed CRDT migration across 4 global regions with 0 seconds of user downtime.',
-    },
-    {
-      id: 'student-research',
-      name: 'David Kim, MS',
-      role: 'Bioengineering Research Fellow',
-      badge: 'Sciences & Research',
-      handle: 'david-kim-bio',
-      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=300',
-      bio: 'Biomedical engineering graduate with published peer-reviewed research in microfluidic diagnostic sensors.',
-      credentials: [
-        { title: 'M.S. in Biomedical Engineering', issuer: 'Johns Hopkins University', type: 'Degree', status: 'Issuer Verified' },
-        { title: 'Good Clinical Practice (GCP)', issuer: 'CITI Program', type: 'Certification', status: 'Issuer Verified' },
-      ],
-      caseStudyTitle: 'Point-of-Care Microfluidic Biosensor Validation',
-      caseStudyOutcome: 'Achieved 98.4% diagnostic sensitivity in preclinical blood plasma assay trials.',
-    },
-  ];
-
-  const [activeProfile, setActiveProfile] = useState<DemoProfile>(profiles[0]);
-
-  const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
-    let nextIndex = index;
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-      e.preventDefault();
-      nextIndex = (index + 1) % profiles.length;
-    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-      e.preventDefault();
-      nextIndex = (index - 1 + profiles.length) % profiles.length;
-    } else if (e.key === 'Home') {
-      e.preventDefault();
-      nextIndex = 0;
-    } else if (e.key === 'End') {
-      e.preventDefault();
-      nextIndex = profiles.length - 1;
-    }
-
-    if (nextIndex !== index) {
-      setActiveProfile(profiles[nextIndex]);
-      const nextBtn = document.getElementById(`portfolio-tab-${profiles[nextIndex].id}`);
-      nextBtn?.focus();
-    }
-  };
+  const [selected, setSelected] = useState(0);
+  const current = SHOWCASES[selected];
 
   return (
-    <section id="portfolios" className="py-20 md:py-28 bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 scroll-mt-20 select-none transition-colors relative">
-      {/* Alias anchors for singular #portfolio and #practitioner-examples */}
-      <span id="portfolio" className="absolute -top-20" />
-      <span id="practitioner-examples" className="absolute -top-20" />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-xs font-semibold">
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" aria-hidden="true" />
-            Verified Portfolio Examples
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-display font-black text-slate-900 dark:text-white tracking-tight">
-            See the Living Record in Action
-          </h2>
-          <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
-            Select a verified discipline below to explore how credentials, structured case studies, and tailored lenses present in real time.
-          </p>
-        </div>
+    <section
+      id="myportfolio"
+      className="py-20 lg:py-28 bg-white border-t border-slate-200/70 scroll-mt-20"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          {/* Left Narrative */}
+          <div className="lg:col-span-5 space-y-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-200/80 text-amber-900 text-xs font-semibold">
+              <Award className="w-3.5 h-3.5 text-amber-700" />
+              <span>MyPortfolio • Permissioned Professional Views</span>
+            </div>
 
-        {/* Rich Persona Selector Cards (ARIA Tablist) */}
-        <div 
-          role="tablist"
-          aria-label="Verified Practitioner Profiles"
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 max-w-5xl mx-auto"
-        >
-          {profiles.map((p, idx) => {
-            const isSelected = p.id === activeProfile.id;
-            return (
-              <button
-                key={p.id}
-                id={`portfolio-tab-${p.id}`}
-                role="tab"
-                aria-selected={isSelected}
-                aria-controls={`portfolio-panel-${p.id}`}
-                tabIndex={isSelected ? 0 : -1}
-                onClick={() => setActiveProfile(p)}
-                onKeyDown={(e) => handleKeyDown(e, idx)}
-                className={`p-3.5 rounded-2xl text-left transition-all cursor-pointer flex items-center gap-3 border min-h-[44px] ${
-                  isSelected
-                    ? 'bg-white dark:bg-slate-900 border-2 border-teal-800 dark:border-teal-400 shadow-md ring-2 ring-teal-800/10'
-                    : 'bg-white/80 dark:bg-slate-900/60 hover:bg-white dark:hover:bg-slate-900 border-slate-200/90 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 shadow-2xs'
-                }`}
-              >
-                <img 
-                  src={p.avatar} 
-                  alt={`Portrait of ${p.name}`} 
-                  className={`w-10 h-10 rounded-xl object-cover shrink-0 border ${
-                    isSelected ? 'border-teal-800 dark:border-teal-400' : 'border-slate-200 dark:border-slate-700'
+            <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-slate-900 tracking-tight leading-tight">
+              Curate verifiable portfolios for every audience—from one record.
+            </h2>
+
+            <p className="text-base text-slate-600 leading-relaxed">
+              With <strong>MyPortfolio</strong>, you never rebuild your profile from scratch. Select
+              which credentials, projects, case studies, and publications to include, pick a visual
+              theme (<strong>Modern</strong>, <strong>Executive</strong>, or{' '}
+              <strong>Minimal</strong>), and share a live link or formatted PDF dossier.
+            </p>
+
+            {/* Persona Selector Buttons */}
+            <div className="space-y-2 pt-1">
+              {SHOWCASES.map((item, idx) => (
+                <button
+                  key={item.role}
+                  type="button"
+                  onClick={() => setSelected(idx)}
+                  className={`w-full text-left px-4 py-3.5 rounded-xl border transition-all flex items-center justify-between cursor-pointer ${
+                    selected === idx
+                      ? 'bg-[#0D5F57] text-white border-[#0D5F57] shadow-md'
+                      : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
                   }`}
-                />
-                <div className="min-w-0 flex-1">
-                  <div className={`font-bold text-xs truncate ${isSelected ? 'text-teal-900 dark:text-teal-300 font-extrabold' : 'text-slate-900 dark:text-white'}`}>
-                    {p.name.split(',')[0]}
+                >
+                  <div>
+                    <span className="text-sm font-semibold block">{item.role}</span>
+                    <span
+                      className={`text-xs ${
+                        selected === idx ? 'text-teal-200' : 'text-slate-500'
+                      }`}
+                    >
+                      {item.themeLabel}
+                    </span>
                   </div>
-                  <div className="text-[10px] text-teal-800 dark:text-teal-400 font-semibold truncate">
-                    {p.badge}
-                  </div>
-                </div>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Interactive Living Portfolio Card Preview (ARIA Tabpanel) */}
-        <div 
-          id={`portfolio-panel-${activeProfile.id}`}
-          role="tabpanel"
-          aria-labelledby={`portfolio-tab-${activeProfile.id}`}
-          className="max-w-4xl mx-auto bg-white dark:bg-slate-900 rounded-3xl p-8 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm space-y-7 transition-all focus:outline-none"
-          tabIndex={0}
-        >
-          {/* Top Bar: Handle & Scope */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100 dark:border-slate-800">
-            <div>
-              <div className="text-xs font-mono text-teal-800 dark:text-teal-400 font-bold flex items-center gap-1.5">
-                <span>getpathport.com/p/{activeProfile.handle}</span>
-              </div>
-              <h3 className="text-2xl font-display font-bold text-slate-900 dark:text-white mt-1">
-                {activeProfile.name}
-              </h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400">{activeProfile.role}</p>
-            </div>
-
-            <Link
-              to={`/p/${activeProfile.handle}`}
-              className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 min-h-[44px] rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-teal-800 dark:hover:bg-teal-700 text-white text-xs font-semibold shadow-2xs hover:scale-[1.02] transition-all self-start sm:self-auto"
-            >
-              <span>View Full PathPortfolio</span>
-              <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
-            </Link>
-          </div>
-
-          <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-            {activeProfile.bio}
-          </p>
-
-          {/* Credentials Grid */}
-          <div className="space-y-3">
-            <div className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
-              <Award className="w-4 h-4 text-teal-800 dark:text-teal-400" aria-hidden="true" />
-              <span>Verified Credentials & Board Certifications</span>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-              {activeProfile.credentials.map((c, i) => (
-                <div key={i} className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-100 dark:border-slate-700/80 space-y-1.5">
-                  <div className="text-xs font-bold text-slate-900 dark:text-white leading-tight">{c.title}</div>
-                  <div className="text-[10px] text-slate-500 dark:text-slate-400">{c.issuer}</div>
-                  <div className="pt-1 flex items-center gap-1 text-[10px] text-emerald-800 dark:text-emerald-300 font-bold">
-                    <CheckCircle2 className="w-3 h-3 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
-                    <span>{c.status}</span>
-                  </div>
-                </div>
+                  <ExternalLink
+                    className={`w-4 h-4 ${selected === idx ? 'text-teal-200' : 'text-slate-400'}`}
+                  />
+                </button>
               ))}
             </div>
+
+            <div className="pt-2 grid grid-cols-2 gap-3 text-xs text-slate-600">
+              <div className="flex items-center gap-2">
+                <Palette className="w-4 h-4 text-[#0D5F57] shrink-0" />
+                <span>3 Built-In Presentation Themes</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Lock className="w-4 h-4 text-[#0D5F57] shrink-0" />
+                <span>1-Click Link Revocation</span>
+              </div>
+            </div>
           </div>
 
-          {/* Case Study Callout */}
-          <div className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-100 dark:border-slate-700/80 space-y-2">
-            <div className="flex items-center justify-between">
-              <div className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
-                <Presentation className="w-4 h-4 text-teal-800 dark:text-teal-400" aria-hidden="true" />
-                <span>Featured Structured Case Study</span>
+          {/* Right Showcase Card */}
+          <div className="lg:col-span-7">
+            <div className="rounded-2xl bg-slate-50 border border-slate-200/90 p-6 sm:p-8 shadow-lg">
+              <div className="flex flex-wrap items-center justify-between gap-2 pb-5 border-b border-slate-200">
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#0D5F57]">
+                    MyPortfolio • {current.themeLabel}
+                  </span>
+                  <h3 className="text-xl font-bold text-slate-900 font-display mt-1">
+                    {current.headline}
+                  </h3>
+                </div>
+                <Link
+                  to={`/p/${current.demoSlug}`}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-xs font-semibold text-[#0D5F57] hover:bg-teal-50 hover:border-teal-200 transition-colors"
+                >
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#0D5F57]" />
+                  <span>Open Live Sample</span>
+                  <ExternalLink className="w-3 h-3" />
+                </Link>
               </div>
-              <span className="text-[10px] font-mono text-purple-800 dark:text-purple-300 bg-purple-50 dark:bg-purple-950/60 border border-purple-200 dark:border-purple-800 px-2 py-0.5 rounded-full font-bold">
-                Evidence Attached
-              </span>
+
+              <p className="mt-4 text-sm text-slate-600 leading-relaxed">{current.summary}</p>
+
+              <div className="mt-6 space-y-3">
+                {current.artifacts.map((art, i) => (
+                  <div
+                    key={i}
+                    className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-2xs flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="w-9 h-9 rounded-lg bg-teal-50 text-[#0D5F57] flex items-center justify-center shrink-0 mt-0.5">
+                        {i === 0 ? (
+                          <Briefcase className="w-4.5 h-4.5" />
+                        ) : i === 1 ? (
+                          <BookOpen className="w-4.5 h-4.5" />
+                        ) : (
+                          <FileText className="w-4.5 h-4.5" />
+                        )}
+                      </div>
+                      <div>
+                        <div className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                          {art.type}
+                        </div>
+                        <div className="text-sm font-bold text-slate-900 mt-0.5">{art.title}</div>
+                        <div className="text-xs text-slate-600 mt-0.5">{art.metric}</div>
+                      </div>
+                    </div>
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-emerald-50 text-[#0D5F57] border border-emerald-200/60 text-xs font-semibold self-start sm:self-center shrink-0">
+                      <CheckCircle2 className="w-3.5 h-3.5" />
+                      {art.badge}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-slate-500">
+                <span>
+                  Exportable as a live share URL or formatted PDF dossier (Curriculum Vitae /
+                  Speaker One-Sheet)
+                </span>
+                <Link
+                  to={`/p/${current.demoSlug}`}
+                  className="font-semibold text-[#0D5F57] hover:underline inline-flex items-center gap-1"
+                >
+                  <span>Inspect full sample portfolio</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </Link>
+              </div>
             </div>
-            <div className="text-sm font-bold text-slate-900 dark:text-white">{activeProfile.caseStudyTitle}</div>
-            <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-              <strong>Outcome:</strong> {activeProfile.caseStudyOutcome}
-            </p>
           </div>
         </div>
       </div>
     </section>
   );
 };
-
-export default PortfolioShowcase;

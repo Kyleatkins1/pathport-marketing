@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { RenewalCalculator } from '../../../views/RenewalCalculator';
+import {
+  STATE_RENEWAL_DATA,
+  type StateRenewalRule,
+} from '../../../data/stateRenewalData';
+
+export function getStaticPaths() {
+  return STATE_RENEWAL_DATA.map((stateProfile) => ({
+    params: { state: stateProfile.slug },
+    props: { stateProfile },
+  }));
+}
+
+interface Props {
+  stateProfile: StateRenewalRule;
+}
+
+const { stateProfile } = Astro.props;
+
+const mandatoryList =
+  stateProfile.mandatoryTopics.length > 0
+    ? stateProfile.mandatoryTopics
+        .map((t) => `${t.title} (${t.hours > 0 ? `${t.hours} hrs` : t.frequency})`)
+        .join(', ')
+    : 'No standalone topic-specific hour mandates (standard board renewal rules apply)';
+
+const pageTitle = `${stateProfile.name} (${stateProfile.code}) RN License Renewal & CE Requirements Calculator | PathPort`;
+const pageDescription = `${stateProfile.name} (${stateProfile.boardName}) RN renewal requirements: ${
+  stateProfile.totalHours > 0
+    ? `${stateProfile.totalHours} contact hours every ${stateProfile.cycleYears} year${stateProfile.cycleYears > 1 ? 's' : ''}`
+    : `${stateProfile.cycleYears}-year renewal cycle (${stateProfile.notes})`
+}. Mandatory topics: ${mandatoryList}.`;
+
+const stateFaqSchema = {
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: `How many CE contact hours are required for ${stateProfile.name} (${stateProfile.code}) RN license renewal?`,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: `${
+          stateProfile.totalHours > 0
+            ? `${stateProfile.totalHours} contact hours every ${stateProfile.cycleYears} year${stateProfile.cycleYears > 1 ? 's' : ''}.`
+            : `${stateProfile.cycleYears}-year renewal cycle.`
+        } ${stateProfile.notes} Governing board: ${stateProfile.boardName}.`,
+      },
+    },
+    {
+      '@type': 'Question',
+      name: `What are the mandatory CE topics for ${stateProfile.name} nurses?`,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          stateProfile.mandatoryTopics.length > 0
+            ? stateProfile.mandatoryTopics
+                .map(
+                  (t) =>
+                    `${t.title}: ${t.hours > 0 ? `${t.hours} contact hours` : 'Required'} (${t.frequency})`
+                )
+                .join(' | ')
+            : `${stateProfile.name} does not mandate separate topic-specific CE hours beyond general board renewal pathways.`,
+      },
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalPath={`/tools/renewal-calculator/${stateProfile.slug}`}
+  includeSoftwareSchema={true}
+  breadcrumbs={[
+    { name: '50-State CE Renewal Calculator', path: '/tools/renewal-calculator' },
+    {
+      name: `${stateProfile.name} (${stateProfile.code}) RN Renewal`,
+      path: `/tools/renewal-calculator/${stateProfile.slug}`,
+    },
+  ]}
+  extraJsonLd={stateFaqSchema}
+>
+  <RenewalCalculator initialStateCode={stateProfile.code} client:load />
+</BaseLayout>

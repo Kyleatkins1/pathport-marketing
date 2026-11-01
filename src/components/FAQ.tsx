@@ -1,97 +1,81 @@
 import React, { useState } from 'react';
 import { ChevronDown, HelpCircle } from 'lucide-react';
 
-interface FAQItem {
-  question: string;
-  answer: string;
+export interface FAQItem {
+  q: string;
+  a: string;
 }
+
+export const HOMEPAGE_FAQS: FAQItem[] = [
+  {
+    q: 'Is PathPort only for healthcare, or can anyone track credentials and identity documents?',
+    a: 'PathPort is built for everyone—if you have a credential, you can track it. Whether you hold tech and cloud certifications (AWS, CompTIA, ISC2), project management credentials (PMP, CSM), aviation or trade licenses, education certificates, or clinical boards, PathPort tracks them in one place. We are also building a free PathPort Identity tier so anyone can track personal identity documents they sometimes forget to renew—like a Driver’s License, Passport, or Global Entry—for free.',
+  },
+  {
+    q: 'Do I have to type all of my past licenses, jobs, digital badges, and CE certificates by hand?',
+    a: 'No. During setup, you can drop in your existing resume/CV (PDF or DOCX), a LinkedIn profile PDF export, or a batch of CE certificate PDFs and wallet card photos. You can also paste badge URLs or your entire earner profile link from Credly (credly.com/users/you/badges), Accredible (credential.net), Badgr/Canvas, Coursera, or Open Badges—and forward completion emails directly to your personal @in.getpathport.com address. PathPort extracts and deduplicates everything into a staged review tray so you can confirm each item before it enters your record.',
+  },
+  {
+    q: 'How is PathPort different from CE Broker or my employer’s HR portal?',
+    a: 'CE Broker is a state compliance reporting tool built for participating state boards, and employer HR portals belong to your company. The day you move states or change employers, your history is either locked behind an old login or limited to a single board. PathPort is owned by you for life, tracks renewals across all 50 states and national boards (PMI, CompTIA, ISC2, ANCC, AACN, NREMT), and includes MyPortfolio and MyPath.',
+  },
+  {
+    q: 'What is the difference between the Free Personal Identity Tracker, Essentials, and Pro?',
+    a: 'Our upcoming Personal Identity Documents tier ($0 Free Forever) is built specifically for people who only want to track everyday identity documents—like a Driver’s License, Passport, Global Entry / TSA PreCheck, or Vehicle Registration—so they never forget a renewal. PathPort Essentials ($9.99/mo or $7.99/mo billed annually) gives you the complete 8-Entity Living Record, 60-second multi-source & Credly import, @in.getpathport.com email forwarding, 50-state and board renewal tracking, your private SHA-256 Document Vault, and 1 public MyPortfolio link. PathPort Pro ($19.99/mo or $14.99/mo billed annually) adds MyPath Career Intelligence—including 6-pillar career roadmaps, What-If Role Audits, Application & Interview Studio, and unlimited custom MyPortfolio views.',
+  },
+  {
+    q: 'How do PathPort Workplace and PathPort Certify work (Launching 2027)?',
+    a: 'PathPort Workplace is built for any workforce that needs to obtain and verify employee credentials without sending countless emails: simply log in, select what you need, and send the request to the employee—they can create a free PathPort profile, upload their required docs, and share them instantly while system intelligence keeps everyone compliant (plus you can assign CEUs directly to training attendees). PathPort Certify is end-to-end credential management for certifying bodies across any industry: candidates apply for a credential, submit documents, and track payments; you track exam results from official test platforms (or use our testing partners to streamline the experience), issue credentials through any badge provider, and manage recertifications directly within PathPort.',
+  },
+  {
+    q: 'How does PathPort handle verification, document provenance, and privacy?',
+    a: 'All uploaded files live in a private, encrypted user storage container by default—nothing is visible externally unless you explicitly share it. Every item carries a transparent provenance status: Self-Reported, Document-Supported (backed by a SHA-256 hashed certificate in your private Vault), Provider-Reported, or Issuer-Verified.',
+  },
+];
 
 export const FAQ: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const faqs: FAQItem[] = [
-    {
-      question: "How does PathPort differ from a PDF résumé or LinkedIn profile?",
-      answer: "A résumé is a list of unverified claims that goes stale immediately. PathPort is a permanent record of your real career artifacts: verified state licenses, accredited CE hours, project case studies with attachments, and transcripts. Instead of emailing five PDFs, you share a single tailored link."
-    },
-    {
-      question: "What does 'Own your journey. Shape what’s next.' mean?",
-      answer: "'Own your journey' means you hold sovereign ownership over your permanent professional record — your credentials, degrees, case studies, continuing education, and career artifacts live in one place, controlled solely by you. 'Shape what’s next' means using that living evidence to actively advance: MyPath career intelligence assesses credential gaps, recommends strategic next steps, prepares interview-ready stories, and generates tailored portfolio links without duplicate data entry."
-    },
-    {
-      question: "Who owns my data if my employer uses PathPort?",
-      answer: "You do. PathPort enforces strict individual sovereignty. Employers connect through scoped permissions to view only the specific licenses and compliance items required for your current role. If you change jobs, their access ends immediately and your record stays with you."
-    },
-    {
-      question: "How does credential verification work?",
-      answer: "Every license and certification displays an objective provenance badge: Document Supported, State Registry Checked, or Issuer Verified. Viewers can inspect verification timestamps without having to create an account or log in."
-    },
-    {
-      question: "Is there a free version of PathPort, and how do trials work?",
-      answer: "To guarantee 100% individual sovereignty, zero data selling, and zero advertising, PathPort does not offer an ad-supported or data-brokered free tier. Instead, every standard account receives a 14-day free trial of PathPort Pro with no payment info required. Founding members who join our waitlist before our Fall 2026 launch receive an exclusive 30-day free trial of Pro. After your trial, you can choose between Essentials ($9.99/mo or $8.33/mo billed annually) or Pro ($19.99/mo or $16.66/mo billed annually), and your records always remain 100% exportable and owned by you."
-    }
-  ];
-
-  const toggleFAQ = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
-
   return (
-    <section id="faq" className="py-20 md:py-28 bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 scroll-mt-16 transition-colors">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        {/* Header */}
-        <div className="text-center space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-xs font-semibold">
+    <section
+      id="faq"
+      className="py-20 lg:py-24 bg-slate-50 border-t border-slate-200/80 scroll-mt-20"
+    >
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center space-y-3 mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 border border-teal-200/80 text-[#0D5F57] text-xs font-semibold">
             <HelpCircle className="w-3.5 h-3.5" />
             <span>Frequently Asked Questions</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-display font-black text-slate-900 dark:text-white tracking-tight">
-            Everything You Need to Know
+          <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-slate-900 tracking-tight">
+            Clear answers on setup, ownership, and pricing
           </h2>
-          <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
-            Learn how PathPort safeguards your evidence, organizes renewals, and powers living portfolios.
-          </p>
         </div>
 
-        {/* Accordion Container */}
         <div className="space-y-3">
-          {faqs.map((faq, idx) => {
+          {HOMEPAGE_FAQS.map((item, idx) => {
             const isOpen = openIndex === idx;
-            const questionId = `faq-question-${idx}`;
-            const answerId = `faq-answer-${idx}`;
             return (
               <div
                 key={idx}
-                className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/90 dark:border-slate-800 overflow-hidden transition-all shadow-2xs"
+                className="rounded-2xl bg-white border border-slate-200/90 overflow-hidden transition-all"
               >
                 <button
-                  id={questionId}
+                  type="button"
+                  onClick={() => setOpenIndex(isOpen ? null : idx)}
                   aria-expanded={isOpen}
-                  aria-controls={answerId}
-                  onClick={() => toggleFAQ(idx)}
-                  className="w-full p-5 text-left flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 dark:focus-visible:ring-teal-400 group cursor-pointer min-h-[44px]"
+                  className="w-full px-6 py-5 text-left flex items-center justify-between gap-4 hover:bg-slate-50/80 transition-colors cursor-pointer"
                 >
-                  <span className="font-bold text-slate-900 dark:text-white text-sm sm:text-base group-hover:text-teal-800 dark:group-hover:text-teal-400 transition-colors">
-                    {faq.question}
-                  </span>
-                  <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 group-hover:bg-teal-50 dark:group-hover:bg-teal-950/60 group-hover:text-teal-800 dark:group-hover:text-teal-300 transition-all shrink-0 ${
-                      isOpen ? 'rotate-180 bg-teal-50 dark:bg-teal-950/60 text-teal-800 dark:text-teal-300' : ''
+                  <span className="text-base font-bold text-slate-900 font-display">{item.q}</span>
+                  <ChevronDown
+                    className={`w-5 h-5 text-slate-500 shrink-0 transition-transform duration-200 ${
+                      isOpen ? 'rotate-180 text-[#0D5F57]' : ''
                     }`}
-                    aria-hidden="true"
-                  >
-                    <ChevronDown className="w-4 h-4" />
-                  </div>
+                  />
                 </button>
-
                 {isOpen && (
-                  <div 
-                    id={answerId}
-                    role="region"
-                    aria-labelledby={questionId}
-                    className="px-5 pb-5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 animate-in fade-in duration-150"
-                  >
-                    {faq.answer}
+                  <div className="px-6 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                    {item.a}
                   </div>
                 )}
               </div>
@@ -102,5 +86,3 @@ export const FAQ: React.FC = () => {
     </section>
   );
 };
-
-export default FAQ;

@@ -1,186 +1,151 @@
 import React from 'react';
-import { Briefcase, Award, Compass, CheckCircle2, Layers, XCircle, FileCheck } from 'lucide-react';
+import {
+  ShieldCheck,
+  Clock,
+  FolderLock,
+  ArrowRight,
+  CheckCircle2,
+  XCircle,
+  Mail,
+} from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export const FeaturePillars: React.FC = () => {
   return (
-    <section id="features" className="py-20 md:py-28 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 scroll-mt-16 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
-        
+    <section id="living-record" className="py-20 lg:py-28 bg-slate-50/70 scroll-mt-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div id="why" className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-xs font-semibold">
-            <FileCheck className="w-3.5 h-3.5" aria-hidden="true" />
-            <span>The Evidence Problem</span>
+        <div className="max-w-3xl mx-auto text-center space-y-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 border border-teal-200/80 text-[#0D5F57] text-xs font-semibold">
+            <span>The Living Record • Maintain Once, Use Everywhere</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-display font-black text-slate-900 dark:text-white tracking-tight">
-            Where traditional résumés fall short.
+          <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-slate-900 tracking-tight">
+            Why professionals outgrow static resumes and state reporting portals
           </h2>
-          <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
-            A standard résumé reduces complex clinical protocols, architecture migrations, and team leadership to two-line bullet points. PathPort provides a structured home for the actual proof behind your career.
+          <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
+            A two-page PDF can’t hold your CE certificates, clinical logs, or project outcomes—and
+            state reporting portals lock your history inside a single board. PathPort keeps your
+            complete career record organized in one private workspace you own.
           </p>
         </div>
 
-        {/* Side-by-Side Comparison Matrix (NarcTrack White & Tinted Surfaces) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          {/* Column 1: The Static Flat Résumé */}
-          <div className="card-surface-white p-7 sm:p-8 space-y-5">
-            <div className="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
-              <span className="font-display font-bold text-base text-slate-700 dark:text-slate-200">
-                Traditional 1-Page Résumé
+        {/* Before vs. After Comparison */}
+        <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Before: Fragmented Status Quo */}
+          <div className="rounded-2xl bg-white border border-slate-200/90 p-6 sm:p-8 shadow-2xs">
+            <div className="flex items-center justify-between pb-4 border-b border-slate-100">
+              <span className="text-sm font-bold text-slate-600 uppercase tracking-wider">
+                The Fragmented Status Quo
               </span>
-              <span className="px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-[10px] font-bold">
-                Fragile Format
+              <span className="px-2.5 py-1 rounded-md bg-rose-50 text-rose-700 text-xs font-semibold">
+                Scattered & Manual
               </span>
             </div>
-
-            <ul className="space-y-4 text-xs text-slate-600 dark:text-slate-300">
-              <li className="flex items-start gap-3">
-                <XCircle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" aria-hidden="true" />
-                <div>
-                  <strong className="text-slate-900 dark:text-white block">Drops Project Depth:</strong>
-                  <span>Compresses multi-month clinical rollouts and technical builds into brief, unverified lines.</span>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <XCircle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" aria-hidden="true" />
-                <div>
-                  <strong className="text-slate-900 dark:text-white block">Unverified Claims:</strong>
-                  <span>Lists license numbers and acronyms without active links to state licensing registries.</span>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <XCircle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" aria-hidden="true" />
-                <div>
-                  <strong className="text-slate-900 dark:text-white block">Version Sprawl:</strong>
-                  <span>Requires creating separate PDF versions for every application that quickly go out of sync.</span>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <XCircle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" aria-hidden="true" />
-                <div>
-                  <strong className="text-slate-900 dark:text-white block">Lost Renewal Deadlines:</strong>
-                  <span>Leaves CE certificates scattered across email downloads until an audit or renewal deadline hits.</span>
-                </div>
-              </li>
+            <ul className="mt-5 space-y-3.5">
+              {[
+                'Four different versions of your resume saved across laptops and Google Drive',
+                'CEU certificates buried in email attachments when a state board audit arrives',
+                'Single-state portals (like CE Broker) that don’t travel when you move or take a compact assignment',
+                'Employer LMS transcripts and university `.edu` accounts that disappear the day you change jobs',
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-3 text-sm text-slate-600">
+                  <XCircle className="w-5 h-5 text-rose-500 shrink-0 mt-0.5" />
+                  <span>{item}</span>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Column 2: The PathPort Living Record */}
-          <div className="bg-white dark:bg-slate-900 rounded-3xl p-7 sm:p-8 border-2 border-teal-800 dark:border-teal-400 shadow-md space-y-5 relative">
-            <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
-              <span className="font-display font-bold text-base text-slate-900 dark:text-white flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-teal-800 dark:text-teal-400" aria-hidden="true" />
-                <span>The PathPort Evidence Record</span>
+          {/* After: The PathPort Living Record */}
+          <div className="rounded-2xl bg-[#0B132B] text-white border border-slate-800 p-6 sm:p-8 shadow-xl relative overflow-hidden">
+            <div className="absolute -right-10 -bottom-10 w-52 h-52 bg-teal-500/10 rounded-full blur-2xl pointer-events-none" />
+            <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+              <span className="text-sm font-bold text-teal-300 uppercase tracking-wider">
+                Your PathPort Living Record
               </span>
-              <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-[10px] font-bold border border-emerald-200 dark:border-emerald-800">
-                Permanent Standard
+              <span className="px-2.5 py-1 rounded-md bg-teal-500/20 text-teal-200 text-xs font-semibold border border-teal-500/30">
+                Portable & Verifiable
               </span>
             </div>
-
-            <ul className="space-y-4 text-xs text-slate-700 dark:text-slate-200">
-              <li className="flex items-start gap-3">
-                <CheckCircle2 className="w-4 h-4 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" aria-hidden="true" />
-                <div>
-                  <strong className="text-slate-900 dark:text-white block">Detailed Case Studies:</strong>
-                  <span>Capture challenge, approach, decision logic, and measurable outcomes with direct artifact links.</span>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <CheckCircle2 className="w-4 h-4 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" aria-hidden="true" />
-                <div>
-                  <strong className="text-slate-900 dark:text-white block">Official Source Verification:</strong>
-                  <span>Badges showing state board registry status and accredited institution proof.</span>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <CheckCircle2 className="w-4 h-4 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" aria-hidden="true" />
-                <div>
-                  <strong className="text-slate-900 dark:text-white block">Tailored Portfolio Views:</strong>
-                  <span>Publish targeted `/p/:slug` links for specific jobs without duplicating or re-entering data.</span>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <CheckCircle2 className="w-4 h-4 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" aria-hidden="true" />
-                <div>
-                  <strong className="text-slate-900 dark:text-white block">Continuous Renewal Tracking:</strong>
-                  <span>Log required CE hours by board category with 30/60/90-day expiration reminders.</span>
-                </div>
-              </li>
+            <ul className="mt-5 space-y-3.5 relative z-10">
+              {[
+                'One structured record spanning Credentials, CE/PD, Education, Experience, Projects, Case Studies, Publications, and Awards',
+                'Import digital badges in 1 click from Credly earner profiles, Accredible (credential.net), Badgr/Canvas, Coursera, and Open Badges',
+                'Forward CE receipts straight from your inbox to ce-yourid@in.getpathport.com for automatic filing',
+                'Built-in 50-state and national board renewal rules (ANCC, AACN, NREMT, PMI, CompTIA, ISC2)',
+                'Share permissioned MyPortfolio views or download audit-ready PDF dossiers in one click',
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-3 text-sm text-slate-200">
+                  <CheckCircle2 className="w-5 h-5 text-[#2DD4BF] shrink-0 mt-0.5" />
+                  <span>{item}</span>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
 
-        {/* 4 Deep Dive Feature Pillars */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
-          {/* Pillar 1: Tangible Case Studies */}
-          <div id="case-studies" className="card-surface-white p-7 flex flex-col justify-between space-y-6 hover:border-teal-700 dark:hover:border-teal-500 transition-all scroll-mt-24">
-            <div className="space-y-3.5">
-              <div className="w-11 h-11 rounded-2xl bg-teal-800 text-white flex items-center justify-center shadow-xs" aria-hidden="true">
-                <Briefcase className="w-5 h-5" />
-              </div>
-              <h3 className="text-base font-display font-bold text-slate-900 dark:text-white">
-                Case Study Studio
-              </h3>
-              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                Turn unlisted projects into tangible proof: problem context, technical methodology, and measurable business results.
-              </p>
+        {/* 3 Core Record Pillars */}
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="rounded-2xl bg-white border border-slate-200/80 p-7 shadow-2xs hover:shadow-md transition-all">
+            <div className="w-11 h-11 rounded-xl bg-teal-50 border border-teal-200/60 flex items-center justify-center text-[#0D5F57] mb-5">
+              <Clock className="w-5 h-5" />
             </div>
-            <div className="pt-3 border-t border-slate-200 dark:border-slate-800 text-[10px] font-bold text-teal-800 dark:text-teal-400 tracking-wider">
-              Work Artifacts
-            </div>
-          </div>
-
-          {/* Pillar 2: Tailored Portfolios */}
-          <div className="card-surface-white p-7 flex flex-col justify-between space-y-6 hover:border-teal-700 dark:hover:border-teal-500 transition-all">
-            <div className="space-y-3.5">
-              <div className="w-11 h-11 rounded-2xl bg-teal-800 text-white flex items-center justify-center shadow-xs" aria-hidden="true">
-                <Layers className="w-5 h-5" />
-              </div>
-              <h3 className="text-base font-display font-bold text-slate-900 dark:text-white">
-                Tailored Portfolios
-              </h3>
-              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                Maintain your record in one place. Generate tailored public or unlisted views for specific jobs or committees.
-              </p>
-            </div>
-            <div className="pt-3 border-t border-slate-200 dark:border-slate-800 text-[10px] font-bold text-teal-800 dark:text-teal-400 tracking-wider">
-              Scoped Sharing
+            <h3 className="text-xl font-bold text-slate-900 font-display">
+              50-State & National Board Renewal Engine
+            </h3>
+            <p className="mt-2.5 text-sm text-slate-600 leading-relaxed">
+              PathPort smart-suggests which state board and national requirement buckets your
+              completed courses satisfy—such as Florida Medical Errors, NREMT’s 30/15/15 NCCP
+              buckets, and PMI Talent Triangle PDUs—letting you confirm attribution across multiple
+              credentials with automatic surplus hour rollup.
+            </p>
+            <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-[#0D5F57]">
+              <Link to="/tools/renewal-calculator" className="hover:underline flex items-center gap-1">
+                <span>Try the 50-State Renewal Calculator</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
             </div>
           </div>
 
-          {/* Pillar 3: Verified Credentials & CE */}
-          <div id="renewals" className="card-surface-white p-7 flex flex-col justify-between space-y-6 hover:border-teal-700 dark:hover:border-teal-500 transition-all scroll-mt-24">
-            <div className="space-y-3.5">
-              <div className="w-11 h-11 rounded-2xl bg-teal-800 text-white flex items-center justify-center shadow-xs" aria-hidden="true">
-                <Award className="w-5 h-5" />
-              </div>
-              <h3 className="text-base font-display font-bold text-slate-900 dark:text-white">
-                Licenses & CE Vault
-              </h3>
-              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                Track board licenses and continuing education hours by category. Get calendar alerts before credentials lapse.
-              </p>
+          <div className="rounded-2xl bg-white border border-slate-200/80 p-7 shadow-2xs hover:shadow-md transition-all">
+            <div className="w-11 h-11 rounded-xl bg-emerald-50 border border-emerald-200/60 flex items-center justify-center text-[#0D5F57] mb-5">
+              <Mail className="w-5 h-5" />
             </div>
-            <div className="pt-3 border-t border-slate-200 dark:border-slate-800 text-[10px] font-bold text-teal-800 dark:text-teal-400 tracking-wider">
-              Renewal Compliance
+            <h3 className="text-xl font-bold text-slate-900 font-display">
+              Email-to-Vault Ingress (@in.getpathport.com)
+            </h3>
+            <p className="mt-2.5 text-sm text-slate-600 leading-relaxed">
+              Every PathPort account includes dedicated routing addresses (
+              <code className="text-xs font-mono bg-slate-100 px-1 py-0.5 rounded">
+                ce-you@in.getpathport.com
+              </code>
+              ). Forward course completion emails from your phone and PathPort strips email noise,
+              computes a SHA-256 hash, and files the PDF in your Vault.
+            </p>
+            <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-[#0D5F57]">
+              <span>Automatic attachment extraction & hashing</span>
+              <ShieldCheck className="w-4 h-4" />
             </div>
           </div>
 
-          {/* Pillar 4: Path Career Advisor */}
-          <div className="card-surface-white p-7 flex flex-col justify-between space-y-6 hover:border-teal-700 dark:hover:border-teal-500 transition-all">
-            <div className="space-y-3.5">
-              <div className="w-11 h-11 rounded-2xl bg-teal-800 text-white flex items-center justify-center shadow-xs" aria-hidden="true">
-                <Compass className="w-5 h-5" />
-              </div>
-              <h3 className="text-base font-display font-bold text-slate-900 dark:text-white">
-                Path Advisor
-              </h3>
-              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                Compare your current credentials and experience against target role requirements to spot practical next steps.
-              </p>
+          <div className="rounded-2xl bg-white border border-slate-200/80 p-7 shadow-2xs hover:shadow-md transition-all">
+            <div className="w-11 h-11 rounded-xl bg-sky-50 border border-sky-200/60 flex items-center justify-center text-sky-700 mb-5">
+              <FolderLock className="w-5 h-5" />
             </div>
-            <div className="pt-3 border-t border-slate-200 dark:border-slate-800 text-[10px] font-bold text-teal-800 dark:text-teal-400 tracking-wider">
-              Skill Gap Analysis
+            <h3 className="text-xl font-bold text-slate-900 font-display">
+              Clear Provenance & Private-by-Default Vault
+            </h3>
+            <p className="mt-2.5 text-sm text-slate-600 leading-relaxed">
+              Everything you upload is private by default inside your encrypted user container.
+              PathPort clearly labels whether an item is <strong>Self-Reported</strong>,{' '}
+              <strong>Document-Supported</strong>, or <strong>Issuer-Verified</strong> so reviewers
+              can trust what you share.
+            </p>
+            <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-sky-800">
+              <Link to="/security" className="hover:underline flex items-center gap-1">
+                <span>Read the Security & Provenance Whitepaper</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
             </div>
           </div>
         </div>
@@ -188,5 +153,3 @@ export const FeaturePillars: React.FC = () => {
     </section>
   );
 };
-
-export default FeaturePillars;

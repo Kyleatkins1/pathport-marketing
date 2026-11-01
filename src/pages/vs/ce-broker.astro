@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { VsCeBroker } from '../../views/VsCeBroker';
+---
+
+<BaseLayout
+  title="PathPort vs. CE Broker — Multi-State CE Renewal Engine + MyPortfolio & MyPath"
+  description="Compare PathPort with CE Broker. See how PathPort tracks multi-state nursing and EMS renewals across all 50 states while turning your work into a shareable MyPortfolio and MyPath career roadmap."
+  canonicalPath="/vs/ce-broker"
+  includeSoftwareSchema={true}
+  breadcrumbs={[
+    { name: 'PathPort vs. CE Broker', path: '/vs/ce-broker' },
+  ]}
+>
+  <VsCeBroker client:load />
+</BaseLayout>
+

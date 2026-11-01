@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { NursesFunnel } from '../../views/NursesFunnel';
+---
+
+<BaseLayout
+  title="PathPort for Nurses (RN, APRN & Travel) — Multi-State License & CE Tracker + MyPortfolio"
+  description="Track multi-state nursing licenses, ANCC/AACN specialty certifications, ACLS/PALS expirations, and clinical case studies in one private record."
+  canonicalPath="/for/nurses"
+  includeSoftwareSchema={true}
+  breadcrumbs={[
+    { name: 'For Nurses', path: '/for/nurses' },
+  ]}
+>
+  <NursesFunnel client:load />
+</BaseLayout>
+

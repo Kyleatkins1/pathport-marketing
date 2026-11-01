@@ -1,121 +1,57 @@
-# Product Marketing Context
+# PathPort — Product Marketing Context
 
-**Document version:** v3  
-**Last updated:** 2026-09-17  
+**Document version:** v2
+**Last updated:** 2026-11-01
 
-## Product Overview
-**One-liner:** The individual professional's sovereign, living evidence record and career intelligence platform.  
-**What it does:** PathPort unites licenses, certifications, exam-based renewals, continuing education (CE/PDUs), formal university degrees, project case studies, and career narratives into a single sovereign profile. Professionals effortlessly track renewal deadlines and category math, publish secure, permission-scoped digital portfolios, and accelerate career mobility using MyPath career intelligence.  
-**Product category:** Professional Identity, Credential Management & Career Portfolio Platform.  
-**Product type:** SaaS (Individual Web App + Enterprise Workplace & Certify Projections). Launching Fall 2026 (October).  
-**Business model:** Individual Subscription (Essentials at $9.99/mo or $99.99/yr; Pro at $19.99/mo or $199.99/yr with MyPath). Founding cohort members receive an exclusive 30-day free trial of Pro; standard accounts receive a 14-day free trial of Pro with no payment info required. Organizations: PathPort Workplace (Late 2026) and Issuers: PathPort Certify (Late 2026).  
+## 1. Product Overview
+- **Product Name:** PathPort
+- **Primary Brand Tagline:** *"Own your journey. Shape what's next."*
+- **Core Universal Positioning:** *"If you have a credential, you can track it."* PathPort is built for everyone across every industry—not just healthcare.
+- **Category:** Universal Professional Identity, Credential Management, & Career Intelligence Platform
+- **Product Ecosystem & Hierarchy:**
+  1. **PathPort (Individual — Launching Nov 2026):** The flagship individual workspace. Professionals bring in their existing resume/CV, LinkedIn PDF, Credly/Accredible/Badgr digital badges, and CE certificates—or forward completion receipts directly to their `@in.getpathport.com` email vault—to maintain one canonical, document-backed professional record.
+     - **CE Renewal Engine:** Smart-suggests matching state and national board requirement buckets (never silently auto-commits) so users can confirm attribution across one or multiple credentials with automatic surplus hour rollup.
+     - **MyPortfolio (Module):** Permissioned, verifiable web portfolios (`Modern`, `Executive`, and `Minimal` themes) and PDF dossiers backed by SHA-256 document integrity and instant consent revocation.
+     - **MyPath (Pro Module):** Whole-journey career intelligence across 6 pillars (`Learn`, `Credential`, `Experience`, `Build`, `Publish`, `Lead`), including **What-If Role Audits**, **Opportunity Pursuit**, **Application Studio**, and **Interview Studio**.
+  2. **PathPort Personal Identity Documents Tracker ($0 • Free Forever):** A dedicated free version of PathPort strictly for tracking everyday personal identity documents (**Driver’s License, REAL ID, Passport, Global Entry / TSA PreCheck, Vehicle Registration & Insurance**) so people never forget to renew them.
+  3. **PathPort Workplace (Launching 2027):** Built for any workforce that has to obtain and verify employee credentials without sending countless back-and-forth emails. Employers simply log in, select what they need, and send the request to the employee. Employees create a free PathPort profile, upload their required documents once, and share them instantly. System intelligence ensures everyone maintains compliance, and employers can assign CEUs or training credits directly to event attendees.
+  4. **PathPort Certify (Launching 2027):** End-to-end credential management for certifying bodies, associations, and training organizations across any industry. Allows candidates to apply for a credential, submit documents, and track payments; tracks exam results from official test platforms (or streamlines testing via PathPort's testing partners); issues credentials from PathPort Certify through any badge provider (Credly, Accredible, Badgr, Open Badges) and with `Issuer-Verified` provenance in PathPort; and manages recertifications directly within the PathPort platform.
 
-## Target Audience
-**Target companies:** Hospitals, healthcare systems, EMS agencies, engineering firms, credentialing boards, and enterprises employing licensed/credentialed specialists.  
-**Decision-makers:**  
-- *B2C / Individual:* Registered Nurses, Nurse Practitioners, Paramedics/EMTs, Project Managers (PMPs), Allied Health Professionals.  
-- *B2B Workplace:* Chief Nursing Officers, EMS Operations Directors, Compliance & Credentialing Managers, HR Talent Directors.  
-- *B2B Certify:* Board Executives, Registrar Directors, Accreditation Officers.  
-**Primary use case:** Eliminating fragmented credential tracking and stressful license renewals while turning static paper certificates into dynamic, career-advancing proof portfolios.  
-**Jobs to be done:**  
-- Never miss a license renewal or scramble for missing CE certificates 48 hours before an audit.  
-- Showcase verified evidence, case studies, and clinical competencies beyond a generic bulleted resume.  
-- Share compliance status with an employer without surrendering ownership or privacy of an entire personal career record.  
-**Use cases:**  
-- A traveling nurse managing compact licenses across 3 states and 45 CE credits.  
-- A paramedic tracking NREMT recertification, state licenses, ACLS/PALS/BLS cards, and skill sign-offs in one place.  
-- A PMP organizing 60 PDUs across CCR categories with project deliverables to prove competency.  
-- A hospital auditing department credentials via dynamic, permission-granted compliance projections.  
+- **Business Model & Pricing:**
+  - **Personal Identity Documents Tracker ($0 / Free Forever):** Track everyday identity documents (Driver's License, Passport, Global Entry, Vehicle Registration) with smart renewal reminders.
+  - **PathPort Essentials ($9.99/mo or $7.99/mo billed annually):** Keep your professional record current—unlimited credentials, Credly/badge sync, SHA-256 document vault, 50-state & national board renewal tracking, email ingress (`@in.getpathport.com`), and 1 public **MyPortfolio** link.
+  - **PathPort Pro ($19.99/mo or $14.99/mo billed annually — 30-Day Free Trial for Founding Cohort):** Includes everything in Essentials plus **MyPath** Career Intelligence, What-If Role Audits, Opportunity & Application Studio, unlimited tailored **MyPortfolio** views (`Modern`, `Executive`, `Minimal`), and custom slugs.
+  - **PathPort Workplace (2027 Pilot Cohort):** Custom workforce pricing based on connected staff seats.
+  - **PathPort Certify (2027 Issuer Cohort):** Custom board/association pricing based on active certificants.
 
-## Personas
-| Persona | Cares about | Challenge | Value we promise |
-|---|---|---|---|
-| **Licensed Clinicians (RN, NP, PA, Paramedic)** | License security, audit-proof records, time savings | Juggling state board websites, CE certificate PDFs in shoeboxes/emails, disparate renewal dates | Automated renewal math, intelligent CE requirement tracking, instant one-click audit packet export |
-| **Project Managers & Technical Leaders** | Career mobility, proving tangible project impact | Text-only LinkedIn resumes fail to convey architectural scale, deliverables, or PDU compliance | Living portfolio linking verified credentials directly to case studies, architecture decks, and metrics |
-| **Licensed & Certified Professionals (Accounting, Engineering, Safety, Legal)** | Multi-credential upkeep, audit readiness, CE contact hours | Scattered licenses across jurisdictions, fragmented renewal windows, manual proof assembly | Centralized sovereign record, deterministic renewal tracking, encrypted document vault |
-| **Job Seekers & Career Changers** | Interview differentiation, standing out from resume piles, role transition proof | Bulleted 1-page resumes fail to demonstrate real-world deliverables, competencies, and transferable skills | Dynamic tailored portfolios (`/p/`), Challenge-Approach-Outcome Story Bank, and MyPath career gap intelligence |
-| **Workplace Compliance Directors (Workplace)** | Real-time staff audit readiness, reducing license lapses | Chasing staff via email for updated card copies; maintaining brittle spreadsheets | Dynamic compliance dashboard built on sovereign employee consent grants—zero duplicate records |
-| **Certifying & Licensing Bodies (Certify)** | Preventing credential fraud, reducing manual verification queries | Outdated verification telephone calls, forgeable paper certificates, slow renewal submissions | Instant cryptographic assertion verification, automated renewal workflows, tamper-proof digital seals |
+## 2. Target Audience (ICP)
+### Primary Individual Segments (Universal Across Industries)
+1. **Project, Program & Technical Leaders (PMPs, Scrum Masters, Cloud & Security Architects):**
+   - Importing digital badges from Credly/Accredible, tracking PMI Talent Triangle PDUs and CPEs/CEUs across AWS/CompTIA/ISC2/ISACA, and linking live case studies and architectures to their credentials via **MyPortfolio**.
+2. **Healthcare & Nursing (RNs, APRNs, Travel Nurses, Clinical Educators):**
+   - Managing multi-state licenses (NLC compact & non-compact), state-mandated CE topics (smart-suggested bucket attribution), ANCC/AACN board certifications, and AHA life-support cards (`BLS`, `ACLS`, `PALS`).
+3. **Aviation, EMS, Public Safety & Skilled Trades:**
+   - Navigating FAA certificates, OSHA/trade licenses, the 60-hour NREMT NCCP model (National, State/Local, and Individual hour buckets), and agency reciprocity.
+4. **Students, Residents & Early-Career Graduates:**
+   - Capturing clinical rotations, preceptor evaluations, capstones, and initial licensure exams into a permanent record that doesn't vanish when their `.edu` email expires.
+5. **Everyday Consumers (Free Identity Document Tracker):**
+   - Tracking Driver's Licenses, Passports, Global Entry / TSA PreCheck, and Vehicle Registrations for free so they never miss an expiration date.
 
-## Problems & Pain Points
-**Core problem:** Career proof is shattered across siloed state portals, employer drives, physical binders, and unverified social profiles. Professionals bear the full risk of compliance lapses while having no modern way to showcase their real capabilities.  
-**Why alternatives fall short:**  
-- *CE Broker:* Acts as a rigid, regional state-board compliance tracker. It offers zero portfolio presentation, no career story, and is disconnected from the professional's wider career evidence.  
-- *LinkedIn:* 100% self-reported and unverified. Anyone can claim any credential, leading to zero audit trust and no tracking of CE/recertification rules.  
-- *Employer HR / LMS Silos:* Documents are trapped inside hospital/agency portals; when the practitioner changes jobs, their entire training history is stranded.  
-**What it costs them:** Fines, suspended licenses, missed promotional opportunities, and dozens of stressful hours lost searching for misplaced certificates.  
-**Emotional tension:** Constant low-grade anxiety of missing a critical renewal deadline; humiliation of an audit surprise; frustration with antiquated government portals.  
+### Secondary Organization Segments (Launching 2027)
+1. **PathPort Workplace Buyers:** Operations leaders, HR/Compliance Directors, PMO leads, aviation/construction managers, and clinical directors across any workforce who want to collect employee credentials without endless email threads and assign CEUs to attendees.
+2. **PathPort Certify Buyers:** Executive Directors and Credentialing VPs at certifying bodies, professional associations, and training organizations across any industry looking for one platform from candidate application and testing to badge issuance and recertification.
 
-## Competitive Landscape
-**Direct:** CE Broker — falls short because it's a sterile compliance checklist with fragmented state portals, zero career storytelling, and no multimedia evidence portfolios.  
-**Secondary:** LinkedIn / Resume Builders — fall short because they are unverified text lists with no renewal intelligence, no CE tracking, and no compliance verification mechanism.  
-**Indirect:** Google Drive folders, plastic binders, employer LMS (HealthStream) — fall short because they are passive silos that don't alert, calculate requirements, or create verifiable links.  
-
-## Differentiation
-**Key differentiators:**  
-- **Individual Sovereignty:** The individual owns their master career record forever. Employers get consent-scoped, revocable projections—never a duplicate captive record.  
-- **Automated Renewal Intelligence:** Pre-built rules for state nursing boards, NREMT, PMI, and more that track category requirements, rollover hours, and deadlines.  
-- **Living Evidence Portfolios:** Go beyond titles: embed case studies, code repos, publication preprints, and clinical presentations into shareable, password-protectable links.  
-- **Cryptographic & Provenance Integrity:** Uploaded artifacts compute SHA-256 integrity hashes; verification links resolve active share tokens without exposing private notes or raw metadata.  
-**How we do it differently:** We unite compliance security with career advancement instead of treating them as separate chores.  
-**Why that's better:** Compliance becomes effortless, and the work done to stay compliant directly builds a personal, lifelong career asset.  
-**Why customers choose us:** Peace of mind that their license is safe, paired with pride in a portfolio that stands out to recruiters and review boards.  
-
-## Objections
-| Objection | Response |
-|---|---|
-| *"My employer already tracks my certifications."* | Your employer tracks what *they* need for *their* audit. When you change jobs, that record stays with them. PathPort is your permanent portable record that you take to every job throughout your career. |
-| *"Is this just another place I have to upload documents?"* | PathPort replaces the scramble. Upload once; your renewals calculate automatically, your audit exports generate in seconds, and your public or private portfolio updates live. |
-| *"Why not just use LinkedIn?"* | LinkedIn is unverified text. Boards and hospital credentialers can't verify clinical requirements on LinkedIn, and LinkedIn won't tell you that you're 4 CE hours short of your deadline in 30 days. |
-
-**Anti-persona:** Casual social networkers looking for public feed scrolling, or enterprise HR departments wanting to lock employee records into proprietary, unexportable silos.  
-
-## Switching Dynamics
-**Push:** Frustration with missing renewal deadlines, lost CE certificates, and clunky state board software.  
-**Pull:** Sleek dark-mode interface, automatic deadline countdowns, beautiful live portfolio showcase, and audit-ready peace of mind.  
-**Habit:** Keeping paper certificates in folders or dumping PDFs onto Desktop.  
-**Anxiety:** "Will state boards accept this?" → Yes, PathPort generates standard audit packets with original certificate attachments and cryptographic hashes.  
-
-## Customer Language
-**How they describe the problem:**  
-- *"I have certificates scattered across three email accounts, a drawer in my office, and my hospital portal."*  
-- *"My license was up for renewal in two weeks and I spent my entire weekend desperately taking random webinars."*  
-- *"A resume doesn't show what I actually built or clinical cases I've managed."*  
-**How they describe us:**  
-- *"It’s like having an executive assistant for my license and a high-end personal website in one."*  
-**Words to use:** Sovereign, portable, living record, verified evidence, renewal intelligence, audit-ready, peace of mind, career narrative.  
-**Words to avoid:** "HR software", "employee tracking system", "compliance monitoring tool", "corporate surveillance".  
-**Glossary:**  
-| Term | Meaning |
-|---|---|
-| **Living Record** | A career profile that updates continuously with fresh credentials, CE, and projects. |
-| **Individual Sovereignty** | The architectural guarantee that the professional owns all canonical records, and organizations only view permissioned projections. |
-| **PathPort Workplace** | The organization portal (launching late 2026) for teams to review compliance via employee consent grants. |
-| **PathPort Certify** | The issuing portal (launching late 2026) for credentialing bodies to verify, assert, and issue credentials. |
-
-## Brand Voice
-**Tone:** Confident, empowering, polished, reassuring, professional.  
-**Style:** Direct, human, clear, active-voice, zero buzzwords.  
-**Personality:** Trustworthy, modern, advocate for the professional, meticulous.  
-
-## Proof Points
-**Metrics:**  
-- 100% portable record ownership across career changes.  
-- 16+ dedicated persona and comparison routes.  
-- Pre-built rule engines across major healthcare and technical credentialing frameworks.  
-**Value themes:**  
-| Theme | Proof |
-|---|---|
-| **Never Lapse** | Automated multi-credential countdowns and category CE requirement trackers. |
-| **Total Sovereignty** | Consent-scoped permissions: revoke employer visibility with a single click. |
-| **Prove Your Worth** | Dynamic portfolio viewer highlighting real case studies, awards, and verified credentials. |
-
-## Goals
-**Business goal:** Build founding cohort waitlist leading into Fall 2026 (October) launch; seed bottom-up adoption for PathPort Workplace and Certify.  
-**Conversion action:** Click "Join Early Access Waitlist" / submit beta registration for founding cohort; explore interactive live portfolio showcase.  
-**Current metrics:** Full prerendered static marketing engine live on Cloudflare Pages.  
+## 3. Core Differentiators
+1. **Universal ("If You Have a Credential, You Can Track It") + Free Identity Tier:**
+   - Works for any credential in any industry, plus a free forever tier for personal identity documents (DL, Passport).
+2. **60-Second Multi-Channel Intake + Credly Sync + `@in.getpathport.com` Email Forwarding:**
+   - Users drop in an existing resume/CV, LinkedIn PDF, bulk CE certificates, or Credly/badge profile links—or forward CE completion emails directly to `ce-{id}@in.getpathport.com`—and review extracted items in a staged tray.
+3. **Smart-Suggested, User-Confirmed CE Requirement Attribution:**
+   - PathPort smart-suggests matching state and national board requirement buckets and lets users confirm attribution across multiple credentials at once with automatic surplus hour rollup.
+4. **Individual Sovereignty vs. State/Employer Silos (e.g., CE Broker):**
+   - PathPort belongs to the individual for life across all 50 states and every employer.
 
 ## Changelog
-- v3 (2026-09-17) — Eliminated permanent free version; established 30-day free Pro trial for founding cohort members and standard 14-day Pro trial (no card required) for all others.
-- v2 (2026-09-17) — Expanded record scope (projects, formal education, exam renewals, MyPath on $19.99 Pro tier), added monthly/yearly billing options, and anchored waitlist to Fall 2026 (October) launch.
-- v1 (2026-09-17) — Initial context established from canonical repository architecture, AGENTS.md guidelines, persona routes, and updated late 2026 timeline for Workplace and Certify.
+*Newest first. One line per revision: what changed and why.*
+- v2 (2026-11-01) — Repositioned around universal industry coverage ("if you have a credential, you can track it"), added the $0 Free Personal Identity Documents tracker (DL, Passport), clarified smart-suggested CE bucket attribution, and expanded PathPort Workplace (zero-email credential requests, free employee profile sharing, CEU assignment) and PathPort Certify (end-to-end applications, payments, official test platform sync, universal badge provider issuance, and recertification).
+- v1 (2026-11-01) — Initial context.

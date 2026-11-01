@@ -1,121 +1,183 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Logo } from './Logo';
-import { ShieldCheck, Lock } from 'lucide-react';
+import { Mail } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-white dark:bg-slate-900 border-t border-slate-200/90 dark:border-slate-800 text-slate-600 dark:text-slate-400 text-xs select-none transition-colors">
-      {/* Main Links Grid */}
+    <footer className="bg-[#0B132B] text-slate-400 border-t border-slate-800/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12">
-
-          {/* Col 1: Brand & Thesis (span 4) */}
-          <div className="md:col-span-4 space-y-4">
-            <Link to="/" className="inline-block" aria-label="PathPort Home">
-              <Logo size={28} />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-10 border-b border-slate-800/80">
+          {/* Brand Column (2 cols on desktop) */}
+          <div className="lg:col-span-2 space-y-3">
+            <Link to="/" className="inline-flex items-center gap-2.5">
+              <img
+                src="/logo-white.png"
+                alt="PathPort Logo"
+                width="32"
+                height="32"
+                className="h-8 w-auto object-contain"
+              />
+              <span className="font-display font-extrabold text-xl tracking-tight text-white">
+                Path<span className="text-[#2DD4BF]">Port</span>
+              </span>
             </Link>
-            <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed max-w-sm">
-              <span className="font-semibold text-slate-900 dark:text-white block mb-1">Own your journey. Shape what’s next.</span>
-              PathPort is the individual's portable, sovereign living identity and evidence record — organize credentials, case studies, and renewals in one place, and present tailored views anywhere.
+            <p className="text-sm font-semibold text-teal-300">
+              Own your journey. Shape what’s next.
             </p>
-            <div className="space-y-2 pt-2 text-[11px] text-slate-500 dark:text-slate-400">
-              <div className="flex items-center gap-1.5 font-medium text-emerald-800 dark:text-emerald-400">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" aria-hidden="true" />
-                <span>Privacy-by-Default Architecture</span>
-              </div>
-              <div className="flex items-center gap-1.5 font-medium text-teal-800 dark:text-teal-400">
-                <Lock className="w-3.5 h-3.5 text-teal-700 dark:text-teal-400 shrink-0" aria-hidden="true" />
-                <span>Scoped Consent & Source Verification</span>
-              </div>
+            <p className="text-xs text-slate-400 max-w-sm leading-relaxed">
+              The private, portable credential and career record built for every industry. Maintain
+              your record once—use it throughout your career.
+            </p>
+            <div className="pt-1">
+              <a
+                href="mailto:hello@getpathport.com"
+                className="inline-flex items-center gap-1.5 text-xs text-slate-300 hover:text-[#2DD4BF] transition-colors"
+              >
+                <Mail className="w-3.5 h-3.5 text-[#2DD4BF]" />
+                <span>hello@getpathport.com</span>
+              </a>
             </div>
           </div>
 
-          {/* Col 2: For Individuals (span 3) */}
-          <div className="md:col-span-3 space-y-3">
-            <h4 className="text-[11px] font-mono font-bold text-slate-900 dark:text-white uppercase tracking-wider">
-              For Individuals
+          {/* Column 1: Product */}
+          <div>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-3.5">
+              Product
             </h4>
-            <ul className="space-y-2.5">
-              <li><Link to="/for/nurses" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">Nurses & Healthcare</Link></li>
-              <li><Link to="/for/paramedics" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">Paramedics & EMS</Link></li>
-              <li><Link to="/for/project-managers" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">Project & Technical Leads</Link></li>
-              <li><Link to="/for/students" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">Students & Early Career</Link></li>
-              <li><a href="/#case-studies" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">Structured Case Studies</a></li>
-              <li><a href="/#renewals" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">CE Renewal Tracking</a></li>
+            <ul className="space-y-2.5 text-xs">
+              <li>
+                <a href="/#how-it-works" className="hover:text-[#2DD4BF] transition-colors">
+                  How It Works
+                </a>
+              </li>
+              <li>
+                <a href="/#myportfolio" className="hover:text-[#2DD4BF] transition-colors">
+                  MyPortfolio
+                </a>
+              </li>
+              <li>
+                <a href="/#mypath" className="hover:text-[#2DD4BF] transition-colors">
+                  MyPath
+                </a>
+              </li>
+              <li>
+                <a href="/#pricing" className="hover:text-[#2DD4BF] transition-colors">
+                  Pricing
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://app.getpathport.com/auth"
+                  className="hover:text-[#2DD4BF] transition-colors font-semibold text-slate-300"
+                >
+                  Sign In
+                </a>
+              </li>
             </ul>
           </div>
 
-          {/* Col 3: For Organizations & Boards (span 3) */}
-          <div className="md:col-span-3 space-y-3">
-            <h4 className="text-[11px] font-mono font-bold text-slate-900 dark:text-white uppercase tracking-wider">
-              For Organizations & Boards
+          {/* Column 2: Solutions */}
+          <div>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-3.5">
+              Solutions
             </h4>
-            <ul className="space-y-2.5">
-              <li><Link to="/for/enterprise" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">PathPort Workplace (Late 2026)</Link></li>
-              <li><Link to="/for/board-certifications" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">PathPort Certify (Late 2026)</Link></li>
-              <li><a href="/#portfolios" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">Tailored Portfolio Views</a></li>
-              <li><a href="/#path-ai" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">PathAI Career Advisor</a></li>
-              <li><Link to="/p/sarah-jenkins-rn" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">Live Verified Portfolio Demo</Link></li>
+            <ul className="space-y-2.5 text-xs">
+              <li>
+                <Link to="/for/project-managers" className="hover:text-[#2DD4BF] transition-colors">
+                  Project & Tech Leaders
+                </Link>
+              </li>
+              <li>
+                <Link to="/for/nurses" className="hover:text-[#2DD4BF] transition-colors">
+                  Nurses & Healthcare
+                </Link>
+              </li>
+              <li>
+                <Link to="/for/paramedics" className="hover:text-[#2DD4BF] transition-colors">
+                  EMS & Aviation
+                </Link>
+              </li>
+              <li>
+                <Link to="/for/students" className="hover:text-[#2DD4BF] transition-colors">
+                  Students & Graduates
+                </Link>
+              </li>
+              <li>
+                <Link to="/for/enterprise" className="hover:text-[#2DD4BF] transition-colors">
+                  PathPort Workplace (2027)
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/for/board-certifications"
+                  className="hover:text-[#2DD4BF] transition-colors"
+                >
+                  PathPort Certify (2027)
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Col 4: Trust & Legal (span 2) */}
-          <div className="md:col-span-2 space-y-3">
-            <h4 className="text-[11px] font-mono font-bold text-slate-900 dark:text-white uppercase tracking-wider">
-              Trust & Legal
+          {/* Column 3: Resources & Legal */}
+          <div>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-3.5">
+              Resources & Legal
             </h4>
-            <ul className="space-y-2.5">
-              <li><Link to="/privacy" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">Privacy Policy</Link></li>
-              <li><Link to="/terms" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">Terms of Service</Link></li>
-              <li><Link to="/security" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">Security Whitepaper</Link></li>
-              <li><a href="/#pricing" className="text-slate-600 dark:text-slate-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors">Beta Tiers & Pricing</a></li>
+            <ul className="space-y-2.5 text-xs">
+              <li>
+                <Link
+                  to="/tools/renewal-calculator"
+                  className="hover:text-[#2DD4BF] transition-colors"
+                >
+                  50-State Renewal Calculator
+                </Link>
+              </li>
+              <li>
+                <Link to="/vs/ce-broker" className="hover:text-[#2DD4BF] transition-colors">
+                  PathPort vs. CE Broker
+                </Link>
+              </li>
+              <li>
+                <Link to="/p/sarah-jenkins-rn" className="hover:text-[#2DD4BF] transition-colors">
+                  Sample MyPortfolio
+                </Link>
+              </li>
+              <li>
+                <Link to="/security" className="hover:text-[#2DD4BF] transition-colors">
+                  Security & Provenance
+                </Link>
+              </li>
+              <li>
+                <Link to="/privacy" className="hover:text-[#2DD4BF] transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/terms" className="hover:text-[#2DD4BF] transition-colors">
+                  Terms of Service
+                </Link>
+              </li>
             </ul>
           </div>
-
         </div>
-      </div>
 
-      {/* Bottom Bar: Audiences, VTS Copyright & System Status */}
-      <div className="border-t border-slate-100 dark:border-slate-800/80 py-6 bg-slate-50/50 dark:bg-slate-900/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-[11px] text-slate-500 dark:text-slate-400 gap-4">
-          {/* VTS Attribution & Copyright */}
-          <div className="flex items-center gap-1.5 flex-wrap text-center md:text-left">
-            <span>A product of</span>
+        {/* Bottom Copyright */}
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+          <p>
+            © {new Date().getFullYear()}{' '}
             <a
               href="https://veritastech.io"
               target="_blank"
-              rel="noreferrer"
-              className="text-teal-800 dark:text-teal-400 font-semibold hover:underline"
+              rel="noopener noreferrer"
+              className="text-slate-400 hover:text-[#2DD4BF] underline underline-offset-2 transition-colors"
             >
               Veritas Technology Solutions, LLC
             </a>
-            <span>• Atlanta, Georgia • © {new Date().getFullYear()} All rights reserved.</span>
-          </div>
-
-          {/* Audience Pillars Bar */}
-          <div className="flex items-center gap-2 font-mono text-[10px] text-slate-400 dark:text-slate-500 font-semibold uppercase tracking-wider flex-wrap justify-center">
-            <span>For Individuals</span>
-            <span>•</span>
-            <span>PathPort Workplace (Late 2026)</span>
-            <span>•</span>
-            <span>PathPort Certify (Late 2026)</span>
-            <span>•</span>
-            <span className="text-teal-800 dark:text-teal-400">For Everyone</span>
-          </div>
-
-          {/* Operational Status */}
-          <div className="flex items-center gap-2 shrink-0">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </span>
-            <span className="text-slate-600 dark:text-slate-300 font-medium">Operational</span>
-          </div>
+            . All rights reserved.
+          </p>
+          <p>Individual-owned credentials and career records across every industry.</p>
         </div>
       </div>
     </footer>
   );
 };
-
-export default Footer;

@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { RenewalCalculator } from '../../../views/RenewalCalculator';
+---
+
+<BaseLayout
+  title="Free 50-State RN & National Board CE Renewal Calculator | PathPort"
+  description="Check exact continuing education contact hours, mandatory topic rules, and renewal cycles across all 50 US states, DC, ANCC, AACN, NREMT, PMI PMP, and AHVAP."
+  canonicalPath="/tools/renewal-calculator"
+  includeSoftwareSchema={true}
+  breadcrumbs={[
+    { name: '50-State CE Renewal Calculator', path: '/tools/renewal-calculator' },
+  ]}
+>
+  <RenewalCalculator client:load />
+</BaseLayout>
+

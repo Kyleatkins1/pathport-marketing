@@ -1,42 +1,43 @@
 # PathPort (https://getpathport.com)
 
-> PathPort is the individual professional's portable, sovereign living identity and evidence record. Own your journey. Shape what’s next. Manage your canonical record once, present tailored portfolios anywhere, track multi-state continuing education, and power your career advancement with whole-journey AI intelligence.
+> PathPort is the universal credential and career platform built for everyone—if you have a credential, you can track it. Across technology, project management, aviation, trades, education, finance, public safety, and healthcare, PathPort keeps every license, digital badge, CE hour, case study, and personal identity document (Driver’s License, Passport, Global Entry) in one private record you own—then turns your work into tailored **MyPortfolio** links and maps your next career move with **MyPath**.
+
+## Brand & Product Hierarchy
+- **PathPort Individual (Fall 2026 Beta)**: The sovereign professional record, 50-state + national board CE renewal tracker (smart-suggesting matching requirement buckets for user confirmation), and encrypted document vault.
+- **PathPort Free Identity & Workplace Profile ($0)**: Free personal identity document tracker (Driver’s License, Passport, Global Entry / TSA PreCheck, Vehicle Registration) with renewal reminders, plus free employee profile sharing for **PathPort Workplace** requests.
+- **MyPortfolio (Module inside PathPort)**: Shareable, revocable portfolio links (`getpathport.com/p/yourname`) with 3 built-in visual themes (`Modern`, `Executive`, `Minimal`), QR codes, and attached credential proof.
+- **MyPath (Module inside PathPort)**: 6-pillar career roadmap, deterministic "What-If" role readiness audits, and an Application & Interview Studio (tailored resumes, cover letters, and STAR interview prep grounded in your real work).
+- **PathPort Workplace (Launching 2027)**: Built for any workforce that needs to obtain and verify employee credentials without sending countless emails. Simply log in, select the required credentials, and send the request to the employee—they create a free PathPort profile, upload their required docs, and share them instantly while system intelligence keeps everyone compliant. Also supports assigning CEUs and training credits directly to event attendees.
+- **PathPort Certify (Launching 2027)**: End-to-end credential management for certifying bodies, associations, and credentialing organizations across any industry: allow candidates to apply for a credential, submit documents, and track payments; track exam results from official test platforms (or use our testing partners to streamline the experience); issue credentials from PathPort Certify through any badge provider (Credly, Accredible, Badgr, Open Badges) and with `Issuer-Verified` provenance in PathPort; and manage recertifications directly within the PathPort platform.
+
+## 60-Second Onboarding & Multi-Channel Intake
+1. **Resume / CV & LinkedIn PDF Import**: Upload your resume or LinkedIn profile export to extract roles, degrees, licenses, and accomplishments into a review staging workspace.
+2. **Credly, Accredible & Digital Badge Network Import**: Paste individual badge URLs or your full Credly earner profile (`credly.com/users/you/badges`), Accredible (`credential.net`), Badgr / Canvas Credentials, Coursera, or Open Badges 2.0/3.0 links to bulk-import and verify digital credentials.
+3. **Bulk CE Certificate Extraction**: Drop up to 20 CE PDFs or images at once to extract provider names, contact hours, dates, and mandatory topic categories.
+4. **Email-to-Vault Forwarding (`ce-you@in.getpathport.com`)**: Forward course completion receipts from your inbox directly to your private PathPort intake address for automatic parsing.
+5. **Research & Technical Imports**: Sync publications via PubMed, ORCID, DOI, Google Scholar, or BibTeX, and import technical repositories via GitHub or OSF.
 
 ## The 6 Action Pillars of PathPort
-PathPort models professional capability across six balanced dimensions:
-1. **Earn (Credentials & Board Licenses)**: State multi-state licenses, board specialties, and tamper-evident digital credentials (RN, NP, NREMT, FP-C, PMP).
-2. **Learn (Continuing Education & Accredited Topics)**: Mandatory contact hours, state topic buckets (e.g., Florida Medical Errors, California Implicit Bias, Texas Jurisprudence), and 60-hr NCCP / 60-PDU cycles.
-3. **Build (Applied Deliverables & Toolkits)**: Clinical protocols, simulation curriculums, technical architectures, EHR order sets, and open-source repositories.
-4. **Demonstrate (Structured Case Studies)**: Verifiable Challenge-Approach-Outcome work proofs with measured clinical and financial metrics.
-5. **Experience (Operational Roles & Preceptorship)**: Inpatient charge leadership, flight hours, FTO coaching, clinical rotations, and program governance.
-6. **Reflect (Leadership Philosophy & Incident Debriefs)**: Patient advocacy narratives, Crew Resource Management debriefs, and crisis management frameworks.
+1. **Earn (Credentials & Licenses)**: Multi-state licenses, eNLC compact privileges, specialty board certifications (ANCC, AACN CCRN, NREMT, IBSC FP-C, PMI PMP, AHVAP CVAHP, CISSP), and BLS/ACLS/PALS cards.
+2. **Learn (Continuing Education & Mandatory Topics)**: State-specific contact hours and mandatory topic buckets across all 50 US states + DC, NREMT NCCP 2025 (National, Local, Individual), and PMI Talent Triangle PDUs.
+3. **Build (Applied Deliverables & Toolkits)**: Clinical protocols, simulation curricula, technical architectures, EHR order sets, and capstone deliverables.
+4. **Demonstrate (Structured Case Studies)**: Challenge-Approach-Outcome case studies linked directly to the credentials and skills used.
+5. **Experience (Roles, Preceptorships & Rotations)**: Charge leadership, flight/transport logs, clinical rotations, and program management history.
+6. **Reflect (Publications, Speaking & Debriefs)**: Conference posters, peer-reviewed papers, committee leadership, and quality improvement debriefs.
 
-## PathAI Whole-Journey Intelligence
-Unlike generic credential tools that perform simplistic badge clustering (e.g., suggesting more bedside modules just because an RN badge exists), PathAI understands the whole human journey. It evaluates clinical tenure, committee leadership, and personal career intent to map deterministic qualification roadmaps toward advanced practice, health informatics, flight critical care, or executive leadership.
-
-## Core Capabilities
-- **Individual Record Sovereignty**: 100% owned by the individual professional. Credentials, CEUs, case studies, and portfolios stay with you regardless of employer changes or state relocations.
-- **Multi-State CE & License Renewal Tracker**: Automatic state-by-state compliance tracking across all 50 states and eNLC compact rules with 30/60/90-day renewal radar alerts.
-- **Structured Case Study Builder**: Turns clinical quality rollouts, technical deliverables, and engineering projects into structured Challenge-Action-Metric proof narratives.
-- **Living Shareable Portfolios**: Instant permissioned links (`https://getpathport.com/p/yourname`) tailored for hiring managers, faculty appointments, travel agencies, or credentialing committees.
-- **PathAI Career & Transition Advisor**: Deterministic gap analysis and learning pathway recommendations for adjacent career transitions.
-- **Privacy Firewalls (PathPort Workplace - Late 2026)**: Employers receive scoped consent verification for active role compliance without accessing private career history or unshared records.
-
-## Key Comparison & Resource Pages
-- Main Website: https://getpathport.com/
-- PathPort vs. CE Broker Alternative: https://getpathport.com/vs/ce-broker
-- Free State CEU & License Renewal Calculator: https://getpathport.com/tools/renewal-calculator
-- For Nurses & Healthcare Leaders: https://getpathport.com/for/nurses
-- For Paramedics & EMS: https://getpathport.com/for/paramedics
-- For Project & Technical Leads: https://getpathport.com/for/project-managers
-- For Students & Early Career: https://getpathport.com/for/students
-- For Enterprise Workforce (PathPort Workplace): https://getpathport.com/for/enterprise
-- For Certification Boards & Issuers (PathPort Certify): https://getpathport.com/for/board-certifications
-- Security Whitepaper: https://getpathport.com/security
+## Key Pages & Tools
+- Homepage: https://getpathport.com/
+- Free 50-State + National Board CE Renewal Calculator: https://getpathport.com/tools/renewal-calculator
+- PathPort vs. CE Broker Comparison: https://getpathport.com/vs/ce-broker
+- For Nurses (RN, APRN & Travel): https://getpathport.com/for/nurses
+- For Paramedics & Flight Crews (NRP, FP-C, EMT): https://getpathport.com/for/paramedics
+- For Project & Technical Leaders (PMP, Agile, Cloud): https://getpathport.com/for/project-managers
+- For Students & New Graduates: https://getpathport.com/for/students
+- PathPort Workplace (Launching 2027): https://getpathport.com/for/enterprise
+- PathPort Certify (Launching 2027): https://getpathport.com/for/board-certifications
+- Security Architecture Overview: https://getpathport.com/security
 
 ## Pricing & Free Trial Policy
-- **PathPort Essentials ($9.99/mo or $8.33/mo billed annually)**: Sovereign professional record, credentials, degrees, projects, multi-state CE tracking, exam renewal alerts, document vault, and 1 active portfolio link.
-- **PathPort Pro ($19.99/mo or $16.66/mo billed annually)**: Everything in Essentials plus MyPath 6-pillar career growth intelligence, target opportunity gap analysis, Story Bank, and unlimited tailored portfolios.
-- **Free Trial Policy (No Payment Info Required)**: PathPort does not offer an ad-supported or data-brokered free tier to protect individual privacy. Every standard individual account receives a 14-day free trial of PathPort Pro with no payment info required. Founding members who join the waitlist receive an exclusive 30-day free trial of Pro for the Fall 2026 launch.
-- **PathPort Workplace (Launching Late 2026)**: Scoped workforce credential compliance radar, automated expiration tracking, and privacy-preserving employee offboarding.
-- **PathPort Certify (Launching Late 2026)**: Automated topic audit calculation engine, reviewer queue management, and authoritative provenance badge issuance.
+- **PathPort Essentials ($9.99/mo or $8.33/mo billed annually)**: Sovereign professional record, multi-state & national board CE renewal tracking, Email-to-Vault (`@in.getpathport.com`), encrypted document vault, and 1 public **MyPortfolio** link.
+- **PathPort Pro ($19.99/mo or $16.66/mo billed annually)**: Everything in Essentials plus unlimited tailored **MyPortfolio** links, **MyPath** 6-pillar career roadmap, "What-If" role gap analysis, and Application & Interview Studio.
+- **Free Trial Policy**: Every new account starts with a free trial of PathPort Pro with no credit card required (30 days for founding beta members). Veritas Technology Solutions, LLC never sells personal credential data or runs third-party ads.

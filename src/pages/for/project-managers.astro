@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { ProjectManagersFunnel } from '../../views/ProjectManagersFunnel';
+---
+
+<BaseLayout
+  title="PathPort for PMPs & Technical Leaders — PMI Talent Triangle PDU Tracker & MyPortfolio"
+  description="Track 60 PMI PMP PDUs across Ways of Working, Power Skills, and Business Acumen, alongside AWS/CISSP certifications and verified delivery case studies."
+  canonicalPath="/for/project-managers"
+  includeSoftwareSchema={true}
+  breadcrumbs={[
+    { name: 'For Project Managers', path: '/for/project-managers' },
+  ]}
+>
+  <ProjectManagersFunnel client:load />
+</BaseLayout>
+

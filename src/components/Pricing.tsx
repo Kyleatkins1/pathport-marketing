@@ -1,306 +1,343 @@
 import React, { useState } from 'react';
-import { Check, ShieldCheck, Building2, Award, User, ArrowRight, Layers } from 'lucide-react';
-import { BetaRegistrationModal } from './BetaRegistrationModal';
+import {
+  Check,
+  Building2,
+  Award,
+  ArrowRight,
+  ShieldCheck,
+  CreditCard,
+} from 'lucide-react';
+import { triggerLeadModal } from '../lib/modal-events';
 
-export const Pricing: React.FC = () => {
-  const [isBetaModalOpen, setIsBetaModalOpen] = useState(false);
-  const [selectedAudience, setSelectedAudience] = useState('Other Professional');
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('yearly');
+interface PricingProps {
+  onOpenWaitlist?: (persona?: string) => void;
+}
 
-  const handleOpenModal = (aud: string) => {
-    setSelectedAudience(aud);
-    setIsBetaModalOpen(true);
+export const Pricing: React.FC<PricingProps> = ({ onOpenWaitlist }) => {
+  const [annual, setAnnual] = useState(true);
+
+  const handleIndividualCTA = (planLabel: string) => {
+    if (onOpenWaitlist) {
+      onOpenWaitlist(planLabel);
+    } else {
+      triggerLeadModal({
+        intent: 'individual',
+        source: `Pricing — ${planLabel}`,
+      });
+    }
+  };
+
+  const handleOrgCTA = (intent: 'workplace' | 'certify') => {
+    if (onOpenWaitlist) {
+      onOpenWaitlist(intent === 'workplace' ? 'PathPort Workplace' : 'PathPort Certify');
+    } else {
+      triggerLeadModal({
+        intent,
+        source: `Pricing — ${intent === 'workplace' ? 'Workplace 2027' : 'Certify 2027'}`,
+      });
+    }
   };
 
   return (
-    <section id="pricing" className="py-20 md:py-28 bg-white dark:bg-slate-900 relative scroll-mt-16 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+    <section
+      id="pricing"
+      className="py-20 lg:py-28 bg-white border-t border-slate-200/80 scroll-mt-20"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-xs font-semibold">
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" />
-            <span>Founding Members: 30-Day Pro Trial • Standard: 14-Day Trial • No Payment Info Required</span>
+        <div className="max-w-3xl mx-auto text-center space-y-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 text-[#0D5F57] text-xs font-semibold">
+            <ShieldCheck className="w-3.5 h-3.5" />
+            <span>Individual-Owned Pricing • Founding Members Get 30 Days of Pro Free</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-display font-black text-slate-900 dark:text-white tracking-tight">
-            Predictable, Sovereign Plans
+          <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-slate-900 tracking-tight">
+            Less than the cost of a single late-renewal penalty
           </h2>
-          <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
-            Every standard individual account receives a 14-day free trial of PathPort Pro with no payment info required. Founding members who join our waitlist receive an extended 30-day free trial of Pro for our Fall 2026 launch.
+          <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
+            Because you pay for your own PathPort, your record belongs to you—never your employer,
+            agency, or state reporting vendor. Every professional plan starts with a 30-day free
+            Pro trial.
           </p>
 
-          {/* Interactive Billing Toggle */}
-          <div className="flex items-center justify-center pt-2">
-            <div className="inline-flex items-center p-1 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 select-none">
-              <button
-                type="button"
-                onClick={() => setBillingCycle('monthly')}
-                className={`px-5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                  billingCycle === 'monthly'
-                    ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-xs'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+          {/* Billing Toggle */}
+          <div className="pt-3 inline-flex items-center gap-2 p-1.5 rounded-xl bg-slate-100 border border-slate-200">
+            <button
+              type="button"
+              onClick={() => setAnnual(false)}
+              className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                !annual ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              Monthly Billing
+            </button>
+            <button
+              type="button"
+              onClick={() => setAnnual(true)}
+              className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer ${
+                annual ? 'bg-[#0D5F57] text-white shadow-2xs' : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <span>Annual Billing</span>
+              <span
+                className={`px-1.5 py-0.5 rounded text-xs font-bold ${
+                  annual ? 'bg-emerald-400/20 text-emerald-100' : 'bg-emerald-100 text-[#0D5F57]'
                 }`}
               >
-                Monthly
-              </button>
-              <button
-                type="button"
-                onClick={() => setBillingCycle('yearly')}
-                className={`flex items-center gap-2 px-5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                  billingCycle === 'yearly'
-                    ? 'bg-teal-800 text-white shadow-xs'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                }`}
-              >
-                <span>Yearly</span>
-                <span className={`px-2 py-0.5 rounded-full text-[10px] font-extrabold ${
-                  billingCycle === 'yearly'
-                    ? 'bg-teal-900/80 text-emerald-300'
-                    : 'bg-emerald-50 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800'
-                }`}>
-                  Save 17%
+                Save 20%+
+              </span>
+            </button>
+          </div>
+        </div>
+
+        {/* 2-Card Professional Plans Comparison */}
+        <div className="mt-12 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+          {/* Plan 1: PathPort Essentials */}
+          <div className="rounded-2xl bg-slate-50/70 border border-slate-200/90 p-7 sm:p-8 shadow-2xs flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between">
+                <h3 className="text-xl font-bold text-slate-900 font-display">
+                  PathPort Essentials
+                </h3>
+                <span className="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-700 text-xs font-semibold">
+                  Keep Your Record Current
                 </span>
+              </div>
+              <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Everything you need to import your history, store evidence in your private Vault,
+                and stay ahead of 50-state & board renewals across any industry.
+              </p>
+              <div className="mt-5 flex items-baseline gap-1">
+                <span className="text-4xl font-extrabold font-display text-slate-900">
+                  {annual ? '$7.99' : '$9.99'}
+                </span>
+                <span className="text-xs text-slate-500 font-medium">
+                  / month {annual ? '(billed annually)' : ''}
+                </span>
+              </div>
+
+              <div className="mt-6 pt-6 border-t border-slate-200/80">
+                <div className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
+                  Included in Essentials
+                </div>
+                <ul className="space-y-3 text-xs sm:text-sm text-slate-700">
+                  {[
+                    '60-second Import: Resume/CV, LinkedIn PDF, Credly & Digital Badges, and Bulk Certificates',
+                    'Full 8-Entity Living Record (Credentials, CE, Education, Work, Projects, Publications)',
+                    '50-State & National Board Renewal Tracking + 90/60/30-day alerts',
+                    'Direct Email-to-Vault Forwarding (@in.getpathport.com)',
+                    'Private SHA-256 Document Vault with instant data export',
+                    '1 Shareable MyPortfolio public verification link & PDF export',
+                  ].map((feat, i) => (
+                    <li key={i} className="flex items-start gap-2.5">
+                      <Check className="w-4 h-4 text-[#0D5F57] shrink-0 mt-0.5" />
+                      <span>{feat}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => handleIndividualCTA('PathPort Essentials')}
+              className="mt-8 w-full py-3.5 px-4 rounded-xl bg-white hover:bg-slate-100 text-slate-900 border border-slate-300 font-semibold text-sm transition-colors cursor-pointer"
+            >
+              Start With 30-Day Free Trial
+            </button>
+          </div>
+
+          {/* Plan 2: PathPort Pro (Most Popular) */}
+          <div className="rounded-2xl bg-[#0B132B] text-white border-2 border-[#0D5F57] p-7 sm:p-8 shadow-xl relative flex flex-col justify-between">
+            <div className="absolute -top-3.5 left-6 px-3 py-1 rounded-full bg-[#2DD4BF] text-slate-950 text-xs font-extrabold uppercase tracking-wider shadow-sm">
+              Most Popular • Full Career Intelligence
+            </div>
+            <div>
+              <div className="flex items-center justify-between mt-1">
+                <h3 className="text-xl font-bold text-white font-display">PathPort Pro</h3>
+                <span className="px-2.5 py-1 rounded-md bg-teal-500/20 border border-teal-400/30 text-teal-200 text-xs font-semibold">
+                  Shape What’s Next
+                </span>
+              </div>
+              <p className="mt-2 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                Includes everything in Essentials plus <strong>MyPath</strong> career intelligence,
+                What-If Role Audits, Application Studio, and unlimited tailored portfolios.
+              </p>
+              <div className="mt-5 flex items-baseline gap-1">
+                <span className="text-4xl font-extrabold font-display text-white">
+                  {annual ? '$14.99' : '$19.99'}
+                </span>
+                <span className="text-xs text-slate-400 font-medium">
+                  / month {annual ? '(billed annually)' : ''}
+                </span>
+              </div>
+
+              <div className="mt-6 pt-6 border-t border-slate-800">
+                <div className="text-xs font-bold uppercase tracking-wider text-teal-300 mb-3">
+                  Everything in Essentials, Plus:
+                </div>
+                <ul className="space-y-3 text-xs sm:text-sm text-slate-200">
+                  {[
+                    'MyPath 6-Pillar Career Roadmap & Readiness Synthesis',
+                    'Unlimited What-If Role Audits against target job descriptions',
+                    'Opportunity Pursuit, Application Studio & Interview STAR Studio',
+                    'Unlimited custom MyPortfolio views (Modern, Executive & Minimal themes)',
+                    'Custom portfolio slugs (/p/your-name) & Speaker One-Sheet PDF generator',
+                    'Multi-state reciprocity & specialty stack readiness modeling',
+                  ].map((feat, i) => (
+                    <li key={i} className="flex items-start gap-2.5">
+                      <Check className="w-4 h-4 text-[#2DD4BF] shrink-0 mt-0.5" />
+                      <span>{feat}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => handleIndividualCTA('PathPort Pro')}
+              className="mt-8 w-full py-3.5 px-4 rounded-xl bg-[#2DD4BF] hover:bg-teal-300 text-slate-950 font-bold text-sm transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-md"
+            >
+              <span>Claim 30-Day Free Pro Trial</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+        {/* Free Personal Identity Document Tracker Card */}
+        <div className="mt-8 max-w-4xl mx-auto rounded-2xl bg-gradient-to-r from-emerald-50/90 via-teal-50/60 to-white border border-emerald-200/90 p-6 sm:p-8 shadow-2xs">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div className="space-y-3 max-w-2xl">
+              <div className="flex flex-wrap items-center gap-2.5">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#0D5F57] text-white text-xs font-bold">
+                  <CreditCard className="w-3.5 h-3.5" />
+                  <span>Personal Identity Documents</span>
+                </span>
+                <span className="px-2.5 py-1 rounded-md bg-white border border-emerald-200 text-[#0D5F57] text-xs font-extrabold">
+                  $0 • Free Forever
+                </span>
+              </div>
+
+              <h3 className="text-lg sm:text-xl font-bold text-slate-900 font-display">
+                Only need to track your Passport, Driver’s License, or Personal IDs?
+              </h3>
+
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                We are building a dedicated free tier of PathPort exclusively for everyday identity
+                documents—so you never get caught with an expired Passport before a flight or a
+                lapsed Driver’s License.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-2 pt-1">
+                {[
+                  'Driver’s License & REAL ID',
+                  'Passports',
+                  'Global Entry & TSA PreCheck',
+                  'Vehicle Registration & Insurance',
+                ].map((item) => (
+                  <span
+                    key={item}
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white border border-emerald-200/80 text-slate-700 text-xs font-semibold"
+                  >
+                    <Check className="w-3.5 h-3.5 text-[#0D5F57]" />
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="shrink-0">
+              <button
+                type="button"
+                onClick={() =>
+                  handleIndividualCTA('Personal Identity Documents Only (Free — DL, Passport, IDs)')
+                }
+                className="w-full md:w-auto px-6 py-3.5 rounded-xl bg-[#0D5F57] hover:bg-[#094842] text-white font-semibold text-xs sm:text-sm transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-2xs"
+              >
+                <span>Join Free Identity Tracker Waitlist</span>
+                <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           </div>
         </div>
 
-        {/* 4 Pricing Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
-          {/* Card 1: Essentials */}
-          <div className="card-surface-white p-7 border border-slate-200/90 dark:border-slate-700/80 rounded-3xl shadow-xs flex flex-col justify-between space-y-6">
-            <div className="space-y-4">
-              {/* Category Header Row */}
-              <div className="flex items-center justify-between h-6">
-                <div className="flex items-center gap-1.5 text-teal-800 dark:text-teal-400 font-bold text-xs">
-                  <User className="w-4 h-4" aria-hidden="true" />
-                  <span>Essentials</span>
-                </div>
-                <span className="px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold uppercase">
-                  Stay Ready
-                </span>
-              </div>
-
-              {/* Price & Subtitle Row (Fixed Height for Alignment) */}
-              <div className="min-h-[64px] flex flex-col justify-center">
-                <div className="text-3xl font-display font-black text-slate-900 dark:text-white leading-none">
-                  {billingCycle === 'yearly' ? '$8.33' : '$9.99'}
-                  <span className="text-sm font-normal text-slate-500">/mo</span>
-                </div>
-                <div className="text-xs text-slate-500 dark:text-slate-400 mt-1.5">
-                  {billingCycle === 'yearly' ? '$99.99 billed annually (save 17%)' : 'Billed monthly ($9.99/mo)'}
-                </div>
-              </div>
-
-              {/* Description (Fixed Height for Alignment) */}
-              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed min-h-[48px]">
-                Maintain your complete sovereign professional record, evidence vault, and renewal readiness.
-              </p>
-
-              {/* Feature Checklist */}
-              <ul className="space-y-2.5 text-xs text-slate-700 dark:text-slate-200 pt-2 border-t border-slate-100 dark:border-slate-700 min-h-[160px]">
-                <li className="flex items-start gap-2">
-                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" aria-hidden="true" />
-                  <span>MyRecord credentials, degrees & projects</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" aria-hidden="true" />
-                  <span>CE / PDU tracking & exam-based renewal alerts</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" aria-hidden="true" />
-                  <span>Document Vault & sovereign data export</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" aria-hidden="true" />
-                  <span>1 active verified portfolio link (/p/)</span>
-                </li>
-              </ul>
-            </div>
-
-            <button
-              onClick={() => handleOpenModal('Other Professional')}
-              className="w-full min-h-[44px] py-3 rounded-xl bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-800 dark:text-slate-200 font-semibold text-xs transition-colors cursor-pointer flex items-center justify-center gap-1.5"
-            >
-              <span>Get Started</span>
-              <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
-            </button>
-          </div>
-
-          {/* Card 2: Pro Tier */}
-          <div className="bg-white dark:bg-slate-800/90 rounded-3xl p-7 border-2 border-teal-800 dark:border-teal-400 shadow-md flex flex-col justify-between space-y-6 relative">
-            <div className="space-y-4">
-              {/* Category Header Row */}
-              <div className="flex items-center justify-between h-6">
-                <div className="flex items-center gap-1.5 text-teal-800 dark:text-teal-400 font-bold text-xs">
-                  <Layers className="w-4 h-4" aria-hidden="true" />
-                  <span>PathPort Pro</span>
-                </div>
-                <span className="px-2 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-[10px] font-bold border border-emerald-200 dark:border-emerald-800 uppercase">
-                  Move Forward
-                </span>
-              </div>
-
-              {/* Price & Subtitle Row (Fixed Height for Alignment) */}
-              <div className="min-h-[64px] flex flex-col justify-center">
-                <div className="text-3xl font-display font-black text-slate-900 dark:text-white leading-none">
-                  {billingCycle === 'yearly' ? '$16.66' : '$19.99'}
-                  <span className="text-sm font-normal text-slate-500">/mo</span>
-                </div>
-                <div className="text-xs text-emerald-800 dark:text-emerald-400 font-semibold mt-1.5">
-                  {billingCycle === 'yearly' ? '$199.99 billed annually (save 17%)' : 'Billed monthly ($19.99/mo)'}
-                </div>
-              </div>
-
-              {/* Description (Fixed Height for Alignment) */}
-              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed min-h-[48px]">
-                Everything in Essentials plus MyPath career intelligence, Story Bank, and unlimited portfolios.
-              </p>
-
-              {/* Feature Checklist */}
-              <ul className="space-y-2.5 text-xs text-slate-700 dark:text-slate-200 pt-2 border-t border-slate-100 dark:border-slate-700 min-h-[160px]">
-                <li className="flex items-start gap-2">
-                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" aria-hidden="true" />
-                  <span><strong>Everything in Essentials</strong></span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" aria-hidden="true" />
-                  <span><strong>MyPath</strong> 6-pillar career growth intelligence</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" aria-hidden="true" />
-                  <span>Targeted opportunity fit & gap analysis</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" aria-hidden="true" />
-                  <span>Tailored résumés, cover letters & Story Bank</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" aria-hidden="true" />
-                  <span>Unlimited tailored portfolios with view analytics</span>
-                </li>
-              </ul>
-            </div>
-
-            <button
-              onClick={() => handleOpenModal('Other Professional')}
-              className="w-full min-h-[44px] py-3 rounded-xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-xs transition-all shadow-xs flex items-center justify-center gap-1.5 cursor-pointer"
-            >
-              <span>Start 14-Day Pro Trial</span>
-              <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
-            </button>
-          </div>
-
-          {/* Card 3: Workplace */}
-          <div className="card-surface-white p-7 border border-slate-200/90 dark:border-slate-700/80 shadow-xs flex flex-col justify-between space-y-6">
-            <div className="space-y-4">
-              {/* Category Header Row */}
-              <div className="flex items-center justify-between h-6">
-                <div className="flex items-center gap-1.5 text-indigo-700 dark:text-indigo-400 font-bold text-xs">
-                  <Building2 className="w-4 h-4" aria-hidden="true" />
+        {/* Split 2-Card Organization & Board Bridge (2027) */}
+        <div className="mt-8 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+          {/* Card 1: PathPort Workplace (2027) */}
+          <div className="rounded-2xl bg-slate-50 border border-slate-200/90 p-6 sm:p-7 flex flex-col justify-between">
+            <div className="space-y-2.5">
+              <div className="flex items-center justify-between gap-2">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-teal-50 border border-teal-200 text-[#0D5F57] text-xs font-bold">
+                  <Building2 className="w-3.5 h-3.5" />
                   <span>PathPort Workplace</span>
-                </div>
-                <span className="px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-800 dark:text-indigo-300 text-[10px] font-bold border border-indigo-200 dark:border-indigo-800 uppercase">
-                  Late 2026
                 </span>
+                <span className="text-xs font-semibold text-slate-500">Launching 2027</span>
               </div>
-
-              {/* Price & Subtitle Row (Fixed Height for Alignment) */}
-              <div className="min-h-[64px] flex flex-col justify-center">
-                <div className="text-3xl font-display font-black text-slate-900 dark:text-white leading-none">Launching Late 2026</div>
-                <div className="text-xs text-slate-500 dark:text-slate-400 mt-1.5">Employer Workforce Compliance</div>
-              </div>
-
-              {/* Description (Fixed Height for Alignment) */}
-              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed min-h-[48px]">
-                Scoped workforce roster compliance, license expiration tracking, and consent-mediated reviews.
+              <h3 className="text-lg font-bold text-slate-900 font-display">
+                Collect workforce credentials without endless emails
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Select what your workforce needs and send it to the employee. They create a free
+                PathPort profile, upload their required docs, and share them instantly—while system
+                intelligence keeps everyone compliant and lets you assign CEUs to attendees.
               </p>
-
-              {/* Feature Checklist */}
-              <ul className="space-y-2.5 text-xs text-slate-700 dark:text-slate-200 pt-2 border-t border-slate-100 dark:border-slate-700 min-h-[160px]">
-                <li className="flex items-start gap-2">
-                  <Check className="w-3.5 h-3.5 text-indigo-700 dark:text-indigo-400 shrink-0 mt-0.5" aria-hidden="true" />
-                  <span>Workforce compliance tracking</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Check className="w-3.5 h-3.5 text-indigo-700 dark:text-indigo-400 shrink-0 mt-0.5" aria-hidden="true" />
-                  <span>Upcoming expiration alerts</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Check className="w-3.5 h-3.5 text-indigo-700 dark:text-indigo-400 shrink-0 mt-0.5" aria-hidden="true" />
-                  <span>Privacy-preserving offboarding</span>
-                </li>
-              </ul>
             </div>
 
             <button
-              onClick={() => handleOpenModal('Employer / Workforce Compliance (Workplace)')}
-              className="w-full min-h-[44px] py-3 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 hover:bg-indigo-100 dark:hover:bg-indigo-900/60 text-indigo-900 dark:text-indigo-300 font-semibold text-xs border border-indigo-200 dark:border-indigo-800 transition-colors cursor-pointer flex items-center justify-center"
+              type="button"
+              onClick={() => handleOrgCTA('workplace')}
+              className="mt-6 w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-white hover:bg-slate-100 text-slate-900 border border-slate-300 text-xs sm:text-sm font-semibold transition-colors cursor-pointer"
             >
-              Join Workplace Waitlist
+              <Building2 className="w-4 h-4 text-[#0D5F57]" />
+              <span>Join Workplace 2027 Pilot</span>
+              <ArrowRight className="w-3.5 h-3.5 ml-auto text-slate-400" />
             </button>
           </div>
 
-          {/* Card 4: Certify */}
-          <div className="card-surface-white p-7 border border-slate-200/90 dark:border-slate-700/80 shadow-xs flex flex-col justify-between space-y-6">
-            <div className="space-y-4">
-              {/* Category Header Row */}
-              <div className="flex items-center justify-between h-6">
-                <div className="flex items-center gap-1.5 text-teal-800 dark:text-teal-400 font-bold text-xs">
-                  <Award className="w-4 h-4" aria-hidden="true" />
+          {/* Card 2: PathPort Certify (2027) */}
+          <div className="rounded-2xl bg-slate-50 border border-slate-200/90 p-6 sm:p-7 flex flex-col justify-between">
+            <div className="space-y-2.5">
+              <div className="flex items-center justify-between gap-2">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-50 border border-amber-200 text-amber-900 text-xs font-bold">
+                  <Award className="w-3.5 h-3.5 text-amber-700" />
                   <span>PathPort Certify</span>
-                </div>
-                <span className="px-2 py-0.5 rounded-full bg-teal-50 dark:bg-teal-950/60 text-teal-800 dark:text-teal-300 text-[10px] font-bold border border-teal-200 dark:border-teal-800 uppercase">
-                  Late 2026
                 </span>
+                <span className="text-xs font-semibold text-slate-500">Launching 2027</span>
               </div>
-
-              {/* Price & Subtitle Row (Fixed Height for Alignment) */}
-              <div className="min-h-[64px] flex flex-col justify-center">
-                <div className="text-3xl font-display font-black text-slate-900 dark:text-white leading-none">Launching Late 2026</div>
-                <div className="text-xs text-slate-500 dark:text-slate-400 mt-1.5">Issuing Authorities & Programs</div>
-              </div>
-
-              {/* Description (Fixed Height for Alignment) */}
-              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed min-h-[48px]">
-                CE review queues, multi-year certification cycle governance, and verified credential issuance.
+              <h3 className="text-lg font-bold text-slate-900 font-display">
+                End-to-end credentialing for certifying bodies
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Let candidates apply for a credential, submit documents, and track payments. Track
+                exam results from official test platforms (or use our partners), issue credentials
+                through any badge provider, and manage recertifications directly in PathPort.
               </p>
-
-              {/* Feature Checklist */}
-              <ul className="space-y-2.5 text-xs text-slate-700 dark:text-slate-200 pt-2 border-t border-slate-100 dark:border-slate-700 min-h-[160px]">
-                <li className="flex items-start gap-2">
-                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" aria-hidden="true" />
-                  <span>Reviewer submission queue</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" aria-hidden="true" />
-                  <span>Cycle rule & topic governance</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Check className="w-3.5 h-3.5 text-teal-800 dark:text-teal-400 shrink-0 mt-0.5" aria-hidden="true" />
-                  <span>Source-verified digital badges</span>
-                </li>
-              </ul>
             </div>
 
             <button
-              onClick={() => handleOpenModal('Certification Board / Issuer (Certify)')}
-              className="w-full min-h-[44px] py-3 rounded-xl bg-teal-50 dark:bg-teal-950/60 hover:bg-teal-100 dark:hover:bg-teal-900/60 text-teal-900 dark:text-teal-300 font-semibold text-xs border border-teal-200 dark:border-teal-800 transition-colors cursor-pointer flex items-center justify-center"
+              type="button"
+              onClick={() => handleOrgCTA('certify')}
+              className="mt-6 w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-semibold transition-colors cursor-pointer"
             >
-              Join Certify Waitlist
+              <Award className="w-4 h-4 text-[#2DD4BF]" />
+              <span>Request Certify 2027 Early Access</span>
+              <ArrowRight className="w-3.5 h-3.5 ml-auto text-slate-400" />
             </button>
           </div>
+        </div>
+
+        {/* Trust Guarantee Bar */}
+        <div className="mt-6 max-w-4xl mx-auto flex flex-wrap items-center justify-center gap-6 text-xs text-slate-500">
+          <span className="inline-flex items-center gap-1.5">
+            <ShieldCheck className="w-4 h-4 text-[#0D5F57]" />
+            Cancel or switch plans anytime in 1 click
+          </span>
+          <span className="inline-flex items-center gap-1.5">
+            <ShieldCheck className="w-4 h-4 text-[#0D5F57]" />
+            Your documents and record remain exportable even if your trial ends
+          </span>
         </div>
       </div>
-
-      {/* Modal */}
-      <BetaRegistrationModal
-        isOpen={isBetaModalOpen}
-        onClose={() => setIsBetaModalOpen(false)}
-        defaultAudience={selectedAudience}
-        source="pricing_table"
-      />
     </section>
   );
 };
-
-export default Pricing;

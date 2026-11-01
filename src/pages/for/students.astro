@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { StudentsFunnel } from '../../views/StudentsFunnel';
+---
+
+<BaseLayout
+  title="PathPort for Students & New Graduates — Clinical Rotations, Capstones & First-Role Portfolio"
+  description="Turn clinical rotations, capstone engineering projects, and preceptor evaluations into a verified MyPortfolio link that carries into your licensed career."
+  canonicalPath="/for/students"
+  includeSoftwareSchema={true}
+  breadcrumbs={[
+    { name: 'For Students & Grads', path: '/for/students' },
+  ]}
+>
+  <StudentsFunnel client:load />
+</BaseLayout>
+

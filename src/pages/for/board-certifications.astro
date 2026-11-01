@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { BoardCertificationsFunnel } from '../../views/BoardCertificationsFunnel';
+---
+
+<BaseLayout
+  title="PathPort Certify (Launching 2027) — End-to-End Credentialing, Exam Sync, Badge Issuance & Recertification"
+  description="Complete credential management for organizations: candidate applications, document submission, payment tracking, official test platform exam sync, badge issuance via any provider, and recertification."
+  canonicalPath="/for/board-certifications"
+  breadcrumbs={[
+    { name: 'PathPort Certify (2027)', path: '/for/board-certifications' },
+  ]}
+>
+  <BoardCertificationsFunnel client:load />
+</BaseLayout>
+

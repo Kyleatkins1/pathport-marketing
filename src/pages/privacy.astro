@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { PrivacyPolicy } from '../views/PrivacyPolicy';
+---
+
+<BaseLayout
+  title="PathPort — Privacy Policy & Data Sovereignty Architecture | Veritas Technology Solutions, LLC"
+  description="PathPort Privacy Policy by Veritas Technology Solutions, LLC. Individual record ownership, iOS/Android mobile app permissions, AI processing boundaries, zero data selling, and GDPR/CCPA rights."
+  canonicalPath="/privacy"
+  breadcrumbs={[
+    { name: 'Privacy Policy', path: '/privacy' },
+  ]}
+>
+  <PrivacyPolicy client:load />
+</BaseLayout>
+

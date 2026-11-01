@@ -9,37 +9,37 @@ interface ThemeContextType {
   toggleTheme: () => void;
 }
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+const THEME_CHANGE_EVENT = 'pathport:theme-change';
+
+function getInitialResolvedTheme(): 'light' | 'dark' {
+  if (typeof window === 'undefined') return 'light';
+  const saved = window.localStorage.getItem('pathport_theme') as ThemeMode | null;
+  if (saved === 'dark') return 'dark';
+  if (saved === 'light') return 'light';
+  return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+}
+
+const ThemeContext = createContext<ThemeContextType | null>(null);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme, setThemeState] = useState<ThemeMode>(() => {
-    const saved = localStorage.getItem('pathport_theme') as ThemeMode;
-    return saved || 'system';
-  });
+  const state = useStandaloneTheme();
+  return <ThemeContext.Provider value={state}>{children}</ThemeContext.Provider>;
+};
 
-  const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>(() => {
-    if (typeof window === 'undefined') return 'light';
-    const saved = localStorage.getItem('pathport_theme') as ThemeMode;
-    if (saved === 'dark') return 'dark';
-    if (saved === 'light') return 'light';
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  });
+function useStandaloneTheme(): ThemeContextType {
+  const [theme, setThemeState] = useState<ThemeMode>('light');
+  const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    if (typeof window === 'undefined') return;
 
-    const applyTheme = () => {
-      let isDark = false;
-      if (theme === 'dark') {
-        isDark = true;
-      } else if (theme === 'light') {
-        isDark = false;
-      } else {
-        isDark = mediaQuery.matches;
-      }
-
+    const syncFromDomOrStorage = () => {
+      const saved = (window.localStorage.getItem('pathport_theme') as ThemeMode) || 'light';
+      setThemeState(saved);
+      const isDark =
+        saved === 'dark' ||
+        (saved === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
       setResolvedTheme(isDark ? 'dark' : 'light');
-
       if (isDark) {
         document.documentElement.classList.add('dark');
       } else {
@@ -47,42 +47,40 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       }
     };
 
-    applyTheme();
+    syncFromDomOrStorage();
 
-    const listener = () => {
-      if (theme === 'system') {
-        applyTheme();
-      }
-    };
-
-    mediaQuery.addEventListener('change', listener);
-    return () => mediaQuery.removeEventListener('change', listener);
-  }, [theme]);
+    const handleCustomChange = () => syncFromDomOrStorage();
+    window.addEventListener(THEME_CHANGE_EVENT, handleCustomChange);
+    return () => window.removeEventListener(THEME_CHANGE_EVENT, handleCustomChange);
+  }, []);
 
   const setTheme = (newTheme: ThemeMode) => {
     setThemeState(newTheme);
-    localStorage.setItem('pathport_theme', newTheme);
-  };
-
-  const toggleTheme = () => {
-    if (resolvedTheme === 'dark') {
-      setTheme('light');
-    } else {
-      setTheme('dark');
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem('pathport_theme', newTheme);
+      const isDark =
+        newTheme === 'dark' ||
+        (newTheme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      setResolvedTheme(isDark ? 'dark' : 'light');
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+      window.dispatchEvent(new CustomEvent(THEME_CHANGE_EVENT));
     }
   };
 
-  return (
-    <ThemeContext.Provider value={{ theme, resolvedTheme, setTheme, toggleTheme }}>
-      {children}
-    </ThemeContext.Provider>
-  );
-};
+  const toggleTheme = () => {
+    const current = getInitialResolvedTheme();
+    setTheme(current === 'dark' ? 'light' : 'dark');
+  };
 
-export const useTheme = () => {
-  const context = useContext(ThemeContext);
-  if (!context) {
-    throw new Error('useTheme must be used within a ThemeProvider');
-  }
-  return context;
+  return { theme, resolvedTheme, setTheme, toggleTheme };
+}
+
+export const useTheme = (): ThemeContextType => {
+  const ctx = useContext(ThemeContext);
+  const standalone = useStandaloneTheme();
+  return ctx || standalone;
 };

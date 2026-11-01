@@ -1,0 +1,234 @@
+---
+import '../index.css';
+
+interface BreadcrumbItem {
+  name: string;
+  path: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath?: string;
+  image?: string;
+  type?: 'website' | 'article' | 'profile';
+  noindex?: boolean;
+  includeSoftwareSchema?: boolean;
+  breadcrumbs?: BreadcrumbItem[];
+  extraJsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  canonicalPath = Astro.url.pathname,
+  image = 'https://getpathport.com/og-card.png',
+  type = 'website',
+  noindex = false,
+  includeSoftwareSchema = false,
+  breadcrumbs = [],
+  extraJsonLd,
+} = Astro.props;
+
+const siteUrl = 'https://getpathport.com';
+const cleanPath =
+  canonicalPath === '/' ? '' : canonicalPath.replace(/\/+$/, '');
+const canonicalUrl = `${siteUrl}${cleanPath}`;
+
+const graphNodes: Record<string, unknown>[] = [
+  {
+    '@type': 'Organization',
+    '@id': `${siteUrl}/#organization`,
+    name: 'PathPort',
+    legalName: 'Veritas Technology Solutions, LLC',
+    url: siteUrl,
+    sameAs: ['https://veritastech.io'],
+    logo: {
+      '@type': 'ImageObject',
+      url: `${siteUrl}/logo.png`,
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      email: 'hello@getpathport.com',
+      contactType: 'customer support',
+    },
+    description:
+      'Own your journey. Shape what’s next. The universal credential tracker, private identity document vault, shareable MyPortfolio builder, and MyPath career intelligence workspace across every industry.',
+  },
+  {
+    '@type': 'WebSite',
+    '@id': `${siteUrl}/#website`,
+    url: siteUrl,
+    name: 'PathPort',
+    publisher: {
+      '@id': `${siteUrl}/#organization`,
+    },
+  },
+];
+
+if (includeSoftwareSchema) {
+  graphNodes.push({
+    '@type': 'SoftwareApplication',
+    '@id': `${siteUrl}/#software`,
+    name: 'PathPort',
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Web, iOS, Android',
+    url: siteUrl,
+    description:
+      'PathPort helps professionals and individuals across every industry track credentials, continuing education (CE/CEU/PDU) renewals, and personal identity documents (Driver’s License, Passport, Global Entry), publish verifiable MyPortfolio links, and plan their career with MyPath.',
+    publisher: {
+      '@id': `${siteUrl}/#organization`,
+    },
+    offers: [
+      {
+        '@type': 'Offer',
+        name: 'PathPort Personal Identity Documents Tracker (Free Forever)',
+        price: '0',
+        priceCurrency: 'USD',
+        priceValidUntil: '2027-12-31',
+        availability: 'https://schema.org/InStock',
+        url: `${siteUrl}/#pricing`,
+      },
+      {
+        '@type': 'Offer',
+        name: 'PathPort Essentials (Annual Billing)',
+        price: '7.99',
+        priceCurrency: 'USD',
+        priceValidUntil: '2027-12-31',
+        availability: 'https://schema.org/InStock',
+        url: `${siteUrl}/#pricing`,
+      },
+      {
+        '@type': 'Offer',
+        name: 'PathPort Pro (Annual Billing — Includes 30-Day Free Trial)',
+        price: '14.99',
+        priceCurrency: 'USD',
+        priceValidUntil: '2027-12-31',
+        availability: 'https://schema.org/InStock',
+        url: `${siteUrl}/#pricing`,
+      },
+    ],
+  });
+}
+
+if (breadcrumbs.length > 0) {
+  graphNodes.push({
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: siteUrl,
+      },
+      ...breadcrumbs.map((crumb, idx) => ({
+        '@type': 'ListItem',
+        position: idx + 2,
+        name: crumb.name,
+        item: `${siteUrl}${crumb.path}`,
+      })),
+    ],
+  });
+}
+
+if (extraJsonLd) {
+  if (Array.isArray(extraJsonLd)) {
+    graphNodes.push(...extraJsonLd);
+  } else {
+    graphNodes.push(extraJsonLd);
+  }
+}
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': graphNodes,
+};
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta
+      name="robots"
+      content={noindex
+        ? 'noindex, nofollow'
+        : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'}
+    />
+    <meta name="theme-color" content="#115e59" />
+
+    <!-- Favicon (Actual PathPort Shield Emblem) -->
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png?v=2" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
+    <link rel="shortcut icon" href="/favicon.ico?v=2" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2" />
+
+    <!-- AI Search / LLMs.txt Discovery -->
+    <link rel="alternate" type="text/plain" title="LLMs.txt" href="https://getpathport.com/llms.txt" />
+    <link rel="alternate" type="text/plain" title="LLMs Full Documentation" href="https://getpathport.com/llms-full.txt" />
+
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="PathPort" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Single-source JSON-LD Structured Data -->
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(structuredData)}
+    />
+
+    <!-- Prevent theme flash on load -->
+    <script is:inline>
+      (function () {
+        try {
+          var saved = localStorage.getItem('pathport_theme');
+          if (
+            saved === 'dark' ||
+            (saved === 'system' &&
+              window.matchMedia('(prefers-color-scheme: dark)').matches)
+          ) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased selection:bg-teal-800 selection:text-white">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2.5 focus:rounded-xl focus:bg-teal-800 focus:text-white focus:font-bold focus:text-xs focus:shadow-lg"
+    >
+      Skip to main content
+    </a>
+    <slot />
+  </body>
+</html>
+

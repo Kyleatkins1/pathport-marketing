@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Navbar } from '../components/Navbar';
+import { Footer } from '../components/Footer';
+import { BetaRegistrationModal } from '../components/BetaRegistrationModal';
+---
+
+<BaseLayout
+  title="Page Not Found | PathPort"
+  description="The page you are looking for could not be found. Explore PathPort, our 50-state CE Renewal Calculator, or sample MyPortfolio records."
+  canonicalPath="/404"
+  noindex={true}
+>
+  <Navbar client:load />
+  <BetaRegistrationModal client:load />
+
+  <main
+    id="main-content"
+    tabindex="-1"
+    class="py-24 md:py-32 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 focus:outline-none"
+  >
+    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 dark:bg-teal-950/60 border border-teal-200 dark:border-teal-800 text-teal-800 dark:text-teal-300 text-xs font-bold uppercase tracking-wider">
+      404 • Route Not Found
+    </div>
+    <h1 class="text-3xl sm:text-5xl font-display font-extrabold text-slate-900 dark:text-white tracking-tight">
+      We couldn't find that page.
+    </h1>
+    <p class="text-base text-slate-600 dark:text-slate-300 max-w-xl mx-auto leading-relaxed">
+      The link may have moved or been mistyped. Jump back to PathPort or explore one of our interactive tools below.
+    </p>
+    <div class="pt-4 flex flex-wrap items-center justify-center gap-3">
+      <a
+        href="/"
+        class="px-6 py-3 rounded-xl bg-teal-800 hover:bg-teal-700 text-white font-bold text-sm shadow-xs transition-all"
+      >
+        Back to PathPort Home
+      </a>
+      <a
+        href="/tools/renewal-calculator"
+        class="px-6 py-3 rounded-xl bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 font-bold text-sm border border-slate-200 dark:border-slate-800 transition-all"
+      >
+        50-State CE Renewal Calculator
+      </a>
+      <a
+        href="/p/sarah-jenkins-rn"
+        class="px-6 py-3 rounded-xl bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 font-bold text-sm border border-slate-200 dark:border-slate-800 transition-all"
+      >
+        View Sample MyPortfolio
+      </a>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+

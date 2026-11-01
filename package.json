@@ -4,19 +4,21 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build && node scripts/prerender.js",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
+    "dev": "astro dev",
+    "build": "astro build",
+    "lint": "tsc --noEmit",
+    "preview": "astro preview",
     "deploy": "npm run build && npx wrangler pages deploy dist --project-name=pathport-marketing"
   },
   "dependencies": {
+    "@astrojs/react": "^7.1.2",
+    "astro": "^7.4.4",
     "clsx": "^2.1.1",
+    "cookie": "^1.1.1",
     "lucide-react": "^0.395.0",
     "qrcode.react": "^4.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^7.18.2",
     "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {

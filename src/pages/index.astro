@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Navbar } from '../components/Navbar';
+import { Hero } from '../components/Hero';
+import { PersonaQuickBar } from '../components/PersonaQuickBar';
+import { ImportShowcase } from '../components/ImportShowcase';
+import { InteroperabilityRibbon } from '../components/InteroperabilityRibbon';
+import { FeaturePillars } from '../components/FeaturePillars';
+import { PortfolioShowcase } from '../components/PortfolioShowcase';
+import { PathAISection } from '../components/PathAISection';
+import { OrgSection } from '../components/OrgSection';
+import { Pricing } from '../components/Pricing';
+import { FAQ, HOMEPAGE_FAQS } from '../components/FAQ';
+import { Footer } from '../components/Footer';
+import { BetaRegistrationModal } from '../components/BetaRegistrationModal';
+
+const faqSchema = {
+  '@type': 'FAQPage',
+  mainEntity: HOMEPAGE_FAQS.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
+---
+
+<BaseLayout
+  title="PathPort — Own Your Journey. Shape What's Next. | Credential Tracker, Portfolio & Career Record"
+  description="If you have a credential, you can track it in PathPort. Track licenses, certifications, CE renewals, and personal IDs, publish tailored MyPortfolio links, and plan your career with MyPath."
+  canonicalPath="/"
+  includeSoftwareSchema={true}
+  extraJsonLd={faqSchema}
+>
+  <Navbar client:load />
+
+  <main id="main-content" tabindex="-1" class="focus:outline-none">
+    <Hero client:load />
+    <PersonaQuickBar />
+    <ImportShowcase client:visible />
+    <InteroperabilityRibbon />
+    <FeaturePillars client:visible />
+    <PortfolioShowcase client:visible />
+    <PathAISection client:visible />
+    <OrgSection client:visible />
+    <Pricing client:visible />
+    <FAQ client:visible />
+  </main>
+
+  <Footer />
+  <BetaRegistrationModal client:load />
+</BaseLayout>
+

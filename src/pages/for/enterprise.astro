@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { EnterpriseFunnel } from '../../views/EnterpriseFunnel';
+---
+
+<BaseLayout
+  title="PathPort Workplace (Launching 2027) — Zero-Email Workforce Credential Compliance & CEU Assignment"
+  description="Select required credentials, send requests to employees who share from a free PathPort profile with zero lost emails, assign CEUs to attendees, and maintain compliance across any industry."
+  canonicalPath="/for/enterprise"
+  breadcrumbs={[
+    { name: 'PathPort Workplace (2027)', path: '/for/enterprise' },
+  ]}
+>
+  <EnterpriseFunnel client:load />
+</BaseLayout>
+

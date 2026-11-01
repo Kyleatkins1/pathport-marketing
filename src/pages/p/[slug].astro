@@ -1,0 +1,168 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { PublicPassportDemo } from '../../views/PublicPassportDemo';
+
+interface DemoMeta {
+  slug: string;
+  canonicalSlug: string;
+  name: string;
+  title: string;
+  description: string;
+  noindex?: boolean;
+}
+
+export function getStaticPaths() {
+  const demoRoutes: DemoMeta[] = [
+    {
+      slug: 'sarah-jenkins-rn',
+      canonicalSlug: 'sarah-jenkins-rn',
+      name: 'Sarah Jenkins, BSN, RN',
+      title: 'Critical Care Charge Nurse & Clinical Preceptor',
+      description:
+        'Sample PathPort MyPortfolio for Sarah Jenkins, BSN, RN — NYS RN License, AACN CCRN, ACLS/PALS, and ICU Sepsis Quality Improvement case study.',
+    },
+    {
+      slug: 'marcus-vance-nrp',
+      canonicalSlug: 'marcus-vance-nrp',
+      name: 'Elena Rodriguez, NRP, FP-C',
+      title: 'Critical Care Flight Paramedic & Clinical Educator',
+      description:
+        'Sample PathPort MyPortfolio for Critical Care Flight Paramedic — NREMT NRP, IBSC FP-C, 60/60 NCCP hours, and high-altitude transport case study.',
+    },
+    {
+      slug: 'elena-flight-lead',
+      canonicalSlug: 'elena-flight-lead',
+      name: 'Elena Rodriguez, NRP, FP-C',
+      title: 'Critical Care Flight Paramedic & Clinical Educator',
+      description:
+        'Sample PathPort MyPortfolio for Elena Rodriguez, NRP, FP-C — NREMT NRP, IBSC FP-C, 60/60 NCCP hours, and high-altitude transport case study.',
+    },
+    {
+      slug: 'marcus-vance',
+      canonicalSlug: 'marcus-vance',
+      name: 'Marcus Vance, PMP, CSM',
+      title: 'Senior Technical Program Manager & Solutions Architect',
+      description:
+        'Sample PathPort MyPortfolio for Marcus Vance, PMP, CSM — 60/60 PMI PDUs, AWS Solutions Architect Professional, and multi-region cloud migration case study.',
+    },
+    {
+      slug: 'elena-rodriguez-pmp',
+      canonicalSlug: 'marcus-vance',
+      name: 'Marcus Vance, PMP, CSM',
+      title: 'Senior Technical Program Manager & Solutions Architect',
+      description:
+        'Sample PathPort MyPortfolio for PMP & Technical Program Manager — 60/60 PMI PDUs, AWS Solutions Architect Professional, and cloud delivery case study.',
+      noindex: true,
+    },
+    {
+      slug: 'david-kim-bsn',
+      canonicalSlug: 'david-kim-bsn',
+      name: 'David Kim, MS',
+      title: 'Bioengineering Research Fellow & Capstone Lead',
+      description:
+        'Sample PathPort MyPortfolio for Student & New Graduate — Johns Hopkins M.S. Biomedical Engineering, CITI GCP Certification, and microfluidic biosensor research.',
+    },
+    {
+      slug: 'david-kim-bio',
+      canonicalSlug: 'david-kim-bsn',
+      name: 'David Kim, MS',
+      title: 'Bioengineering Research Fellow & Capstone Lead',
+      description:
+        'Sample PathPort MyPortfolio for David Kim, MS — Johns Hopkins M.S. Biomedical Engineering, CITI GCP Certification, and microfluidic biosensor research.',
+      noindex: true,
+    },
+    {
+      slug: 'sarah-jenkins',
+      canonicalSlug: 'sarah-jenkins-rn',
+      name: 'Sarah Jenkins, BSN, RN',
+      title: 'Critical Care Charge Nurse & Clinical Preceptor',
+      description:
+        'Sample PathPort MyPortfolio for Sarah Jenkins, BSN, RN — NYS RN License, AACN CCRN, and ICU Sepsis case study.',
+      noindex: true,
+    },
+    {
+      slug: 'elena-rodriguez',
+      canonicalSlug: 'elena-flight-lead',
+      name: 'Elena Rodriguez, NRP, FP-C',
+      title: 'Critical Care Flight Paramedic & Clinical Educator',
+      description:
+        'Sample PathPort MyPortfolio for Elena Rodriguez, NRP, FP-C — NREMT NRP and IBSC FP-C.',
+      noindex: true,
+    },
+    {
+      slug: 'david-kim',
+      canonicalSlug: 'david-kim-bsn',
+      name: 'David Kim, MS',
+      title: 'Bioengineering Research Fellow & Capstone Lead',
+      description:
+        'Sample PathPort MyPortfolio for David Kim, MS — Biomedical Engineering & Capstone Portfolio.',
+      noindex: true,
+    },
+    {
+      slug: 'nurse-multi',
+      canonicalSlug: 'sarah-jenkins-rn',
+      name: 'Sarah Jenkins, BSN, RN',
+      title: 'Critical Care Charge Nurse & Clinical Preceptor',
+      description: 'Sample PathPort MyPortfolio for Critical Care RN.',
+      noindex: true,
+    },
+    {
+      slug: 'paramedic-cct',
+      canonicalSlug: 'elena-flight-lead',
+      name: 'Elena Rodriguez, NRP, FP-C',
+      title: 'Critical Care Flight Paramedic & Clinical Educator',
+      description: 'Sample PathPort MyPortfolio for Flight Paramedic.',
+      noindex: true,
+    },
+    {
+      slug: 'pmp-single',
+      canonicalSlug: 'marcus-vance',
+      name: 'Marcus Vance, PMP, CSM',
+      title: 'Senior Technical Program Manager & Solutions Architect',
+      description: 'Sample PathPort MyPortfolio for PMP Technical Program Manager.',
+      noindex: true,
+    },
+    {
+      slug: 'student-research',
+      canonicalSlug: 'david-kim-bsn',
+      name: 'David Kim, MS',
+      title: 'Bioengineering Research Fellow & Capstone Lead',
+      description: 'Sample PathPort MyPortfolio for Student & Researcher.',
+      noindex: true,
+    },
+    {
+      slug: 'alex-chen',
+      canonicalSlug: 'marcus-vance',
+      name: 'Marcus Vance, PMP, CSM',
+      title: 'Senior Technical Program Manager & Solutions Architect',
+      description: 'Sample PathPort MyPortfolio for Technical Program Manager.',
+      noindex: true,
+    },
+  ];
+
+  return demoRoutes.map((meta) => ({
+    params: { slug: meta.slug },
+    props: { meta },
+  }));
+}
+
+interface Props {
+  meta: DemoMeta;
+}
+
+const { meta } = Astro.props;
+---
+
+<BaseLayout
+  title={`${meta.name} — Sample MyPortfolio & Living Record | PathPort`}
+  description={meta.description}
+  canonicalPath={`/p/${meta.canonicalSlug}`}
+  type="profile"
+  noindex={meta.noindex ?? false}
+  breadcrumbs={[
+    { name: `Sample MyPortfolio: ${meta.name}`, path: `/p/${meta.canonicalSlug}` },
+  ]}
+>
+  <PublicPassportDemo initialSlug={meta.slug} client:load />
+</BaseLayout>
+

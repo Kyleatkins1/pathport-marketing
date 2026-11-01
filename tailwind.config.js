@@ -2,8 +2,7 @@
 export default {
   darkMode: 'class',
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{astro,html,js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -36,8 +35,20 @@ export default {
       fontFamily: {
         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
         display: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+      },
+      spacing: {
+        '4.5': '1.125rem',
+      },
+      opacity: {
+        '8': '0.08',
+        '12': '0.12',
+        '88': '0.88',
+        '92': '0.92',
+        '98': '0.98',
       },
       boxShadow: {
+        '2xs': "0 1px 2px 0 rgba(0, 0, 0, 0.04)",
         xs: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
         glass: "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
         glowTeal: "0 0 25px -5px rgba(13, 148, 136, 0.5)",

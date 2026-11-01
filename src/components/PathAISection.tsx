@@ -1,350 +1,383 @@
 import React, { useState } from 'react';
-import { 
-  Bot, ArrowRight, Compass, Target, 
-  TrendingUp, CheckCircle2, ShieldCheck,
-  XCircle, UserCheck, Award, BookOpen, Hammer,
-  FileCheck2, Briefcase, Lightbulb
+import {
+  Compass,
+  BookOpen,
+  Award,
+  Briefcase,
+  Hammer,
+  FileSpreadsheet,
+  Users,
+  CheckCircle2,
+  ArrowRight,
+  Target,
+  FileSearch,
+  Sparkles,
 } from 'lucide-react';
-import { BetaRegistrationModal } from './BetaRegistrationModal';
+import { triggerLeadModal } from '../lib/modal-events';
 
-export const PathAISection: React.FC = () => {
-  const [isBetaModalOpen, setIsBetaModalOpen] = useState(false);
-  const [activeScenario, setActiveScenario] = useState<'nurse_transition' | 'ems_leadership' | 'pm_pivot'>('nurse_transition');
+interface PathAISectionProps {
+  onOpenWaitlist?: (persona?: string) => void;
+}
 
-  const scenarios = {
-    nurse_transition: {
-      title: "ICU Charge Nurse ➔ Clinical Informatics & Systems Specialist",
-      badge: "Target: Healthcare Technology & Informatics",
-      matchScore: "85% Prerequisites Met",
-      genericAdvice: "Recommends 4 more critical care telemetry badges based solely on your RN license.",
-      pathaiInsight: "Recognizes your 8 years of ICU charge leadership, EHR rollout committee work, and clinical protocol case studies. Understands you want to transition away from 12-hour floor shifts into health tech.",
-      actionItems: [
-        { pillar: "Experience", status: "complete", text: "8+ years inpatient clinical workflow & EHR protocol leadership" },
-        { pillar: "Demonstrate", status: "complete", text: "Unit-wide sepsis protocol QI case study with measured outcome data" },
-        { pillar: "Learn", status: "gap", text: "Complete 15 CPHIMS-accredited health data standards (FHIR) CE hours" },
-        { pillar: "Reflect", status: "gap", text: "Publish 'Clinical Systems & Patient Safety' leadership narrative" }
-      ],
-      aiQuote: "“You don't need another generic bedside certification. Your charge leadership and EHR committee work already prove your clinical credibility. Adding 15 accredited CE hours in health data interoperability and publishing your sepsis protocol case study positions you directly for informatics roles.”"
-    },
-    ems_leadership: {
-      title: "Critical Care Paramedic ➔ EMS Operations & Clinical Educator",
-      badge: "Target: Clinical Education & QA Leadership",
-      matchScore: "90% Prerequisites Met",
-      genericAdvice: "Recommends repeating standard CPR/airway refreshers without recognizing clinical leadership.",
-      pathaiInsight: "Evaluates your 10 years of high-acuity 911 calls, field training officer (FTO) records, and QA protocol audits. Focuses on your goal to step into an agency-wide clinical director role.",
-      actionItems: [
-        { pillar: "Earn", status: "complete", text: "Active NREMT Paramedic, FP-C, and ACLS/PALS Instructor credentials" },
-        { pillar: "Build", status: "complete", text: "Standardized pre-hospital mechanical ventilation training curriculum" },
-        { pillar: "Learn", status: "gap", text: "Log 10 hours in EMS quality management & clinical audit methods" },
-        { pillar: "Demonstrate", status: "gap", text: "Package protocol training outcomes into a verified case study" }
-      ],
-      aiQuote: "“You satisfy all field clinical prerequisites. Rather than stacking redundant basic certs, PathAI maps your remaining hours to state-accredited EMS educator modules and packages your protocol curriculum into a verified case study.”"
-    },
-    pm_pivot: {
-      title: "Senior Technical Project Manager ➔ Director of Technical Programs",
-      badge: "Target: Executive Program Governance",
-      matchScore: "92% Prerequisites Met",
-      genericAdvice: "Recommends entry-level coding badges because you managed software engineers.",
-      pathaiInsight: "Understands that you excel at cross-functional delivery, risk management, and budget governance, not writing code. Targets director-level program governance.",
-      actionItems: [
-        { pillar: "Earn", status: "complete", text: "PMP® credential and 8+ years leading distributed systems delivery" },
-        { pillar: "Demonstrate", status: "complete", text: "Zero-downtime multi-region database migration case study" },
-        { pillar: "Learn", status: "gap", text: "Log 12 PDUs in organizational strategy & executive stakeholder alignment" },
-        { pillar: "Reflect", status: "gap", text: "Document executive stakeholder governance and vendor negotiation framework" }
-      ],
-      aiQuote: "“Your technical delivery proof is rock solid. To move into director-level governance, highlight executive stakeholder management, vendor negotiation, and team scaling in your portfolio.”"
+const TRAJECTORIES = [
+  {
+    id: 'nurse-to-np',
+    category: 'Clinical Advancement',
+    currentRole: 'BSN, RN — Adult ICU (4 Years, CCRN)',
+    targetRole: 'Acute Care Nurse Practitioner (ACNP) / Clinical Educator',
+    readinessSummary: 'Strong Clinical Foundation • 2 Academic & Preceptorship Steps Ahead',
+    whatIfInsight:
+      'Your 4,800 ICU hours and CCRN certification satisfy top-tier MSN/DNP admission prerequisites. Focus next on graduate pharmacology readiness and logging formal preceptorship hours.',
+    pillars: [
+      {
+        pillar: 'Learn',
+        icon: BookOpen,
+        color: 'text-sky-400 bg-sky-500/15 border-sky-500/30',
+        recommendation: 'Graduate Pathophysiology & Advanced Pharmacology Bridge',
+        rationale:
+          'Prepares you for ACNP core curriculum and overlaps with future 25-hour APRN pharmacology renewal requirements.',
+      },
+      {
+        pillar: 'Credential',
+        icon: Award,
+        color: 'text-emerald-400 bg-emerald-500/15 border-emerald-500/30',
+        recommendation: 'Maintain AACN CCRN + Add AHA ACLS Instructor Status',
+        rationale:
+          'Strengthens clinical faculty and DNP application packets while fulfilling teaching competency hours.',
+      },
+      {
+        pillar: 'Experience',
+        icon: Briefcase,
+        color: 'text-amber-400 bg-amber-500/15 border-amber-500/30',
+        recommendation: 'Log 120 Hours as Primary ICU Residency Preceptor',
+        rationale:
+          'Directly satisfies ANCC Category 5 Preceptor Hours and demonstrates formal clinical supervision.',
+      },
+      {
+        pillar: 'Build',
+        icon: Hammer,
+        color: 'text-purple-400 bg-purple-500/15 border-purple-500/30',
+        recommendation: 'Document Unit Ventilator Weaning QI Protocol in MyPortfolio',
+        rationale:
+          'Converts daily bedside quality work into a tangible Evidence-Based Practice (EBP) artifact.',
+      },
+      {
+        pillar: 'Publish',
+        icon: FileSpreadsheet,
+        color: 'text-rose-400 bg-rose-500/15 border-rose-500/30',
+        recommendation: 'Submit Abstract Poster to AACN National Teaching Institute (NTI)',
+        rationale:
+          'Establishes peer-reviewed clinical scholarship ahead of graduate interviews.',
+      },
+      {
+        pillar: 'Lead',
+        icon: Users,
+        color: 'text-teal-300 bg-teal-500/15 border-teal-500/30',
+        recommendation: 'Co-Chair Hospital Critical Care Shared Governance Council',
+        rationale:
+          'Demonstrates systems-level clinical leadership across multidisciplinary teams.',
+      },
+    ],
+  },
+  {
+    id: 'medic-to-chief',
+    category: 'EMS & Operations Leadership',
+    currentRole: 'Flight Paramedic (NRP, FP-C — 6 Years)',
+    targetRole: 'EMS Clinical Director / Battalion Operations Chief',
+    readinessSummary: 'Field Mastery Established • Add Administrative & QA Governance Evidence',
+    whatIfInsight:
+      'Your clinical and flight credentials are complete. Transitioning to Operations Chief requires documented QA/QI chart audit governance, budget stewardship, and incident command credentials.',
+    pillars: [
+      {
+        pillar: 'Learn',
+        icon: BookOpen,
+        color: 'text-sky-400 bg-sky-500/15 border-sky-500/30',
+        recommendation: 'EMS Finance, Reimbursement & Municipal Budgeting Seminar',
+        rationale:
+          'Closes the gap between field clinical command and agency-level fiscal administration.',
+      },
+      {
+        pillar: 'Credential',
+        icon: Award,
+        color: 'text-emerald-400 bg-emerald-500/15 border-emerald-500/30',
+        recommendation: 'FEMA NIMS ICS-300 / ICS-400 & NAEMT EMS Safety Officer',
+        rationale:
+          'Required command certifications for multi-agency incident management and director roles.',
+      },
+      {
+        pillar: 'Experience',
+        icon: Briefcase,
+        color: 'text-amber-400 bg-amber-500/15 border-amber-500/30',
+        recommendation: 'Lead Monthly Medical Director Protocol & Chart Review Audits',
+        rationale:
+          'Provides verifiable clinical governance experience alongside agency medical direction.',
+      },
+      {
+        pillar: 'Build',
+        icon: Hammer,
+        color: 'text-purple-400 bg-purple-500/15 border-purple-500/30',
+        recommendation: 'Publish Prehospital RSI First-Pass Success Dashboard Case Study',
+        rationale:
+          'Showcases data-driven clinical quality management inside your shareable MyPortfolio.',
+      },
+      {
+        pillar: 'Publish',
+        icon: FileSpreadsheet,
+        color: 'text-rose-400 bg-rose-500/15 border-rose-500/30',
+        recommendation: 'Author Regional Trauma Hand-Off Standard Operating Procedure',
+        rationale:
+          'Demonstrates authorship of formal clinical policy across hospital and EMS interfaces.',
+      },
+      {
+        pillar: 'Lead',
+        icon: Users,
+        color: 'text-teal-300 bg-teal-500/15 border-teal-500/30',
+        recommendation: 'Direct New-Hire Paramedic Field Training Officer (FTO) Academy',
+        rationale:
+          'Proves workforce readiness leadership over 25+ field clinicians.',
+      },
+    ],
+  },
+  {
+    id: 'pm-to-vp',
+    category: 'Executive Program Leadership',
+    currentRole: 'Senior Technical Project Manager (PMP, CSM)',
+    targetRole: 'VP of Program Delivery / Enterprise PMO Director',
+    readinessSummary: 'Delivery Execution Strong • Expand Portfolio Governance & Executive Artifacts',
+    whatIfInsight:
+      'Your PMP and sprint delivery history are strong. Executive PMO roles screen for multi-million-dollar portfolio governance, vendor risk frameworks, and cross-org transformation outcomes.',
+    pillars: [
+      {
+        pillar: 'Learn',
+        icon: BookOpen,
+        color: 'text-sky-400 bg-sky-500/15 border-sky-500/30',
+        recommendation: 'Executive Capital Allocation & M&A Post-Merger Integration',
+        rationale:
+          'Fulfills PMI Business Acumen PDUs while building board-level financial fluency.',
+      },
+      {
+        pillar: 'Credential',
+        icon: Award,
+        color: 'text-emerald-400 bg-emerald-500/15 border-emerald-500/30',
+        recommendation: 'PMI PfMP (Portfolio Management) or SAFe Release Train Engineer',
+        rationale:
+          'Signals readiness to govern multi-program portfolios rather than single workstreams.',
+      },
+      {
+        pillar: 'Experience',
+        icon: Briefcase,
+        color: 'text-amber-400 bg-amber-500/15 border-amber-500/30',
+        recommendation: 'Own Quarterly Steering Committee & Vendor SLA Governance',
+        rationale:
+          'Documents executive stakeholder management and cross-department budget accountability.',
+      },
+      {
+        pillar: 'Build',
+        icon: Hammer,
+        color: 'text-purple-400 bg-purple-500/15 border-purple-500/30',
+        recommendation: 'Package Enterprise Cloud Migration ROI Audit in MyPortfolio',
+        rationale:
+          'Gives executive recruiters concrete evidence of on-time, under-budget transformation.',
+      },
+      {
+        pillar: 'Publish',
+        icon: FileSpreadsheet,
+        color: 'text-rose-400 bg-rose-500/15 border-rose-500/30',
+        recommendation: 'Publish PMO Risk Telemetry Template for PMI Chapter Congress',
+        rationale:
+          'Earns Giving Back PDUs and establishes external industry authority.',
+      },
+      {
+        pillar: 'Lead',
+        icon: Users,
+        color: 'text-teal-300 bg-teal-500/15 border-teal-500/30',
+        recommendation: 'Mentor 4 Junior Project Managers Through PMP Certification',
+        rationale:
+          'Proves talent development and organizational capability building.',
+      },
+    ],
+  },
+];
+
+export const PathAISection: React.FC<PathAISectionProps> = ({ onOpenWaitlist }) => {
+  const [selectedIdx, setSelectedIdx] = useState(0);
+  const active = TRAJECTORIES[selectedIdx];
+
+  const handleCTA = () => {
+    if (onOpenWaitlist) {
+      onOpenWaitlist(active.category);
+    } else {
+      triggerLeadModal({
+        intent: 'individual',
+        persona: active.category,
+        source: 'Homepage — MyPath Section',
+      });
     }
   };
 
-  const pillars = [
-    {
-      name: "1. Earn",
-      category: "Credentials & Accreditations",
-      icon: Award,
-      description: "Formal licenses, board certifications, and recognized accreditations (e.g. State RN/NP, NREMT, PMP, AWS).",
-      example: "State Board License or Specialty Board Exam"
-    },
-    {
-      name: "2. Learn",
-      category: "CEUs & Accredited Courses",
-      icon: BookOpen,
-      description: "Mandatory continuing education units, contact hours, and accredited coursework tailored to state requirements.",
-      example: "15 CPHIMS CE Hours or Florida Law Category A"
-    },
-    {
-      name: "3. Build",
-      category: "Applied Deliverables & Toolkits",
-      icon: Hammer,
-      description: "Hands-on protocols, simulation checklists, clinical training curriculums, and production software repositories.",
-      example: "Ventilation Protocol or Simulation Toolkit"
-    },
-    {
-      name: "4. Demonstrate",
-      category: "Structured Case Studies",
-      icon: FileCheck2,
-      description: "Turning real work into verifiable Challenge-Approach-Outcome proof with measurable metrics and artifact links.",
-      example: "Hospital Sepsis QI Protocol Case Study"
-    },
-    {
-      name: "5. Experience",
-      category: "Operational Roles & Rotations",
-      icon: Briefcase,
-      description: "Direct clinical exposure, committee leadership, preceptorships, and supervisory tenure in the field.",
-      example: "8+ Years ICU Charge & EHR Committee Lead"
-    },
-    {
-      name: "6. Reflect",
-      category: "Leadership Philosophy Narratives",
-      icon: Lightbulb,
-      description: "Structured professional narratives that explain how you make decisions, lead teams, and debrief critical events.",
-      example: "Psychological Safety in Debriefing Narrative"
-    }
-  ];
-
-  const current = scenarios[activeScenario];
-
   return (
-    <section id="path-ai" className="py-20 md:py-28 bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 scroll-mt-16 transition-colors select-none">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        
+    <section
+      id="mypath"
+      className="py-20 lg:py-28 bg-[#0B132B] text-white relative overflow-hidden scroll-mt-20"
+    >
+      {/* Background Glow */}
+      <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 dark:bg-teal-950/60 text-teal-800 dark:text-teal-300 border border-teal-200 dark:border-teal-800 text-xs font-semibold shadow-2xs">
-            <Compass className="w-3.5 h-3.5 text-teal-700 dark:text-teal-400" aria-hidden="true" />
-            <span>PathAI • Grounded Career Advisor</span>
+        <div className="max-w-3xl mx-auto text-center space-y-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/15 border border-teal-400/30 text-teal-300 text-xs font-semibold">
+            <Compass className="w-3.5 h-3.5" />
+            <span>MyPath • Career Intelligence, Role Audits & Opportunity Pursuit</span>
           </div>
-
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-slate-900 dark:text-white tracking-tight leading-tight">
-            Most tools suggest certs based on your last badge.{' '}
-            <span className="text-teal-800 dark:text-teal-400 block mt-1">PathAI advises your actual career journey.</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-display tracking-tight leading-tight text-white">
+            See where your experience qualifies you to go next—and{' '}
+            <span className="text-[#2DD4BF]">how to get there.</span>
           </h2>
-
-          <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
-            Generic platforms treat you like a keyword tag. If you earned a telemetry badge, they recommend more telemetry—even if your goal is hospital system design or clinical leadership. <strong>PathAI</strong> analyzes your complete record across 6 distinct action pillars to map real, targeted next steps.
+          <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
+            Because PathPort holds your real credentials, clinical or project hours, education, and
+            case studies, <strong>MyPath</strong> evaluates your whole journey—mapping concrete next
+            steps across 6 career pillars, running <strong>What-If Role Audits</strong>, and
+            helping you tailor applications from verified evidence.
           </p>
         </div>
 
-        {/* Interactive Scenario Explorer */}
-        <div className="max-w-5xl mx-auto space-y-6">
-          {/* Scenario Selector Tabs (ARIA Tablist) */}
-          <div 
-            role="tablist"
-            aria-label="PathAI Career Guidance Scenarios"
-            className="flex flex-wrap justify-center gap-2.5"
-          >
-            <button
-              id="pathai-tab-nurse"
-              role="tab"
-              aria-selected={activeScenario === 'nurse_transition'}
-              aria-controls="pathai-diagnostic-panel"
-              onClick={() => setActiveScenario('nurse_transition')}
-              className={`px-4 py-2.5 min-h-[44px] rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-2 border ${
-                activeScenario === 'nurse_transition'
-                  ? 'bg-teal-800 text-white border-teal-800 shadow-xs scale-[1.02]'
-                  : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800'
-              }`}
-            >
-              <Compass className="w-3.5 h-3.5" aria-hidden="true" />
-              <span>Career Pivot (Bedside ➔ Informatics)</span>
-            </button>
-
-            <button
-              id="pathai-tab-ems"
-              role="tab"
-              aria-selected={activeScenario === 'ems_leadership'}
-              aria-controls="pathai-diagnostic-panel"
-              onClick={() => setActiveScenario('ems_leadership')}
-              className={`px-4 py-2.5 min-h-[44px] rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-2 border ${
-                activeScenario === 'ems_leadership'
-                  ? 'bg-teal-800 text-white border-teal-800 shadow-xs scale-[1.02]'
-                  : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800'
-              }`}
-            >
-              <TrendingUp className="w-3.5 h-3.5" aria-hidden="true" />
-              <span>Clinical Leadership (Field ➔ QA Director)</span>
-            </button>
-
-            <button
-              id="pathai-tab-pm"
-              role="tab"
-              aria-selected={activeScenario === 'pm_pivot'}
-              aria-controls="pathai-diagnostic-panel"
-              onClick={() => setActiveScenario('pm_pivot')}
-              className={`px-4 py-2.5 min-h-[44px] rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-2 border ${
-                activeScenario === 'pm_pivot'
-                  ? 'bg-teal-800 text-white border-teal-800 shadow-xs scale-[1.02]'
-                  : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800'
-              }`}
-            >
-              <Target className="w-3.5 h-3.5" aria-hidden="true" />
-              <span>Executive Advancement (PM ➔ Director)</span>
-            </button>
-          </div>
-
-          {/* PathAI Interactive Diagnostic Card (ARIA Tabpanel) */}
-          <div 
-            id="pathai-diagnostic-panel"
-            role="tabpanel"
-            aria-labelledby={`pathai-tab-${activeScenario === 'nurse_transition' ? 'nurse' : activeScenario === 'ems_leadership' ? 'ems' : 'pm'}`}
-            className="bg-white dark:bg-slate-900 rounded-3xl p-7 sm:p-10 border-2 border-teal-800/80 dark:border-teal-500 shadow-lg space-y-7 transition-colors focus:outline-none"
-            tabIndex={0}
-          >
-            {/* Top Bar */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-slate-100 dark:border-slate-800">
-              <div className="space-y-1">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-teal-50 dark:bg-teal-950/60 text-teal-800 dark:text-teal-300 border border-teal-200 dark:border-teal-800">
-                    {current.badge}
-                  </span>
-                  <span className="text-xs font-bold text-emerald-800 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-0.5 rounded-full border border-emerald-200 dark:border-emerald-800">
-                    {current.matchScore}
-                  </span>
-                </div>
-                <h3 className="text-lg sm:text-xl font-display font-bold text-slate-900 dark:text-white mt-1">
-                  {current.title}
-                </h3>
-              </div>
-
-              <div className="flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400">
-                <Bot className="w-4 h-4 text-teal-800 dark:text-teal-400" aria-hidden="true" />
-                <span>Personalized Career Analysis</span>
-              </div>
+        {/* 3 MyPath Capabilities Ribbon */}
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800 flex items-start gap-3">
+            <div className="p-2 rounded-lg bg-teal-500/15 text-teal-300 shrink-0 mt-0.5">
+              <Compass className="w-4.5 h-4.5" />
             </div>
-
-            {/* Contrast Callout: Generic Algorithm vs PathAI */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="p-4 rounded-2xl bg-rose-50/50 dark:bg-rose-950/20 border border-rose-200 dark:border-rose-900/60 space-y-1.5">
-                <div className="flex items-center gap-1.5 text-xs font-bold text-rose-900 dark:text-rose-300">
-                  <XCircle className="w-4 h-4 text-rose-600 dark:text-rose-400 shrink-0" aria-hidden="true" />
-                  <span>Generic Credential Platforms</span>
-                </div>
-                <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
-                  {current.genericAdvice}
-                </p>
-              </div>
-
-              <div className="p-4 rounded-2xl bg-teal-50/60 dark:bg-teal-950/40 border border-teal-200 dark:border-teal-800/80 space-y-1.5">
-                <div className="flex items-center gap-1.5 text-xs font-bold text-teal-900 dark:text-teal-300">
-                  <UserCheck className="w-4 h-4 text-teal-700 dark:text-teal-400 shrink-0" aria-hidden="true" />
-                  <span>PathAI Whole-Journey Intelligence</span>
-                </div>
-                <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
-                  {current.pathaiInsight}
-                </p>
-              </div>
-            </div>
-
-            {/* AI Reasoning Callout */}
-            <div className="p-5 rounded-2xl bg-teal-50/40 dark:bg-teal-950/20 border border-teal-200/60 dark:border-teal-800/60 space-y-2">
-              <div className="flex items-center gap-2 text-xs font-bold text-teal-900 dark:text-teal-300">
-                <ShieldCheck className="w-4 h-4 text-teal-700 dark:text-teal-400" aria-hidden="true" />
-                <span>Targeted Growth Rationale</span>
-              </div>
-              <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-200 leading-relaxed italic">
-                {current.aiQuote}
+            <div>
+              <div className="text-sm font-bold text-white">6-Pillar Career Roadmap</div>
+              <p className="text-xs text-slate-300 mt-1 leading-relaxed">
+                Actionable steps across <em>Learn, Credential, Experience, Build, Publish,</em> and{' '}
+                <em>Lead</em>—calibrated to your actual record.
               </p>
             </div>
+          </div>
 
-            {/* Actionable Roadmap Grid with Pillar Badges */}
-            <div className="space-y-3">
-              <div className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
-                Targeted Career Action Plan (by Action Pillar)
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {current.actionItems.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className={`p-4 rounded-2xl border text-xs flex items-start gap-3 transition-colors ${
-                      item.status === 'complete'
-                        ? 'bg-slate-50 dark:bg-slate-800/60 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200'
-                        : 'bg-emerald-50/60 dark:bg-emerald-950/40 border-emerald-200 dark:border-emerald-800 text-emerald-950 dark:text-emerald-200 font-semibold'
-                    }`}
-                  >
-                    {item.status === 'complete' ? (
-                      <CheckCircle2 className="w-4 h-4 text-slate-400 dark:text-slate-500 shrink-0 mt-0.5" aria-hidden="true" />
-                    ) : (
-                      <Target className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0 mt-0.5" aria-hidden="true" />
-                    )}
-                    <div className="space-y-1">
-                      <span className="inline-block px-2 py-0.5 rounded-md bg-slate-200/80 dark:bg-slate-700/80 text-[10px] font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wide">
-                        Pillar: {item.pillar}
-                      </span>
-                      <div>{item.text}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+          <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800 flex items-start gap-3">
+            <div className="p-2 rounded-lg bg-teal-500/15 text-teal-300 shrink-0 mt-0.5">
+              <FileSearch className="w-4.5 h-4.5" />
             </div>
+            <div>
+              <div className="text-sm font-bold text-white">What-If Role Audits</div>
+              <p className="text-xs text-slate-300 mt-1 leading-relaxed">
+                Paste a target role or specialty description to see which requirements your record
+                already satisfies and what gaps remain.
+              </p>
+            </div>
+          </div>
 
-            {/* Bottom Callout */}
-            <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-100 dark:border-slate-800">
-              <div className="text-xs text-slate-500 dark:text-slate-400">
-                PathAI is completely confidential. Your career goals and transition queries are never shared with your current employer.
-              </div>
-              <button
-                onClick={() => setIsBetaModalOpen(true)}
-                className="w-full sm:w-auto min-h-[44px] px-6 py-2.5 rounded-xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-xs shadow-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer shrink-0"
-              >
-                <span>Join Early Access Waitlist</span>
-                <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
-              </button>
+          <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800 flex items-start gap-3">
+            <div className="p-2 rounded-lg bg-teal-500/15 text-teal-300 shrink-0 mt-0.5">
+              <Target className="w-4.5 h-4.5" />
+            </div>
+            <div>
+              <div className="text-sm font-bold text-white">Application & Interview Studio</div>
+              <p className="text-xs text-slate-300 mt-1 leading-relaxed">
+                Assemble role-specific submission manifests and STAR interview stories backed by
+                your real projects and credentials.
+              </p>
             </div>
           </div>
         </div>
 
-        {/* The 6 Action Pillars Breakdown Grid */}
-        <div className="space-y-8 pt-4">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <h3 className="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-white">
-              The 6 Action Pillars of PathPort
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-              Career growth is multidimensional. PathAI evaluates your evidence and guides your next steps across six balanced pillars.
+        {/* Trajectory Selector Tabs */}
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+          {TRAJECTORIES.map((t, i) => (
+            <button
+              key={t.id}
+              type="button"
+              onClick={() => setSelectedIdx(i)}
+              className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                selectedIdx === i
+                  ? 'bg-[#2DD4BF] text-slate-950 shadow-lg shadow-teal-500/20'
+                  : 'bg-slate-800/80 text-slate-300 hover:bg-slate-800 border border-slate-700'
+              }`}
+            >
+              {t.category}
+            </button>
+          ))}
+        </div>
+
+        {/* Active Trajectory Synthesis Panel */}
+        <div className="mt-6 rounded-2xl bg-slate-900/90 border border-slate-800 p-6 sm:p-8 shadow-2xl">
+          {/* Top Summary Bar */}
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-slate-800">
+            <div className="space-y-1">
+              <div className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                Current Record Baseline → Target Horizon
+              </div>
+              <div className="text-lg sm:text-xl font-bold font-display text-white flex flex-wrap items-center gap-2">
+                <span>{active.currentRole}</span>
+                <ArrowRight className="w-4 h-4 text-[#2DD4BF] shrink-0" />
+                <span className="text-[#2DD4BF]">{active.targetRole}</span>
+              </div>
+            </div>
+            <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-teal-500/15 border border-teal-400/30 text-teal-200 text-xs font-semibold self-start lg:self-auto">
+              <CheckCircle2 className="w-4 h-4 text-[#2DD4BF] shrink-0" />
+              <span>{active.readinessSummary}</span>
+            </div>
+          </div>
+
+          {/* Grounded What-If Audit Callout */}
+          <div className="my-5 p-4 rounded-xl bg-slate-950/70 border border-slate-800/90 flex items-start gap-3">
+            <Sparkles className="w-4 h-4 text-[#2DD4BF] shrink-0 mt-0.5" />
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              <strong className="text-white font-semibold">MyPath Readiness Synthesis: </strong>
+              {active.whatIfInsight}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {pillars.map((pillar, idx) => {
-              const IconComp = pillar.icon;
+          {/* 6 Pillars Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {active.pillars.map((item) => {
+              const Icon = item.icon;
               return (
-                <div key={idx} className="card-surface-white p-6 space-y-3.5">
-                  <div className="flex items-center justify-between">
-                    <div className="w-10 h-10 rounded-xl bg-teal-800 text-white flex items-center justify-center shadow-xs" aria-hidden="true">
-                      <IconComp className="w-5 h-5" />
-                    </div>
-                    <span className="text-[11px] font-bold text-teal-800 dark:text-teal-300 bg-teal-50 dark:bg-teal-950/60 px-2.5 py-1 rounded-lg border border-teal-200 dark:border-teal-800">
-                      {pillar.category}
-                    </span>
-                  </div>
-
+                <div
+                  key={item.pillar}
+                  className="p-5 rounded-xl bg-slate-950/60 border border-slate-800/90 hover:border-slate-700 transition-all flex flex-col justify-between"
+                >
                   <div>
-                    <h4 className="font-display font-bold text-base text-slate-900 dark:text-white">
-                      {pillar.name}
-                    </h4>
-                    <p className="text-xs text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">
-                      {pillar.description}
-                    </p>
-                  </div>
-
-                  <div className="pt-2 border-t border-slate-100 dark:border-slate-800 text-[11px] text-slate-500 dark:text-slate-400">
-                    <strong className="text-slate-700 dark:text-slate-300">Example: </strong>
-                    {pillar.example}
+                    <div className="flex items-center justify-between gap-2 mb-3">
+                      <span
+                        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider border ${item.color}`}
+                      >
+                        <Icon className="w-3.5 h-3.5" />
+                        {item.pillar} Pillar
+                      </span>
+                      <span className="text-xs text-slate-400 font-mono">MyPath</span>
+                    </div>
+                    <h3 className="text-base font-bold text-white font-display leading-snug">
+                      {item.recommendation}
+                    </h3>
+                    <p className="mt-2 text-xs text-slate-300 leading-relaxed">{item.rationale}</p>
                   </div>
                 </div>
               );
             })}
           </div>
+
+          {/* Bottom Action Bar */}
+          <div className="mt-8 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-xs sm:text-sm text-slate-300">
+              <strong className="text-white">MyPath</strong> is included in PathPort Pro—and
+              unlocked for all Founding Members during your free 30-day trial.
+            </p>
+            <button
+              type="button"
+              onClick={handleCTA}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#2DD4BF] hover:bg-teal-300 text-slate-950 font-bold text-sm transition-colors cursor-pointer shrink-0"
+            >
+              <span>Unlock MyPath in Your 30-Day Trial</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
         </div>
-
       </div>
-
-      <BetaRegistrationModal
-        isOpen={isBetaModalOpen}
-        onClose={() => setIsBetaModalOpen(false)}
-        source="path_ai_section"
-      />
     </section>
   );
 };
-
-export default PathAISection;
