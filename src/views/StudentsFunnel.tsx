@@ -10,10 +10,12 @@ import {
 
 import { SEO } from '../components/SEO';
 import { PersonaPillarsSection } from '../components/PersonaPillarsSection';
+import { APP_SIGN_UP_URL, getActiveTrialDays } from '../lib/modal-events';
 
 export const StudentsFunnel: React.FC = () => {
   const [isBetaModalOpen, setIsBetaModalOpen] = useState(false);
   const [selectedRole, setSelectedRole] = useState<'undergrad' | 'grad' | 'switcher'>('grad');
+  const trialDays = getActiveTrialDays();
 
   const roleDetails = {
     undergrad: {
@@ -61,13 +63,13 @@ export const StudentsFunnel: React.FC = () => {
             </p>
 
             <div className="pt-2 flex flex-col sm:flex-row gap-3.5 justify-center">
-              <button
-                onClick={() => setIsBetaModalOpen(true)}
-                className="px-8 py-3.5 rounded-2xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-sm shadow-xs hover:scale-[1.02] transition-all flex items-center justify-center gap-2 cursor-pointer"
+              <a
+                href={APP_SIGN_UP_URL}
+                className="px-8 py-3.5 rounded-2xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-sm shadow-xs hover:scale-[1.02] transition-all flex items-center justify-center gap-2"
               >
-                <span>Register for Beta Access</span>
+                <span>Start Free {trialDays}-Day Pro Trial</span>
                 <ArrowRight className="w-4 h-4" />
-              </button>
+              </a>
             </div>
           </div>
 
@@ -223,13 +225,13 @@ export const StudentsFunnel: React.FC = () => {
                 <div className="text-xs text-slate-500 dark:text-slate-400">
                   Privacy-first: Your coursework, projects, and personal records belong to you permanently.
                 </div>
-                <button
-                  onClick={() => setIsBetaModalOpen(true)}
-                  className="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#0D5F57] hover:bg-[#094842] text-white font-semibold text-xs transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer shrink-0"
+                <a
+                  href={APP_SIGN_UP_URL}
+                  className="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#0D5F57] hover:bg-[#094842] text-white font-semibold text-xs transition-all shadow-xs flex items-center justify-center gap-2 shrink-0"
                 >
                   <span>Explore MyPath for Students</span>
                   <ArrowRight className="w-4 h-4" />
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -294,12 +296,13 @@ export const StudentsFunnel: React.FC = () => {
               Join students and early career professionals documenting tangible achievements.
             </p>
             <div className="pt-2">
-              <button
-                onClick={() => setIsBetaModalOpen(true)}
-                className="px-8 py-3.5 rounded-2xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-xs sm:text-sm shadow-xs transition-all cursor-pointer"
+              <a
+                href={APP_SIGN_UP_URL}
+                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-2xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-xs sm:text-sm shadow-xs transition-all"
               >
-                Register for Beta Access
-              </button>
+                <span>Start Free {trialDays}-Day Pro Trial</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
             </div>
           </div>
         </div>

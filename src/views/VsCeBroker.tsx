@@ -11,7 +11,7 @@ import {
   Calculator,
   Mail,
 } from 'lucide-react';
-import { triggerLeadModal } from '../lib/modal-events';
+import { APP_SIGN_UP_URL, getActiveTrialDays } from '../lib/modal-events';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { BetaRegistrationModal } from '../components/BetaRegistrationModal';
@@ -65,17 +65,7 @@ const COMPARISON_ROWS = [
 ];
 
 export const VsCeBroker: React.FC<VsCeBrokerProps> = ({ onOpenWaitlist }) => {
-  const handleCTA = () => {
-    if (onOpenWaitlist) {
-      onOpenWaitlist('Registered Nurse (RN / APRN / Travel)');
-    } else {
-      triggerLeadModal({
-        intent: 'individual',
-        persona: 'Registered Nurse (RN / APRN / Travel)',
-        source: 'Comparison Page — PathPort vs CE Broker',
-      });
-    }
-  };
+  const trialDays = getActiveTrialDays();
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col justify-between">
@@ -107,14 +97,13 @@ export const VsCeBroker: React.FC<VsCeBrokerProps> = ({ onOpenWaitlist }) => {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
-              <button
-                type="button"
-                onClick={handleCTA}
-                className="w-full sm:w-auto px-7 py-4 rounded-xl bg-[#2DD4BF] hover:bg-teal-300 text-slate-950 font-bold text-base transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-lg"
+              <a
+                href={APP_SIGN_UP_URL}
+                className="w-full sm:w-auto px-7 py-4 rounded-xl bg-[#2DD4BF] hover:bg-teal-300 text-slate-950 font-bold text-base transition-colors flex items-center justify-center gap-2 shadow-lg"
               >
-                <span>Start Free 30-Day PathPort Pro Trial</span>
+                <span>Start Free {trialDays}-Day PathPort Pro Trial</span>
                 <ArrowRight className="w-4.5 h-4.5" />
-              </button>
+              </a>
               <Link
                 to="/tools/renewal-calculator"
                 className="w-full sm:w-auto px-6 py-4 rounded-xl bg-white/10 hover:bg-white/15 text-white border border-white/15 font-semibold text-base transition-colors flex items-center justify-center gap-2"
@@ -237,18 +226,17 @@ export const VsCeBroker: React.FC<VsCeBrokerProps> = ({ onOpenWaitlist }) => {
               Build your PathPort in 60 seconds
             </h2>
             <p className="text-sm sm:text-base text-teal-100 max-w-xl mx-auto">
-              Drop in your existing resume or CE certificates and experience 30 days of PathPort Pro
-              free as a Founding Member.
+              Drop in your existing resume or CE certificates and experience {trialDays} days of
+              PathPort Pro free.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-1">
-              <button
-                type="button"
-                onClick={handleCTA}
-                className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-white text-[#0D5F57] hover:bg-teal-50 font-bold text-sm transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-md"
+              <a
+                href={APP_SIGN_UP_URL}
+                className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-white text-[#0D5F57] hover:bg-teal-50 font-bold text-sm transition-colors flex items-center justify-center gap-2 shadow-md"
               >
-                <span>Claim 30-Day Free Pro Trial</span>
+                <span>Claim {trialDays}-Day Free Pro Trial</span>
                 <ArrowRight className="w-4 h-4" />
-              </button>
+              </a>
               <Link
                 to="/p/sarah-jenkins-rn"
                 className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-teal-900/50 hover:bg-teal-900/70 text-white border border-teal-400/30 font-semibold text-sm transition-colors"

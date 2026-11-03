@@ -8,6 +8,7 @@ import { Logo } from '../components/Logo';
 import { BrandedQRCode } from '../components/BrandedQRCode';
 import { Footer } from '../components/Footer';
 import { BetaRegistrationModal } from '../components/BetaRegistrationModal';
+import { APP_SIGN_UP_URL } from '../lib/modal-events';
 import { useTheme } from '../context/ThemeContext';
 
 interface CredentialItem {
@@ -419,13 +420,13 @@ export const PublicPassportDemo: React.FC<PublicPassportDemoProps> = ({ initialS
               <span>QR Code</span>
             </button>
 
-            <button 
-              onClick={() => setIsBetaModalOpen(true)}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-teal-800 hover:bg-teal-700 text-white text-xs font-semibold shadow-2xs hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+            <a
+              href={APP_SIGN_UP_URL}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-teal-800 hover:bg-teal-700 text-white text-xs font-semibold shadow-2xs hover:scale-[1.02] active:scale-[0.98] transition-all"
             >
               <span>Build Yours</span>
               <ArrowRight className="w-3.5 h-3.5" />
-            </button>
+            </a>
           </div>
         </div>
       </header>

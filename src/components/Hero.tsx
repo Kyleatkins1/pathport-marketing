@@ -10,7 +10,11 @@ import {
   Mail,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { triggerLeadModal } from '../lib/modal-events';
+import {
+  APP_SIGN_UP_URL,
+  getActiveTrialDays,
+  isEarlyBirdPromoActive,
+} from '../lib/modal-events';
 
 interface HeroProps {
   onOpenWaitlist?: (persona?: string) => void;
@@ -100,17 +104,11 @@ const PERSONAS = [
   },
 ];
 
-export const Hero: React.FC<HeroProps> = ({ onOpenWaitlist }) => {
+export const Hero: React.FC<HeroProps> = () => {
   const [activeTab, setActiveTab] = useState(0);
   const current = PERSONAS[activeTab];
-
-  const handleOpenCTA = (persona?: string) => {
-    if (onOpenWaitlist) {
-      onOpenWaitlist(persona);
-    } else {
-      triggerLeadModal({ intent: 'individual', persona, source: 'Homepage Hero' });
-    }
-  };
+  const trialDays = getActiveTrialDays();
+  const earlyBird = isEarlyBirdPromoActive();
 
   return (
     <section className="relative pt-12 pb-16 lg:pt-20 lg:pb-24 overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50/70">
@@ -123,7 +121,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenWaitlist }) => {
           <div className="lg:col-span-6 space-y-6 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 text-[#0D5F57] text-xs font-semibold shadow-2xs">
               <ShieldCheck className="w-3.5 h-3.5 text-[#0D5F57]" />
-              <span>If you have a credential, you can track it • Built for every industry</span>
+              <span>
+                {earlyBird
+                  ? 'Now Live • Sign up through Nov 30 for a 30-day free Pro trial'
+                  : 'If you have a credential, you can track it • Built for every industry'}
+              </span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-[3.35rem] font-extrabold font-display tracking-tight text-slate-900 leading-[1.08]">
@@ -142,14 +144,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenWaitlist }) => {
 
             {/* Primary & Secondary CTAs */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-1">
-              <button
-                type="button"
-                onClick={() => handleOpenCTA(current.label)}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-xl text-base font-semibold text-white bg-[#0D5F57] hover:bg-[#094842] shadow-lg shadow-teal-900/15 hover:shadow-xl transition-all duration-200 cursor-pointer"
+              <a
+                href={APP_SIGN_UP_URL}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-xl text-base font-semibold text-white bg-[#0D5F57] hover:bg-[#094842] shadow-lg shadow-teal-900/15 hover:shadow-xl transition-all duration-200"
               >
-                <span>Start Free 30-Day Pro Trial</span>
+                <span>Start Free {trialDays}-Day Pro Trial</span>
                 <ArrowRight className="w-4.5 h-4.5" />
-              </button>
+              </a>
               <a
                 href="#how-it-works"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl text-base font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 shadow-2xs transition-all duration-200"

@@ -11,7 +11,7 @@ import {
   ShieldCheck,
   BadgeCheck,
 } from 'lucide-react';
-import { triggerLeadModal } from '../lib/modal-events';
+import { APP_SIGN_UP_URL } from '../lib/modal-events';
 
 interface ImportShowcaseProps {
   onOpenWaitlist?: (persona?: string) => void;
@@ -50,15 +50,7 @@ const INTAKE_CHANNELS = [
   },
 ];
 
-export const ImportShowcase: React.FC<ImportShowcaseProps> = ({ onOpenWaitlist }) => {
-  const handleCTA = () => {
-    if (onOpenWaitlist) {
-      onOpenWaitlist();
-    } else {
-      triggerLeadModal({ intent: 'individual', source: 'Homepage — How It Works Import Section' });
-    }
-  };
-
+export const ImportShowcase: React.FC<ImportShowcaseProps> = () => {
   return (
     <section
       id="how-it-works"
@@ -256,14 +248,13 @@ export const ImportShowcase: React.FC<ImportShowcaseProps> = ({ onOpenWaitlist }
               </ul>
             </div>
 
-            <button
-              type="button"
-              onClick={handleCTA}
-              className="mt-6 w-full py-3 px-4 rounded-xl bg-[#0D5F57] hover:bg-[#094842] text-white font-semibold text-xs shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
+            <a
+              href={APP_SIGN_UP_URL}
+              className="mt-6 w-full py-3 px-4 rounded-xl bg-[#0D5F57] hover:bg-[#094842] text-white font-semibold text-xs shadow-sm transition-all flex items-center justify-center gap-2"
             >
               <span>Start With Your Existing Files</span>
               <ArrowRight className="w-3.5 h-3.5" />
-            </button>
+            </a>
           </div>
         </div>
       </div>

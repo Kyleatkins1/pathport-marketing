@@ -20,7 +20,7 @@ import {
   type StateRenewalRule,
   type NationalCredentialRule,
 } from '../data/stateRenewalData';
-import { triggerLeadModal } from '../lib/modal-events';
+import { APP_SIGN_UP_URL, getActiveTrialDays } from '../lib/modal-events';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { BetaRegistrationModal } from '../components/BetaRegistrationModal';
@@ -34,6 +34,7 @@ export const RenewalCalculator: React.FC<RenewalCalculatorProps> = ({
   onOpenWaitlist,
   initialStateCode = 'FL',
 }) => {
+  const trialDays = getActiveTrialDays();
   const [mode, setMode] = useState<'state' | 'national'>('state');
   const [selectedStateCode, setSelectedStateCode] = useState(
     initialStateCode.toUpperCase() || 'FL'
@@ -70,31 +71,6 @@ export const RenewalCalculator: React.FC<RenewalCalculatorProps> = ({
 
   const mandatoryHoursSum = activeState.mandatoryTopics.reduce((acc, t) => acc + t.hours, 0);
   const generalHours = Math.max(0, activeState.totalHours - mandatoryHoursSum);
-
-  const handleTrackStateCTA = () => {
-    if (onOpenWaitlist) {
-      onOpenWaitlist('Registered Nurse (RN / APRN / Travel)');
-    } else {
-      triggerLeadModal({
-        intent: 'individual',
-        persona: 'Registered Nurse (RN / APRN / Travel)',
-        primaryState: activeState.code,
-        source: `50-State Renewal Calculator (${activeState.name})`,
-      });
-    }
-  };
-
-  const handleTrackCredCTA = () => {
-    if (onOpenWaitlist) {
-      onOpenWaitlist(activeCred.domain);
-    } else {
-      triggerLeadModal({
-        intent: 'individual',
-        persona: activeCred.name,
-        source: `National Recertification Calculator (${activeCred.code})`,
-      });
-    }
-  };
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col justify-between">
@@ -313,14 +289,13 @@ export const RenewalCalculator: React.FC<RenewalCalculatorProps> = ({
                     you can confirm attribution and alerts you at 90, 60, and 30 days.
                   </p>
                 </div>
-                <button
-                  type="button"
-                  onClick={handleTrackStateCTA}
-                  className="w-full md:w-auto px-6 py-3.5 rounded-xl bg-[#2DD4BF] hover:bg-teal-300 text-slate-950 font-bold text-sm transition-colors flex items-center justify-center gap-2 shrink-0 cursor-pointer shadow-md"
+                <a
+                  href={APP_SIGN_UP_URL}
+                  className="w-full md:w-auto px-6 py-3.5 rounded-xl bg-[#2DD4BF] hover:bg-teal-300 text-slate-950 font-bold text-sm transition-colors flex items-center justify-center gap-2 shrink-0 shadow-md"
                 >
                   <span>Track My {activeState.code} License Free</span>
                   <ArrowRight className="w-4 h-4" />
-                </button>
+                </a>
               </div>
             </>
           ) : (
@@ -426,14 +401,13 @@ export const RenewalCalculator: React.FC<RenewalCalculatorProps> = ({
                     course can credit both your state board and national recertification.
                   </p>
                 </div>
-                <button
-                  type="button"
-                  onClick={handleTrackCredCTA}
-                  className="w-full md:w-auto px-6 py-3.5 rounded-xl bg-[#2DD4BF] hover:bg-teal-300 text-slate-950 font-bold text-sm transition-colors flex items-center justify-center gap-2 shrink-0 cursor-pointer shadow-md"
+                <a
+                  href={APP_SIGN_UP_URL}
+                  className="w-full md:w-auto px-6 py-3.5 rounded-xl bg-[#2DD4BF] hover:bg-teal-300 text-slate-950 font-bold text-sm transition-colors flex items-center justify-center gap-2 shrink-0 shadow-md"
                 >
-                  <span>Start Free 30-Day Pro Trial</span>
+                  <span>Start Free {trialDays}-Day Pro Trial</span>
                   <ArrowRight className="w-4 h-4" />
-                </button>
+                </a>
               </div>
             </>
           )}

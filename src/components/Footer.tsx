@@ -67,6 +67,14 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <a
+                  href="https://app.getpathport.com/auth?signup=true"
+                  className="hover:text-[#2DD4BF] transition-colors font-semibold text-[#2DD4BF]"
+                >
+                  Create Free Account
+                </a>
+              </li>
+              <li>
+                <a
                   href="https://app.getpathport.com/auth"
                   className="hover:text-[#2DD4BF] transition-colors font-semibold text-slate-300"
                 >

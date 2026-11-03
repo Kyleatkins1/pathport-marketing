@@ -7,7 +7,12 @@ import {
   ShieldCheck,
   CreditCard,
 } from 'lucide-react';
-import { triggerLeadModal } from '../lib/modal-events';
+import {
+  APP_SIGN_UP_URL,
+  getActiveTrialDays,
+  isEarlyBirdPromoActive,
+  triggerLeadModal,
+} from '../lib/modal-events';
 
 interface PricingProps {
   onOpenWaitlist?: (persona?: string) => void;
@@ -15,17 +20,8 @@ interface PricingProps {
 
 export const Pricing: React.FC<PricingProps> = ({ onOpenWaitlist }) => {
   const [annual, setAnnual] = useState(true);
-
-  const handleIndividualCTA = (planLabel: string) => {
-    if (onOpenWaitlist) {
-      onOpenWaitlist(planLabel);
-    } else {
-      triggerLeadModal({
-        intent: 'individual',
-        source: `Pricing — ${planLabel}`,
-      });
-    }
-  };
+  const trialDays = getActiveTrialDays();
+  const earlyBird = isEarlyBirdPromoActive();
 
   const handleOrgCTA = (intent: 'workplace' | 'certify') => {
     if (onOpenWaitlist) {
@@ -48,15 +44,21 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenWaitlist }) => {
         <div className="max-w-3xl mx-auto text-center space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 text-[#0D5F57] text-xs font-semibold">
             <ShieldCheck className="w-3.5 h-3.5" />
-            <span>Individual-Owned Pricing • Founding Members Get 30 Days of Pro Free</span>
+            <span>
+              {earlyBird
+                ? 'Individual-Owned Pricing • Sign Up Through Nov 30 for 30 Days of Pro Free'
+                : 'Individual-Owned Pricing • Start With a 14-Day Free Pro Trial'}
+            </span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-slate-900 tracking-tight">
             Less than the cost of a single late-renewal penalty
           </h2>
           <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
             Because you pay for your own PathPort, your record belongs to you—never your employer,
-            agency, or state reporting vendor. Every professional plan starts with a 30-day free
-            Pro trial.
+            agency, or state reporting vendor. Every professional plan starts with a{' '}
+            {earlyBird
+              ? '30-day free Pro trial when you sign up through Nov 30 (14 days starting Dec 1).'
+              : '14-day free Pro trial.'}
           </p>
 
           {/* Billing Toggle */}
@@ -137,13 +139,12 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenWaitlist }) => {
               </div>
             </div>
 
-            <button
-              type="button"
-              onClick={() => handleIndividualCTA('PathPort Essentials')}
-              className="mt-8 w-full py-3.5 px-4 rounded-xl bg-white hover:bg-slate-100 text-slate-900 border border-slate-300 font-semibold text-sm transition-colors cursor-pointer"
+            <a
+              href={APP_SIGN_UP_URL}
+              className="mt-8 w-full py-3.5 px-4 rounded-xl bg-white hover:bg-slate-100 text-slate-900 border border-slate-300 font-semibold text-sm transition-colors text-center block"
             >
-              Start With 30-Day Free Trial
-            </button>
+              Start With {trialDays}-Day Free Trial
+            </a>
           </div>
 
           {/* Plan 2: PathPort Pro (Most Popular) */}
@@ -193,14 +194,13 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenWaitlist }) => {
               </div>
             </div>
 
-            <button
-              type="button"
-              onClick={() => handleIndividualCTA('PathPort Pro')}
-              className="mt-8 w-full py-3.5 px-4 rounded-xl bg-[#2DD4BF] hover:bg-teal-300 text-slate-950 font-bold text-sm transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-md"
+            <a
+              href={APP_SIGN_UP_URL}
+              className="mt-8 w-full py-3.5 px-4 rounded-xl bg-[#2DD4BF] hover:bg-teal-300 text-slate-950 font-bold text-sm transition-colors flex items-center justify-center gap-2 shadow-md"
             >
-              <span>Claim 30-Day Free Pro Trial</span>
+              <span>Claim {trialDays}-Day Free Pro Trial</span>
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </a>
           </div>
         </div>
 
@@ -223,9 +223,8 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenWaitlist }) => {
               </h3>
 
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                We are building a dedicated free tier of PathPort exclusively for everyday identity
-                documents—so you never get caught with an expired Passport before a flight or a
-                lapsed Driver’s License.
+                PathPort includes a dedicated free tier for everyday identity documents—so you never
+                get caught with an expired Passport before a flight or a lapsed Driver’s License.
               </p>
 
               <div className="flex flex-wrap items-center gap-2 pt-1">
@@ -247,16 +246,13 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenWaitlist }) => {
             </div>
 
             <div className="shrink-0">
-              <button
-                type="button"
-                onClick={() =>
-                  handleIndividualCTA('Personal Identity Documents Only (Free — DL, Passport, IDs)')
-                }
-                className="w-full md:w-auto px-6 py-3.5 rounded-xl bg-[#0D5F57] hover:bg-[#094842] text-white font-semibold text-xs sm:text-sm transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-2xs"
+              <a
+                href={APP_SIGN_UP_URL}
+                className="w-full md:w-auto px-6 py-3.5 rounded-xl bg-[#0D5F57] hover:bg-[#094842] text-white font-semibold text-xs sm:text-sm transition-colors flex items-center justify-center gap-2 shadow-2xs"
               >
-                <span>Join Free Identity Tracker Waitlist</span>
+                <span>Start Free Identity Tracker</span>
                 <ArrowRight className="w-4 h-4" />
-              </button>
+              </a>
             </div>
           </div>
         </div>

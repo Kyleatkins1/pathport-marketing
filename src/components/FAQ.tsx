@@ -9,7 +9,7 @@ export interface FAQItem {
 export const HOMEPAGE_FAQS: FAQItem[] = [
   {
     q: 'Is PathPort only for healthcare, or can anyone track credentials and identity documents?',
-    a: 'PathPort is built for everyone—if you have a credential, you can track it. Whether you hold tech and cloud certifications (AWS, CompTIA, ISC2), project management credentials (PMP, CSM), aviation or trade licenses, education certificates, or clinical boards, PathPort tracks them in one place. We are also building a free PathPort Identity tier so anyone can track personal identity documents they sometimes forget to renew—like a Driver’s License, Passport, or Global Entry—for free.',
+    a: 'PathPort is built for everyone—if you have a credential, you can track it. Whether you hold tech and cloud certifications (AWS, CompTIA, ISC2), project management credentials (PMP, CSM), aviation or trade licenses, education certificates, or clinical boards, PathPort tracks them in one place. PathPort also includes a free Personal Identity Documents tier so anyone can track everyday IDs—like a Driver’s License, Passport, or Global Entry—for free.',
   },
   {
     q: 'Do I have to type all of my past licenses, jobs, digital badges, and CE certificates by hand?',
@@ -21,7 +21,7 @@ export const HOMEPAGE_FAQS: FAQItem[] = [
   },
   {
     q: 'What is the difference between the Free Personal Identity Tracker, Essentials, and Pro?',
-    a: 'Our upcoming Personal Identity Documents tier ($0 Free Forever) is built specifically for people who only want to track everyday identity documents—like a Driver’s License, Passport, Global Entry / TSA PreCheck, or Vehicle Registration—so they never forget a renewal. PathPort Essentials ($9.99/mo or $7.99/mo billed annually) gives you the complete 8-Entity Living Record, 60-second multi-source & Credly import, @in.getpathport.com email forwarding, 50-state and board renewal tracking, your private SHA-256 Document Vault, and 1 public MyPortfolio link. PathPort Pro ($19.99/mo or $14.99/mo billed annually) adds MyPath Career Intelligence—including 6-pillar career roadmaps, What-If Role Audits, Application & Interview Studio, and unlimited custom MyPortfolio views.',
+    a: 'Our Personal Identity Documents tier ($0 Free Forever) is built specifically for people who only want to track everyday identity documents—like a Driver’s License, Passport, Global Entry / TSA PreCheck, or Vehicle Registration—so they never forget a renewal. PathPort Essentials ($9.99/mo or $7.99/mo billed annually) gives you the complete 8-Entity Living Record, 60-second multi-source & Credly import, @in.getpathport.com email forwarding, 50-state and board renewal tracking, your private SHA-256 Document Vault, and 1 public MyPortfolio link. PathPort Pro ($19.99/mo or $14.99/mo billed annually) adds MyPath Career Intelligence—including 6-pillar career roadmaps, What-If Role Audits, Application & Interview Studio, and unlimited custom MyPortfolio views.',
   },
   {
     q: 'How do PathPort Workplace and PathPort Certify work (Launching 2027)?',

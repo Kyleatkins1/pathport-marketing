@@ -13,7 +13,7 @@ import {
   FileSearch,
   Sparkles,
 } from 'lucide-react';
-import { triggerLeadModal } from '../lib/modal-events';
+import { APP_SIGN_UP_URL, getActiveTrialDays } from '../lib/modal-events';
 
 interface PathAISectionProps {
   onOpenWaitlist?: (persona?: string) => void;
@@ -199,21 +199,10 @@ const TRAJECTORIES = [
   },
 ];
 
-export const PathAISection: React.FC<PathAISectionProps> = ({ onOpenWaitlist }) => {
+export const PathAISection: React.FC<PathAISectionProps> = () => {
   const [selectedIdx, setSelectedIdx] = useState(0);
   const active = TRAJECTORIES[selectedIdx];
-
-  const handleCTA = () => {
-    if (onOpenWaitlist) {
-      onOpenWaitlist(active.category);
-    } else {
-      triggerLeadModal({
-        intent: 'individual',
-        persona: active.category,
-        source: 'Homepage — MyPath Section',
-      });
-    }
-  };
+  const trialDays = getActiveTrialDays();
 
   return (
     <section
@@ -365,16 +354,15 @@ export const PathAISection: React.FC<PathAISectionProps> = ({ onOpenWaitlist }) 
           <div className="mt-8 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-xs sm:text-sm text-slate-300">
               <strong className="text-white">MyPath</strong> is included in PathPort Pro—and
-              unlocked for all Founding Members during your free 30-day trial.
+              unlocked during your free {trialDays}-day trial.
             </p>
-            <button
-              type="button"
-              onClick={handleCTA}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#2DD4BF] hover:bg-teal-300 text-slate-950 font-bold text-sm transition-colors cursor-pointer shrink-0"
+            <a
+              href={APP_SIGN_UP_URL}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#2DD4BF] hover:bg-teal-300 text-slate-950 font-bold text-sm transition-colors shrink-0"
             >
-              <span>Unlock MyPath in Your 30-Day Trial</span>
+              <span>Unlock MyPath in Your {trialDays}-Day Trial</span>
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </a>
           </div>
         </div>
       </div>

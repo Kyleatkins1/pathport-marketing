@@ -15,14 +15,12 @@ import {
   LogIn,
 } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import { triggerLeadModal } from '../lib/modal-events';
+import { APP_SIGN_IN_URL, APP_SIGN_UP_URL } from '../lib/modal-events';
 import { Logo } from './Logo';
 
 interface NavbarProps {
   onOpenWaitlist?: (persona?: string) => void;
 }
-
-const APP_SIGN_IN_URL = 'https://app.getpathport.com/auth';
 
 const NAV_LINKS = [
   { label: 'How It Works', href: '/#how-it-works' },
@@ -92,7 +90,7 @@ const TOOL_LINKS = [
   },
 ];
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenWaitlist }) => {
+export const Navbar: React.FC<NavbarProps> = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -108,14 +106,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenWaitlist }) => {
     setMobileMenuOpen(false);
     setDropdownOpen(false);
   }, [location.pathname]);
-
-  const handleOpenCTA = (persona?: string) => {
-    if (onOpenWaitlist) {
-      onOpenWaitlist(persona);
-    } else {
-      triggerLeadModal(persona);
-    }
-  };
 
   return (
     <header
@@ -236,14 +226,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenWaitlist }) => {
             <LogIn className="w-4 h-4" />
             <span>Sign In</span>
           </a>
-          <button
-            type="button"
-            onClick={() => handleOpenCTA()}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-[#0D5F57] hover:bg-[#094842] shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer"
+          <a
+            href={APP_SIGN_UP_URL}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-[#0D5F57] hover:bg-[#094842] shadow-xs hover:shadow-md transition-all duration-200"
           >
             <span>Get Started</span>
             <ArrowRight className="w-4 h-4" />
-          </button>
+          </a>
         </div>
 
         {/* Mobile Hamburger */}
@@ -330,17 +319,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenWaitlist }) => {
               <LogIn className="w-4 h-4" />
               <span>Sign In to PathPort</span>
             </a>
-            <button
-              type="button"
-              onClick={() => {
-                setMobileMenuOpen(false);
-                handleOpenCTA();
-              }}
-              className="w-full py-3 px-4 rounded-xl text-center font-semibold text-white bg-[#0D5F57] hover:bg-[#094842] shadow-sm flex items-center justify-center gap-2 cursor-pointer"
+            <a
+              href={APP_SIGN_UP_URL}
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full py-3 px-4 rounded-xl text-center font-semibold text-white bg-[#0D5F57] hover:bg-[#094842] shadow-sm flex items-center justify-center gap-2"
             >
               <span>Get Started</span>
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </a>
           </div>
         </div>
       )}

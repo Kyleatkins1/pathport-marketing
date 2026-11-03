@@ -10,10 +10,12 @@ import {
 
 import { SEO } from '../components/SEO';
 import { PersonaPillarsSection } from '../components/PersonaPillarsSection';
+import { APP_SIGN_UP_URL, getActiveTrialDays } from '../lib/modal-events';
 
 export const NursesFunnel: React.FC = () => {
   const [isBetaModalOpen, setIsBetaModalOpen] = useState(false);
   const [selectedRole, setSelectedRole] = useState<'clinical' | 'leadership' | 'advanced' | 'executive'>('clinical');
+  const trialDays = getActiveTrialDays();
 
   const roleDetails = {
     clinical: {
@@ -66,13 +68,13 @@ export const NursesFunnel: React.FC = () => {
             </p>
 
             <div className="pt-2 flex flex-col sm:flex-row gap-3.5 justify-center">
-              <button
-                onClick={() => setIsBetaModalOpen(true)}
-                className="px-8 py-3.5 rounded-2xl bg-[#0D5F57] hover:bg-[#094842] text-white font-semibold text-sm shadow-xs hover:scale-[1.02] transition-all flex items-center justify-center gap-2 cursor-pointer"
+              <a
+                href={APP_SIGN_UP_URL}
+                className="px-8 py-3.5 rounded-2xl bg-[#0D5F57] hover:bg-[#094842] text-white font-semibold text-sm shadow-xs hover:scale-[1.02] transition-all flex items-center justify-center gap-2"
               >
-                <span>Start Free 30-Day Pro Trial</span>
+                <span>Start Free {trialDays}-Day Pro Trial</span>
                 <ArrowRight className="w-4 h-4" />
-              </button>
+              </a>
             </div>
           </div>
 
@@ -240,13 +242,13 @@ export const NursesFunnel: React.FC = () => {
                 <div className="text-xs text-slate-500 dark:text-slate-400">
                   Privacy-first: Your career growth goals are personal and never disclosed to employers.
                 </div>
-                <button
-                  onClick={() => setIsBetaModalOpen(true)}
-                  className="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#0D5F57] hover:bg-[#094842] text-white font-semibold text-xs transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer shrink-0"
+                <a
+                  href={APP_SIGN_UP_URL}
+                  className="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#0D5F57] hover:bg-[#094842] text-white font-semibold text-xs transition-all shadow-xs flex items-center justify-center gap-2 shrink-0"
                 >
-                  <span>Explore MyPath in Your 30-Day Trial</span>
+                  <span>Explore MyPath in Your {trialDays}-Day Trial</span>
                   <ArrowRight className="w-4 h-4" />
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -308,15 +310,16 @@ export const NursesFunnel: React.FC = () => {
               Ready to own your portable clinical & healthcare passport?
             </h2>
             <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm max-w-xl mx-auto">
-              Join founding nurses, nurse leaders, advanced practitioners, and healthcare executives shaping modern professional identity.
+              Join nurses, nurse leaders, advanced practitioners, and healthcare executives building their lifelong professional record.
             </p>
             <div className="pt-2">
-              <button
-                onClick={() => setIsBetaModalOpen(true)}
-                className="px-8 py-3.5 rounded-2xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-xs sm:text-sm shadow-xs transition-all cursor-pointer"
+              <a
+                href={APP_SIGN_UP_URL}
+                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-2xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-xs sm:text-sm shadow-xs transition-all"
               >
-                Register for Beta Access
-              </button>
+                <span>Start Free {trialDays}-Day Pro Trial</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
             </div>
           </div>
         </div>
