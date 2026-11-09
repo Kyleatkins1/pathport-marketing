@@ -270,6 +270,11 @@ export const PrivacyPolicy: React.FC = () => {
                       <td className="py-2.5 px-4">Transactional account emails, credential expiration alerts, and opt-in product updates</td>
                       <td className="py-2.5 px-4">United States</td>
                     </tr>
+                    <tr>
+                      <td className="py-2.5 px-4 font-semibold text-slate-900 dark:text-white">PostHog, Inc. &amp; Sentry</td>
+                      <td className="py-2.5 px-4">Privacy-scrubbed crash diagnostics and cookie-free feature reliability telemetry (no session recording or document content)</td>
+                      <td className="py-2.5 px-4">United States</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -323,7 +328,7 @@ export const PrivacyPolicy: React.FC = () => {
                 10. Cookies, Local Storage &amp; Do Not Track
               </h2>
               <p>
-                PathPort uses strictly necessary first-party cookies and browser local storage to maintain your authenticated Clerk session, enforce CSRF protection, and remember your UI preferences (such as dark mode). We do not use third-party cross-site advertising pixels or invasive behavioral tracking cookies, and we honor Global Privacy Control (GPC) browser signals.
+                PathPort uses strictly necessary first-party cookies and browser local storage to maintain your authenticated Clerk session, enforce CSRF protection, and remember your UI preferences (such as dark mode). We do not use third-party cross-site advertising pixels or invasive behavioral tracking cookies, we honor Global Privacy Control (GPC) and Do Not Track browser signals, and you can opt out of cookie-free usage diagnostics at any time under <strong>Settings &rarr; Privacy &amp; Sharing</strong>.
               </p>
             </section>
 
