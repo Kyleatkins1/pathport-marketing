@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Navbar } from '../components/Navbar';
+import { Footer } from '../components/Footer';
+import { BetaRegistrationModal } from '../components/BetaRegistrationModal';
+import StaticFaqAndCta from '../components/StaticFaqAndCta.astro';
+import { buildFaqJsonLd, type FaqEntry } from '../lib/seo-helpers';
+import { APP_SIGN_UP_URL } from '../lib/modal-events';
+
+const faqs: FaqEntry[] = [
+  {
+    q: 'Is the Personal Identity Documents Tracker really $0 free forever?',
+    a: 'Yes. Anyone can create a free PathPort account to track personal identity documents—including a Passport, Driver’s License, REAL ID, Global Entry / TSA PreCheck, and Vehicle Registration—with expiration reminders and zero credit card required.',
+  },
+  {
+    q: 'Why does a passport expiration tracker remind you 6 months early?',
+    a: 'Many international destinations and airlines deny boarding when a passport has fewer than 6 months of validity remaining. PathPort lets you track both the printed expiration date and early renewal windows at 180, 90, 60, and 30 days.',
+  },
+  {
+    q: 'Can employees also use the free PathPort tier for employer credential requests?',
+    a: 'Yes. If an organization using PathPort Workplace requests specific documents, employees can create a free PathPort profile, upload the requested records once, and share scoped access without paying for an individual subscription.',
+  },
+  {
+    q: 'How are my passport and driver’s license files protected?',
+    a: 'Uploaded files stay private inside your user-isolated storage container protected by AES-256 encryption at rest, TLS 1.3 in transit, and PostgreSQL Row-Level Security (RLS). Veritas Technology Solutions, LLC never sells user data.',
+  },
+];
+
+const supportedIds = [
+  {
+    name: 'U.S. & International Passports',
+    rule: 'Tracks printed expiration plus 6-month (180-day) airline travel validity reminders.',
+  },
+  {
+    name: 'Driver’s Licenses & REAL IDs',
+    rule: 'Store front/back images securely and receive 90, 60, and 30-day state DMV renewal alerts.',
+  },
+  {
+    name: 'Global Entry, TSA PreCheck & NEXUS',
+    rule: 'Monitor Known Traveler Number (KTN) 5-year renewal cycles before airport security delays happen.',
+  },
+  {
+    name: 'Vehicle Registration & Auto Insurance',
+    rule: 'Keep annual registration tags and insurance policy cards accessible with proactive renewal pings.',
+  },
+  {
+    name: 'Medical, Vaccination & Everyday IDs',
+    rule: 'Store proof-of-coverage cards and vital family documents inside your encrypted private vault.',
+  },
+  {
+    name: 'Workplace Credential Sharing',
+    rule: 'Respond to employer credential requests via PathPort Workplace directly from your free profile.',
+  },
+];
+---
+
+<BaseLayout
+  title="Free Passport & ID Expiration Tracker | PathPort"
+  description="Track Passport, Driver’s License, REAL ID, Global Entry, and Vehicle Registration expiration dates free forever with 90/60/30-day alerts and AES-256 storage."
+  canonicalPath="/free-id-tracker/"
+  webAppSchema={{
+    name: 'PathPort Free Personal Identity Document Expiration Tracker',
+    description:
+      'Free forever passport, driver’s license, REAL ID, Global Entry, and vehicle registration expiration tracker with encrypted document storage and proactive alerts.',
+  }}
+  breadcrumbs={[
+    { name: 'Free Personal ID Tracker', path: '/free-id-tracker/' },
+  ]}
+  extraJsonLd={buildFaqJsonLd(faqs)}
+>
+  <Navbar client:load />
+
+  <main id="main-content" tabindex="-1" class="pb-20 focus:outline-none">
+    <section class="bg-[#0B132B] text-white py-20 border-b border-slate-800">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs font-semibold">
+          $0 Free Forever • No Credit Card Required
+        </span>
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold font-display tracking-tight leading-[1.08] text-white">
+          Free Passport, Driver’s License &amp;{' '}
+          <span class="text-[#2DD4BF]">ID Expiration Tracker.</span>
+        </h1>
+        <p class="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
+          Never discover an expired Passport at the airport gate or a lapsed REAL ID before a DMV
+          cutoff. Keep everyday personal identity documents organized in one private AES-256 vault
+          with automated 180, 90, 60, and 30-day renewal reminders—free forever.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
+          <a
+            href={APP_SIGN_UP_URL}
+            class="w-full sm:w-auto px-7 py-4 rounded-xl bg-[#2DD4BF] hover:bg-teal-300 text-slate-950 font-bold text-base transition-colors shadow-lg"
+          >
+            Start Free Identity Tracker ($0)
+          </a>
+          <a
+            href="/document-vault/"
+            class="w-full sm:w-auto px-6 py-4 rounded-xl bg-white/10 hover:bg-white/15 text-white border border-white/15 font-semibold text-base transition-colors"
+          >
+            Need Professional License &amp; CE Storage?
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {supportedIds.map((item) => (
+          <div class="rounded-2xl bg-white border border-slate-200/90 p-6 shadow-lg space-y-2">
+            <h2 class="text-base font-bold font-display text-slate-900">{item.name}</h2>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">{item.rule}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <StaticFaqAndCta
+      faqTitle="Free Personal ID & Passport Tracker FAQ"
+      faqs={faqs}
+      ctaHeadline="Track your Passport and Driver’s License for $0 forever"
+      ctaBody="Set up automated expiration reminders in under two minutes—and upgrade to Essentials or Pro only if you want multi-state CE tracking, MyPortfolio, or MyPath Career."
+      ctaPrimaryLabel="Create Free Account ($0)"
+      ctaSecondaryLabel="Read Security Whitepaper"
+      ctaSecondaryHref="/security/"
+      relatedLinks={[
+        { label: 'Full Document & Credential Vault', href: '/document-vault/' },
+        { label: 'Verifiable MyPortfolio', href: '/myportfolio/' },
+        { label: '50-State Renewal Calculator', href: '/tools/renewal-calculator/' },
+      ]}
+    />
+  </main>
+
+  <Footer />
+  <BetaRegistrationModal client:idle />
+</BaseLayout>

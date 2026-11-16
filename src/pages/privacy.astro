@@ -4,13 +4,13 @@ import { PrivacyPolicy } from '../views/PrivacyPolicy';
 ---
 
 <BaseLayout
-  title="PathPort — Privacy Policy & Data Sovereignty Architecture | Veritas Technology Solutions, LLC"
-  description="PathPort Privacy Policy by Veritas Technology Solutions, LLC. Individual record ownership, iOS/Android mobile app permissions, AI processing boundaries, zero data selling, and GDPR/CCPA rights."
-  canonicalPath="/privacy"
+  title="Privacy Policy & Data Ownership | PathPort"
+  description="PathPort Privacy Policy by Veritas Technology Solutions, LLC covering data ownership, mobile permissions, AI processing limits, and GDPR/CCPA privacy rights."
+  canonicalPath="/privacy/"
   breadcrumbs={[
-    { name: 'Privacy Policy', path: '/privacy' },
+    { name: 'Privacy Policy', path: '/privacy/' },
   ]}
 >
-  <PrivacyPolicy client:load />
+  <PrivacyPolicy client:idle />
 </BaseLayout>
 

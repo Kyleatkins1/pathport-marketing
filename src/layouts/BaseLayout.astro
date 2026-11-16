@@ -6,6 +6,13 @@ interface BreadcrumbItem {
   path: string;
 }
 
+interface WebAppSchemaInput {
+  name: string;
+  description: string;
+  url?: string;
+  category?: string;
+}
+
 interface Props {
   title: string;
   description: string;
@@ -14,6 +21,7 @@ interface Props {
   type?: 'website' | 'article' | 'profile';
   noindex?: boolean;
   includeSoftwareSchema?: boolean;
+  webAppSchema?: WebAppSchemaInput;
   breadcrumbs?: BreadcrumbItem[];
   extraJsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
@@ -26,14 +34,17 @@ const {
   type = 'website',
   noindex = false,
   includeSoftwareSchema = false,
+  webAppSchema,
   breadcrumbs = [],
   extraJsonLd,
 } = Astro.props;
 
 const siteUrl = 'https://getpathport.com';
-const cleanPath =
-  canonicalPath === '/' ? '' : canonicalPath.replace(/\/+$/, '');
-const canonicalUrl = `${siteUrl}${cleanPath}`;
+const normalizePath = (p: string): string => {
+  const trimmed = p.replace(/^\/+|\/+$/g, '');
+  return trimmed ? `/${trimmed}/` : '/';
+};
+const canonicalUrl = `${siteUrl}${normalizePath(canonicalPath)}`;
 
 const graphNodes: Record<string, unknown>[] = [
   {
@@ -41,8 +52,11 @@ const graphNodes: Record<string, unknown>[] = [
     '@id': `${siteUrl}/#organization`,
     name: 'PathPort',
     legalName: 'Veritas Technology Solutions, LLC',
-    url: siteUrl,
-    sameAs: ['https://veritastech.io'],
+    url: `${siteUrl}/`,
+    sameAs: [
+      'https://veritastech.io',
+      'https://www.producthunt.com/products/pathport-2',
+    ],
     logo: {
       '@type': 'ImageObject',
       url: `${siteUrl}/logo.png`,
@@ -53,12 +67,12 @@ const graphNodes: Record<string, unknown>[] = [
       contactType: 'customer support',
     },
     description:
-      'Own your journey. Shape what’s next. The universal credential tracker, private identity document vault, shareable MyPortfolio builder, and MyPath career intelligence workspace across every industry.',
+      'Own your journey. Shape what’s next. Encrypted credential and document storage vault, free personal ID expiration tracker, verifiable MyPortfolio builder, and MyPath Career job search and growth tracking software.',
   },
   {
     '@type': 'WebSite',
     '@id': `${siteUrl}/#website`,
-    url: siteUrl,
+    url: `${siteUrl}/`,
     name: 'PathPort',
     publisher: {
       '@id': `${siteUrl}/#organization`,
@@ -73,9 +87,18 @@ if (includeSoftwareSchema) {
     name: 'PathPort',
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web, iOS, Android',
-    url: siteUrl,
+    url: `${siteUrl}/`,
     description:
-      'PathPort helps professionals and individuals across every industry track credentials, continuing education (CE/CEU/PDU) renewals, and personal identity documents (Driver’s License, Passport, Global Entry), publish verifiable MyPortfolio links, and plan their career with MyPath.',
+      'PathPort combines an encrypted credential and document storage vault, 50-state and national board CE/PDU renewal tracking, verifiable MyPortfolio links, MyPath Career credential-matched job search and growth tracking software, and a free personal identity document expiration tracker.',
+    featureList: [
+      'SHA-256 Encrypted Credential & Certificate Document Vault',
+      'Email-to-Vault Receipt Forwarding (@in.getpathport.com)',
+      'Free Forever Personal Identity Document Expiration Tracker (Passport, Driver’s License, REAL ID, Global Entry)',
+      '50-State Nursing & National Board CE/PDU/CPE Renewal Engine',
+      'Verifiable Professional Portfolios (MyPortfolio) with QR Codes & PDF Dossiers',
+      'MyPath Career Credential-Matched Job Search Engine & Instant Job Alignment',
+      '6-Pillar Professional Growth Tracking & Application/Interview Studio',
+    ],
     publisher: {
       '@id': `${siteUrl}/#organization`,
     },
@@ -87,7 +110,7 @@ if (includeSoftwareSchema) {
         priceCurrency: 'USD',
         priceValidUntil: '2027-12-31',
         availability: 'https://schema.org/InStock',
-        url: `${siteUrl}/#pricing`,
+        url: `${siteUrl}/free-id-tracker/`,
       },
       {
         '@type': 'Offer',
@@ -100,7 +123,7 @@ if (includeSoftwareSchema) {
       },
       {
         '@type': 'Offer',
-        name: 'PathPort Pro (Annual Billing — Includes 30-Day Free Trial)',
+        name: 'PathPort Pro (Annual Billing — Includes MyPath Career & Free Trial)',
         price: '14.99',
         priceCurrency: 'USD',
         priceValidUntil: '2027-12-31',
@@ -108,6 +131,28 @@ if (includeSoftwareSchema) {
         url: `${siteUrl}/#pricing`,
       },
     ],
+  });
+}
+
+if (webAppSchema) {
+  graphNodes.push({
+    '@type': 'WebApplication',
+    '@id': `${canonicalUrl}#webapp`,
+    name: webAppSchema.name,
+    description: webAppSchema.description,
+    applicationCategory: webAppSchema.category || 'UtilitiesApplication',
+    operatingSystem: 'Web',
+    url: webAppSchema.url || canonicalUrl,
+    publisher: {
+      '@id': `${siteUrl}/#organization`,
+    },
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+      url: webAppSchema.url || canonicalUrl,
+    },
   });
 }
 
@@ -119,13 +164,13 @@ if (breadcrumbs.length > 0) {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: siteUrl,
+        item: `${siteUrl}/`,
       },
       ...breadcrumbs.map((crumb, idx) => ({
         '@type': 'ListItem',
         position: idx + 2,
         name: crumb.name,
-        item: `${siteUrl}${crumb.path}`,
+        item: `${siteUrl}${normalizePath(crumb.path)}`,
       })),
     ],
   });
@@ -188,13 +233,21 @@ const structuredData = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={image} />
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts (Non-Blocking Preload) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
 
     <!-- Single-source JSON-LD Structured Data -->
     <script

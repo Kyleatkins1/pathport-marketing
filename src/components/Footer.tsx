@@ -11,10 +11,11 @@ export const Footer: React.FC = () => {
           <div className="lg:col-span-2 space-y-3">
             <Link to="/" className="inline-flex items-center gap-2.5">
               <img
-                src="/logo-white.png"
+                src="/logo-nav-white.webp"
                 alt="PathPort Logo"
-                width="32"
+                width="28"
                 height="32"
+                decoding="async"
                 className="h-8 w-auto object-contain"
               />
               <span className="font-display font-extrabold text-xl tracking-tight text-white">
@@ -91,26 +92,31 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Column 1: Product */}
+          {/* Column 1: Platform */}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-3.5">
-              Product
+              Platform
             </h4>
             <ul className="space-y-2.5 text-xs">
               <li>
-                <a href="/#how-it-works" className="hover:text-[#2DD4BF] transition-colors">
-                  How It Works
-                </a>
+                <Link to="/document-vault/" className="hover:text-[#2DD4BF] transition-colors">
+                  Document & Credential Vault
+                </Link>
               </li>
               <li>
-                <a href="/#myportfolio" className="hover:text-[#2DD4BF] transition-colors">
-                  MyPortfolio
-                </a>
+                <Link to="/free-id-tracker/" className="hover:text-[#2DD4BF] transition-colors">
+                  Free Personal ID Tracker
+                </Link>
               </li>
               <li>
-                <a href="/#mypath" className="hover:text-[#2DD4BF] transition-colors">
-                  MyPath
-                </a>
+                <Link to="/myportfolio/" className="hover:text-[#2DD4BF] transition-colors">
+                  MyPortfolio Builder
+                </Link>
+              </li>
+              <li>
+                <Link to="/mypath/" className="hover:text-[#2DD4BF] transition-colors">
+                  MyPath Career & Job Search
+                </Link>
               </li>
               <li>
                 <a href="/#pricing" className="hover:text-[#2DD4BF] transition-colors">
@@ -143,33 +149,33 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2.5 text-xs">
               <li>
-                <Link to="/for/project-managers" className="hover:text-[#2DD4BF] transition-colors">
+                <Link to="/for/project-managers/" className="hover:text-[#2DD4BF] transition-colors">
                   Project & Tech Leaders
                 </Link>
               </li>
               <li>
-                <Link to="/for/nurses" className="hover:text-[#2DD4BF] transition-colors">
+                <Link to="/for/nurses/" className="hover:text-[#2DD4BF] transition-colors">
                   Nurses & Healthcare
                 </Link>
               </li>
               <li>
-                <Link to="/for/paramedics" className="hover:text-[#2DD4BF] transition-colors">
+                <Link to="/for/paramedics/" className="hover:text-[#2DD4BF] transition-colors">
                   EMS & Aviation
                 </Link>
               </li>
               <li>
-                <Link to="/for/students" className="hover:text-[#2DD4BF] transition-colors">
+                <Link to="/for/students/" className="hover:text-[#2DD4BF] transition-colors">
                   Students & Graduates
                 </Link>
               </li>
               <li>
-                <Link to="/for/enterprise" className="hover:text-[#2DD4BF] transition-colors">
+                <Link to="/for/enterprise/" className="hover:text-[#2DD4BF] transition-colors">
                   PathPort Workplace (2027)
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/for/board-certifications"
+                  to="/for/board-certifications/"
                   className="hover:text-[#2DD4BF] transition-colors"
                 >
                   PathPort Certify (2027)
@@ -178,42 +184,52 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Column 3: Resources & Legal */}
+          {/* Column 3: Tools, Comparisons & Legal */}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-3.5">
-              Resources & Legal
+              Tools & Legal
             </h4>
             <ul className="space-y-2.5 text-xs">
               <li>
                 <Link
-                  to="/tools/renewal-calculator"
+                  to="/tools/renewal-calculator/"
                   className="hover:text-[#2DD4BF] transition-colors"
                 >
                   50-State Renewal Calculator
                 </Link>
               </li>
               <li>
-                <Link to="/vs/ce-broker" className="hover:text-[#2DD4BF] transition-colors">
+                <Link to="/vs/ce-broker/" className="hover:text-[#2DD4BF] transition-colors">
                   PathPort vs. CE Broker
                 </Link>
               </li>
               <li>
-                <Link to="/p/sarah-jenkins-rn" className="hover:text-[#2DD4BF] transition-colors">
+                <Link to="/vs/portfolium/" className="hover:text-[#2DD4BF] transition-colors">
+                  Portfolium Alternative
+                </Link>
+              </li>
+              <li>
+                <Link to="/vs/credly/" className="hover:text-[#2DD4BF] transition-colors">
+                  Credly Badge Wallet
+                </Link>
+              </li>
+              <li>
+                <Link to="/p/sarah-jenkins-rn/" className="hover:text-[#2DD4BF] transition-colors">
                   Sample MyPortfolio
                 </Link>
               </li>
               <li>
-                <Link to="/security" className="hover:text-[#2DD4BF] transition-colors">
+                <Link to="/security/" className="hover:text-[#2DD4BF] transition-colors">
                   Security & Provenance
                 </Link>
               </li>
               <li>
-                <Link to="/privacy" className="hover:text-[#2DD4BF] transition-colors">
+                <Link to="/privacy/" className="hover:text-[#2DD4BF] transition-colors">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link to="/terms" className="hover:text-[#2DD4BF] transition-colors">
+                <Link to="/terms/" className="hover:text-[#2DD4BF] transition-colors">
                   Terms of Service
                 </Link>
               </li>

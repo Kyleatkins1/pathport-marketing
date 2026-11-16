@@ -13,6 +13,8 @@ import {
   Calculator,
   Scale,
   LogIn,
+  CreditCard,
+  BadgeCheck,
 } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { APP_SIGN_IN_URL, APP_SIGN_UP_URL } from '../lib/modal-events';
@@ -23,53 +25,52 @@ interface NavbarProps {
 }
 
 const NAV_LINKS = [
-  { label: 'How It Works', href: '/#how-it-works' },
-  { label: 'MyPortfolio', href: '/#myportfolio' },
-  { label: 'MyPath', href: '/#mypath' },
+  { label: 'Document Vault', href: '/document-vault/' },
+  { label: 'MyPortfolio', href: '/myportfolio/' },
+  { label: 'MyPath Career', href: '/mypath/' },
   { label: 'Pricing', href: '/#pricing' },
-  { label: 'For Organizations', href: '/#organizations' },
 ];
 
 const AUDIENCE_LINKS = [
   {
     label: 'For Nurses (RN / APRN)',
     sub: '50-state CEU tracking, NLC compact & ANCC/AACN renewals',
-    href: '/for/nurses',
+    href: '/for/nurses/',
     icon: Stethoscope,
     color: 'text-[#0D5F57] bg-teal-50',
   },
   {
     label: 'For EMS & Paramedics',
     sub: 'NREMT 60-hr NCCP bucket tracking & state reciprocity',
-    href: '/for/paramedics',
+    href: '/for/paramedics/',
     icon: Flame,
     color: 'text-orange-600 bg-orange-50',
   },
   {
     label: 'For Project Managers',
     sub: 'PMI Talent Triangle PDUs & verified delivery portfolios',
-    href: '/for/project-managers',
+    href: '/for/project-managers/',
     icon: Briefcase,
     color: 'text-indigo-600 bg-indigo-50',
   },
   {
     label: 'For Students & Graduates',
     sub: 'Keep clinical rotations, capstones & certs after graduation',
-    href: '/for/students',
+    href: '/for/students/',
     icon: GraduationCap,
     color: 'text-purple-600 bg-purple-50',
   },
   {
     label: 'PathPort Workplace (2027)',
     sub: 'Permissioned workforce compliance & readiness',
-    href: '/for/enterprise',
+    href: '/for/enterprise/',
     icon: Building2,
     color: 'text-slate-700 bg-slate-100',
   },
   {
     label: 'PathPort Certify (2027)',
     sub: 'Credentialing body & certifying board operations',
-    href: '/for/board-certifications',
+    href: '/for/board-certifications/',
     icon: Award,
     color: 'text-amber-700 bg-amber-50',
   },
@@ -77,16 +78,34 @@ const AUDIENCE_LINKS = [
 
 const TOOL_LINKS = [
   {
-    label: '50-State License & Board Renewal Calculator',
-    sub: 'Instant CEU & mandatory topic lookup for all 50 states + national boards',
-    href: '/tools/renewal-calculator',
+    label: '50-State & National Board Renewal Calculator',
+    sub: 'Exact CEU, PDU & CPE hour rules across all 50 states + national boards',
+    href: '/tools/renewal-calculator/',
     icon: Calculator,
   },
   {
-    label: 'PathPort vs. CE Broker',
-    sub: 'See how an individual-owned career record compares to state reporting silos',
-    href: '/vs/ce-broker',
+    label: 'Free Passport & ID Expiration Tracker ($0)',
+    sub: 'Driver’s license, REAL ID, Passport & Global Entry renewal alerts',
+    href: '/free-id-tracker/',
+    icon: CreditCard,
+  },
+  {
+    label: 'PathPort vs. CE Broker (Alternative)',
+    sub: 'Compare individual-owned career records vs. state reporting portals',
+    href: '/vs/ce-broker/',
     icon: Scale,
+  },
+  {
+    label: 'Portfolium Alternative (Student ePortfolio)',
+    sub: 'Keep capstones, clinical logs & credentials after .edu graduation',
+    href: '/vs/portfolium/',
+    icon: GraduationCap,
+  },
+  {
+    label: 'Credly & Digital Badge Wallet Organizer',
+    sub: 'Combine Credly, Accredible & state licenses in one verifiable record',
+    href: '/vs/credly/',
+    icon: BadgeCheck,
   },
 ];
 
@@ -151,8 +170,13 @@ export const Navbar: React.FC<NavbarProps> = () => {
               />
             </button>
 
-            {dropdownOpen && (
-              <div className="absolute top-full right-0 pt-2 w-[540px] z-50">
+            <div
+              className={`absolute top-full right-0 pt-2 w-[560px] z-50 transition-all duration-150 ${
+                dropdownOpen
+                  ? 'opacity-100 visible translate-y-0'
+                  : 'opacity-0 invisible pointer-events-none -translate-y-1'
+              }`}
+            >
                 <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xl p-4">
                   <div className="text-xs font-bold uppercase tracking-wider text-slate-400 px-2 mb-2">
                     By Profession & Ecosystem
@@ -212,8 +236,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-            )}
+            </div>
           </div>
         </nav>
 

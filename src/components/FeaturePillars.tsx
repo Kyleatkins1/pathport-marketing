@@ -17,15 +17,16 @@ export const FeaturePillars: React.FC = () => {
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 border border-teal-200/80 text-[#0D5F57] text-xs font-semibold">
-            <span>The Living Record • Maintain Once, Use Everywhere</span>
+            <span>Document Vault & License Tracker • Maintain Once, Use Everywhere</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-slate-900 tracking-tight">
-            Why professionals outgrow static resumes and state reporting portals
+            Encrypted document storage, CE renewal tracking, and verified career records
           </h2>
           <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-            A two-page PDF can’t hold your CE certificates, clinical logs, or project outcomes—and
-            state reporting portals lock your history inside a single board. PathPort keeps your
-            complete career record organized in one private workspace you own.
+            A two-page PDF or messy cloud folder can’t track certificate expirations or state audit
+            rules—and state reporting portals lock your history inside a single board. PathPort gives
+            you permanent credential document storage and expiration reminders in one private vault
+            you own.
           </p>
         </div>
 
@@ -100,7 +101,7 @@ export const FeaturePillars: React.FC = () => {
               credentials with automatic surplus hour rollup.
             </p>
             <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-[#0D5F57]">
-              <Link to="/tools/renewal-calculator" className="hover:underline flex items-center gap-1">
+              <Link to="/tools/renewal-calculator/" className="hover:underline flex items-center gap-1">
                 <span>Try the 50-State Renewal Calculator</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
@@ -112,7 +113,7 @@ export const FeaturePillars: React.FC = () => {
               <Mail className="w-5 h-5" />
             </div>
             <h3 className="text-xl font-bold text-slate-900 font-display">
-              Email-to-Vault Ingress (@in.getpathport.com)
+              Email-to-Vault Document Storage (@in.getpathport.com)
             </h3>
             <p className="mt-2.5 text-sm text-slate-600 leading-relaxed">
               Every PathPort account includes dedicated routing addresses (
@@ -123,7 +124,10 @@ export const FeaturePillars: React.FC = () => {
               computes a SHA-256 hash, and files the PDF in your Vault.
             </p>
             <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-[#0D5F57]">
-              <span>Automatic attachment extraction & hashing</span>
+              <Link to="/document-vault/" className="hover:underline flex items-center gap-1">
+                <span>Explore Encrypted Document Vault</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
               <ShieldCheck className="w-4 h-4" />
             </div>
           </div>
@@ -142,7 +146,7 @@ export const FeaturePillars: React.FC = () => {
               can trust what you share.
             </p>
             <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-sky-800">
-              <Link to="/security" className="hover:underline flex items-center gap-1">
+              <Link to="/security/" className="hover:underline flex items-center gap-1">
                 <span>Read the Security & Provenance Whitepaper</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>

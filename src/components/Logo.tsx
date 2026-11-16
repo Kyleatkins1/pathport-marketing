@@ -14,7 +14,8 @@ export const Logo: React.FC<LogoProps> = ({
   showText = true
 }) => {
   const isLight = variant === 'light';
-  const logoSrc = isLight ? '/logo-white.png' : '/logo.png';
+  const logoSrc = isLight ? '/logo-nav-white.webp' : '/logo-nav.webp';
+  const logoWidth = Math.round((size * 68) / 78);
 
   const getColors = () => {
     if (variant === 'light') {
@@ -23,7 +24,7 @@ export const Logo: React.FC<LogoProps> = ({
     if (variant === 'dark') {
       return { text: 'text-slate-900', teal: 'text-teal-800' };
     }
-    // auto: adapts seamlessly to light / dark background classes
+    // auto: adapts to light / dark background classes
     return { 
       text: 'text-slate-900 dark:text-white', 
       teal: 'text-teal-800 dark:text-teal-400' 
@@ -37,6 +38,9 @@ export const Logo: React.FC<LogoProps> = ({
       <img 
         src={logoSrc} 
         alt="PathPort Emblem" 
+        width={logoWidth}
+        height={size}
+        decoding="async"
         style={{ height: size, width: 'auto' }}
         className="object-contain shrink-0"
       />

@@ -1,0 +1,87 @@
+---
+import type { FaqEntry } from '../lib/seo-helpers';
+import { APP_SIGN_UP_URL, getActiveTrialDays } from '../lib/modal-events';
+
+interface RelatedLink {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  faqTitle: string;
+  faqs: FaqEntry[];
+  ctaHeadline: string;
+  ctaBody: string;
+  ctaPrimaryLabel?: string;
+  ctaSecondaryLabel?: string;
+  ctaSecondaryHref?: string;
+  relatedLinks?: RelatedLink[];
+}
+
+const trialDays = getActiveTrialDays();
+const {
+  faqTitle,
+  faqs,
+  ctaHeadline,
+  ctaBody,
+  ctaPrimaryLabel = `Start Free ${trialDays}-Day Pro Trial`,
+  ctaSecondaryLabel = 'Open 50-State Renewal Calculator',
+  ctaSecondaryHref = '/tools/renewal-calculator/',
+  relatedLinks = [],
+} = Astro.props;
+---
+
+<section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-14 space-y-10">
+  {relatedLinks.length > 0 && (
+    <div class="rounded-2xl bg-white border border-slate-200/90 p-6 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div class="text-xs font-bold uppercase tracking-wider text-slate-500">
+        Related PathPort Tools &amp; Guides
+      </div>
+      <div class="flex flex-wrap items-center gap-2.5">
+        {relatedLinks.map((link) => (
+          <a
+            href={link.href}
+            class="px-3.5 py-2 rounded-xl bg-slate-50 hover:bg-teal-50 border border-slate-200 text-xs font-semibold text-slate-800 hover:text-[#0D5F57] transition-colors"
+          >
+            {link.label} →
+          </a>
+        ))}
+      </div>
+    </div>
+  )}
+
+  <div class="rounded-2xl bg-white border border-slate-200/90 p-7 sm:p-9 shadow-2xs space-y-6">
+    <h2 class="text-2xl font-extrabold font-display text-slate-900">{faqTitle}</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {faqs.map((item) => (
+        <div class="space-y-1.5">
+          <h3 class="text-sm font-bold text-slate-900">{item.q}</h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">{item.a}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div class="rounded-2xl bg-gradient-to-r from-[#0D5F57] to-teal-800 text-white p-8 sm:p-10 text-center space-y-5 shadow-xl">
+    <h2 class="text-2xl sm:text-3xl font-extrabold font-display text-white">
+      {ctaHeadline}
+    </h2>
+    <p class="text-sm sm:text-base text-teal-100 max-w-2xl mx-auto leading-relaxed">
+      {ctaBody}
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-1">
+      <a
+        href={APP_SIGN_UP_URL}
+        class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-white text-[#0D5F57] hover:bg-teal-50 font-bold text-sm transition-colors shadow-md"
+      >
+        {ctaPrimaryLabel}
+      </a>
+      <a
+        href={ctaSecondaryHref}
+        class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-teal-900/50 hover:bg-teal-900/70 text-white border border-teal-400/30 font-semibold text-sm transition-colors"
+      >
+        {ctaSecondaryLabel}
+      </a>
+    </div>
+  </div>
+</section>

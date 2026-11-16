@@ -1,0 +1,182 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Navbar } from '../components/Navbar';
+import { Footer } from '../components/Footer';
+import { BetaRegistrationModal } from '../components/BetaRegistrationModal';
+import StaticFaqAndCta from '../components/StaticFaqAndCta.astro';
+import { buildFaqJsonLd, type FaqEntry } from '../lib/seo-helpers';
+import { APP_SIGN_UP_URL, getActiveTrialDays } from '../lib/modal-events';
+
+const trialDays = getActiveTrialDays();
+
+const faqs: FaqEntry[] = [
+  {
+    q: 'What makes PathPort different from storing certificates in Google Drive or Dropbox?',
+    a: 'Cloud folders store raw files with no awareness of license numbers, credit hours, or renewal deadlines. PathPort OCR-extracts issuers, dates, and CE/PDU values from every PDF, computes a SHA-256 hash, tracks state and board expiration cycles, and links certificates straight into verifiable MyPortfolio views.',
+  },
+  {
+    q: 'How does Email-to-Vault certificate storage work?',
+    a: 'Every PathPort Essentials and Pro account includes a dedicated intake address such as ce-you@in.getpathport.com. Forward completion emails from your phone or inbox, and PathPort strips email clutter, hashes the certificate attachment, and stages the credits for your review.',
+  },
+  {
+    q: 'Are my uploaded credentials and personal IDs private by default?',
+    a: 'Yes. Every file resides inside your user-isolated container with AES-256 encryption at rest, TLS 1.3 in transit, and PostgreSQL Row-Level Security (RLS). Nothing is public unless you explicitly add it to a MyPortfolio link.',
+  },
+  {
+    q: 'Can I export my documents and records if I cancel or switch tools?',
+    a: 'Yes. You own your original PDFs, wallet-card images, and structured history permanently. PathPort supports self-service export and never locks uploaded files when a trial or paid plan ends.',
+  },
+];
+
+const vaultPillars = [
+  {
+    title: '60-Second Resume, LinkedIn & Credly Import',
+    detail:
+      'Drop in an existing PDF/DOCX resume, LinkedIn profile export, or Credly/Accredible/Badgr URL. PathPort deduplicates overlapping licenses and roles into a review tray before saving.',
+  },
+  {
+    title: 'Bulk OCR for PDFs & Wallet Card Photos',
+    detail:
+      'Upload up to 20 CE certificates, AHA BLS/ACLS/PALS cards, FAA certificates, or university transcripts at once. OCR pulls credit hours, issue dates, and expiration windows automatically.',
+  },
+  {
+    title: 'Email-to-Vault Forwarding (@in.getpathport.com)',
+    detail:
+      'Stop downloading attachments into messy Downloads folders. Forward continuing education receipts directly from Gmail or Outlook to ce-you@in.getpathport.com.',
+  },
+  {
+    title: 'SHA-256 Tamper-Evident File Integrity',
+    detail:
+      'Each stored file is stamped with a SHA-256 cryptographic digest and tagged with clear provenance: Self-Reported, Document-Supported, Provider-Reported, or Issuer-Verified.',
+  },
+];
+
+const comparisonRows = [
+  {
+    capability: 'Organized by license, board, and credit hours',
+    vault: 'Structured 8-entity record + automatic expiration alerts (90/60/30 days)',
+    drive: 'Manual file names inside nested folders with zero deadline tracking',
+  },
+  {
+    capability: 'Email-to-Vault forwarding (@in.getpathport.com)',
+    vault: 'Forward completion emails directly from mobile; PDFs auto-staged',
+    drive: 'Download attachment, rename file, upload manually to cloud drive',
+  },
+  {
+    capability: 'Multi-state & board requirement matching',
+    vault: 'Smart-suggests state CE, NREMT NCCP, PMI PDU, and ISC2 CPE buckets',
+    drive: 'Track hours manually in a separate spreadsheet',
+  },
+  {
+    capability: 'Audit-ready sharing & instant revocation',
+    vault: 'Permissioned MyPortfolio links, PDF dossiers, and 1-click access revocation',
+    drive: 'Raw folder links exposing private unrelated files',
+  },
+];
+---
+
+<BaseLayout
+  title="Credential & Document Storage Vault | PathPort"
+  description="Encrypted SHA-256 document storage for licenses, CE/PDU certificates, transcripts, and digital badges—with @in.getpathport.com email forwarding and OCR."
+  canonicalPath="/document-vault/"
+  includeSoftwareSchema={true}
+  breadcrumbs={[
+    { name: 'Document Vault', path: '/document-vault/' },
+  ]}
+  extraJsonLd={buildFaqJsonLd(faqs)}
+>
+  <Navbar client:load />
+
+  <main id="main-content" tabindex="-1" class="pb-20 focus:outline-none">
+    <section class="bg-[#0B132B] text-white py-20 border-b border-slate-800 relative overflow-hidden">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/15 border border-teal-400/30 text-teal-300 text-xs font-semibold">
+          Encrypted Credential &amp; Certificate Document Storage
+        </span>
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold font-display tracking-tight leading-[1.08] text-white">
+          Encrypted document storage built for{' '}
+          <span class="text-[#2DD4BF]">every license, certificate, and badge.</span>
+        </h1>
+        <p class="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
+          Stop hunting through old laptops, Google Drive folders, and employer LMS accounts hours
+          before an audit. Store original PDFs and wallet cards in an AES-256 encrypted vault with
+          SHA-256 file integrity, Email-to-Vault forwarding, and automated renewal alerts.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
+          <a
+            href={APP_SIGN_UP_URL}
+            class="w-full sm:w-auto px-7 py-4 rounded-xl bg-[#2DD4BF] hover:bg-teal-300 text-slate-950 font-bold text-base transition-colors shadow-lg"
+          >
+            Start Free {trialDays}-Day Pro Trial
+          </a>
+          <a
+            href="/free-id-tracker/"
+            class="w-full sm:w-auto px-6 py-4 rounded-xl bg-white/10 hover:bg-white/15 text-white border border-white/15 font-semibold text-base transition-colors"
+          >
+            Only Tracking Personal IDs? ($0 Free)
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {vaultPillars.map((pillar) => (
+          <div class="rounded-2xl bg-white border border-slate-200/90 p-7 shadow-lg space-y-2.5">
+            <h2 class="text-lg font-bold font-display text-slate-900">{pillar.title}</h2>
+            <p class="text-sm text-slate-600 leading-relaxed">{pillar.detail}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-14 space-y-6">
+      <div class="text-center max-w-3xl mx-auto space-y-2">
+        <h2 class="text-2xl sm:text-3xl font-extrabold font-display text-slate-900">
+          Credential Vault vs. Generic Cloud Storage Folders
+        </h2>
+        <p class="text-sm sm:text-base text-slate-600">
+          Generic drives store static PDFs. PathPort parses what is inside each file so deadlines,
+          CE credits, and board audits stay structured automatically.
+        </p>
+      </div>
+
+      <div class="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden">
+        <div class="grid grid-cols-1 md:grid-cols-12 bg-slate-900 text-white p-4 sm:px-6 text-xs font-bold uppercase tracking-wider">
+          <div class="md:col-span-4">Document Workflow</div>
+          <div class="md:col-span-4 text-[#2DD4BF] mt-1 md:mt-0">PathPort Document Vault</div>
+          <div class="md:col-span-4 text-slate-400 mt-1 md:mt-0">Generic Cloud Drive / Email</div>
+        </div>
+        <div class="divide-y divide-slate-200/80">
+          {comparisonRows.map((row) => (
+            <div class="grid grid-cols-1 md:grid-cols-12 p-4 sm:px-6 gap-4 items-center">
+              <div class="md:col-span-4 font-bold text-sm text-slate-900">{row.capability}</div>
+              <div class="md:col-span-4 text-xs sm:text-sm text-slate-800 bg-emerald-50/70 p-3 rounded-xl border border-emerald-200/70">
+                {row.vault}
+              </div>
+              <div class="md:col-span-4 text-xs sm:text-sm text-slate-500 p-2">{row.drive}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <StaticFaqAndCta
+      faqTitle="Encrypted Document Storage FAQ"
+      faqs={faqs}
+      ctaHeadline="Keep every license, certificate, and ID in one private vault"
+      ctaBody={`Drop in your resume or existing certificates in 60 seconds and test PathPort free for ${trialDays} days—or use our $0 Personal Identity Tracker forever.`}
+      ctaSecondaryLabel="Explore Security Architecture"
+      ctaSecondaryHref="/security/"
+      relatedLinks={[
+        { label: 'Free Personal ID Tracker ($0)', href: '/free-id-tracker/' },
+        { label: 'Verifiable MyPortfolio', href: '/myportfolio/' },
+        { label: 'MyPath Career Job Search', href: '/mypath/' },
+        { label: '50-State Renewal Calculator', href: '/tools/renewal-calculator/' },
+      ]}
+    />
+  </main>
+
+  <Footer />
+  <BetaRegistrationModal client:idle />
+</BaseLayout>

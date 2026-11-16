@@ -1,18 +1,18 @@
 # PathPort — Product Marketing Context
 
-**Document version:** v2
-**Last updated:** 2026-11-01
+**Document version:** v3
+**Last updated:** 2026-11-15
 
 ## 1. Product Overview
 - **Product Name:** PathPort
 - **Primary Brand Tagline:** *"Own your journey. Shape what's next."*
 - **Core Universal Positioning:** *"If you have a credential, you can track it."* PathPort is built for everyone across every industry—not just healthcare.
-- **Category:** Universal Professional Identity, Credential Management, & Career Intelligence Platform
+- **Category:** Encrypted Document & Credential Vault, Verifiable Professional Portfolio Builder (`MyPortfolio`), and Credential-Matched Job Search & Career Growth Platform (`MyPath Career`)
 - **Product Ecosystem & Hierarchy:**
   1. **PathPort (Individual — Launching Nov 2026):** The flagship individual workspace. Professionals bring in their existing resume/CV, LinkedIn PDF, Credly/Accredible/Badgr digital badges, and CE certificates—or forward completion receipts directly to their `@in.getpathport.com` email vault—to maintain one canonical, document-backed professional record.
-     - **CE Renewal Engine:** Smart-suggests matching state and national board requirement buckets (never silently auto-commits) so users can confirm attribution across one or multiple credentials with automatic surplus hour rollup.
-     - **MyPortfolio (Module):** Permissioned, verifiable web portfolios (`Modern`, `Executive`, and `Minimal` themes) and PDF dossiers backed by SHA-256 document integrity and instant consent revocation.
-     - **MyPath (Pro Module):** Whole-journey career intelligence across 6 pillars (`Learn`, `Credential`, `Experience`, `Build`, `Publish`, `Lead`), including **What-If Role Audits**, **Opportunity Pursuit**, **Application Studio**, and **Interview Studio**.
+     - **Document Vault & CE Renewal Engine:** SHA-256 encrypted storage plus smart-suggested state and national board requirement buckets (never silently auto-commits) so users can confirm attribution across one or multiple credentials with automatic surplus hour rollup.
+     - **MyPortfolio (Verifiable Professional Portfolio Module):** Permissioned, verifiable professional web portfolios (`Modern`, `Executive`, and `Minimal` themes) and PDF dossiers/Speaker One-Sheets backed by SHA-256 document integrity and instant consent revocation—built for hiring, consulting proposals, speaking engagements, hospital/agency credentialing, promotions, board appointments, and fellowships.
+     - **MyPath Career (Pro Module):** Live **credential-matched job search engine**, **AI/rules-backed career path suggestions** (with USDOL CareerOneStop licensure and BLS salary benchmarks), **instant job-alignment scoring & What-If role audits**, **6-pillar professional growth tracking software** (`Learn`, `Credential`, `Experience`, `Build`, `Publish`, `Lead`), and **Application & Interview Studio** (tailored resumes, cover letters, submission packets, and STAR interview prep grounded in verified records).
   2. **PathPort Personal Identity Documents Tracker ($0 • Free Forever):** A dedicated free version of PathPort strictly for tracking everyday personal identity documents (**Driver’s License, REAL ID, Passport, Global Entry / TSA PreCheck, Vehicle Registration & Insurance**) so people never forget to renew them.
   3. **PathPort Workplace (Launching 2027):** Built for any workforce that has to obtain and verify employee credentials without sending countless back-and-forth emails. Employers simply log in, select what they need, and send the request to the employee. Employees create a free PathPort profile, upload their required documents once, and share them instantly. System intelligence ensures everyone maintains compliance, and employers can assign CEUs or training credits directly to event attendees.
   4. **PathPort Certify (Launching 2027):** End-to-end credential management for certifying bodies, associations, and training organizations across any industry. Allows candidates to apply for a credential, submit documents, and track payments; tracks exam results from official test platforms (or streamlines testing via PathPort's testing partners); issues credentials from PathPort Certify through any badge provider (Credly, Accredible, Badgr, Open Badges) and with `Issuer-Verified` provenance in PathPort; and manages recertifications directly within the PathPort platform.
@@ -53,5 +53,6 @@
 
 ## Changelog
 *Newest first. One line per revision: what changed and why.*
+- v3 (2026-11-15) — Clarified **MyPortfolio** (verifiable professional portfolio for all professional audiences, not strictly job search) and **MyPath Career** (live credential-matched job search engine, AI/rules-backed career suggestions, instant job alignment & What-If audits, 6-pillar growth tracking, and Application & Interview Studio); confirmed `Pricing.tsx` limits (Essentials includes unlimited credentials and Email-to-Vault).
 - v2 (2026-11-01) — Repositioned around universal industry coverage ("if you have a credential, you can track it"), added the $0 Free Personal Identity Documents tracker (DL, Passport), clarified smart-suggested CE bucket attribution, and expanded PathPort Workplace (zero-email credential requests, free employee profile sharing, CEU assignment) and PathPort Certify (end-to-end applications, payments, official test platform sync, universal badge provider issuance, and recertification).
 - v1 (2026-11-01) — Initial context.

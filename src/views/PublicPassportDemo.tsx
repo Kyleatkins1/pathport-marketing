@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { 
   Award, ShieldCheck, QrCode, MapPin, 
   ArrowRight, FileText, Presentation, Sun, Moon 
@@ -60,7 +60,7 @@ const profilesData: Record<string, PersonaProfile> = {
     name: "Sarah Jenkins, BSN, RN",
     title: "Critical Care Charge Nurse & Clinical Preceptor",
     handle: "sarah-jenkins-rn",
-    avatar: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=300",
+    avatar: "/avatars/sarah-jenkins.webp",
     location: "New York, NY",
     verifiedCount: 3,
     ceusCompleted: "36 / 36 Contact Hours Complete",
@@ -128,7 +128,7 @@ const profilesData: Record<string, PersonaProfile> = {
     name: "Elena Rodriguez, NRP, FP-C",
     title: "Critical Care Flight Paramedic & Clinical Educator",
     handle: "elena-flight-lead",
-    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=300",
+    avatar: "/avatars/elena-rodriguez.webp",
     location: "Denver, CO",
     verifiedCount: 3,
     ceusCompleted: "60 / 60 NREMT NCCP Hours Complete",
@@ -196,7 +196,7 @@ const profilesData: Record<string, PersonaProfile> = {
     name: "Marcus Vance, PMP®, CSM",
     title: "Senior Technical Program Manager & Solutions Architect",
     handle: "marcus-vance",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=300",
+    avatar: "/avatars/marcus-vance.webp",
     location: "Austin, TX",
     verifiedCount: 3,
     ceusCompleted: "60 / 60 PMI PDUs (Current Cycle)",
@@ -263,8 +263,8 @@ const profilesData: Record<string, PersonaProfile> = {
     id: 'david-kim',
     name: "David Kim, MS",
     title: "Bioengineering Research Fellow & Capstone Lead",
-    handle: "david-kim-bio",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=300",
+    handle: "david-kim-bsn",
+    avatar: "/avatars/david-kim.webp",
     location: "Baltimore, MD",
     verifiedCount: 2,
     ceusCompleted: "Active Academic Record",
@@ -342,7 +342,6 @@ interface PublicPassportDemoProps {
 
 export const PublicPassportDemo: React.FC<PublicPassportDemoProps> = ({ initialSlug }) => {
   const { slug } = useParams<{ slug?: string }>();
-  const navigate = useNavigate();
   const [qrModalOpen, setQrModalOpen] = useState(false);
   const [isBetaModalOpen, setIsBetaModalOpen] = useState(false);
   const { resolvedTheme, toggleTheme } = useTheme();
@@ -441,10 +440,10 @@ export const PublicPassportDemo: React.FC<PublicPassportDemoProps> = ({ initialS
             {Object.values(profilesData).map((p) => {
               const isCurrent = p.id === profileKey;
               return (
-                <button
+                <Link
                   key={p.id}
-                  onClick={() => navigate(`/p/${p.handle}`)}
-                  className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer ${
+                  to={`/p/${p.handle}/`}
+                  className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 ${
                     isCurrent
                       ? 'bg-teal-800 text-white shadow-2xs'
                       : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
@@ -452,7 +451,7 @@ export const PublicPassportDemo: React.FC<PublicPassportDemoProps> = ({ initialS
                 >
                   <Award className="w-3.5 h-3.5" />
                   <span>{p.name.split(',')[0]}</span>
-                </button>
+                </Link>
               );
             })}
           </div>
@@ -468,6 +467,9 @@ export const PublicPassportDemo: React.FC<PublicPassportDemoProps> = ({ initialS
               <img 
                 src={profile.avatar} 
                 alt={profile.name} 
+                width={80}
+                height={80}
+                decoding="async"
                 className="w-20 h-20 rounded-2xl object-cover border-2 border-teal-800 dark:border-teal-400 shadow-xs"
               />
               <div className="space-y-1">
@@ -620,12 +622,12 @@ export const PublicPassportDemo: React.FC<PublicPassportDemoProps> = ({ initialS
             <h3 className="text-lg font-bold text-slate-900 dark:text-white">Scan MyPortfolio QR Code</h3>
             <div className="flex justify-center py-2 bg-white rounded-2xl p-4 border border-slate-100 dark:border-slate-800 shadow-inner">
               <BrandedQRCode 
-                value={`https://getpathport.com/p/${profile.handle}`} 
+                value={`https://getpathport.com/p/${profile.handle}/`} 
                 size={200}
                 showLogo={true}
               />
             </div>
-            <p className="text-xs text-slate-500 dark:text-slate-400 font-mono">getpathport.com/p/{profile.handle}</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 font-mono">getpathport.com/p/{profile.handle}/</p>
             <button
               onClick={() => setQrModalOpen(false)}
               className="w-full py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-semibold cursor-pointer transition-colors"

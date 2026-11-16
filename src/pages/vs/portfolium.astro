@@ -1,0 +1,167 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Navbar } from '../../components/Navbar';
+import { Footer } from '../../components/Footer';
+import { BetaRegistrationModal } from '../../components/BetaRegistrationModal';
+import StaticFaqAndCta from '../../components/StaticFaqAndCta.astro';
+import { buildFaqJsonLd, type FaqEntry } from '../../lib/seo-helpers';
+import { APP_SIGN_UP_URL, getActiveTrialDays } from '../../lib/modal-events';
+
+const trialDays = getActiveTrialDays();
+
+const faqs: FaqEntry[] = [
+  {
+    q: 'Why are universities and graduates moving away from Portfolium?',
+    a: 'Instructure scheduled Portfolium and Canvas ePortfolio for retirement on June 30, 2026, leaving students and alumni needing a permanent home for capstones, clinical logs, and research before .edu access closes.',
+  },
+  {
+    q: 'How fast can I bring my Portfolium projects and credentials into PathPort?',
+    a: 'Upload your resume PDF, LinkedIn profile export, capstone PDFs, research posters, or Credly/Coursera badges. PathPort extracts everything into a review tray in about 60 seconds so your work lives under one permanent record.',
+  },
+  {
+    q: 'Do I lose access when my university .edu email expires?',
+    a: 'No. PathPort is tied to your personal identity and private account—never an institution LMS—so your clinical rotations, preceptor evaluations, and first-year nursing or engineering licenses stay intact across every job.',
+  },
+  {
+    q: 'How is PathPort different from building a generic personal website?',
+    a: 'Personal website builders require manual layout upkeep and cannot verify SHA-256 certificate attachments, track state board CE/PDU renewals, or match live jobs against your licenses inside MyPath Career.',
+  },
+];
+
+const rows = [
+  {
+    feature: 'Ownership After Graduation (.edu Expiration)',
+    pathport: 'Yours permanently for life across every degree, license, and employer',
+    portfolium: 'Tied to university LMS; scheduled for retirement June 30, 2026',
+  },
+  {
+    feature: 'Clinical Rotations, Capstones & Case Studies',
+    pathport: 'Structured Challenge-Approach-Outcome cards + preceptor evaluations',
+    portfolium: 'Static assignment uploads with no credential linkage',
+  },
+  {
+    feature: 'Licenses, Badges & Continuing Education',
+    pathport: 'Full 50-state RN/EMS/PMP renewal rules + Credly/Open Badges import',
+    portfolium: 'Not supported (no license or CE renewal tracking)',
+  },
+  {
+    feature: 'Document Integrity & Privacy Controls',
+    pathport: 'AES-256 Vault, SHA-256 file digests, Preview-Only mode & 1-click revocation',
+    portfolium: 'Basic public/private toggle without document download locks',
+  },
+  {
+    feature: 'Credential-Matched Job Search (MyPath Career)',
+    pathport: 'Live job matching, What-If gap audits & STAR interview prep',
+    portfolium: 'Deprecated job board integration tied to campus portal',
+  },
+];
+---
+
+<BaseLayout
+  title="Portfolium Alternative for Students & Alumni | PathPort"
+  description="Looking for a Portfolium alternative after the June 2026 shutdown? Keep capstone projects, clinical rotations, and credentials in a permanent record you own."
+  canonicalPath="/vs/portfolium/"
+  includeSoftwareSchema={true}
+  breadcrumbs={[
+    { name: 'Portfolium Alternative', path: '/vs/portfolium/' },
+  ]}
+  extraJsonLd={buildFaqJsonLd(faqs)}
+>
+  <Navbar client:load />
+
+  <main id="main-content" tabindex="-1" class="pb-20 focus:outline-none">
+    <section class="bg-[#0B132B] text-white py-20 border-b border-slate-800">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-500/15 border border-purple-400/30 text-purple-200 text-xs font-semibold">
+          Portfolium Alternative • Lifetime Student &amp; Graduate Portfolio
+        </span>
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold font-display tracking-tight leading-[1.08] text-white">
+          A Portfolium alternative that stays with you{' '}
+          <span class="text-[#2DD4BF]">long after graduation.</span>
+        </h1>
+        <p class="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
+          <strong>TL;DR:</strong> Instructure’s retirement of Portfolium (June 30, 2026) means campus
+          ePortfolios disappear when portals sunset. PathPort lets students, nursing residents, and
+          engineering graduates store capstones, clinical hours, transcripts, and new licenses in one
+          permanent record—with verifiable MyPortfolio links and MyPath Career job matching.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
+          <a
+            href={APP_SIGN_UP_URL}
+            class="w-full sm:w-auto px-7 py-4 rounded-xl bg-[#2DD4BF] hover:bg-teal-300 text-slate-950 font-bold text-base transition-colors shadow-lg"
+          >
+            Move Your Portfolio in 60s ({trialDays}-Day Free Trial)
+          </a>
+          <a
+            href="/p/david-kim-bsn/"
+            class="w-full sm:w-auto px-6 py-4 rounded-xl bg-white/10 hover:bg-white/15 text-white border border-white/15 font-semibold text-base transition-colors"
+          >
+            Inspect Graduate Sample Portfolio
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-10">
+      <div class="rounded-2xl bg-white border border-slate-200 shadow-xl overflow-hidden">
+        <div class="grid grid-cols-1 md:grid-cols-12 bg-slate-900 text-white p-5 sm:px-8 text-xs font-bold uppercase tracking-wider">
+          <div class="md:col-span-4">Capability</div>
+          <div class="md:col-span-4 text-[#2DD4BF] mt-1 md:mt-0">PathPort</div>
+          <div class="md:col-span-4 text-slate-400 mt-1 md:mt-0">Portfolium (Retired 2026)</div>
+        </div>
+        <div class="divide-y divide-slate-200/80">
+          {rows.map((row) => (
+            <div class="grid grid-cols-1 md:grid-cols-12 p-5 sm:px-8 gap-4 items-center">
+              <div class="md:col-span-4 font-bold text-sm text-slate-900">{row.feature}</div>
+              <div class="md:col-span-4 text-xs sm:text-sm text-slate-800 bg-emerald-50/60 p-3 rounded-xl border border-emerald-200/70">
+                {row.pathport}
+              </div>
+              <div class="md:col-span-4 text-xs sm:text-sm text-slate-500 p-2">{row.portfolium}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-14 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="rounded-2xl bg-white border border-slate-200/90 p-7 space-y-2.5">
+        <h2 class="text-xl font-bold font-display text-slate-900">
+          Who generic site builders still fit
+        </h2>
+        <p class="text-sm text-slate-600 leading-relaxed">
+          If you are a visual designer or photographer looking strictly for a custom CSS gallery and
+          don’t track licenses, clinical hours, badges, or continuing education, a generic site
+          builder works well.
+        </p>
+      </div>
+      <div class="rounded-2xl bg-emerald-50/70 border border-emerald-200/80 p-7 space-y-2.5">
+        <h2 class="text-xl font-bold font-display text-slate-900">
+          Why nursing, EMS, STEM, and business grads pick PathPort
+        </h2>
+        <p class="text-sm text-slate-700 leading-relaxed">
+          PathPort carries your college capstones, lab posters, and clinical rotations directly into
+          your licensed career—tracking NCLEX/NREMT/AWS credentials, storing PDF proof, and running
+          MyPath Career job alignment automatically.
+        </p>
+      </div>
+    </section>
+
+    <StaticFaqAndCta
+      faqTitle="Portfolium Migration FAQ"
+      faqs={faqs}
+      ctaHeadline="Keep your capstones, clinical logs, and credentials in one permanent link"
+      ctaBody="Export your Portfolium archive PDFs, drop them into PathPort with your resume, and publish a verifiable MyPortfolio link before graduation."
+      ctaSecondaryLabel="Explore PathPort for Students"
+      ctaSecondaryHref="/for/students/"
+      relatedLinks={[
+        { label: 'For Students & Graduates', href: '/for/students/' },
+        { label: 'MyPortfolio Builder', href: '/myportfolio/' },
+        { label: 'MyPath Career Job Search', href: '/mypath/' },
+        { label: 'Sample Grad Portfolio', href: '/p/david-kim-bsn/' },
+      ]}
+    />
+  </main>
+
+  <Footer />
+  <BetaRegistrationModal client:idle />
+</BaseLayout>

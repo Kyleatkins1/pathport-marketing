@@ -30,7 +30,7 @@ export const SecurityWhitepaper: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
             <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-xs space-y-2 transition-colors">
               <Database className="w-8 h-8 text-teal-800 dark:text-teal-400 mb-1" />
-              <h3 className="font-display font-bold text-slate-900 dark:text-white text-base">AES-256 Storage Encryption</h3>
+              <h2 className="font-display font-bold text-slate-900 dark:text-white text-base">AES-256 Storage Encryption</h2>
               <p className="text-slate-600 dark:text-slate-300 text-xs leading-relaxed">
                 All uploaded PDF certificates, license images, and document assertions are encrypted at rest using industry-standard AES-256 encryption.
               </p>
@@ -38,7 +38,7 @@ export const SecurityWhitepaper: React.FC = () => {
 
             <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-xs space-y-2 transition-colors">
               <KeyRound className="w-8 h-8 text-teal-800 dark:text-teal-400 mb-1" />
-              <h3 className="font-display font-bold text-slate-900 dark:text-white text-base">Row Level Security (RLS)</h3>
+              <h2 className="font-display font-bold text-slate-900 dark:text-white text-base">Row Level Security (RLS)</h2>
               <p className="text-slate-600 dark:text-slate-300 text-xs leading-relaxed">
                 PostgreSQL database rules enforce zero-trust access control. Users only access their own authenticated records, and employers only access scoped, consent-mediated credentials.
               </p>
@@ -46,7 +46,7 @@ export const SecurityWhitepaper: React.FC = () => {
 
             <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-xs space-y-2 transition-colors">
               <Server className="w-8 h-8 text-teal-800 dark:text-teal-400 mb-1" />
-              <h3 className="font-display font-bold text-slate-900 dark:text-white text-base">TLS 1.3 Transport Security</h3>
+              <h2 className="font-display font-bold text-slate-900 dark:text-white text-base">TLS 1.3 Transport Security</h2>
               <p className="text-slate-600 dark:text-slate-300 text-xs leading-relaxed">
                 All network communication between client applications, web portals, and API endpoints is encrypted via TLS 1.3.
               </p>
@@ -54,7 +54,7 @@ export const SecurityWhitepaper: React.FC = () => {
 
             <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-xs space-y-2 transition-colors">
               <ShieldCheck className="w-8 h-8 text-teal-800 dark:text-teal-400 mb-1" />
-              <h3 className="font-display font-bold text-slate-900 dark:text-white text-base">Zero Data Selling Commitment</h3>
+              <h2 className="font-display font-bold text-slate-900 dark:text-white text-base">Zero Data Selling Commitment</h2>
               <p className="text-slate-600 dark:text-slate-300 text-xs leading-relaxed">
                 Veritas Technology Solutions, LLC never sells or shares your personal credential records or portfolio items with third-party advertisers or brokers.
               </p>

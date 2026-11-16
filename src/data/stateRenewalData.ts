@@ -23,6 +23,8 @@ export interface StateRenewalRule {
 
 export interface NationalCredentialRule {
   code: string;
+  slug: string;
+  seoTitle: string;
   name: string;
   issuer: string;
   domain: 'Nursing & Clinical' | 'EMS & Public Safety' | 'Project & Program Leadership' | 'Technology & Security';
@@ -713,6 +715,8 @@ export const STATE_RENEWAL_DATA: StateRenewalRule[] = [
 export const NATIONAL_CREDENTIAL_RULES: NationalCredentialRule[] = [
   {
     code: 'ancc_fnp_bc',
+    slug: 'ancc-fnp',
+    seoTitle: 'ANCC FNP-BC Renewal & CE Calculator | PathPort',
     name: 'ANCC Family Nurse Practitioner (FNP-BC)',
     issuer: 'American Nurses Credentialing Center (ANCC)',
     domain: 'Nursing & Clinical',
@@ -728,6 +732,8 @@ export const NATIONAL_CREDENTIAL_RULES: NationalCredentialRule[] = [
   },
   {
     code: 'aacn_ccrn_adult',
+    slug: 'aacn-ccrn',
+    seoTitle: 'AACN CCRN CERPs & Renewal Calculator | PathPort',
     name: 'AACN CCRN (Adult) — Critical Care RN',
     issuer: 'AACN Certification Corporation',
     domain: 'Nursing & Clinical',
@@ -744,6 +750,8 @@ export const NATIONAL_CREDENTIAL_RULES: NationalCredentialRule[] = [
   },
   {
     code: 'aanpcb_np_certification',
+    slug: 'aanpcb-np',
+    seoTitle: 'AANPCB NP CE & Renewal Calculator | PathPort',
     name: 'AANPCB Nurse Practitioner (FNP-C / A-GNP-C)',
     issuer: 'American Academy of Nurse Practitioners Certification Board',
     domain: 'Nursing & Clinical',
@@ -759,6 +767,8 @@ export const NATIONAL_CREDENTIAL_RULES: NationalCredentialRule[] = [
   },
   {
     code: 'nremt_paramedic',
+    slug: 'nremt-paramedic',
+    seoTitle: 'NREMT Paramedic (NRP) NCCP Calculator | PathPort',
     name: 'NREMT Paramedic (NRP) — NCCP Model',
     issuer: 'National Registry of Emergency Medical Technicians (NREMT)',
     domain: 'EMS & Public Safety',
@@ -775,6 +785,8 @@ export const NATIONAL_CREDENTIAL_RULES: NationalCredentialRule[] = [
   },
   {
     code: 'nremt_emt',
+    slug: 'nremt-emt',
+    seoTitle: 'NREMT EMT 40-Hour NCCP Calculator | PathPort',
     name: 'NREMT Emergency Medical Technician (EMT) — NCCP Model',
     issuer: 'National Registry of Emergency Medical Technicians (NREMT)',
     domain: 'EMS & Public Safety',
@@ -790,6 +802,8 @@ export const NATIONAL_CREDENTIAL_RULES: NationalCredentialRule[] = [
   },
   {
     code: 'pmi_pmp',
+    slug: 'pmi-pmp',
+    seoTitle: 'PMI PMP 60-PDU Renewal Calculator | PathPort',
     name: 'Project Management Professional (PMP)',
     issuer: 'Project Management Institute (PMI)',
     domain: 'Project & Program Leadership',
@@ -807,6 +821,8 @@ export const NATIONAL_CREDENTIAL_RULES: NationalCredentialRule[] = [
   },
   {
     code: 'ahvap_cvahp',
+    slug: 'ahvap-cvahp',
+    seoTitle: 'AHVAP CVAHP CE Renewal Calculator | PathPort',
     name: 'Certified Value Analysis Healthcare Professional (CVAHP)',
     issuer: 'Association of Healthcare Value Analysis Professionals (AHVAP)',
     domain: 'Nursing & Clinical',
@@ -823,6 +839,8 @@ export const NATIONAL_CREDENTIAL_RULES: NationalCredentialRule[] = [
   },
   {
     code: 'isc2_cissp',
+    slug: 'isc2-cissp',
+    seoTitle: 'ISC2 CISSP 120-CPE Renewal Calculator | PathPort',
     name: 'ISC2 Certified Information Systems Security Professional (CISSP)',
     issuer: 'ISC2',
     domain: 'Technology & Security',
@@ -838,6 +856,8 @@ export const NATIONAL_CREDENTIAL_RULES: NationalCredentialRule[] = [
   },
   {
     code: 'comptia_security_plus',
+    slug: 'comptia-security-plus',
+    seoTitle: 'CompTIA Security+ 50-CEU Calculator | PathPort',
     name: 'CompTIA Security+ (SY0-701)',
     issuer: 'CompTIA',
     domain: 'Technology & Security',
@@ -851,4 +871,42 @@ export const NATIONAL_CREDENTIAL_RULES: NationalCredentialRule[] = [
     notes: 'Earn 50 CEUs across webinars, training, teaching, or work experience (up to 9 CEUs per 3-year cycle from work experience).',
   },
 ];
+
+export function buildStateFaqs(stateProfile: StateRenewalRule): { q: string; a: string }[] {
+  return [
+    {
+      q: `How many CE contact hours are required for ${stateProfile.name} (${stateProfile.code}) RN license renewal?`,
+      a: `${
+        stateProfile.totalHours > 0
+          ? `${stateProfile.totalHours} contact hours every ${stateProfile.cycleYears} year${stateProfile.cycleYears > 1 ? 's' : ''}.`
+          : `${stateProfile.cycleYears}-year renewal cycle.`
+      } ${stateProfile.notes} Governing board: ${stateProfile.boardName}.`,
+    },
+    {
+      q: `What are the mandatory CE topics for ${stateProfile.name} nurses?`,
+      a:
+        stateProfile.mandatoryTopics.length > 0
+          ? stateProfile.mandatoryTopics
+              .map(
+                (t) =>
+                  `${t.title}: ${t.hours > 0 ? `${t.hours} contact hours` : 'Required'} (${t.frequency})`
+              )
+              .join(' | ')
+          : `${stateProfile.name} does not mandate separate topic-specific CE hours beyond general board renewal pathways.`,
+    },
+  ];
+}
+
+export function buildNationalFaqs(nationalProfile: NationalCredentialRule): { q: string; a: string }[] {
+  return [
+    {
+      q: `How many ${nationalProfile.unitLabel} are required to renew ${nationalProfile.name}?`,
+      a: `${nationalProfile.name} (${nationalProfile.issuer}) requires ${nationalProfile.totalUnits} ${nationalProfile.unitLabel} on a ${nationalProfile.cycleMonths / 12}-year (${nationalProfile.cycleMonths}-month) renewal cycle. ${nationalProfile.notes}`,
+    },
+    {
+      q: `What are the required categories for ${nationalProfile.name} recertification?`,
+      a: nationalProfile.breakdown.map((b) => `${b.label}: ${b.value}`).join(' | '),
+    },
+  ];
+}
 

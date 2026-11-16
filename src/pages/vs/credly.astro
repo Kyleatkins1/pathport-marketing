@@ -1,0 +1,144 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Navbar } from '../../components/Navbar';
+import { Footer } from '../../components/Footer';
+import { BetaRegistrationModal } from '../../components/BetaRegistrationModal';
+import StaticFaqAndCta from '../../components/StaticFaqAndCta.astro';
+import { buildFaqJsonLd, type FaqEntry } from '../../lib/seo-helpers';
+import { APP_SIGN_UP_URL, getActiveTrialDays } from '../../lib/modal-events';
+
+const trialDays = getActiveTrialDays();
+
+const faqs: FaqEntry[] = [
+  {
+    q: 'Does PathPort replace Credly, Accredible, or Badgr?',
+    a: 'No—PathPort complements and connects them. Credly and Accredible are issuer platforms where organizations send you badges. PathPort imports your Credly earner profile, Accredible, Badgr, and Coursera badges into one personal wallet alongside state licenses, PDFs, and CE renewal tracking.',
+  },
+  {
+    q: 'How do I import my Credly badges into PathPort?',
+    a: 'Paste your public Credly earner URL (credly.com/users/you/badges) or individual badge links during onboarding. PathPort reads badge metadata and stages every credential alongside your resume and uploaded PDF certificates.',
+  },
+  {
+    q: 'Can PathPort track PMP PDUs, CISSP CPEs, and CompTIA Security+ CEUs after earning a badge?',
+    a: 'Yes. Credly shows that you earned a badge, while PathPort tracks the multi-year recertification hours behind it—including PMI Talent Triangle 60-PDU splits, ISC2 120-CPE Group A/B minimums, and CompTIA 50-CEU cycles.',
+  },
+  {
+    q: 'Can I attach real project proof next to my Credly badges?',
+    a: 'Yes. Inside MyPortfolio, you link AWS, PMP, CISSP, or nursing certifications straight to architecture decks, quality improvement outcomes, publications, and downloadable or preview-only PDFs.',
+  },
+];
+
+const rows = [
+  {
+    feature: 'Who the Platform Is Built For',
+    pathport: 'The individual professional (aggregates badges across every issuer)',
+    credly: 'Issuing enterprises & training organizations',
+  },
+  {
+    feature: 'Multi-Issuer Aggregation',
+    pathport: 'Imports Credly, Accredible, Badgr/Canvas, Coursera & Open Badges 2.0/3.0',
+    credly: 'Shows only badges issued through Credly',
+  },
+  {
+    feature: 'State Licenses, Degrees & Encrypted PDFs',
+    pathport: 'Tracks state licenses, transcripts, wallet cards & SHA-256 Document Vault',
+    credly: 'Digital badges only (no license vault or non-badge PDFs)',
+  },
+  {
+    feature: 'Ongoing Renewal & CE/PDU/CPE Tracking',
+    pathport: '60-PDU PMP, 120-CPE CISSP, 50-CEU Security+ & 50-state nursing rules',
+    credly: 'Shows issue/expiration dates without credit-hour logging',
+  },
+  {
+    feature: 'Case Studies & Credential-Matched Job Search',
+    pathport: 'Verifiable MyPortfolio views + MyPath Career job matching & role audits',
+    credly: 'Static badge wall with limited career tooling',
+  },
+];
+---
+
+<BaseLayout
+  title="Credly Badge Wallet & Portfolio Organizer | PathPort"
+  description="Import Credly, Accredible, and Badgr badges into one wallet alongside state licenses, PDU/CPE tracking, encrypted PDFs, and verifiable MyPortfolio links."
+  canonicalPath="/vs/credly/"
+  includeSoftwareSchema={true}
+  breadcrumbs={[
+    { name: 'Credly Badge Wallet', path: '/vs/credly/' },
+  ]}
+  extraJsonLd={buildFaqJsonLd(faqs)}
+>
+  <Navbar client:load />
+
+  <main id="main-content" tabindex="-1" class="pb-20 focus:outline-none">
+    <section class="bg-[#0B132B] text-white py-20 border-b border-slate-800">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/15 border border-indigo-400/30 text-indigo-200 text-xs font-semibold">
+          Badge Aggregation &amp; Renewal • Credly + Accredible + Badgr + Licenses
+        </span>
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold font-display tracking-tight leading-[1.08] text-white">
+          Your Credly badges, licenses, and case studies—{' '}
+          <span class="text-[#2DD4BF]">finally in one wallet you own.</span>
+        </h1>
+        <p class="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
+          <strong>TL;DR:</strong> Credly, Accredible, and Badgr are built for issuers—leaving you
+          with disconnected badge walls and zero CE/PDU tracking. PathPort pulls your Credly earner
+          profile into one private record alongside non-badge PDFs, renewal calculators, MyPortfolio
+          case studies, and MyPath Career job matching.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
+          <a
+            href={APP_SIGN_UP_URL}
+            class="w-full sm:w-auto px-7 py-4 rounded-xl bg-[#2DD4BF] hover:bg-teal-300 text-slate-950 font-bold text-base transition-colors shadow-lg"
+          >
+            Import Your Credly Badges ({trialDays}-Day Free Trial)
+          </a>
+          <a
+            href="/tools/renewal-calculator/pmi-pmp/"
+            class="w-full sm:w-auto px-6 py-4 rounded-xl bg-white/10 hover:bg-white/15 text-white border border-white/15 font-semibold text-base transition-colors"
+          >
+            Open PMI PMP PDU Calculator
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-10">
+      <div class="rounded-2xl bg-white border border-slate-200 shadow-xl overflow-hidden">
+        <div class="grid grid-cols-1 md:grid-cols-12 bg-slate-900 text-white p-5 sm:px-8 text-xs font-bold uppercase tracking-wider">
+          <div class="md:col-span-4">Capability</div>
+          <div class="md:col-span-4 text-[#2DD4BF] mt-1 md:mt-0">PathPort Wallet &amp; Portfolio</div>
+          <div class="md:col-span-4 text-slate-400 mt-1 md:mt-0">Credly / Accredible (Issuer Portals)</div>
+        </div>
+        <div class="divide-y divide-slate-200/80">
+          {rows.map((row) => (
+            <div class="grid grid-cols-1 md:grid-cols-12 p-5 sm:px-8 gap-4 items-center">
+              <div class="md:col-span-4 font-bold text-sm text-slate-900">{row.feature}</div>
+              <div class="md:col-span-4 text-xs sm:text-sm text-slate-800 bg-emerald-50/60 p-3 rounded-xl border border-emerald-200/70">
+                {row.pathport}
+              </div>
+              <div class="md:col-span-4 text-xs sm:text-sm text-slate-500 p-2">{row.credly}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <StaticFaqAndCta
+      faqTitle="Credly & Digital Badge Aggregation FAQ"
+      faqs={faqs}
+      ctaHeadline="Connect your Credly badges to renewals, case studies, and matching jobs"
+      ctaBody={`Paste your Credly earner profile URL during setup and manage every certification, renewal bucket, and MyPortfolio view in one place for ${trialDays} days free.`}
+      ctaSecondaryLabel="Explore PathPort for PMPs & Tech"
+      ctaSecondaryHref="/for/project-managers/"
+      relatedLinks={[
+        { label: 'For Project & Tech Leaders', href: '/for/project-managers/' },
+        { label: 'PMI PMP 60-PDU Calculator', href: '/tools/renewal-calculator/pmi-pmp/' },
+        { label: 'ISC2 CISSP 120-CPE Calculator', href: '/tools/renewal-calculator/isc2-cissp/' },
+        { label: 'Verifiable MyPortfolio', href: '/myportfolio/' },
+      ]}
+    />
+  </main>
+
+  <Footer />
+  <BetaRegistrationModal client:idle />
+</BaseLayout>

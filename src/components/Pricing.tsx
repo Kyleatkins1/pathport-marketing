@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
-import {
-  Check,
-  Building2,
-  Award,
-  ArrowRight,
-  ShieldCheck,
-  CreditCard,
-} from 'lucide-react';
+import { ArrowRight, Building2, Award, Check, CreditCard, ShieldCheck } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import {
   APP_SIGN_UP_URL,
   getActiveTrialDays,
@@ -245,7 +239,7 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenWaitlist }) => {
               </div>
             </div>
 
-            <div className="shrink-0">
+            <div className="shrink-0 flex flex-col sm:flex-row md:flex-col gap-2.5">
               <a
                 href={APP_SIGN_UP_URL}
                 className="w-full md:w-auto px-6 py-3.5 rounded-xl bg-[#0D5F57] hover:bg-[#094842] text-white font-semibold text-xs sm:text-sm transition-colors flex items-center justify-center gap-2 shadow-2xs"
@@ -253,6 +247,12 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenWaitlist }) => {
                 <span>Start Free Identity Tracker</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
+              <Link
+                to="/free-id-tracker/"
+                className="text-center text-xs font-semibold text-[#0D5F57] hover:underline"
+              >
+                See supported IDs & alerts →
+              </Link>
             </div>
           </div>
         </div>

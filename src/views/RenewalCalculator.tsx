@@ -9,7 +9,6 @@ import {
   Clock,
   FileCheck,
   MapPin,
-  Sparkles,
   Award,
   Search,
   Mail,
@@ -17,6 +16,8 @@ import {
 import {
   STATE_RENEWAL_DATA,
   NATIONAL_CREDENTIAL_RULES,
+  buildStateFaqs,
+  buildNationalFaqs,
   type StateRenewalRule,
   type NationalCredentialRule,
 } from '../data/stateRenewalData';
@@ -28,19 +29,21 @@ import { BetaRegistrationModal } from '../components/BetaRegistrationModal';
 interface RenewalCalculatorProps {
   onOpenWaitlist?: (persona?: string) => void;
   initialStateCode?: string;
+  initialCertCode?: string;
 }
 
 export const RenewalCalculator: React.FC<RenewalCalculatorProps> = ({
   onOpenWaitlist,
-  initialStateCode = 'FL',
+  initialStateCode,
+  initialCertCode,
 }) => {
   const trialDays = getActiveTrialDays();
-  const [mode, setMode] = useState<'state' | 'national'>('state');
+  const [mode, setMode] = useState<'state' | 'national'>(initialCertCode ? 'national' : 'state');
   const [selectedStateCode, setSelectedStateCode] = useState(
-    initialStateCode.toUpperCase() || 'FL'
+    initialStateCode?.toUpperCase() || 'FL'
   );
   const [selectedCredCode, setSelectedCredCode] = useState(
-    NATIONAL_CREDENTIAL_RULES[0].code
+    initialCertCode || NATIONAL_CREDENTIAL_RULES[0].code
   );
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -85,7 +88,12 @@ export const RenewalCalculator: React.FC<RenewalCalculatorProps> = ({
             <span>Free Interactive Tool • All 50 States + DC & National Specialty Boards</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight leading-tight text-white">
-            {initialStateCode ? (
+            {initialCertCode ? (
+              <>
+                {activeCred.name} Renewal &{' '}
+                <span className="text-[#2DD4BF]">{activeCred.unitLabel} Calculator</span>
+              </>
+            ) : initialStateCode ? (
               <>
                 {activeState.name} ({activeState.code}) Nursing License &{' '}
                 <span className="text-[#2DD4BF]">CEU Renewal Calculator</span>
@@ -93,7 +101,7 @@ export const RenewalCalculator: React.FC<RenewalCalculatorProps> = ({
             ) : (
               <>
                 50-State License &{' '}
-                <span className="text-[#2DD4BF]">Board Renewal Calculator</span>
+                <span className="text-[#2DD4BF]">National Board Renewal Calculator</span>
               </>
             )}
           </h1>
@@ -274,7 +282,7 @@ export const RenewalCalculator: React.FC<RenewalCalculatorProps> = ({
               <div className="mt-8 p-6 rounded-2xl bg-[#0B132B] text-white flex flex-col md:flex-row items-center justify-between gap-6">
                 <div className="space-y-1.5 text-center md:text-left">
                   <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#2DD4BF]">
-                    <Sparkles className="w-3.5 h-3.5" />
+                    <ShieldCheck className="w-3.5 h-3.5" />
                     <span>Pre-Configured for {activeState.name}</span>
                   </div>
                   <h3 className="text-lg sm:text-xl font-bold font-display text-white">
@@ -414,8 +422,75 @@ export const RenewalCalculator: React.FC<RenewalCalculatorProps> = ({
         </div>
       </section>
 
-      {/* Browse All 50 States + DC Directory (Programmatic Internal Linking for SEO) */}
+      {/* Visible FAQ Matching FAQPage JSON-LD */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+        <div className="rounded-2xl bg-white border border-slate-200/90 p-6 sm:p-8 shadow-2xs space-y-4">
+          <h2 className="text-lg font-bold text-slate-900 font-display">
+            {mode === 'national'
+              ? `${activeCred.name} Recertification FAQ`
+              : `${activeState.name} (${activeState.code}) Nursing Renewal FAQ`}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {(mode === 'national'
+              ? buildNationalFaqs(activeCred)
+              : buildStateFaqs(activeState)
+            ).map((item) => (
+              <div key={item.q} className="space-y-1.5">
+                <h3 className="text-sm font-bold text-slate-900">{item.q}</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">{item.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* National Certifications Directory (Crawlable 1-Click Links) */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-14">
+        <div className="rounded-2xl bg-white border border-slate-200/90 p-6 sm:p-8 shadow-2xs space-y-5">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-100">
+            <div>
+              <h2 className="text-xl font-bold text-slate-900 font-display">
+                National Specialty, EMS, Project Management & Tech Renewal Guides
+              </h2>
+              <p className="text-xs text-slate-500 mt-1">
+                Open exact PDU, CPE, CAPCE, CERP, and contact hour breakdowns for national boards.
+              </p>
+            </div>
+            <Link to="/vs/credly/" className="text-xs font-semibold text-[#0D5F57] hover:underline shrink-0">
+              Sync Credly Badges →
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+            {NATIONAL_CREDENTIAL_RULES.map((cred) => (
+              <Link
+                key={cred.code}
+                to={`/tools/renewal-calculator/${cred.slug}/`}
+                onClick={() => {
+                  setMode('national');
+                  setSelectedCredCode(cred.code);
+                }}
+                className={`p-3.5 rounded-xl border text-left transition-all flex items-center justify-between gap-2 ${
+                  mode === 'national' && cred.code === selectedCredCode
+                    ? 'bg-teal-50/80 border-[#0D5F57] text-[#0D5F57]'
+                    : 'bg-slate-50/60 hover:bg-white border-slate-200/80 text-slate-800 hover:border-slate-300'
+                }`}
+              >
+                <div className="min-w-0">
+                  <div className="text-xs font-bold truncate">{cred.name}</div>
+                  <div className="text-xs text-slate-500 mt-0.5">
+                    {cred.totalUnits} {cred.unitLabel} • {cred.cycleMonths / 12}y
+                  </div>
+                </div>
+                <ArrowRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Browse All 50 States + DC Directory (Programmatic Internal Linking for SEO) */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
         <div className="rounded-2xl bg-white border border-slate-200/90 p-6 sm:p-8 shadow-2xs">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
             <div>
@@ -424,7 +499,7 @@ export const RenewalCalculator: React.FC<RenewalCalculatorProps> = ({
               </h2>
               <p className="text-xs text-slate-500 mt-1">
                 Select any state below to open its dedicated renewal breakdown, or compare{' '}
-                <Link to="/vs/ce-broker" className="text-[#0D5F57] font-semibold hover:underline">
+                <Link to="/vs/ce-broker/" className="text-[#0D5F57] font-semibold hover:underline">
                   PathPort vs. CE Broker
                 </Link>
                 .
@@ -448,13 +523,13 @@ export const RenewalCalculator: React.FC<RenewalCalculatorProps> = ({
             {filteredStates.map((st) => (
               <Link
                 key={st.code}
-                to={`/tools/renewal-calculator/${st.slug}`}
+                to={`/tools/renewal-calculator/${st.slug}/`}
                 onClick={() => {
                   setMode('state');
                   setSelectedStateCode(st.code);
                 }}
                 className={`p-3 rounded-xl border text-left transition-all flex items-center justify-between ${
-                  st.code === selectedStateCode
+                  mode === 'state' && st.code === selectedStateCode
                     ? 'bg-teal-50/80 border-[#0D5F57] text-[#0D5F57]'
                     : 'bg-slate-50/60 hover:bg-white border-slate-200/80 text-slate-800 hover:border-slate-300'
                 }`}
@@ -484,7 +559,7 @@ export const RenewalCalculator: React.FC<RenewalCalculatorProps> = ({
               <ShieldCheck className="w-4 h-4 text-[#0D5F57]" />
               Synced with PathPort’s canonical 50-state & national recertification rule library
             </span>
-            <Link to="/for/nurses" className="font-semibold text-[#0D5F57] hover:underline">
+            <Link to="/for/nurses/" className="font-semibold text-[#0D5F57] hover:underline">
               Explore PathPort for Nurses →
             </Link>
           </div>

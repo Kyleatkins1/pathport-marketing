@@ -13,6 +13,22 @@ export const RouteParamsProvider: React.FC<{
   <RouteParamsContext.Provider value={params}>{children}</RouteParamsContext.Provider>
 );
 
+export function normalizeInternalHref(raw: string): string {
+  if (!raw || raw.startsWith('#')) return raw || '/';
+  if (/^(https?:|mailto:|tel:)/i.test(raw)) return raw;
+
+  const match = raw.match(/^([^?#]*)(\?[^#]*)?(#.*)?$/);
+  if (!match) return raw;
+
+  const [, rawPath = '/', search = '', hash = ''] = match;
+  if (!rawPath.startsWith('/')) return raw;
+  if (rawPath === '/' || rawPath.startsWith('/api/') || /\.[a-z0-9]+$/i.test(rawPath)) {
+    return `${rawPath}${search}${hash}`;
+  }
+  const normalizedPath = rawPath.endsWith('/') ? rawPath : `${rawPath}/`;
+  return `${normalizedPath}${search}${hash}`;
+}
+
 export interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   to: string | { pathname?: string; search?: string; hash?: string };
   replace?: boolean;
@@ -20,10 +36,11 @@ export interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement>
 
 export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
   ({ to, replace: _replace, children, ...rest }, ref) => {
-    const href =
+    const rawHref =
       typeof to === 'string'
         ? to
         : `${to.pathname || ''}${to.search || ''}${to.hash || ''}` || '/';
+    const href = normalizeInternalHref(rawHref);
     return (
       <a ref={ref} href={href} {...rest}>
         {children}
@@ -69,7 +86,7 @@ export function useParams<T extends RouteParams = RouteParams>(): T {
 export function useNavigate() {
   return (to: string) => {
     if (typeof window !== 'undefined') {
-      window.location.href = to;
+      window.location.href = normalizeInternalHref(to);
     }
   };
 }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { BetaRegistrationModal } from '../components/BetaRegistrationModal';
@@ -295,7 +296,7 @@ export const ParamedicsFunnel: React.FC = () => {
             <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm max-w-xl mx-auto">
               Join paramedics from 911 services, flight programs, and critical care transport building their portable career record.
             </p>
-            <div className="pt-2">
+            <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
               <a
                 href={APP_SIGN_UP_URL}
                 className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-2xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-xs sm:text-sm shadow-xs transition-all"
@@ -303,6 +304,18 @@ export const ParamedicsFunnel: React.FC = () => {
                 <span>Start Free {trialDays}-Day Pro Trial</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
+              <Link
+                to="/tools/renewal-calculator/nremt-paramedic/"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-semibold text-xs sm:text-sm transition-all"
+              >
+                <span>Open NREMT NRP Calculator</span>
+              </Link>
+              <Link
+                to="/tools/renewal-calculator/nremt-emt/"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-semibold text-xs sm:text-sm transition-all"
+              >
+                <span>Open NREMT EMT Calculator</span>
+              </Link>
             </div>
           </div>
         </div>

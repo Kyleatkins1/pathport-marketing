@@ -8,6 +8,8 @@ interface DemoMeta {
   name: string;
   title: string;
   description: string;
+  avatarPath?: string;
+  location?: string;
   noindex?: boolean;
 }
 
@@ -23,11 +25,12 @@ export function getStaticPaths() {
     },
     {
       slug: 'marcus-vance-nrp',
-      canonicalSlug: 'marcus-vance-nrp',
+      canonicalSlug: 'elena-flight-lead',
       name: 'Elena Rodriguez, NRP, FP-C',
       title: 'Critical Care Flight Paramedic & Clinical Educator',
       description:
         'Sample PathPort MyPortfolio for Critical Care Flight Paramedic — NREMT NRP, IBSC FP-C, 60/60 NCCP hours, and high-altitude transport case study.',
+      noindex: true,
     },
     {
       slug: 'elena-flight-lead',
@@ -60,7 +63,7 @@ export function getStaticPaths() {
       name: 'David Kim, MS',
       title: 'Bioengineering Research Fellow & Capstone Lead',
       description:
-        'Sample PathPort MyPortfolio for Student & New Graduate — Johns Hopkins M.S. Biomedical Engineering, CITI GCP Certification, and microfluidic biosensor research.',
+        'Sample PathPort MyPortfolio for David Kim, MS — Johns Hopkins M.S. Biomedical Engineering, CITI GCP Certification, and microfluidic biosensor research.',
     },
     {
       slug: 'david-kim-bio',
@@ -151,17 +154,53 @@ interface Props {
 }
 
 const { meta } = Astro.props;
+
+const avatarBySlug: Record<string, string> = {
+  'sarah-jenkins-rn': 'https://getpathport.com/avatars/sarah-jenkins.webp',
+  'elena-flight-lead': 'https://getpathport.com/avatars/elena-rodriguez.webp',
+  'marcus-vance': 'https://getpathport.com/avatars/marcus-vance.webp',
+  'david-kim-bsn': 'https://getpathport.com/avatars/david-kim.webp',
+};
+
+const locationBySlug: Record<string, string> = {
+  'sarah-jenkins-rn': 'New York, NY',
+  'elena-flight-lead': 'Denver, CO',
+  'marcus-vance': 'Austin, TX',
+  'david-kim-bsn': 'Baltimore, MD',
+};
+
+const profileSchema = meta.noindex
+  ? undefined
+  : {
+      '@type': 'ProfilePage',
+      '@id': `https://getpathport.com/p/${meta.canonicalSlug}/#profile`,
+      url: `https://getpathport.com/p/${meta.canonicalSlug}/`,
+      name: `${meta.name} — Sample MyPortfolio`,
+      mainEntity: {
+        '@type': 'Person',
+        name: meta.name,
+        jobTitle: meta.title,
+        description: meta.description,
+        image: avatarBySlug[meta.canonicalSlug] || 'https://getpathport.com/og-card.png',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: locationBySlug[meta.canonicalSlug] || 'United States',
+        },
+      },
+    };
 ---
 
 <BaseLayout
-  title={`${meta.name} — Sample MyPortfolio & Living Record | PathPort`}
+  title={`${meta.name} — Verified Portfolio | PathPort`}
   description={meta.description}
-  canonicalPath={`/p/${meta.canonicalSlug}`}
+  canonicalPath={`/p/${meta.canonicalSlug}/`}
   type="profile"
   noindex={meta.noindex ?? false}
   breadcrumbs={[
-    { name: `Sample MyPortfolio: ${meta.name}`, path: `/p/${meta.canonicalSlug}` },
+    { name: 'MyPortfolio', path: '/myportfolio/' },
+    { name: `Sample: ${meta.name}`, path: `/p/${meta.canonicalSlug}/` },
   ]}
+  extraJsonLd={profileSchema}
 >
   <PublicPassportDemo initialSlug={meta.slug} client:load />
 </BaseLayout>

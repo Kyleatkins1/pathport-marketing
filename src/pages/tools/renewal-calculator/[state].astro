@@ -3,84 +3,115 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { RenewalCalculator } from '../../../views/RenewalCalculator';
 import {
   STATE_RENEWAL_DATA,
+  NATIONAL_CREDENTIAL_RULES,
+  buildStateFaqs,
+  buildNationalFaqs,
   type StateRenewalRule,
+  type NationalCredentialRule,
 } from '../../../data/stateRenewalData';
 
 export function getStaticPaths() {
-  return STATE_RENEWAL_DATA.map((stateProfile) => ({
+  const statePaths = STATE_RENEWAL_DATA.map((stateProfile) => ({
     params: { state: stateProfile.slug },
-    props: { stateProfile },
+    props: { kind: 'state' as const, stateProfile },
   }));
+
+  const nationalPaths = NATIONAL_CREDENTIAL_RULES.map((nationalProfile) => ({
+    params: { state: nationalProfile.slug },
+    props: { kind: 'national' as const, nationalProfile },
+  }));
+
+  return [...statePaths, ...nationalPaths];
 }
 
-interface Props {
-  stateProfile: StateRenewalRule;
+type Props =
+  | { kind: 'state'; stateProfile: StateRenewalRule }
+  | { kind: 'national'; nationalProfile: NationalCredentialRule };
+
+const props = Astro.props;
+
+function truncateMeta(text: string, maxLen = 158): string {
+  if (text.length <= maxLen) return text;
+  const cut = text.slice(0, maxLen - 1);
+  const lastSpace = cut.lastIndexOf(' ');
+  return `${(lastSpace > 100 ? cut.slice(0, lastSpace) : cut).replace(/[.,;:\s]+$/, '')}.`;
 }
 
-const { stateProfile } = Astro.props;
+let pageTitle = '';
+let pageDescription = '';
+let canonicalPath = '';
+let breadcrumbName = '';
+let faqSchema: Record<string, unknown> = {};
+let webAppName = '';
 
-const mandatoryList =
-  stateProfile.mandatoryTopics.length > 0
-    ? stateProfile.mandatoryTopics
-        .map((t) => `${t.title} (${t.hours > 0 ? `${t.hours} hrs` : t.frequency})`)
-        .join(', ')
-    : 'No standalone topic-specific hour mandates (standard board renewal rules apply)';
+if (props.kind === 'state') {
+  const { stateProfile } = props;
+  const candidateTitle = `${stateProfile.name} (${stateProfile.code}) Nursing CE Requirements | PathPort`;
+  pageTitle =
+    candidateTitle.length <= 60
+      ? candidateTitle
+      : `${stateProfile.name} (${stateProfile.code}) Nursing CE Rules | PathPort`;
 
-const pageTitle = `${stateProfile.name} (${stateProfile.code}) RN License Renewal & CE Requirements Calculator | PathPort`;
-const pageDescription = `${stateProfile.name} (${stateProfile.boardName}) RN renewal requirements: ${
-  stateProfile.totalHours > 0
-    ? `${stateProfile.totalHours} contact hours every ${stateProfile.cycleYears} year${stateProfile.cycleYears > 1 ? 's' : ''}`
-    : `${stateProfile.cycleYears}-year renewal cycle (${stateProfile.notes})`
-}. Mandatory topics: ${mandatoryList}.`;
+  const rawDesc =
+    stateProfile.totalHours > 0
+      ? `${stateProfile.name} RN license renewal: ${stateProfile.totalHours} CE hours every ${stateProfile.cycleYears} year${stateProfile.cycleYears > 1 ? 's' : ''} (${stateProfile.boardName}). ${stateProfile.mandatoryTopics.length > 0 ? `${stateProfile.mandatoryTopics.length} mandatory topic rules` : 'General board CE'} and NLC status.`
+      : `${stateProfile.name} RN renewal (${stateProfile.boardName}): ${stateProfile.cycleYears}-year cycle via practice hours or national certification. Check full topic rules.`;
+  pageDescription = truncateMeta(rawDesc, 158);
+  canonicalPath = `/tools/renewal-calculator/${stateProfile.slug}/`;
+  breadcrumbName = `${stateProfile.name} (${stateProfile.code}) RN Renewal`;
+  webAppName = `${stateProfile.name} (${stateProfile.code}) RN CE Renewal Calculator`;
 
-const stateFaqSchema = {
-  '@type': 'FAQPage',
-  mainEntity: [
-    {
+  faqSchema = {
+    '@type': 'FAQPage',
+    mainEntity: buildStateFaqs(stateProfile).map((item) => ({
       '@type': 'Question',
-      name: `How many CE contact hours are required for ${stateProfile.name} (${stateProfile.code}) RN license renewal?`,
+      name: item.q,
       acceptedAnswer: {
         '@type': 'Answer',
-        text: `${
-          stateProfile.totalHours > 0
-            ? `${stateProfile.totalHours} contact hours every ${stateProfile.cycleYears} year${stateProfile.cycleYears > 1 ? 's' : ''}.`
-            : `${stateProfile.cycleYears}-year renewal cycle.`
-        } ${stateProfile.notes} Governing board: ${stateProfile.boardName}.`,
+        text: item.a,
       },
-    },
-    {
+    })),
+  };
+} else {
+  const { nationalProfile } = props;
+  pageTitle = nationalProfile.seoTitle;
+  const rawDesc = `${nationalProfile.name} (${nationalProfile.issuer}): ${nationalProfile.totalUnits} ${nationalProfile.unitLabel} every ${nationalProfile.cycleMonths / 12} years. Free category breakdown & renewal calculator.`;
+  pageDescription = truncateMeta(rawDesc, 158);
+  canonicalPath = `/tools/renewal-calculator/${nationalProfile.slug}/`;
+  breadcrumbName = nationalProfile.name;
+  webAppName = `${nationalProfile.name} Renewal Calculator`;
+
+  faqSchema = {
+    '@type': 'FAQPage',
+    mainEntity: buildNationalFaqs(nationalProfile).map((item) => ({
       '@type': 'Question',
-      name: `What are the mandatory CE topics for ${stateProfile.name} nurses?`,
+      name: item.q,
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          stateProfile.mandatoryTopics.length > 0
-            ? stateProfile.mandatoryTopics
-                .map(
-                  (t) =>
-                    `${t.title}: ${t.hours > 0 ? `${t.hours} contact hours` : 'Required'} (${t.frequency})`
-                )
-                .join(' | ')
-            : `${stateProfile.name} does not mandate separate topic-specific CE hours beyond general board renewal pathways.`,
+        text: item.a,
       },
-    },
-  ],
-};
+    })),
+  };
+}
 ---
 
 <BaseLayout
   title={pageTitle}
   description={pageDescription}
-  canonicalPath={`/tools/renewal-calculator/${stateProfile.slug}`}
-  includeSoftwareSchema={true}
+  canonicalPath={canonicalPath}
+  webAppSchema={{
+    name: webAppName,
+    description: pageDescription,
+  }}
   breadcrumbs={[
-    { name: '50-State CE Renewal Calculator', path: '/tools/renewal-calculator' },
-    {
-      name: `${stateProfile.name} (${stateProfile.code}) RN Renewal`,
-      path: `/tools/renewal-calculator/${stateProfile.slug}`,
-    },
+    { name: '50-State Renewal Calculator', path: '/tools/renewal-calculator/' },
+    { name: breadcrumbName, path: canonicalPath },
   ]}
-  extraJsonLd={stateFaqSchema}
+  extraJsonLd={faqSchema}
 >
-  <RenewalCalculator initialStateCode={stateProfile.code} client:load />
+  {props.kind === 'state' ? (
+    <RenewalCalculator initialStateCode={props.stateProfile.code} client:load />
+  ) : (
+    <RenewalCalculator initialCertCode={props.nationalProfile.code} client:load />
+  )}
 </BaseLayout>

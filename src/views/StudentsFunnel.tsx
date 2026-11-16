@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { BetaRegistrationModal } from '../components/BetaRegistrationModal';
@@ -70,6 +71,12 @@ export const StudentsFunnel: React.FC = () => {
                 <span>Start Free {trialDays}-Day Pro Trial</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
+              <Link
+                to="/vs/portfolium/"
+                className="px-6 py-3.5 rounded-2xl bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 font-semibold text-sm transition-all flex items-center justify-center gap-2"
+              >
+                <span>Migrating from Portfolium?</span>
+              </Link>
             </div>
           </div>
 

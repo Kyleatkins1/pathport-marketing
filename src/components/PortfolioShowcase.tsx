@@ -43,7 +43,7 @@ const SHOWCASES = [
   },
   {
     role: 'Project & Technical Leadership (PMP)',
-    demoSlug: 'elena-rodriguez-pmp',
+    demoSlug: 'marcus-vance',
     headline: 'Connect your PMP and cloud certifications to shipped systems',
     themeLabel: 'Executive Dark Theme',
     summary:
@@ -101,7 +101,6 @@ const SHOWCASES = [
 
 export const PortfolioShowcase: React.FC = () => {
   const [selected, setSelected] = useState(0);
-  const current = SHOWCASES[selected];
 
   return (
     <section
@@ -114,18 +113,19 @@ export const PortfolioShowcase: React.FC = () => {
           <div className="lg:col-span-5 space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-200/80 text-amber-900 text-xs font-semibold">
               <Award className="w-3.5 h-3.5 text-amber-700" />
-              <span>MyPortfolio • Permissioned Professional Views</span>
+              <span>MyPortfolio • Verifiable Professional Portfolio</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-slate-900 tracking-tight leading-tight">
-              Curate verifiable portfolios for every audience—from one record.
+              Curate verifiable professional portfolios for every audience—from one record.
             </h2>
 
             <p className="text-base text-slate-600 leading-relaxed">
-              With <strong>MyPortfolio</strong>, you never rebuild your profile from scratch. Select
-              which credentials, projects, case studies, and publications to include, pick a visual
-              theme (<strong>Modern</strong>, <strong>Executive</strong>, or{' '}
-              <strong>Minimal</strong>), and share a live link or formatted PDF dossier.
+              With <strong>MyPortfolio</strong>, you never rebuild your credentials from scratch.
+              Share tailored views for consulting proposals, conference Speaker One-Sheets, hospital
+              credentialing, promotions, board appointments, fellowships, or hiring—in{' '}
+              <strong>Modern</strong>, <strong>Executive</strong>, or <strong>Minimal</strong>{' '}
+              themes with PDF dossiers.
             </p>
 
             {/* Persona Selector Buttons */}
@@ -158,88 +158,106 @@ export const PortfolioShowcase: React.FC = () => {
               ))}
             </div>
 
-            <div className="pt-2 grid grid-cols-2 gap-3 text-xs text-slate-600">
-              <div className="flex items-center gap-2">
-                <Palette className="w-4 h-4 text-[#0D5F57] shrink-0" />
-                <span>3 Built-In Presentation Themes</span>
+            <div className="pt-2 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-600">
+              <div className="flex items-center gap-4">
+                <span className="flex items-center gap-1.5">
+                  <Palette className="w-4 h-4 text-[#0D5F57] shrink-0" />
+                  <span>3 Presentation Themes</span>
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Lock className="w-4 h-4 text-[#0D5F57] shrink-0" />
+                  <span>1-Click Revocation</span>
+                </span>
               </div>
-              <div className="flex items-center gap-2">
-                <Lock className="w-4 h-4 text-[#0D5F57] shrink-0" />
-                <span>1-Click Link Revocation</span>
-              </div>
+              <Link
+                to="/myportfolio/"
+                className="font-semibold text-[#0D5F57] hover:underline inline-flex items-center gap-1"
+              >
+                <span>Explore MyPortfolio</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </Link>
             </div>
           </div>
 
-          {/* Right Showcase Card */}
+          {/* Right Showcase Cards (All rendered in DOM for crawlability) */}
           <div className="lg:col-span-7">
-            <div className="rounded-2xl bg-slate-50 border border-slate-200/90 p-6 sm:p-8 shadow-lg">
-              <div className="flex flex-wrap items-center justify-between gap-2 pb-5 border-b border-slate-200">
-                <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#0D5F57]">
-                    MyPortfolio • {current.themeLabel}
-                  </span>
-                  <h3 className="text-xl font-bold text-slate-900 font-display mt-1">
-                    {current.headline}
-                  </h3>
-                </div>
-                <Link
-                  to={`/p/${current.demoSlug}`}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-xs font-semibold text-[#0D5F57] hover:bg-teal-50 hover:border-teal-200 transition-colors"
-                >
-                  <ShieldCheck className="w-3.5 h-3.5 text-[#0D5F57]" />
-                  <span>Open Live Sample</span>
-                  <ExternalLink className="w-3 h-3" />
-                </Link>
-              </div>
-
-              <p className="mt-4 text-sm text-slate-600 leading-relaxed">{current.summary}</p>
-
-              <div className="mt-6 space-y-3">
-                {current.artifacts.map((art, i) => (
-                  <div
-                    key={i}
-                    className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-2xs flex flex-col sm:flex-row sm:items-center justify-between gap-3"
-                  >
-                    <div className="flex items-start gap-3">
-                      <div className="w-9 h-9 rounded-lg bg-teal-50 text-[#0D5F57] flex items-center justify-center shrink-0 mt-0.5">
-                        {i === 0 ? (
-                          <Briefcase className="w-4.5 h-4.5" />
-                        ) : i === 1 ? (
-                          <BookOpen className="w-4.5 h-4.5" />
-                        ) : (
-                          <FileText className="w-4.5 h-4.5" />
-                        )}
-                      </div>
-                      <div>
-                        <div className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                          {art.type}
-                        </div>
-                        <div className="text-sm font-bold text-slate-900 mt-0.5">{art.title}</div>
-                        <div className="text-xs text-slate-600 mt-0.5">{art.metric}</div>
-                      </div>
-                    </div>
-                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-emerald-50 text-[#0D5F57] border border-emerald-200/60 text-xs font-semibold self-start sm:self-center shrink-0">
-                      <CheckCircle2 className="w-3.5 h-3.5" />
-                      {art.badge}
+            {SHOWCASES.map((showcase, idx) => (
+              <div
+                key={showcase.demoSlug}
+                className={
+                  selected === idx
+                    ? 'rounded-2xl bg-slate-50 border border-slate-200/90 p-6 sm:p-8 shadow-lg'
+                    : 'hidden'
+                }
+              >
+                <div className="flex flex-wrap items-center justify-between gap-2 pb-5 border-b border-slate-200">
+                  <div>
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#0D5F57]">
+                      MyPortfolio • {showcase.themeLabel}
                     </span>
+                    <h3 className="text-xl font-bold text-slate-900 font-display mt-1">
+                      {showcase.headline}
+                    </h3>
                   </div>
-                ))}
-              </div>
+                  <Link
+                    to={`/p/${showcase.demoSlug}/`}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-xs font-semibold text-[#0D5F57] hover:bg-teal-50 hover:border-teal-200 transition-colors"
+                  >
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#0D5F57]" />
+                    <span>Open Live Sample</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </Link>
+                </div>
 
-              <div className="mt-6 pt-4 border-t border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-slate-500">
-                <span>
-                  Exportable as a live share URL or formatted PDF dossier (Curriculum Vitae /
-                  Speaker One-Sheet)
-                </span>
-                <Link
-                  to={`/p/${current.demoSlug}`}
-                  className="font-semibold text-[#0D5F57] hover:underline inline-flex items-center gap-1"
-                >
-                  <span>Inspect full sample portfolio</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </Link>
+                <p className="mt-4 text-sm text-slate-600 leading-relaxed">{showcase.summary}</p>
+
+                <div className="mt-6 space-y-3">
+                  {showcase.artifacts.map((art, i) => (
+                    <div
+                      key={i}
+                      className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-2xs flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                    >
+                      <div className="flex items-start gap-3">
+                        <div className="w-9 h-9 rounded-lg bg-teal-50 text-[#0D5F57] flex items-center justify-center shrink-0 mt-0.5">
+                          {i === 0 ? (
+                            <Briefcase className="w-4.5 h-4.5" />
+                          ) : i === 1 ? (
+                            <BookOpen className="w-4.5 h-4.5" />
+                          ) : (
+                            <FileText className="w-4.5 h-4.5" />
+                          )}
+                        </div>
+                        <div>
+                          <div className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                            {art.type}
+                          </div>
+                          <div className="text-sm font-bold text-slate-900 mt-0.5">{art.title}</div>
+                          <div className="text-xs text-slate-600 mt-0.5">{art.metric}</div>
+                        </div>
+                      </div>
+                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-emerald-50 text-[#0D5F57] border border-emerald-200/60 text-xs font-semibold self-start sm:self-center shrink-0">
+                        <CheckCircle2 className="w-3.5 h-3.5" />
+                        {art.badge}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 pt-4 border-t border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-slate-500">
+                  <span>
+                    Exportable as a live share URL or formatted PDF dossier (Curriculum Vitae /
+                    Speaker One-Sheet)
+                  </span>
+                  <Link
+                    to={`/p/${showcase.demoSlug}/`}
+                    className="font-semibold text-[#0D5F57] hover:underline inline-flex items-center gap-1"
+                  >
+                    <span>Inspect full sample portfolio</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

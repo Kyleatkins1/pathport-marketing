@@ -226,7 +226,7 @@ export const OrgSection: React.FC<OrgSectionProps> = ({ onOpenWaitlist }) => {
             </span>
           </div>
           <Link
-            to="/security"
+            to="/security/"
             className="inline-flex items-center gap-1 font-semibold text-[#0D5F57] hover:underline shrink-0"
           >
             <ShieldCheck className="w-3.5 h-3.5" />

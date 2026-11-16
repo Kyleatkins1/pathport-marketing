@@ -11,8 +11,9 @@ import {
   ArrowRight,
   Target,
   FileSearch,
-  Sparkles,
+  Search,
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { APP_SIGN_UP_URL, getActiveTrialDays } from '../lib/modal-events';
 
 interface PathAISectionProps {
@@ -201,7 +202,6 @@ const TRAJECTORIES = [
 
 export const PathAISection: React.FC<PathAISectionProps> = () => {
   const [selectedIdx, setSelectedIdx] = useState(0);
-  const active = TRAJECTORIES[selectedIdx];
   const trialDays = getActiveTrialDays();
 
   return (
@@ -218,31 +218,44 @@ export const PathAISection: React.FC<PathAISectionProps> = () => {
         <div className="max-w-3xl mx-auto text-center space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/15 border border-teal-400/30 text-teal-300 text-xs font-semibold">
             <Compass className="w-3.5 h-3.5" />
-            <span>MyPath • Career Intelligence, Role Audits & Opportunity Pursuit</span>
+            <span>MyPath Career • Credential-Matched Job Search & Growth Software</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-display tracking-tight leading-tight text-white">
-            See where your experience qualifies you to go next—and{' '}
-            <span className="text-[#2DD4BF]">how to get there.</span>
+            Find credential-matched jobs, measure role fit, and{' '}
+            <span className="text-[#2DD4BF]">track your career growth.</span>
           </h2>
           <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
-            Because PathPort holds your real credentials, clinical or project hours, education, and
-            case studies, <strong>MyPath</strong> evaluates your whole journey—mapping concrete next
-            steps across 6 career pillars, running <strong>What-If Role Audits</strong>, and
-            helping you tailor applications from verified evidence.
+            Because PathPort holds your licenses, certifications, clinical or project hours, and
+            case studies, <strong>MyPath Career</strong> pairs a live job search engine with
+            rules-backed career suggestions, instant job alignment scores, 6-pillar growth
+            tracking, and tailored application prep.
           </p>
         </div>
 
-        {/* 3 MyPath Capabilities Ribbon */}
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
+        {/* 4 Live MyPath Career Capabilities */}
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800 flex items-start gap-3">
+            <div className="p-2 rounded-lg bg-teal-500/15 text-teal-300 shrink-0 mt-0.5">
+              <Search className="w-4.5 h-4.5" />
+            </div>
+            <div>
+              <div className="text-sm font-bold text-white">Credential-Matched Job Search</div>
+              <p className="text-xs text-slate-300 mt-1 leading-relaxed">
+                Search live job openings filtered by your verified licenses, certifications,
+                compact reciprocity, and location.
+              </p>
+            </div>
+          </div>
+
           <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800 flex items-start gap-3">
             <div className="p-2 rounded-lg bg-teal-500/15 text-teal-300 shrink-0 mt-0.5">
               <Compass className="w-4.5 h-4.5" />
             </div>
             <div>
-              <div className="text-sm font-bold text-white">6-Pillar Career Roadmap</div>
+              <div className="text-sm font-bold text-white">Career Path Suggestions</div>
               <p className="text-xs text-slate-300 mt-1 leading-relaxed">
-                Actionable steps across <em>Learn, Credential, Experience, Build, Publish,</em> and{' '}
-                <em>Lead</em>—calibrated to your actual record.
+                Explore next roles with USDOL CareerOneStop licensure rules, BLS salary context,
+                and 6-pillar growth steps.
               </p>
             </div>
           </div>
@@ -252,10 +265,10 @@ export const PathAISection: React.FC<PathAISectionProps> = () => {
               <FileSearch className="w-4.5 h-4.5" />
             </div>
             <div>
-              <div className="text-sm font-bold text-white">What-If Role Audits</div>
+              <div className="text-sm font-bold text-white">Job Alignment & Gap Audits</div>
               <p className="text-xs text-slate-300 mt-1 leading-relaxed">
-                Paste a target role or specialty description to see which requirements your record
-                already satisfies and what gaps remain.
+                Score any job posting against your record to see which requirements you meet and
+                what credentials remain.
               </p>
             </div>
           </div>
@@ -267,8 +280,8 @@ export const PathAISection: React.FC<PathAISectionProps> = () => {
             <div>
               <div className="text-sm font-bold text-white">Application & Interview Studio</div>
               <p className="text-xs text-slate-300 mt-1 leading-relaxed">
-                Assemble role-specific submission manifests and STAR interview stories backed by
-                your real projects and credentials.
+                Draft tailored resumes, cover letters, and STAR interview stories backed strictly
+                by your verified work.
               </p>
             </div>
           </div>
@@ -292,79 +305,96 @@ export const PathAISection: React.FC<PathAISectionProps> = () => {
           ))}
         </div>
 
-        {/* Active Trajectory Synthesis Panel */}
-        <div className="mt-6 rounded-2xl bg-slate-900/90 border border-slate-800 p-6 sm:p-8 shadow-2xl">
-          {/* Top Summary Bar */}
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-slate-800">
-            <div className="space-y-1">
-              <div className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-                Current Record Baseline → Target Horizon
-              </div>
-              <div className="text-lg sm:text-xl font-bold font-display text-white flex flex-wrap items-center gap-2">
-                <span>{active.currentRole}</span>
-                <ArrowRight className="w-4 h-4 text-[#2DD4BF] shrink-0" />
-                <span className="text-[#2DD4BF]">{active.targetRole}</span>
-              </div>
-            </div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-teal-500/15 border border-teal-400/30 text-teal-200 text-xs font-semibold self-start lg:self-auto">
-              <CheckCircle2 className="w-4 h-4 text-[#2DD4BF] shrink-0" />
-              <span>{active.readinessSummary}</span>
-            </div>
-          </div>
-
-          {/* Grounded What-If Audit Callout */}
-          <div className="my-5 p-4 rounded-xl bg-slate-950/70 border border-slate-800/90 flex items-start gap-3">
-            <Sparkles className="w-4 h-4 text-[#2DD4BF] shrink-0 mt-0.5" />
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-              <strong className="text-white font-semibold">MyPath Readiness Synthesis: </strong>
-              {active.whatIfInsight}
-            </p>
-          </div>
-
-          {/* 6 Pillars Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {active.pillars.map((item) => {
-              const Icon = item.icon;
-              return (
-                <div
-                  key={item.pillar}
-                  className="p-5 rounded-xl bg-slate-950/60 border border-slate-800/90 hover:border-slate-700 transition-all flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="flex items-center justify-between gap-2 mb-3">
-                      <span
-                        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider border ${item.color}`}
-                      >
-                        <Icon className="w-3.5 h-3.5" />
-                        {item.pillar} Pillar
-                      </span>
-                      <span className="text-xs text-slate-400 font-mono">MyPath</span>
-                    </div>
-                    <h3 className="text-base font-bold text-white font-display leading-snug">
-                      {item.recommendation}
-                    </h3>
-                    <p className="mt-2 text-xs text-slate-300 leading-relaxed">{item.rationale}</p>
-                  </div>
+        {/* All Trajectory Panels Rendered in SSR HTML */}
+        {TRAJECTORIES.map((trajectory, idx) => (
+          <div
+            key={trajectory.id}
+            className={
+              selectedIdx === idx
+                ? 'mt-6 rounded-2xl bg-slate-900/90 border border-slate-800 p-6 sm:p-8 shadow-2xl'
+                : 'hidden'
+            }
+          >
+            {/* Top Summary Bar */}
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-slate-800">
+              <div className="space-y-1">
+                <div className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  Current Record Baseline → Target Horizon
                 </div>
-              );
-            })}
-          </div>
+                <div className="text-lg sm:text-xl font-bold font-display text-white flex flex-wrap items-center gap-2">
+                  <span>{trajectory.currentRole}</span>
+                  <ArrowRight className="w-4 h-4 text-[#2DD4BF] shrink-0" />
+                  <span className="text-[#2DD4BF]">{trajectory.targetRole}</span>
+                </div>
+              </div>
+              <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-teal-500/15 border border-teal-400/30 text-teal-200 text-xs font-semibold self-start lg:self-auto">
+                <CheckCircle2 className="w-4 h-4 text-[#2DD4BF] shrink-0" />
+                <span>{trajectory.readinessSummary}</span>
+              </div>
+            </div>
 
-          {/* Bottom Action Bar */}
-          <div className="mt-8 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-xs sm:text-sm text-slate-300">
-              <strong className="text-white">MyPath</strong> is included in PathPort Pro—and
-              unlocked during your free {trialDays}-day trial.
-            </p>
-            <a
-              href={APP_SIGN_UP_URL}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#2DD4BF] hover:bg-teal-300 text-slate-950 font-bold text-sm transition-colors shrink-0"
-            >
-              <span>Unlock MyPath in Your {trialDays}-Day Trial</span>
-              <ArrowRight className="w-4 h-4" />
-            </a>
+            {/* Grounded What-If Audit Callout */}
+            <div className="my-5 p-4 rounded-xl bg-slate-950/70 border border-slate-800/90 flex items-start gap-3">
+              <Compass className="w-4 h-4 text-[#2DD4BF] shrink-0 mt-0.5" />
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                <strong className="text-white font-semibold">MyPath Readiness Synthesis: </strong>
+                {trajectory.whatIfInsight}
+              </p>
+            </div>
+
+            {/* 6 Pillars Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {trajectory.pillars.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div
+                    key={item.pillar}
+                    className="p-5 rounded-xl bg-slate-950/60 border border-slate-800/90 hover:border-slate-700 transition-all flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between gap-2 mb-3">
+                        <span
+                          className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider border ${item.color}`}
+                        >
+                          <Icon className="w-3.5 h-3.5" />
+                          {item.pillar} Pillar
+                        </span>
+                        <span className="text-xs text-slate-400 font-mono">MyPath Career</span>
+                      </div>
+                      <h3 className="text-base font-bold text-white font-display leading-snug">
+                        {item.recommendation}
+                      </h3>
+                      <p className="mt-2 text-xs text-slate-300 leading-relaxed">{item.rationale}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Bottom Action Bar */}
+            <div className="mt-8 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <p className="text-xs sm:text-sm text-slate-300">
+                <strong className="text-white">MyPath Career</strong> is included in PathPort Pro—and
+                active during your free {trialDays}-day trial.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+                <Link
+                  to="/mypath/"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white/10 hover:bg-white/15 text-white border border-white/15 font-semibold text-sm transition-colors"
+                >
+                  <span>Explore MyPath Career</span>
+                </Link>
+                <a
+                  href={APP_SIGN_UP_URL}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#2DD4BF] hover:bg-teal-300 text-slate-950 font-bold text-sm transition-colors shrink-0"
+                >
+                  <span>Start Free {trialDays}-Day Pro Trial</span>
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
           </div>
-        </div>
+        ))}
       </div>
     </section>
   );

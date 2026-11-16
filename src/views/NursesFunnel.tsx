@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { BetaRegistrationModal } from '../components/BetaRegistrationModal';
@@ -303,6 +304,50 @@ export const NursesFunnel: React.FC = () => {
               }
             ]}
           />
+
+          {/* Popular State Nursing CEU Guides (Reduces Crawl Depth) */}
+          <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-xs space-y-5">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div>
+                <h2 className="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-white">
+                  Popular State Nursing CEU & License Renewal Guides
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1">
+                  Check mandatory topic hours, compact rules, and renewal cycles across all 50 US states and national boards.
+                </p>
+              </div>
+              <Link
+                to="/tools/renewal-calculator/"
+                className="text-xs font-bold text-[#0D5F57] dark:text-teal-400 hover:underline shrink-0"
+              >
+                Open Full 50-State Calculator →
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2.5">
+              {[
+                { name: 'Texas (TX)', slug: 'texas', hours: '20 hrs / 2y' },
+                { name: 'California (CA)', slug: 'california', hours: '30 hrs / 2y' },
+                { name: 'Florida (FL)', slug: 'florida', hours: '24 hrs / 2y' },
+                { name: 'New York (NY)', slug: 'new-york', hours: 'Topic mandates / 3y' },
+                { name: 'Pennsylvania (PA)', slug: 'pennsylvania', hours: '30 hrs / 2y' },
+                { name: 'Illinois (IL)', slug: 'illinois', hours: '20 hrs / 2y' },
+                { name: 'Ohio (OH)', slug: 'ohio', hours: '24 hrs / 2y' },
+                { name: 'Georgia (GA)', slug: 'georgia', hours: '30 hrs / 2y' },
+                { name: 'North Carolina (NC)', slug: 'north-carolina', hours: '30 hrs / 2y' },
+                { name: 'Michigan (MI)', slug: 'michigan', hours: '25 hrs / 2y' },
+              ].map((st) => (
+                <Link
+                  key={st.slug}
+                  to={`/tools/renewal-calculator/${st.slug}/`}
+                  className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/70 hover:bg-teal-50 dark:hover:bg-teal-950/40 border border-slate-200 dark:border-slate-700 transition-colors"
+                >
+                  <div className="text-xs font-bold text-slate-900 dark:text-white">{st.name}</div>
+                  <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{st.hours}</div>
+                </Link>
+              ))}
+            </div>
+          </div>
 
           {/* Bottom CTA Banner */}
           <div className="bg-white dark:bg-slate-900 rounded-3xl p-10 border border-slate-200 dark:border-slate-800 shadow-sm text-center space-y-4">

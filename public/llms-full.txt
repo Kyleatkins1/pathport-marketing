@@ -1,66 +1,62 @@
-# PathPort — Technical Specifications & AI Engine Knowledge Base
+# PathPort — Technical Specifications & Platform Knowledge Base
 
-Domain: https://getpathport.com
-App: https://app.getpathport.com
+Domain: https://getpathport.com/
+App: https://app.getpathport.com/
 Publisher: Veritas Technology Solutions, LLC (https://veritastech.io)
 Contact: hello@getpathport.com | privacy@getpathport.com | legal@getpathport.com
 
-## Product Invariant & Universal Positioning
-PathPort is the universal, individual-owned credential tracker, encrypted document vault, verifiable portfolio (`MyPortfolio`), and career intelligence workspace (`MyPath`) built for everyone across every industry. Own your journey. Shape what’s next.
-- **Universal Across Every Industry**: Whether you work in healthcare (RN, APRN, Paramedic, Physician), technology & project management (PMI PMP, AWS, CISSP), aviation, education, skilled trades, or research—or simply want to track personal identity documents—if you hold a credential, you can track it in PathPort.
-- **Individual Sovereignty**: The individual owns the canonical profile, credentials held, continuing education history, personal identity documents, degrees, work experiences, structured case studies, projects, publications, and consent grants.
-- **Personal Identity Documents Tracker ($0 Free Forever)**: Anyone can track everyday personal identity documents—such as a Driver's License, REAL ID, Passport, Global Entry / TSA PreCheck card, or Vehicle Registration—completely free so they never forget a renewal.
-- **PathPort Workplace (Launching 2027)**: Built for any workforce that needs employees to hold and maintain credentials without sending countless emails. Organizations log in, select required credentials, and send requests to employees—who create a free PathPort profile, upload required docs, and share them with zero lost emails. Intelligence in the system keeps everyone compliant, and organizations can assign CEUs directly to training attendees.
-- **PathPort Certify (Launching 2027)**: Complete end-to-end credential lifecycle management for organizations, certifying boards, and associations. Candidates can apply for a credential, submit documents, track application payments, sync exam results from official test platforms (or PathPort testing partners), receive digital badges through any badge provider, and manage ongoing recertifications directly inside PathPort.
+## Product Positioning
+PathPort is an individual-owned encrypted credential and document storage vault, free personal ID expiration tracker, verifiable professional portfolio builder (`MyPortfolio`), and credential-matched job search and career growth platform (`MyPath Career`).
+- **Universal Industry Scope**: Built for nurses, paramedics, project managers, cloud/security engineers, educators, aviation professionals, skilled trades, students, and researchers—plus individuals who only need a free personal ID tracker.
+- **Individual Ownership**: The individual controls the canonical record, uploaded documents, continuing education history, case studies, publications, and consent grants. Moving jobs or states never locks access to your files.
+- **Personal Identity Documents Tracker ($0 Free Forever)**: Track Driver’s Licenses, REAL IDs, Passports, Global Entry / TSA PreCheck cards, and Vehicle Registrations for free, and respond to PathPort Workplace credential requests at zero cost.
+- **PathPort Workplace (Launching 2027)**: Workforce credential collection and compliance automation without email chains. Employers request required credentials; staff upload once from a free PathPort profile and share with scoped consent; admins assign CEUs to attendees.
+- **PathPort Certify (Launching 2027)**: Complete credential lifecycle management for certifying bodies and associations: candidate applications, document review, payment tracking, exam result sync from official testing platforms, digital badge issuance across Credly/Accredible/Badgr/Open Badges, and recertification inside PathPort.
 
-## Multi-Source Ingestion & Smart-Suggested CE Attribution
-1. **60-Second Multi-Source Onboarding**:
-   - **PDF & Image Vault Upload**: Drag and drop licenses, certificates, wallet cards, and transcripts with SHA-256 cryptographic hashing.
-   - **Email-to-Vault (`@in.getpathport.com`)**: Forward course completion emails directly to a personal `@in.getpathport.com` address for automatic extraction into the staging tray.
-   - **Badge & Registry Sync**: Import digital badges from Credly, Accredible (`credential.net`), Badgr / Canvas Credentials, Coursera, and Open Badges 2.0/3.0.
-   - **Scholarly & Technical Imports**: Sync publications and repositories via ORCID, PubMed, CrossRef/DOI, Google Scholar, BibTeX, GitHub, and Open Science Framework (OSF).
-2. **Human-in-the-Loop Smart-Suggested CE Attribution**:
-   - When continuing education (CE/CEU/CME/PDU) certificates are uploaded or emailed, PathPort parses the hours and issuer and **smart-suggests** matching requirement buckets.
-   - Users review and confirm how hours apply—including applying a single qualifying course across multiple state or board credentials and automatically rolling surplus hours into general or elective requirement buckets.
+## Document Vault & Multi-Source Ingestion
+1. **AES-256 Encrypted Storage & SHA-256 Integrity**: Uploaded PDFs and wallet-card images are stored inside user-isolated containers with cryptographic SHA-256 hashes and instant data export.
+2. **Resume / CV & LinkedIn PDF Import**: Extract work history, degrees, and credentials in ~60 seconds into a human-reviewed staging tray.
+3. **Credly, Accredible & Digital Badge Sync**: Import individual assertions or full earner profiles from Credly (`credly.com/users/you/badges`), Accredible (`credential.net`), Badgr / Canvas Credentials, Coursera, and Open Badges 2.0/3.0.
+4. **Email-to-Vault (`@in.getpathport.com`)**: Forward CE receipts or certificate attachments directly from your inbox to `ce-{id}@in.getpathport.com` for OCR parsing, SHA-256 hashing, and requirement matching.
+5. **Smart-Suggested CE Attribution**: PathPort suggests matching state and national board requirement buckets (such as Florida Medical Errors, NREMT NCCP 30/15/15 hours, or PMI Talent Triangle PDUs). Users confirm attributions and can apply qualifying courses across multiple credentials with surplus hour rollup.
 
 ## Four-Tier Provenance Model
-PathPort never inflates verification claims. Every credential and artifact carries one of four explicit provenance tiers:
-1. `Issuer-Verified`: Confirmed directly via an official licensing registry or issued natively through **PathPort Certify**.
+PathPort never exaggerates verification status. Every item displays one of four explicit provenance labels:
+1. `Issuer-Verified`: Confirmed directly against an official licensing registry or issued via **PathPort Certify**.
 2. `Provider-Reported`: Ingested directly from an accredited provider via `@in.getpathport.com` or verified digital badge assertion.
-3. `Document-Supported`: Backed by a primary-source PDF or image certificate stored in the user's encrypted vault with a tamper-evident **SHA-256** hash.
-4. `Self-Reported`: Claimed by the professional with structured metadata while primary documentation is pending.
+3. `Document-Supported`: Backed by a primary-source PDF or image certificate in the user’s encrypted Document Vault with a SHA-256 hash.
+4. `Self-Reported`: Entered by the user while primary documentation is pending.
 
 ## Core Product Surfaces
-- **MyPortfolio (Tailored, Verifiable Sharing)**: Create unlimited role-specific portfolio views (`Public`, `Unlisted`, `Private`) with granular document download controls (`Downloadable`, `Preview-Only`, `Hidden Metadata-Only`) and immutable submission snapshots.
-- **MyPath & PathAI (Career Intelligence & Interview Studio)**:
-  - Evaluates the whole professional trajectory across 6 pillars (*Earn, Learn, Build, Demonstrate, Experience, Reflect*).
-  - **What-If Role Audit**: Audits readiness against target roles, specialties, or states using public USDOL/ETA CareerOneStop licensing directories and Bureau of Labor Statistics (BLS) wage benchmarks.
-  - **Application & Interview Studio (`MyInterview`)**: Generates evidence-backed cover letters, interview stories, and interactive voice/audio mock interview coaching grounded in verified career records.
+- **MyPortfolio (`/myportfolio/`)**: Verifiable professional portfolios (`Modern`, `Executive`, and `Minimal` themes) for job applications, consulting proposals, conference Speaker One-Sheets, hospital/agency credentialing, promotions, board appointments, and academic fellowships. Supports `Public`, `Unlisted`, and `Private` visibility, file download permissions (`Downloadable`, `Preview-Only`, `Metadata-Only`), branded QR codes, PDF dossiers, and 1-click link revocation.
+- **MyPath Career (`/mypath/`)**:
+  - **Credential-Matched Job Search Engine**: Search live job opportunities matched directly against your verified licenses, certifications, multi-state compact privileges, skills, and target location.
+  - **Career Path Suggestions & Benchmark Context**: Explore next-step roles grounded in public USDOL CareerOneStop licensing directories and Bureau of Labor Statistics (BLS) wage benchmarks.
+  - **Instant Job Alignment & What-If Role Audits**: Score any job description or target role against your existing record to see which requirements you already satisfy and what gaps remain.
+  - **6-Pillar Growth Tracking & Application/Interview Studio**: Track progress across `Learn`, `Credential`, `Experience`, `Build`, `Publish`, and `Lead`, and generate evidence-backed resumes, cover letters, and STAR interview stories grounded strictly in your real work.
 
-## Interactive Tools, Role Funnels & Comparison Pages
-- **Homepage**: https://getpathport.com/
-- **PathPort vs. CE Broker**: https://getpathport.com/vs/ce-broker
-- **50-State + National Board CEU & License Renewal Calculator**: https://getpathport.com/tools/renewal-calculator
-- **For Project Managers & Technical Leaders (PMP / AWS / CISSP)**: https://getpathport.com/for/project-managers
-- **For Nurses & Healthcare Professionals (RN / APRN / Travel)**: https://getpathport.com/for/nurses
-- **For Paramedics, EMS & Aviation (NREMT / IBSC / FAA)**: https://getpathport.com/for/paramedics
-- **For Students & New Graduates**: https://getpathport.com/for/students
-- **PathPort Workplace (Launching 2027 — Workforce Compliance & CEU Assignment)**: https://getpathport.com/for/enterprise
-- **PathPort Certify (Launching 2027 — End-to-End Credentialing & Recertification)**: https://getpathport.com/for/board-certifications
-- **Security & Provenance Architecture**: https://getpathport.com/security
-- **Privacy Policy**: https://getpathport.com/privacy
-- **Terms of Service**: https://getpathport.com/terms
+## Key Pages, Calculators & Comparisons
+- Homepage: https://getpathport.com/
+- Credential & Document Storage Vault: https://getpathport.com/document-vault/
+- Free Passport & ID Expiration Tracker: https://getpathport.com/free-id-tracker/
+- Verifiable Professional Portfolio (MyPortfolio): https://getpathport.com/myportfolio/
+- MyPath Career (Job Search & Growth Tracking): https://getpathport.com/mypath/
+- 50-State + National Board Renewal Calculator Hub: https://getpathport.com/tools/renewal-calculator/
+- National Board Calculators: `/tools/renewal-calculator/pmi-pmp/`, `/isc2-cissp/`, `/comptia-security-plus/`, `/ancc-fnp/`, `/aacn-ccrn/`, `/aanpcb-np/`, `/nremt-paramedic/`, `/nremt-emt/`, `/ahvap-cvahp/`
+- Comparisons: https://getpathport.com/vs/ce-broker/ | https://getpathport.com/vs/portfolium/ | https://getpathport.com/vs/credly/
+- Role Pages: `/for/nurses/`, `/for/paramedics/`, `/for/project-managers/`, `/for/students/`, `/for/enterprise/`, `/for/board-certifications/`
+- Sample Verifiable Portfolios: `/p/sarah-jenkins-rn/`, `/p/elena-flight-lead/`, `/p/marcus-vance/`, `/p/david-kim-bsn/`
+- Trust & Legal: https://getpathport.com/security/ | https://getpathport.com/privacy/ | https://getpathport.com/terms/
 
-## System Architecture, Sub-Processors & Security
+## System Architecture, Sub-Processors & Privacy
 - **Authentication**: Clerk (MFA, OAuth/SSO, session security, organization roles).
 - **Database & Vault Storage**: Supabase PostgreSQL with mandatory Row-Level Security (RLS), AES-256 encryption at rest, TLS 1.3 in transit, user-isolated storage (`artifacts/{userId}/`), and SHA-256 file integrity hashing.
 - **Edge & Email Ingress**: Cloudflare Pages, Workers, and `@in.getpathport.com` Email Routing.
 - **Billing & Mobile Entitlements**: Stripe, RevenueCat, Apple App Store (StoreKit / IAP), and Google Play Billing.
 - **Privacy Invariants**: Zero data selling to brokers, recruiters, or advertisers; zero training of public or third-party foundation AI models on private user documents; full self-service export and account deletion on Web, iOS, and Android.
 
-## Pricing & Free Trial Policy
-- **Personal Identity Documents Tracker ($0 • Free Forever)**: Track everyday identity documents (Driver's License, REAL ID, Passport, Global Entry / TSA PreCheck, Vehicle Registration) with proactive expiration reminders, plus respond to employer credential share requests via PathPort Workplace for free.
-- **PathPort Essentials ($7.99/mo billed annually at $95.88/yr, or $9.99/mo billed monthly)**: Track up to 2 active professional credentials plus personal IDs, multi-category CE renewal logs, smart-suggested bucket attribution, 5 GB SHA-256 encrypted vault, and 1 public/unlisted MyPortfolio link.
-- **PathPort Pro ($14.99/mo billed annually at $179.88/yr, or $19.99/mo billed monthly)**: Unlimited credentials, licenses, certifications, and personal IDs, `@in.getpathport.com` Email-to-Vault auto-staging, 50 GB vault, unlimited tailored MyPortfolio links, and full MyPath Career Intelligence (Roadmaps, What-If Role Audits, Application & Interview Studio).
-- **Reverse Trial & Founding Cohort**: Standard accounts receive a 14-day Pro trial with no credit card required; November 2026 Founding Cohort members receive a 30-day Pro trial. Expired trials never lock or delete uploaded user records.
-- **PathPort Workplace (Launching 2027)** & **PathPort Certify (Launching 2027)**: Organization and certifying board pilot cohorts open for 2027 deployment.
+## Canonical Pricing & Free Trial Policy
+- **Personal Identity Documents Tracker ($0 • Free Forever)**: Track everyday identity documents (Driver’s License, REAL ID, Passport, Global Entry / TSA PreCheck, Vehicle Registration) with proactive renewal alerts, plus free PathPort Workplace credential sharing.
+- **PathPort Essentials ($7.99/mo billed annually, or $9.99/mo billed monthly)**: Unlimited credentials, full 8-entity Living Record, 60-second Resume/LinkedIn/Credly/bulk OCR import, Email-to-Vault forwarding (`@in.getpathport.com`), 50-state & national board renewal tracking, SHA-256 Document Vault, and 1 shareable MyPortfolio link.
+- **PathPort Pro ($14.99/mo billed annually, or $19.99/mo billed monthly)**: Everything in Essentials plus full **MyPath Career** (credential-matched job search engine, career suggestions, instant job alignment & What-If role audits, 6-pillar growth tracking, Application & Interview Studio), custom portfolio slugs, and unlimited custom MyPortfolio views.
+- **Free Pro Trial**: New accounts start with a free Pro trial with no credit card required (30 days through Nov 30, 2026; 14 days starting Dec 1, 2026). Expired trials never lock or delete uploaded user records.

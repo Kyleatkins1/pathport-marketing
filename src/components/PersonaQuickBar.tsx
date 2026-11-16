@@ -9,6 +9,8 @@ import {
   ArrowRight,
   Calculator,
   Scale,
+  CreditCard,
+  BadgeCheck,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -16,42 +18,42 @@ const PERSONA_CARDS = [
   {
     title: 'Nurses & Clinicians',
     sub: '50-State RN/APRN CEUs, NLC Compact & ANCC/AACN',
-    href: '/for/nurses',
+    href: '/for/nurses/',
     icon: Stethoscope,
     accent: 'text-[#0D5F57] bg-teal-50 border-teal-200/70 group-hover:bg-[#0D5F57] group-hover:text-white',
   },
   {
     title: 'EMS & Paramedics',
     sub: 'NREMT 60-hr NCCP buckets & agency reciprocity',
-    href: '/for/paramedics',
+    href: '/for/paramedics/',
     icon: Flame,
     accent: 'text-orange-600 bg-orange-50 border-orange-200/70 group-hover:bg-orange-600 group-hover:text-white',
   },
   {
     title: 'Project Managers',
     sub: 'PMI Talent Triangle PDUs & delivery case studies',
-    href: '/for/project-managers',
+    href: '/for/project-managers/',
     icon: Briefcase,
     accent: 'text-indigo-600 bg-indigo-50 border-indigo-200/70 group-hover:bg-indigo-600 group-hover:text-white',
   },
   {
     title: 'Students & Graduates',
     sub: 'Keep clinical logs & capstones after graduation',
-    href: '/for/students',
+    href: '/for/students/',
     icon: GraduationCap,
     accent: 'text-purple-600 bg-purple-50 border-purple-200/70 group-hover:bg-purple-600 group-hover:text-white',
   },
   {
     title: 'PathPort Workplace',
     sub: 'Permissioned workforce readiness • Launching 2027',
-    href: '/for/enterprise',
+    href: '/for/enterprise/',
     icon: Building2,
     accent: 'text-slate-700 bg-slate-100 border-slate-200/70 group-hover:bg-slate-800 group-hover:text-white',
   },
   {
     title: 'PathPort Certify',
     sub: 'Board & issuer recertification • Launching 2027',
-    href: '/for/board-certifications',
+    href: '/for/board-certifications/',
     icon: Award,
     accent: 'text-amber-700 bg-amber-50 border-amber-200/70 group-hover:bg-amber-600 group-hover:text-white',
   },
@@ -109,18 +111,39 @@ export const PersonaQuickBar: React.FC = () => {
           </span>
           <div className="flex flex-wrap items-center gap-2.5">
             <Link
-              to="/tools/renewal-calculator"
+              to="/tools/renewal-calculator/"
               className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-[#0D5F57] border border-emerald-200/70 text-xs font-semibold transition-colors"
             >
               <Calculator className="w-3.5 h-3.5" />
               <span>50-State License & Board Renewal Calculator</span>
             </Link>
             <Link
-              to="/vs/ce-broker"
+              to="/free-id-tracker/"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200/80 text-slate-700 border border-slate-200 text-xs font-semibold transition-colors"
+            >
+              <CreditCard className="w-3.5 h-3.5" />
+              <span>Free Passport & ID Tracker</span>
+            </Link>
+            <Link
+              to="/vs/ce-broker/"
               className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200/80 text-slate-700 border border-slate-200 text-xs font-semibold transition-colors"
             >
               <Scale className="w-3.5 h-3.5" />
-              <span>Compare: PathPort vs. CE Broker</span>
+              <span>PathPort vs. CE Broker</span>
+            </Link>
+            <Link
+              to="/vs/portfolium/"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200/80 text-slate-700 border border-slate-200 text-xs font-semibold transition-colors"
+            >
+              <GraduationCap className="w-3.5 h-3.5" />
+              <span>Portfolium Alternative</span>
+            </Link>
+            <Link
+              to="/vs/credly/"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200/80 text-slate-700 border border-slate-200 text-xs font-semibold transition-colors"
+            >
+              <BadgeCheck className="w-3.5 h-3.5" />
+              <span>Credly Badge Organizer</span>
             </Link>
           </div>
         </div>

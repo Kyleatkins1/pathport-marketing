@@ -1,0 +1,177 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Navbar } from '../components/Navbar';
+import { Footer } from '../components/Footer';
+import { BetaRegistrationModal } from '../components/BetaRegistrationModal';
+import StaticFaqAndCta from '../components/StaticFaqAndCta.astro';
+import { buildFaqJsonLd, type FaqEntry } from '../lib/seo-helpers';
+import { APP_SIGN_UP_URL, getActiveTrialDays } from '../lib/modal-events';
+
+const trialDays = getActiveTrialDays();
+
+const faqs: FaqEntry[] = [
+  {
+    q: 'How does the MyPath Career job search engine match openings?',
+    a: 'MyPath Career reads your verified licenses, board certifications, multi-state compact privileges, skills, and preferred locations inside PathPort to surface open roles you already qualify for—and shows where an active license or cert gives you an edge.',
+  },
+  {
+    q: 'What data backs MyPath Career path suggestions and salary benchmarks?',
+    a: 'Role paths and What-If gap audits use public USDOL CareerOneStop licensing directories and Bureau of Labor Statistics (BLS) occupational wage data alongside deterministic rule matching across your PathPort record.',
+  },
+  {
+    q: 'How do instant job alignment scores and What-If role audits work?',
+    a: 'Paste any target job posting or pick a next-step title. MyPath Career scores how closely your current credentials, clinical or project hours, education, and case studies align with the posting—and lists exact gaps to close.',
+  },
+  {
+    q: 'What are the 6 pillars of MyPath Career growth tracking?',
+    a: 'MyPath tracks your ongoing development across Learn, Credential, Experience, Build, Publish, and Lead so career progression never reduces to simply collecting more certificates when a case study or preceptorship would move the needle faster.',
+  },
+];
+
+const engines = [
+  {
+    label: 'Engine 1',
+    title: 'Credential-Matched Job Search Engine',
+    detail:
+      'Search live job listings filtered against your actual licenses, board certifications, multi-state compact privileges, skills, and target location instead of scrolling generic keyword feeds.',
+  },
+  {
+    label: 'Engine 2',
+    title: 'Career Path Suggestions & Benchmark Context',
+    detail:
+      'Review realistic next-step roles—from bedside RN to ACNP, flight medic to Operations Chief, or PMP to VP of Programs—grounded in USDOL CareerOneStop licensure rules and BLS wage data.',
+  },
+  {
+    label: 'Engine 3',
+    title: 'Instant Job Alignment & What-If Gap Audits',
+    detail:
+      'Evaluate any job description against your current PathPort record in seconds. See which requirements you already satisfy and exactly which license, CE topic, or project artifact remains.',
+  },
+  {
+    label: 'Engine 4',
+    title: '6-Pillar Growth Tracking + Application & Interview Studio',
+    detail:
+      'Track growth across Learn, Credential, Experience, Build, Publish, and Lead—then generate evidence-backed resumes, cover letters, and STAR interview prep strictly from real work in your Vault.',
+  },
+];
+
+const trajectories = [
+  {
+    track: 'Healthcare & Nursing',
+    from: 'BSN, RN — Critical Care (CCRN)',
+    to: 'Acute Care Nurse Practitioner (ACNP) / Nurse Director',
+    steps: 'Checks APRN pharmacology overlap, 120 preceptorship hours, and unit QI case studies.',
+  },
+  {
+    track: 'Technology & Project Leadership',
+    from: 'Technical Program Manager (PMP, AWS)',
+    to: 'VP of Program Delivery / Enterprise PMO Lead',
+    steps: 'Highlights multi-region cloud ROI metrics, PMI Business Acumen PDUs, and steering governance.',
+  },
+  {
+    track: 'EMS, Aviation & Public Safety',
+    from: 'Critical Care Flight Paramedic (NRP, FP-C)',
+    to: 'Regional EMS Operations Chief / Clinical Educator',
+    steps: 'Aligns FEMA ICS-300/400 requirements, QA chart audits, and field training academy logs.',
+  },
+];
+---
+
+<BaseLayout
+  title="MyPath Career: Job Search & Growth Software | PathPort"
+  description="Credential-matched job search engine, career path suggestions, instant job alignment audits, and 6-pillar growth tracking built on your real record."
+  canonicalPath="/mypath/"
+  includeSoftwareSchema={true}
+  breadcrumbs={[
+    { name: 'MyPath Career', path: '/mypath/' },
+  ]}
+  extraJsonLd={buildFaqJsonLd(faqs)}
+>
+  <Navbar client:load />
+
+  <main id="main-content" tabindex="-1" class="pb-20 focus:outline-none">
+    <section class="bg-[#0B132B] text-white py-20 border-b border-slate-800">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/15 border border-teal-400/30 text-teal-300 text-xs font-semibold">
+          MyPath Career • Credential-Matched Job Search &amp; Growth Tracking Software
+        </span>
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold font-display tracking-tight leading-[1.08] text-white">
+          Credential-matched job search and{' '}
+          <span class="text-[#2DD4BF]">professional growth tracking software.</span>
+        </h1>
+        <p class="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
+          Generic job boards ignore your licenses, compact states, and CE hours.{' '}
+          <strong>MyPath Career</strong> connects directly to your PathPort record to run a live
+          job search engine, score job alignment, suggest career paths with real wage and licensing
+          data, and prepare evidence-backed applications.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
+          <a
+            href={APP_SIGN_UP_URL}
+            class="w-full sm:w-auto px-7 py-4 rounded-xl bg-[#2DD4BF] hover:bg-teal-300 text-slate-950 font-bold text-base transition-colors shadow-lg"
+          >
+            Try MyPath Career ({trialDays}-Day Free Trial)
+          </a>
+          <a
+            href="/myportfolio/"
+            class="w-full sm:w-auto px-6 py-4 rounded-xl bg-white/10 hover:bg-white/15 text-white border border-white/15 font-semibold text-base transition-colors"
+          >
+            Pair With Verifiable MyPortfolio
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {engines.map((eng) => (
+          <div class="rounded-2xl bg-white border border-slate-200/90 p-7 shadow-lg space-y-2.5">
+            <div class="text-xs font-bold uppercase tracking-wider text-[#0D5F57]">{eng.label}</div>
+            <h2 class="text-lg font-bold font-display text-slate-900">{eng.title}</h2>
+            <p class="text-sm text-slate-600 leading-relaxed">{eng.detail}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-14 space-y-6">
+      <div class="text-center max-w-3xl mx-auto space-y-2">
+        <h2 class="text-2xl sm:text-3xl font-extrabold font-display text-slate-900">
+          Example Career Paths Mapped Inside MyPath Career
+        </h2>
+        <p class="text-sm sm:text-base text-slate-600">
+          Deterministic gap checks and 6-pillar guidance calibrated across healthcare, technology,
+          and operational leadership.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {trajectories.map((traj) => (
+          <div class="rounded-2xl bg-white border border-slate-200/90 p-6 shadow-2xs space-y-2.5">
+            <div class="text-xs font-bold uppercase tracking-wider text-[#0D5F57]">{traj.track}</div>
+            <div class="text-sm font-bold text-slate-900">{traj.from} → {traj.to}</div>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">{traj.steps}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <StaticFaqAndCta
+      faqTitle="MyPath Career & Growth Tracking FAQ"
+      faqs={faqs}
+      ctaHeadline="See which jobs and next roles match your verified record today"
+      ctaBody={`Import your resume, licenses, or Credly badges in 60 seconds and test MyPath Career, job alignment audits, and Application Studio free for ${trialDays} days.`}
+      ctaSecondaryLabel="Explore Verifiable MyPortfolio"
+      ctaSecondaryHref="/myportfolio/"
+      relatedLinks={[
+        { label: 'Document & Credential Vault', href: '/document-vault/' },
+        { label: 'Verifiable MyPortfolio', href: '/myportfolio/' },
+        { label: 'For Nurses', href: '/for/nurses/' },
+        { label: 'For Project Managers', href: '/for/project-managers/' },
+      ]}
+    />
+  </main>
+
+  <Footer />
+  <BetaRegistrationModal client:idle />
+</BaseLayout>

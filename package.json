@@ -5,13 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && cp dist/sitemap-0.xml dist/sitemap.xml",
     "lint": "tsc --noEmit",
     "preview": "astro preview",
     "deploy": "npm run build && CLOUDFLARE_ACCOUNT_ID=2ef2b78269fdf3665fc30bc1b986c4eb npx wrangler pages deploy dist --project-name=pathport-marketing --branch=main"
   },
   "dependencies": {
     "@astrojs/react": "^7.1.2",
+    "@astrojs/sitemap": "^3.7.5",
     "astro": "^7.4.4",
     "clsx": "^2.1.1",
     "cookie": "^1.1.1",

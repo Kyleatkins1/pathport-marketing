@@ -1,0 +1,187 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Navbar } from '../components/Navbar';
+import { Footer } from '../components/Footer';
+import { BetaRegistrationModal } from '../components/BetaRegistrationModal';
+import StaticFaqAndCta from '../components/StaticFaqAndCta.astro';
+import { buildFaqJsonLd, type FaqEntry } from '../lib/seo-helpers';
+import { APP_SIGN_UP_URL, getActiveTrialDays } from '../lib/modal-events';
+
+const trialDays = getActiveTrialDays();
+
+const faqs: FaqEntry[] = [
+  {
+    q: 'What can I use a MyPortfolio link for besides applying for a job?',
+    a: 'Professionals use MyPortfolio across client and consulting proposals, conference Speaker One-Sheets, hospital or agency credentialing packets, internal promotion reviews, board seat nominations, academic fellowships, and grant or scholarship applications.',
+  },
+  {
+    q: 'How is MyPortfolio different from a LinkedIn profile or personal website?',
+    a: 'LinkedIn is a single static social profile with self-entered text, and personal websites expose the same copy to everyone. MyPortfolio pulls directly from your encrypted PathPort record to create tailored, permissioned views with SHA-256 backed evidence, granular file download controls, and 1-click revocation.',
+  },
+  {
+    q: 'What visual themes and export formats are included?',
+    a: 'Every portfolio view supports three built-in presentation themes (Modern, Executive, and Minimal), branded QR codes for resumes or business cards, and formatted PDF exports such as Curriculum Vitae and Speaker One-Sheets.',
+  },
+  {
+    q: 'How many MyPortfolio views are included in Essentials vs. Pro?',
+    a: 'PathPort Essentials ($7.99/mo billed annually) includes 1 live MyPortfolio share link and PDF export. PathPort Pro ($14.99/mo billed annually) includes unlimited audience-specific portfolio links, custom slugs (/p/your-name), and Speaker One-Sheet PDFs.',
+  },
+];
+
+const audiences = [
+  {
+    title: 'Client & Consulting Proposals',
+    detail:
+      'Share only the technical certifications, architecture case studies, and delivery ROI relevant to a prospective client without exposing your full employment timeline.',
+  },
+  {
+    title: 'Conference Speaker One-Sheets',
+    detail:
+      'Package peer-reviewed publications, past conference talks, bio, and credentials into a shareable URL or PDF Speaker One-Sheet for event organizers.',
+  },
+  {
+    title: 'Hospital, EMS & Agency Credentialing',
+    detail:
+      'Present active state licenses, NLC compact status, board certifications, and AHA cards in one verifiable packet instead of emailing ten separate PDF attachments.',
+  },
+  {
+    title: 'Promotions, Board Seats & Fellowships',
+    detail:
+      'Highlight committee leadership, clinical quality improvement outcomes, mentorship hours, and letters of impact for executive or academic review panels.',
+  },
+  {
+    title: 'Hiring & Career Transitions',
+    detail:
+      'Give hiring managers direct proof behind every bullet point—Challenge, Approach, Outcome, and attached artifacts backed by clear provenance labels.',
+  },
+  {
+    title: 'Graduates & Research Fellows',
+    detail:
+      'Present clinical rotations, capstone engineering prototypes, lab metrics, and faculty evaluations on a permanent link that stays yours after graduation.',
+  },
+];
+
+const sampleLinks = [
+  { name: 'Sarah Jenkins, BSN, RN', role: 'Critical Care Nurse & Preceptor', href: '/p/sarah-jenkins-rn/' },
+  { name: 'Marcus Vance, PMP, CSM', role: 'Principal Technical Program Manager', href: '/p/marcus-vance/' },
+  { name: 'Elena Rodriguez, NRP, FP-C', role: 'Critical Care Flight Paramedic', href: '/p/elena-flight-lead/' },
+  { name: 'David Kim, MS', role: 'Bioengineering Research Fellow', href: '/p/david-kim-bsn/' },
+];
+---
+
+<BaseLayout
+  title="Verifiable Professional Portfolio Builder | PathPort"
+  description="Publish verifiable MyPortfolio links and PDF dossiers for consulting, speaking, hospital credentialing, board appointments, fellowships, and job applications."
+  canonicalPath="/myportfolio/"
+  includeSoftwareSchema={true}
+  breadcrumbs={[
+    { name: 'MyPortfolio Builder', path: '/myportfolio/' },
+  ]}
+  extraJsonLd={buildFaqJsonLd(faqs)}
+>
+  <Navbar client:load />
+
+  <main id="main-content" tabindex="-1" class="pb-20 focus:outline-none">
+    <section class="bg-[#0B132B] text-white py-20 border-b border-slate-800">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/15 border border-amber-400/30 text-amber-200 text-xs font-semibold">
+          MyPortfolio • Maintain Your Record Once, Share Custom Views Anywhere
+        </span>
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold font-display tracking-tight leading-[1.08] text-white">
+          Verifiable professional portfolios for{' '}
+          <span class="text-[#2DD4BF]">every audience you serve.</span>
+        </h1>
+        <p class="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
+          Select exactly which credentials, case studies, publications, and PDFs to present for a
+          client pitch, speaking invitation, hospital credentialing packet, promotion review, or
+          job application. Control download permissions and revoke access in one click.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
+          <a
+            href={APP_SIGN_UP_URL}
+            class="w-full sm:w-auto px-7 py-4 rounded-xl bg-[#2DD4BF] hover:bg-teal-300 text-slate-950 font-bold text-base transition-colors shadow-lg"
+          >
+            Build Your MyPortfolio ({trialDays}-Day Free Trial)
+          </a>
+          <a
+            href="/p/sarah-jenkins-rn/"
+            class="w-full sm:w-auto px-6 py-4 rounded-xl bg-white/10 hover:bg-white/15 text-white border border-white/15 font-semibold text-base transition-colors"
+          >
+            Inspect Live Sample Portfolio
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {audiences.map((aud) => (
+          <div class="rounded-2xl bg-white border border-slate-200/90 p-6 shadow-lg space-y-2">
+            <h2 class="text-base font-bold font-display text-slate-900">{aud.title}</h2>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">{aud.detail}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-14 space-y-6">
+      <div class="rounded-2xl bg-white border border-slate-200/90 p-7 sm:p-9 shadow-2xs space-y-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          <div class="space-y-3">
+            <h2 class="text-2xl font-extrabold font-display text-slate-900">
+              Granular Privacy, Provenance Labels &amp; Presentation Themes
+            </h2>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Every MyPortfolio view is a live curated lens over your private Vault—not a stale copy
+              saved in another app. Set each link to <strong>Public</strong>,{' '}
+              <strong>Unlisted</strong>, or <strong>Private</strong>, and set every document to{' '}
+              <strong>Downloadable</strong>, <strong>Preview-Only</strong>, or{' '}
+              <strong>Metadata-Only</strong>.
+            </p>
+            <div class="flex flex-wrap gap-2 pt-1 text-xs font-semibold">
+              <span class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-800">Modern Theme</span>
+              <span class="px-3 py-1.5 rounded-lg bg-slate-900 text-white">Executive Theme</span>
+              <span class="px-3 py-1.5 rounded-lg bg-emerald-50 text-[#0D5F57] border border-emerald-200">Minimal Theme</span>
+              <span class="px-3 py-1.5 rounded-lg bg-amber-50 text-amber-900 border border-amber-200">Branded QR + PDF Dossier</span>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="text-xs font-bold uppercase tracking-wider text-slate-500">
+              Inspect Live Sample MyPortfolio Records
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {sampleLinks.map((sample) => (
+                <a
+                  href={sample.href}
+                  class="p-4 rounded-xl bg-slate-50 hover:bg-teal-50/70 border border-slate-200 hover:border-[#0D5F57]/40 transition-colors"
+                >
+                  <div class="text-sm font-bold text-slate-900">{sample.name}</div>
+                  <div class="text-xs text-slate-600 mt-0.5">{sample.role}</div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <StaticFaqAndCta
+      faqTitle="MyPortfolio FAQ"
+      faqs={faqs}
+      ctaHeadline="Present verified evidence instead of unverified bullet points"
+      ctaBody={`Maintain your record once in PathPort and generate tailored MyPortfolio views, QR codes, and PDF dossiers in seconds during your ${trialDays}-day free trial.`}
+      ctaSecondaryLabel="Explore Document Vault"
+      ctaSecondaryHref="/document-vault/"
+      relatedLinks={[
+        { label: 'Document & Credential Vault', href: '/document-vault/' },
+        { label: 'MyPath Career Job Search', href: '/mypath/' },
+        { label: 'Portfolium Alternative', href: '/vs/portfolium/' },
+        { label: 'Credly Badge Wallet', href: '/vs/credly/' },
+      ]}
+    />
+  </main>
+
+  <Footer />
+  <BetaRegistrationModal client:idle />
+</BaseLayout>

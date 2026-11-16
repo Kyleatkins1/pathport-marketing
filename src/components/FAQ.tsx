@@ -8,20 +8,24 @@ export interface FAQItem {
 
 export const HOMEPAGE_FAQS: FAQItem[] = [
   {
-    q: 'Is PathPort only for healthcare, or can anyone track credentials and identity documents?',
-    a: 'PathPort is built for everyone—if you have a credential, you can track it. Whether you hold tech and cloud certifications (AWS, CompTIA, ISC2), project management credentials (PMP, CSM), aviation or trade licenses, education certificates, or clinical boards, PathPort tracks them in one place. PathPort also includes a free Personal Identity Documents tier so anyone can track everyday IDs—like a Driver’s License, Passport, or Global Entry—for free.',
+    q: 'Is PathPort only for healthcare, or can anyone use it for credential and document storage?',
+    a: 'PathPort is built for everyone—if you have a credential, you can track it. Whether you hold tech and cloud certifications (AWS, CompTIA, ISC2), project management credentials (PMP, CSM), aviation or trade licenses, education certificates, or clinical boards, PathPort tracks and stores your files in one encrypted Document Vault. PathPort also includes a $0 Free Forever Personal Identity Documents tier for tracking everyday IDs like a Driver’s License, Passport, or Global Entry.',
   },
   {
     q: 'Do I have to type all of my past licenses, jobs, digital badges, and CE certificates by hand?',
     a: 'No. During setup, you can drop in your existing resume/CV (PDF or DOCX), a LinkedIn profile PDF export, or a batch of CE certificate PDFs and wallet card photos. You can also paste badge URLs or your entire earner profile link from Credly (credly.com/users/you/badges), Accredible (credential.net), Badgr/Canvas, Coursera, or Open Badges—and forward completion emails directly to your personal @in.getpathport.com address. PathPort extracts and deduplicates everything into a staged review tray so you can confirm each item before it enters your record.',
   },
   {
+    q: 'How does MyPath Career match jobs and track professional growth?',
+    a: 'MyPath Career includes a credential-matched job search engine that pairs open roles with your verified licenses, certifications, multi-state compact status, and location. You also get rules-backed career path suggestions (with CareerOneStop licensing rules and BLS wage context), instant job-alignment gap audits against any posting, 6-pillar professional growth tracking (Learn, Credential, Experience, Build, Publish, Lead), and an Application & Interview Studio grounded in your actual record.',
+  },
+  {
     q: 'How is PathPort different from CE Broker or my employer’s HR portal?',
-    a: 'CE Broker is a state compliance reporting tool built for participating state boards, and employer HR portals belong to your company. The day you move states or change employers, your history is either locked behind an old login or limited to a single board. PathPort is owned by you for life, tracks renewals across all 50 states and national boards (PMI, CompTIA, ISC2, ANCC, AACN, NREMT), and includes MyPortfolio and MyPath.',
+    a: 'CE Broker is a state compliance reporting tool built for participating state boards, and employer HR portals belong to your company. The day you move states or change employers, your history is either locked behind an old login or limited to a single board. PathPort is owned by you for life, tracks renewals across all 50 states and national boards (PMI, CompTIA, ISC2, ANCC, AACN, NREMT), and includes MyPortfolio and MyPath Career.',
   },
   {
     q: 'What is the difference between the Free Personal Identity Tracker, Essentials, and Pro?',
-    a: 'Our Personal Identity Documents tier ($0 Free Forever) is built specifically for people who only want to track everyday identity documents—like a Driver’s License, Passport, Global Entry / TSA PreCheck, or Vehicle Registration—so they never forget a renewal. PathPort Essentials ($9.99/mo or $7.99/mo billed annually) gives you the complete 8-Entity Living Record, 60-second multi-source & Credly import, @in.getpathport.com email forwarding, 50-state and board renewal tracking, your private SHA-256 Document Vault, and 1 public MyPortfolio link. PathPort Pro ($19.99/mo or $14.99/mo billed annually) adds MyPath Career Intelligence—including 6-pillar career roadmaps, What-If Role Audits, Application & Interview Studio, and unlimited custom MyPortfolio views.',
+    a: 'Our Personal Identity Documents tier ($0 Free Forever) is built specifically for people who only want to track everyday identity documents—like a Driver’s License, Passport, Global Entry / TSA PreCheck, or Vehicle Registration—so they never forget a renewal. PathPort Essentials ($9.99/mo or $7.99/mo billed annually) gives you unlimited credentials, the 8-Entity Living Record, 60-second multi-source & Credly import, @in.getpathport.com email forwarding, 50-state and board renewal tracking, your private SHA-256 Document Vault, and 1 public MyPortfolio link. PathPort Pro ($19.99/mo or $14.99/mo billed annually) adds MyPath Career (job search engine, career suggestions, job alignment audits, 6-pillar growth tracking, Application & Interview Studio) and unlimited custom MyPortfolio views.',
   },
   {
     q: 'How do PathPort Workplace and PathPort Certify work (Launching 2027)?',
@@ -73,11 +77,15 @@ export const FAQ: React.FC = () => {
                     }`}
                   />
                 </button>
-                {isOpen && (
-                  <div className="px-6 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
-                    {item.a}
-                  </div>
-                )}
+                <div
+                  className={
+                    isOpen
+                      ? 'px-6 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3'
+                      : 'hidden'
+                  }
+                >
+                  {item.a}
+                </div>
               </div>
             );
           })}

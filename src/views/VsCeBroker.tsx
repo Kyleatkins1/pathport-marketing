@@ -4,7 +4,7 @@ import {
   CheckCircle2,
   XCircle,
   ArrowRight,
-  Sparkles,
+  ShieldCheck,
   Scale,
   Compass,
   FileText,
@@ -19,6 +19,25 @@ import { BetaRegistrationModal } from '../components/BetaRegistrationModal';
 interface VsCeBrokerProps {
   onOpenWaitlist?: (persona?: string) => void;
 }
+
+export const CE_BROKER_FAQS = [
+  {
+    q: 'If my state board mandates CE Broker, why would I still use PathPort?',
+    a: 'If your state board (such as Florida, Georgia, or Ohio) requires final license renewal reporting through CE Broker, you still keep your free state reporting account there. PathPort acts as your personal all-50-state record year-round—storing original SHA-256 PDFs, tracking national boards (ANCC, AACN, NREMT), building verifiable MyPortfolio links, and powering MyPath Career job matching.',
+  },
+  {
+    q: 'Does PathPort charge extra just to see which CE hours I still need?',
+    a: 'You can check all 50 state nursing board rules and national certification minimums for free anytime in our 50-State Renewal Calculator. Inside PathPort Essentials ($7.99/mo billed annually) and Pro ($14.99/mo billed annually), your full CE tracking, smart bucket suggestions, encrypted Document Vault, and MyPortfolio are included with a free trial.',
+  },
+  {
+    q: 'Can PathPort track non-nursing credentials, personal IDs, and badges too?',
+    a: 'Yes. Unlike state CE reporting portals, PathPort tracks multi-state licenses, NREMT NCCP buckets, PMI PDUs, Credly badges, clinical case studies, and even everyday personal IDs like Passports and Driver’s Licenses ($0 Free Forever).',
+  },
+  {
+    q: 'How fast can I import existing CE certificates from CE Broker or email?',
+    a: 'Drop up to 20 PDF certificates or wallet cards at once for OCR extraction, import your resume or LinkedIn PDF in 60 seconds, or forward course completion receipts straight to your personal @in.getpathport.com address.',
+  },
+];
 
 const COMPARISON_ROWS = [
   {
@@ -53,13 +72,13 @@ const COMPARISON_ROWS = [
     cebroker: 'Not available (no public portfolio or hiring presentation)',
   },
   {
-    feature: 'Career Intelligence & Role Readiness (MyPath)',
-    pathport: '6-pillar career roadmap, What-If Role Audits & Application Studio',
-    cebroker: 'Only recommends paid CE courses to finish your current state cycle',
+    feature: 'Career Intelligence & Job Search (MyPath Career)',
+    pathport: 'Credential-matched job search engine, job alignment audits & 6-pillar growth',
+    cebroker: 'Recommends paid CE courses to finish your current state cycle',
   },
   {
     feature: 'Annual Cost for Full Capabilities',
-    pathport: '$9.99/mo Essentials or $19.99/mo Pro (30-Day Free Pro Trial)',
+    pathport: '$7.99/mo Essentials or $14.99/mo Pro (billed annually) + Free ID Tracker',
     cebroker: 'Up to $99.99/yr Concierge tier just for single-state CE management',
   },
 ];
@@ -78,22 +97,23 @@ export const VsCeBroker: React.FC<VsCeBrokerProps> = ({ onOpenWaitlist }) => {
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/15 border border-teal-400/30 text-teal-300 text-xs font-semibold">
               <Scale className="w-3.5 h-3.5" />
               <span>
-                Platform Comparison • Individual Career Record vs. State Reporting Portal
+                CE Broker Alternative • Individual Career Vault vs. State Reporting Portal
               </span>
             </div>
 
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold font-display tracking-tight leading-[1.1] text-white">
-              CE Broker reports your hours to one state board.{' '}
+              A CE Broker alternative built for your{' '}
               <span className="text-[#2DD4BF]">
-                PathPort keeps your entire career record in your hands.
+                entire 50-state career, not one state board.
               </span>
             </h1>
 
             <p className="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
-              If your state board mandates CE Broker for final license submission, you still need a
-              workspace that belongs to <strong>you</strong>—one that tracks all 50 states, national
-              certifications (ANCC, AACN, NREMT), clinical projects, and career advancement even
-              when you move states or change hospitals.
+              <strong>TL;DR:</strong> CE Broker is built as a compliance reporting pipe for
+              participating state boards. PathPort belongs to <strong>you</strong>—storing every
+              certificate in an encrypted vault across all 50 states, tracking national boards
+              (ANCC, AACN, NREMT), publishing verifiable MyPortfolio links, and matching live jobs
+              in MyPath Career.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
@@ -105,7 +125,7 @@ export const VsCeBroker: React.FC<VsCeBrokerProps> = ({ onOpenWaitlist }) => {
                 <ArrowRight className="w-4.5 h-4.5" />
               </a>
               <Link
-                to="/tools/renewal-calculator"
+                to="/tools/renewal-calculator/"
                 className="w-full sm:w-auto px-6 py-4 rounded-xl bg-white/10 hover:bg-white/15 text-white border border-white/15 font-semibold text-base transition-colors flex items-center justify-center gap-2"
               >
                 <Calculator className="w-4.5 h-4.5 text-[#2DD4BF]" />
@@ -215,18 +235,94 @@ export const VsCeBroker: React.FC<VsCeBrokerProps> = ({ onOpenWaitlist }) => {
           </div>
         </section>
 
+        {/* Honest Fit + Top State Guides + FAQ */}
+        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-14 space-y-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="rounded-2xl bg-white border border-slate-200/90 p-7 space-y-3">
+              <h2 className="text-xl font-bold font-display text-slate-900">
+                When to keep CE Broker
+              </h2>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                If you practice in a state where the Board of Nursing or EMS agency mandates CE
+                Broker for direct provider reporting at renewal time (such as Florida, Georgia, or
+                Ohio), keep your free CE Broker account for statutory submission.
+              </p>
+            </div>
+            <div className="rounded-2xl bg-emerald-50/70 border border-emerald-200/80 p-7 space-y-3">
+              <h2 className="text-xl font-bold font-display text-slate-900">
+                Why clinicians run their record on PathPort
+              </h2>
+              <p className="text-sm text-slate-700 leading-relaxed">
+                Hold a multi-state compact RN plus California, ANCC/AACN boards, AHA cards, or want
+                encrypted document storage, verifiable MyPortfolio links, and MyPath Career job
+                matching? PathPort keeps your lifetime record portable across every state and job.
+              </p>
+            </div>
+          </div>
+
+          <div className="rounded-2xl bg-white border border-slate-200/90 p-7 space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <h2 className="text-lg font-bold font-display text-slate-900">
+                Check State Renewal Requirements Free (No Paywall)
+              </h2>
+              <Link
+                to="/tools/renewal-calculator/"
+                className="text-xs font-bold text-[#0D5F57] hover:underline"
+              >
+                View all 50 states + national boards →
+              </Link>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-2.5">
+              {[
+                { name: 'Florida (FL)', slug: 'florida' },
+                { name: 'Texas (TX)', slug: 'texas' },
+                { name: 'California (CA)', slug: 'california' },
+                { name: 'Georgia (GA)', slug: 'georgia' },
+                { name: 'Ohio (OH)', slug: 'ohio' },
+                { name: 'New York (NY)', slug: 'new-york' },
+                { name: 'Pennsylvania (PA)', slug: 'pennsylvania' },
+                { name: 'Illinois (IL)', slug: 'illinois' },
+                { name: 'North Carolina (NC)', slug: 'north-carolina' },
+                { name: 'NREMT NRP', slug: 'nremt-paramedic' },
+              ].map((st) => (
+                <Link
+                  key={st.slug}
+                  to={`/tools/renewal-calculator/${st.slug}/`}
+                  className="px-3 py-2.5 rounded-xl bg-slate-50 hover:bg-teal-50 border border-slate-200 text-xs font-bold text-slate-800 hover:text-[#0D5F57] transition-colors"
+                >
+                  {st.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-2xl bg-white border border-slate-200/90 p-7 space-y-5">
+            <h2 className="text-xl font-bold font-display text-slate-900">
+              CE Broker Alternative FAQ
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {CE_BROKER_FAQS.map((item) => (
+                <div key={item.q} className="space-y-1.5">
+                  <h3 className="text-sm font-bold text-slate-900">{item.q}</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">{item.a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Bottom CTA */}
-        <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
+        <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-14">
           <div className="rounded-2xl bg-gradient-to-r from-[#0D5F57] to-teal-800 text-white p-8 sm:p-10 text-center space-y-5 shadow-xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 text-teal-100 text-xs font-semibold">
-              <Sparkles className="w-3.5 h-3.5" />
+              <ShieldCheck className="w-3.5 h-3.5" />
               <span>Own your journey. Shape what’s next.</span>
             </div>
             <h2 className="text-2xl sm:text-4xl font-extrabold font-display text-white">
               Build your PathPort in 60 seconds
             </h2>
             <p className="text-sm sm:text-base text-teal-100 max-w-xl mx-auto">
-              Drop in your existing resume or CE certificates and experience {trialDays} days of
+              Drop in your existing resume or CE certificates and try {trialDays} days of
               PathPort Pro free.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-1">
@@ -238,7 +334,7 @@ export const VsCeBroker: React.FC<VsCeBrokerProps> = ({ onOpenWaitlist }) => {
                 <ArrowRight className="w-4 h-4" />
               </a>
               <Link
-                to="/p/sarah-jenkins-rn"
+                to="/p/sarah-jenkins-rn/"
                 className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-teal-900/50 hover:bg-teal-900/70 text-white border border-teal-400/30 font-semibold text-sm transition-colors"
               >
                 Inspect Sample RN MyPortfolio

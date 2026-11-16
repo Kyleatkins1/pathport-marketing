@@ -4,13 +4,13 @@ import { SecurityWhitepaper } from '../views/SecurityWhitepaper';
 ---
 
 <BaseLayout
-  title="PathPort Security & Data Protection Architecture — AES-256, PostgreSQL RLS & Zero Data Selling"
-  description="PathPort Security Architecture Overview. AES-256 encryption at rest, PostgreSQL Row Level Security (RLS), TLS 1.3 transport security, and our zero data selling commitment."
-  canonicalPath="/security"
+  title="Security & Data Encryption Architecture | PathPort"
+  description="PathPort Security Overview: AES-256 document storage encryption, SHA-256 integrity hashing, PostgreSQL Row Level Security (RLS), TLS 1.3, and zero data selling."
+  canonicalPath="/security/"
   breadcrumbs={[
-    { name: 'Security Architecture', path: '/security' },
+    { name: 'Security Architecture', path: '/security/' },
   ]}
 >
-  <SecurityWhitepaper client:load />
+  <SecurityWhitepaper client:idle />
 </BaseLayout>
 
